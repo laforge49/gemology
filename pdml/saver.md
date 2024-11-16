@@ -8,7 +8,7 @@ are supported along with list and dict
 structures.
 
 Escape sequences are created in strings:
-\\, \n, \".
+\\\\, \n, \\\".
 
 ## API
 
