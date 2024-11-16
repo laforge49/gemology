@@ -7,7 +7,7 @@ Python scalars (str, int, long, bool, etc.)
 are supported along with list and dict 
 structures.
 
-Escape sequences are created in strings:
+Escape sequences created in strings:
 \\\\, \\n and \\\".
 
 ## API
