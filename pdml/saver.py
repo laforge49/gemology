@@ -103,7 +103,7 @@ def debug(data: any) -> None:
         print(data_to_string(0, data, False))
 
 
-def writer(to_path: pathlib.Path, data) -> str:
+def writer(to_path: pathlib.Path, data:any) -> str:
     with to_path.open("w") as toFile:
         s = data_to_string(0, data, False)
         toFile.write(s)
