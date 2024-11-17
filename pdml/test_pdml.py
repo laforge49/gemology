@@ -22,7 +22,7 @@ def generate_samples(test_data_path: pathlib.Path, round_trip: bool,
 def string_round_trips(directory_path: pathlib.Path) -> None:
     for pdml_path in directory_path.glob("*.pdml"):
         print(pdml_path)
-        da = loader.reader(pdml_path)
+        da = loader.file_reader(pdml_path)
         print(da)
         s = saver.data_to_string(0, da, False)
         print(s)

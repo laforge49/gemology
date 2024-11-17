@@ -191,7 +191,12 @@ def process_input(cursor: textin.Cursor) -> any:
     return data
 
 
-def reader(from_path: pathlib.Path) -> any:
+def string_reader(pdml_string: str) -> any:
+    cursor: textin.Cursor = textin.cursor_from_string(pdml_string)
+    return process_input(cursor)
+
+
+def file_reader(from_path: pathlib.Path) -> any:
     cursor: textin.Cursor = textin.cursor_from_file(from_path)
     return process_input(cursor)
 
@@ -200,7 +205,7 @@ def load_files_test(directory_path: pathlib.Path) -> None:
     for pdml_path in directory_path.glob("*.pdml"):
         print(pdml_path)
         try:
-            da: any = reader(pdml_path)
+            da: any = file_reader(pdml_path)
             print(da)
         except PDmlException as exc:
             print(exc)
