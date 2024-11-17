@@ -1,4 +1,4 @@
-# module pdml.saver
+# module pdml.saver.py
 
 This module creates pdml strings and files
 from python data structures.
@@ -9,6 +9,8 @@ structures.
 
 Escape sequences created in strings:
 \\\\, \\n and \\\".
+
+A limited unit test is included.
 
 ## API
 
