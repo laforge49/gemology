@@ -3,6 +3,13 @@
 Converts PDML strings and files into 
 python data structures.
 
+Scalars are converted from string form
+to python data structures using 
+ast.literal_eval.
+The exception here is strings, which
+may span multiple lines.
+
+
 A limited unit test is included.
 
 ## API
