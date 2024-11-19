@@ -1,7 +1,8 @@
 # #InvertedClusterTagsFacet
 
-An #InvertedClusterTagsFacet indexes the tags in all the ClusterTagsFacets found
-in that same Cluster.
+An #InvertedClusterTagsFacet indexes the tags in 
+all the ClusterTagsFacets found
+in that same Cluster Gem.
 The #InvertedClusterTagsFacet holds a dict of the inverted Cluster tags, 
 where the keys
 of the dict are the tag names and the values are dicts whose keys are the
