@@ -1,4 +1,4 @@
-# ClustgerTagsFacet
+# ClusterTagsFacet
 
 A ClusterTagsFacet holds a dict of Tag name/value pairs.
 These are indexed in the #InvertedClusterTagsFacet.
