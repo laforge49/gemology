@@ -3,10 +3,9 @@
 A ClusterTagsFacet holds a dict of Tag name/value pairs.
 These are indexed in the #InvertedClusterTagsFacet
 found in the same Cluster.
-The names are strings without whitespace.
-The names are strings without whitespace.
-The values are python scalars. The values may include neither
-lists nor dicts.
+The names are strings without whitespaces.
+The values are strings without whitespaces
+or lists of strings without whitespaces.
 
 ## Tags
 
@@ -26,5 +25,5 @@ Gem name.
 
 Present on all Gems, including the Aggregate 
 Gem and Cluster Gems, the #facet_names tag
-holds a list of all the facets held by that 
+holds a list of all the facets used by that 
 Gem.
