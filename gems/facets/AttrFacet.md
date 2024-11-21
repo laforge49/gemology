@@ -5,7 +5,7 @@ The names are strings without whitespace. The values are
 python scalars (including multi-line strings), lists and
 dicts, recursively.
 
-## Attribute Names
+## Attributes
 
 ### #Cluster
 
