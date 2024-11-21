@@ -10,20 +10,8 @@ lists nor dicts.
 
 ## Tags
 
-### gem_base_name
-
-Present on neither the Aggregate Gem nor on
-any Cluster Gem, but present on all other 
-Gems, the gem_base_name tag holds the local
-name of a Gem.
-
-Local Gem names are unique within the scope
-of a Cluster. Full Gem names are constructed
-from a Cluster Gem name, "." and the local
-Gem name.
-
-### #ClusterName
+### #cluster_name
 
 Present only on Cluster Gems, the 
-#ClusterName tag holds the name of that 
+#cluster_name tag holds the name of that 
 Cluster Gem.
