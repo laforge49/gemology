@@ -57,6 +57,22 @@ def make_facet_cluster_ids(gem: dict | None) -> dict | None:
     return cluster_ids_facet
 
 
+def get_facet_inverted_cluster_ids(gem: dict | None) -> dict | None:
+    if gem is None:
+        return None
+    return gem.get("#InvertedClusterIdsFacet")
+
+
+def make_facet_inverted_cluster_ids(gem: dict | None) -> dict | None:
+    if gem is None:
+        return None
+    inverted_cluster_ids_facet = get_facet_inverted_cluster_ids(gem)
+    if inverted_cluster_ids_facet is None:
+        inverted_cluster_ids_facet = {}
+        gem["#InvertedClusterIdsFacet"] = inverted_cluster_ids_facet
+    return inverted_cluster_ids_facet
+
+
 def get_cluster_id_names(gem: dict | None, id_type: str) -> str | None:
     cluster_ids_facet = make_facet_cluster_ids(gem)
     if cluster_ids_facet is None:
@@ -82,6 +98,22 @@ def make_facet_cluster_tags(gem: dict | None) -> dict | None:
         cluster_tags_facet = {}
         gem["ClusterTagsFacet"] = cluster_tags_facet
     return cluster_tags_facet
+
+
+def get_facet_inverted_cluster_tags(gem: dict | None) -> dict | None:
+    if gem is None:
+        return None
+    return gem.get("#InvertedClusterTagsFacet")
+
+
+def make_facet_inverted_cluster_tags(gem: dict | None) -> dict | None:
+    if gem is None:
+        return None
+    inverted_cluster_tags_facet = get_facet_inverted_cluster_tags(gem)
+    if inverted_cluster_tags_facet is None:
+        inverted_cluster_tags_facet = {}
+        gem["#InvertedClusterTagsFacet"] = inverted_cluster_tags_facet
+    return inverted_cluster_tags_facet
 
 
 def get_cluster_tag_values(gem: dict | None, tag_name: str) -> list | None:
@@ -111,6 +143,22 @@ def make_facet_aggregate_ids(gem: dict | None) -> dict | None:
     return aggregate_ids_facet
 
 
+def get_facet_inverted_aggregate_ids(gem: dict | None) -> dict | None:
+    if gem is None:
+        return None
+    return gem.get("#InvertedAggregateIdsFacet")
+
+
+def make_facet_inverted_aggregate_ids(gem: dict | None) -> dict | None:
+    if gem is None:
+        return None
+    inverted_aggregate_ids_facet = get_facet_inverted_aggregate_ids(gem)
+    if inverted_aggregate_ids_facet is None:
+        inverted_aggregate_ids_facet = {}
+        gem["#InvertedAggregateIdsFacet"] = inverted_aggregate_ids_facet
+    return inverted_aggregate_ids_facet
+
+
 def get_aggregate_id_names(gem: dict | None, id_type: str) -> any:
     aggregate_ids_facet = get_facet_aggregate_ids(gem)
     if aggregate_ids_facet is None:
@@ -138,61 +186,6 @@ def make_facet_aggregate_tags(gem: dict | None) -> dict | None:
     return aggregate_tags_facet
 
 
-def get_aggregate_tag_values(gem: dict | None, tag_name: str) -> any:
-    aggregate_tags_facet = get_facet_aggregate_tags(gem)
-    if aggregate_tags_facet is None:
-        return None
-    return aggregate_tags_facet.get(tag_name)
-
-
-def get_facet_inverted_cluster_ids(gem: dict | None) -> dict | None:
-    if gem is None:
-        return None
-    return gem.get("#InvertedClusterIdsFacet")
-
-
-def make_facet_inverted_cluster_ids(gem: dict | None) -> dict | None:
-    if gem is None:
-        return None
-    inverted_cluster_ids_facet = get_facet_inverted_cluster_ids(gem)
-    if inverted_cluster_ids_facet is None:
-        inverted_cluster_ids_facet = {}
-        gem["#InvertedClusterIdFacet"] = inverted_cluster_ids_facet
-    return inverted_cluster_ids_facet
-
-
-def get_facet_inverted_cluster_tags(gem: dict | None) -> dict | None:
-    if gem is None:
-        return None
-    return gem.get("#InvertedClusterTagsFacet")
-
-
-def make_facet_inverted_cluster_tags(gem: dict | None) -> dict | None:
-    if gem is None:
-        return None
-    inverted_cluster_tags_facet = get_facet_inverted_cluster_tags(gem)
-    if inverted_cluster_tags_facet is None:
-        inverted_cluster_tags_facet = {}
-        gem["#InvertedClusterTagsFacet"] = inverted_cluster_tags_facet
-    return inverted_cluster_tags_facet
-
-
-def get_facet_inverted_aggregate_ids(gem: dict | None) -> dict | None:
-    if gem is None:
-        return None
-    return gem.get("#InvertedAggregateIdsFacet")
-
-
-def make_facet_inverted_aggregate_ids(gem: dict | None) -> dict | None:
-    if gem is None:
-        return None
-    inverted_aggregate_ids_facet = get_facet_inverted_aggregate_ids(gem)
-    if inverted_aggregate_ids_facet is None:
-        inverted_aggregate_ids_facet = {}
-        gem["#InvertedAggregateIdsFacet"] = inverted_aggregate_ids_facet
-    return inverted_aggregate_ids_facet
-
-
 def get_facet_inverted_aggregate_tags(gem: dict | None) -> dict | None:
     if gem is None:
         return None
@@ -202,11 +195,18 @@ def get_facet_inverted_aggregate_tags(gem: dict | None) -> dict | None:
 def make_facet_inverted_aggregate_tags(gem: dict | None) -> dict | None:
     if gem is None:
         return None
-    inverted_aggregate_tags_facet = get_facet_inverted_aggregate_tags(gem)
+    inverted_aggregate_tags_facet = get_facet_aggregate_tags(gem)
     if inverted_aggregate_tags_facet is None:
         inverted_aggregate_tags_facet = {}
         gem["#InvertedAggregateTagsFacet"] = inverted_aggregate_tags_facet
     return inverted_aggregate_tags_facet
+
+
+def get_aggregate_tag_values(gem: dict | None, tag_name: str) -> any:
+    aggregate_tags_facet = get_facet_aggregate_tags(gem)
+    if aggregate_tags_facet is None:
+        return None
+    return aggregate_tags_facet.get(tag_name)
 
 
 def get_gems_facet(gem: dict | None ) -> list | None:
