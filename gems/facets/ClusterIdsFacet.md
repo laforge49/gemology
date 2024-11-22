@@ -6,7 +6,7 @@ found in the same Cluster.
 The names are strings without whitespaces.
 The values are strings without whitespaces.
 
-## Tags
+## Ids
 
 ### gem_base_name
 

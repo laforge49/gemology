@@ -6,7 +6,7 @@ found in the Aggregate Gem.
 The names are strings without whitespaces.
 The values are strings without whitespaces.
 
-## Tags
+## Ids
 
 ### #cluster_name
 
