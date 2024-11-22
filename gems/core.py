@@ -57,7 +57,7 @@ def make_facet_cluster_ids(gem: dict | None) -> dict | None:
     return cluster_ids_facet
 
 
-def get_cluster_id(gem: dict | None, id_type: str) -> any:
+def get_cluster_id_names(gem: dict | None, id_type: str) -> str | None:
     cluster_ids_facet = make_facet_cluster_ids(gem)
     if cluster_ids_facet is None:
         return None
@@ -65,7 +65,7 @@ def get_cluster_id(gem: dict | None, id_type: str) -> any:
 
 
 def get_cluster_id_gem_base_name(gem: dict | None) -> str | None:
-    return get_cluster_id(gem, "gem_base_name")
+    return get_cluster_id_names(gem, "gem_base_name")
 
 
 def get_facet_cluster_tags(gem: dict | None) -> dict | None:
@@ -84,7 +84,7 @@ def make_facet_cluster_tags(gem: dict | None) -> dict | None:
     return cluster_tags_facet
 
 
-def get_cluster_tag(gem: dict | None, tag_name: str) -> any:
+def get_cluster_tag_values(gem: dict | None, tag_name: str) -> list | None:
     cluster_tags_facet = get_facet_cluster_tags(gem)
     if cluster_tags_facet is None:
         return None
@@ -92,7 +92,7 @@ def get_cluster_tag(gem: dict | None, tag_name: str) -> any:
 
 
 def get_cluster_tag_facet_names(gem: dict | None) -> list | None:
-    return get_cluster_tag(gem, "#facet_names")
+    return get_cluster_tag_values(gem, "#facet_names")
 
 
 def get_facet_aggregate_ids(gem: dict | None) -> dict | None:
@@ -111,15 +111,15 @@ def make_facet_aggregate_ids(gem: dict | None) -> dict | None:
     return aggregate_ids_facet
 
 
-def get_aggregate_id(gem: dict | None, id_type: str) -> any:
+def get_aggregate_id_names(gem: dict | None, id_type: str) -> any:
     aggregate_ids_facet = get_facet_aggregate_ids(gem)
     if aggregate_ids_facet is None:
         return None
     return aggregate_ids_facet.get(id_type)
 
 
-def get_aggregate_tag_cluster_name(gem: dict | None) -> str | None:
-    return get_aggregate_id(gem, "#cluster_name")
+def get_aggregate_id_cluster_name(gem: dict | None) -> str | None:
+    return get_aggregate_id_names(gem, "#cluster_name")
 
 
 def get_facet_aggregate_tags(gem: dict | None) -> dict | None:
@@ -138,7 +138,7 @@ def make_facet_aggregate_tags(gem: dict | None) -> dict | None:
     return aggregate_tags_facet
 
 
-def get_aggregate_tag(gem: dict | None, tag_name: str) -> any:
+def get_aggregate_tag_values(gem: dict | None, tag_name: str) -> any:
     aggregate_tags_facet = get_facet_aggregate_tags(gem)
     if aggregate_tags_facet is None:
         return None
