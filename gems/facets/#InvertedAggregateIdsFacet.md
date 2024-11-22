@@ -8,7 +8,7 @@ of the inverted Aggregate ids,
 where the keys
 of the dict are the Id types and the values 
 are dicts whose keys are the
-Id values. The values of these dicts are, 
+Ids. The values of these dicts are, 
 in turn, the gems
 (references) which
 hold the given Aggregate Id.

@@ -1,6 +1,6 @@
 # AggregateIdsFacet
 
-An AggregateIdsFacet holds a dict of Id type/value pairs.
+An AggregateIdsFacet holds a dict of type/id pairs.
 These are indexed in the #InvertedAggregateIdsFacet
 found in the Aggregate Gem.
 The names are strings without whitespaces.
