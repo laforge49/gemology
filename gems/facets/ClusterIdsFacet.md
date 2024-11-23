@@ -1,10 +1,9 @@
 # ClusterIdFacet
 
-A ClusterTagsFacet holds a dict of Id name/value pairs.
-These are indexed in the #InvertedClusterTagsFacet
+A ClusterIdFacet holds a dict of Id name/value pairs.
+These are indexed in the #InvertedClusterIdsFacet
 found in the same Cluster.
-The names are strings without whitespaces.
-The values are strings without whitespaces.
+The names and values are strings without whitespaces.
 
 ## Ids
 
@@ -12,10 +11,10 @@ The values are strings without whitespaces.
 
 Present on neither the Aggregate Gem nor on
 any Cluster Gem, but present on all other 
-Gems, the gem_base_name Id holds the local
+Gems, the gem_base_name Id holds the base
 name of a Gem.
 
-Local Gem names are unique within the scope
+Base Gem names are unique within the scope
 of a Cluster. Full Gem names are constructed
-from a Cluster Gem name, "." and the local
+from a Cluster Gem name, "." and the base
 Gem name.
