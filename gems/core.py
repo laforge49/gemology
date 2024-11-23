@@ -77,7 +77,8 @@ def get_inverted_cluster_ids(cluster: dict | None, id_type: str) -> dict | None:
         return None
     return inverted_cluster_ids_facet.get(id_type)
 
-def get_gem_by_inverted_cluster_id(cluster: dict | None, id_type: str, id: str) -> dict | None:
+
+def get_inverted_cluster_id(cluster: dict | None, id_type: str, id: str) -> dict | None:
     inverted_cluster_ids = get_inverted_cluster_ids(cluster, id_type)
     if inverted_cluster_ids is None:
         return None
@@ -85,7 +86,7 @@ def get_gem_by_inverted_cluster_id(cluster: dict | None, id_type: str, id: str) 
 
 
 def get_gem_by_base_name(cluster: dict | None, gem_base_name: str) -> dict | None:
-    return get_gem_by_inverted_cluster_id(cluster, "gem_base_name", gem_base_name)
+    return get_inverted_cluster_id(cluster, "gem_base_name", gem_base_name)
 
 
 def make_facet_inverted_cluster_ids(cluster: dict | None) -> dict | None:
@@ -172,6 +173,24 @@ def get_facet_inverted_aggregate_ids(aggregate: dict | None) -> dict | None:
     if aggregate is None:
         return None
     return aggregate.get("#InvertedAggregateIdsFacet")
+
+
+def get_inverted_aggregate_ids(aggregate: dict | None, id_type: str) -> dict | None:
+    inverted_aggregate_ids_facet = get_facet_inverted_cluster_ids(aggregate)
+    if inverted_aggregate_ids_facet is None:
+        return None
+    return inverted_aggregate_ids_facet.get(id_type)
+
+
+def get_inverted_aggregate_id(aggregate: dict | None, id_type: str, id: str) -> dict | None:
+    inverted_aggregate_id = get_inverted_aggregate_ids(aggregate, id_type)
+    if inverted_aggregate_id is None:
+        return None
+    return inverted_aggregate_id.get(id)
+
+
+def get_cluster_by_name(aggregate: dict | None, gem_base_name: str) -> dict | None:
+    return get_inverted_aggregate_id(aggregate, "#cluster_nam", gem_base_name)
 
 
 def make_facet_inverted_aggregate_ids(aggregate: dict | None) -> dict | None:
