@@ -1,3 +1,6 @@
+from pdml import saver
+
+
 dict_keys = type({}.keys())
 
 
@@ -61,3 +64,24 @@ def set_gem_parent(gem: dict | None, gem_parent: dict) -> None:
     if af is None:
         return None
     af["#gem_parent"] = gem_parent
+
+
+def test():
+    print()
+    print("*** attrs test ***")
+    print()
+    gem = {}
+    cluster = {}
+    set_cluster(gem, cluster)
+    set_cluster_path(cluster, "fudge")
+    print(gem)
+    print()
+    print("cluster:")
+    saver.debug(cluster)
+    print()
+    print("gem:")
+    saver.debug(gem)
+
+
+if __name__ == "__main__":
+    test()
