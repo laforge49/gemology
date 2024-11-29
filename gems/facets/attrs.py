@@ -1,7 +1,6 @@
 dict_keys = type({}.keys())
 
 
-
 def get_af(gem: dict | None) -> dict | None:
     if gem is None:
         return None
