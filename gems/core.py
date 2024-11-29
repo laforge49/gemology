@@ -3,19 +3,6 @@ import pathlib
 import copy
 
 
-def get_facet_cluster_ids(gem: dict | None) -> dict | None:
-    if gem is None:
-        return None
-    return gem.get("ClusterIdsFacet")
-
-
-def get_cluster_id_name(gem: dict | None, id_type: str) -> str | None:
-    cluster_ids_facet = get_facet_cluster_ids(gem)
-    if cluster_ids_facet is None:
-        return None
-    return cluster_ids_facet.get(id_type)
-
-
 def get_cluster_id_gem_base_name(gem: dict | None) -> str | None:
     return get_cluster_id_name(gem, "gem_base_name")
 
