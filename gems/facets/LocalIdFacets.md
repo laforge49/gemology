@@ -1,8 +1,8 @@
 # Local Id Facets
 
-The LocalIdFacet and the LocalIdIndexFacet together support
+The LocalIdFacet and the #LocalIdIndexFacet together support
 the use of identifiers with gems. The ids of a gem are placed in
-the LocalIdFacet held by each gem, while the LocalIdIndexFacet
+the LocalIdFacet held by each gem, while the #LocalIdIndexFacet
 is held by a cluster and provides an index to all the gems in
 that cluster.
 
@@ -13,7 +13,7 @@ first level are the Id types, the keys of the second level are the
 Id names, and the values of the second level are the gems for the
 given Id type and name.
 
-## Ids
+## Id types
 
 ### gem_base_name
 
