@@ -23,8 +23,18 @@ def get_id_name(gem: dict | None, id_type: str) -> str | None:
     return lif.get(id_type)
 
 
+def make_lif(gem: dict | None) -> dict | None:
+    if gem is None:
+        return None
+    lif = get_lif(gem)
+    if lif is None:
+        lif = {}
+        gem["LocalIdsFacet"] = lif
+    return lif
+
+
 def get_gem_base_name(gem: dict | None) -> str | None:
-    return get_id_name(gem: dict | None, "gem_base_name")
+    return get_id_name(gem, "gem_base_name")
 
 
 def get_liif(cluster: dict | None) -> dict | None:
@@ -33,14 +43,14 @@ def get_liif(cluster: dict | None) -> dict | None:
     return cluster.get("#LocalIdIndexFacet")
 
 
-def get_local_id_types(cluster: dict | None) -> dict_keys | None:
+def get_index_id_types(cluster: dict | None) -> dict_keys | None:
     liif = get_liif(cluster)
     if liif is None:
         return None
     return liif.keys()
 
 
-def get_local_id_names(cluster: dict | None, id_type: str) -> dict_keys | None:
+def get_index_id_names(cluster: dict | None, id_type: str) -> dict_keys | None:
     liif = get_liif(cluster)
     if liif is None:
         return None
@@ -50,7 +60,17 @@ def get_local_id_names(cluster: dict | None, id_type: str) -> dict_keys | None:
     return liif2.keys()
 
 
-def get_gem_by_local_id(cluster: dict | None, id_type: str, id_name: str) -> dict | None:
+def make_liif(cluster: dict | None) -> dict | None:
+    if cluster is None:
+        return None
+    liif = get_liif(cluster)
+    if liif is None:
+        liif = {}
+        cluster["#LocalIdIndexFacet"] = liif
+    return liif
+
+
+def get_gem_by_id(cluster: dict | None, id_type: str, id_name: str) -> dict | None:
     liif = get_liif(cluster)
     if liif is None:
         return None
@@ -60,5 +80,5 @@ def get_gem_by_local_id(cluster: dict | None, id_type: str, id_name: str) -> dic
     return liif2.get(id_name)
 
 
-def get_local_gem_by_gem_base_name(gem: dict | None) -> str | None:
-    return get_cluster_id_name(gem, "gem_base_name")
+def get_gem_by_gem_base_name(cluster: dict | None, gem_base_name: str) -> dict | None:
+    return get_gem_by_id(cluster, "gem_base_name", gem_base_name)
