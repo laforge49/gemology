@@ -41,12 +41,23 @@ def set_attr_value(gem: dict | None, attr_name: str, attr_value: any) -> None:
     af[attr_name] = attr_value
 
 
+def del_attr(gem: dict | None, attr_name: str) -> None:
+    af = get_af(gem)
+    if af is None:
+        return None
+    del af[attr_name]
+
+
 def get_cluster(gem: dict | None) -> dict | None:
     return get_attr_value(gem, "#cluster")
 
 
 def set_cluster(gem: dict | None, cluster: dict) -> None:
     set_attr_value(gem, "#cluster", cluster)
+
+
+def del_cluster_attr(gem: dict | None) -> None:
+    del_attr(gem, "#cluster")
 
 
 def get_cluster_path(gem: dict | None) -> str | None:
@@ -56,12 +67,21 @@ def get_cluster_path(gem: dict | None) -> str | None:
 def set_cluster_path(gem: dict | None, cluster_path: str) -> None:
     set_attr_value(gem, "#cluster_path", cluster_path)
 
+
+def del_cluster_path_attr(gem: dict | None) -> None:
+    del_attr(gem, "#cluster_path")
+
+
 def get_gem_parent(gem: dict | None) -> dict | None:
     return get_attr_value(gem, "#gem_parent")
 
 
 def set_gem_parent(gem: dict | None, gem_parent: dict) -> None:
     set_attr_value(gem, "#gem_parent", gem_parent)
+
+
+def del_parent_attr(gem: dict | None) -> None:
+    del_attr(gem, "#gem_parent")
 
 
 def test():
@@ -72,6 +92,7 @@ def test():
     cluster = {}
     set_cluster(gem, cluster)
     set_cluster_path(cluster, "fudge")
+    del_cluster_path_attr(cluster)
     print(gem)
     print()
     print("cluster:")
