@@ -3,41 +3,6 @@ import pathlib
 import copy
 
 
-def get_facet_attrs(gem: dict | None) -> dict | None:
-    if gem is None:
-        return None
-    return gem.get("AttrsFacet")
-
-
-def make_facet_attrs(gem: dict | None) -> dict | None:
-    if gem is None:
-        return None
-    attrs_facet = get_facet_attrs(gem)
-    if attrs_facet is None:
-        attrs_facet = {}
-        gem["AttrsFacet"] = attrs_facet
-    return attrs_facet
-
-
-def get_attr(gem: dict | None, attr_name: str) -> any:
-    attr_facet = get_facet_attrs(gem)
-    if attr_facet is None:
-        return None
-    return attr_facet.get(attr_name)
-
-
-def get_attr_cluster(gem: dict | None) -> dict | None:
-    return get_attr(gem, "#cluster")
-
-
-def get_attr_cluster_path(gem: dict | None) -> str | None:
-    return get_attr(gem, "#cluster_path")
-
-
-def get_attr_gem_parent(gem: dict | None) -> dict | None:
-    return get_attr(gem, "#gem_parent")
-
-
 def get_facet_cluster_ids(gem: dict | None) -> dict | None:
     if gem is None:
         return None
