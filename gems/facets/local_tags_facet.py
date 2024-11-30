@@ -94,3 +94,14 @@ def make_ltif(gem: dict | None) -> dict | None:
         ltif = {}
         cluster["#LocalTagIndexFacet"] = ltif
     return ltif
+
+
+def make_ltif2(gem: dict | None, tag_name: str) -> dict | None:
+    ltif = make_ltif(gem)
+    if ltif is None:
+        return
+    ltif2 = ltif.get(tag_name)
+    if ltif2 is None:
+        ltif2 = {}
+        ltif[tag_name] = ltif2
+    return ltif2
