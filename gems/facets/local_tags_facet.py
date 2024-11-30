@@ -1,4 +1,5 @@
 from gems import base
+from gems.facets import attrs_facet
 
 
 def get_ltf(gem: dict | None) -> dict | None:
@@ -29,3 +30,10 @@ def make_ltf(gem: dict | None) -> dict | None:
         ltf = {}
         gem["LocalTagsFacet"] = ltf
     return ltf
+
+
+def get_ltif(gem: dict | None) -> dict | None:
+    if gem is None:
+        return None
+    cluster = attrs_facet.get_cluster(gem)
+    return cluster.get("#LocalTagIndexFacet")

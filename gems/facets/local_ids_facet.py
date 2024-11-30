@@ -40,14 +40,14 @@ def get_liif(gem: dict | None) -> dict | None:
     return cluster.get("#LocalIdIndexFacet")
 
 
-def get_index_id_types(gem: dict | None) -> base.dict_keys | None:
+def cluster_get_id_types(gem: dict | None) -> base.dict_keys | None:
     liif = get_liif(gem)
     if liif is None:
         return None
     return liif.keys()
 
 
-def get_index_id_names(gem: dict | None, id_type: str) -> base.dict_keys | None:
+def cluster_get_id_names(gem: dict | None, id_type: str) -> base.dict_keys | None:
     liif = get_liif(gem)
     if liif is None:
         return None
@@ -57,7 +57,7 @@ def get_index_id_names(gem: dict | None, id_type: str) -> base.dict_keys | None:
     return liif2.keys()
 
 
-def get_gem_by_id(gem: dict | None, id_type: str, id_name: str) -> dict | None:
+def cluster_get_by_id(gem: dict | None, id_type: str, id_name: str) -> dict | None:
     liif = get_liif(gem)
     if liif is None:
         return None
@@ -69,7 +69,7 @@ def get_gem_by_id(gem: dict | None, id_type: str, id_name: str) -> dict | None:
 
 def del_id(gem: dict | None, id_type: str, id_name: str) -> bool:
     cluster = attrs_facet.get_cluster(gem)
-    gem = get_gem_by_id(cluster, id_type, id_name)
+    gem = cluster_get_by_id(cluster, id_type, id_name)
     if gem is None:
         return False
     lif = get_lif(gem)
@@ -114,12 +114,12 @@ def set_id(gem: dict | None, id_type: str, id_name: str) -> bool:
     return True
 
 
-def get_gem_base_name(gem: dict | None) -> str | None:
-    return get_id_name(gem, "gem_base_name")
+def get_base_name(gem: dict | None) -> str | None:
+    return get_gem_id_name(gem, "gem_base_name")
 
 
-def get_gem_by_gem_base_name(gem: dict | None, gem_base_name: str) -> dict | None:
-    return get_gem_by_id(gem, "gem_base_name", gem_base_name)
+def cluster_get_by_gem_base_name(gem: dict | None, gem_base_name: str) -> dict | None:
+    return cluster_get_by_id(gem, "gem_base_name", gem_base_name)
 
 
 def del_gem_base_name(gem: dict | None, id_type: str, id_name: str) -> bool:
@@ -141,7 +141,7 @@ def test() -> None:
     saver.debug(cluster)
     print()
     print("MyGem:")
-    saver.debug(get_gem_by_gem_base_name(cluster, "MyGem"))
+    saver.debug(cluster_get_by_gem_base_name(cluster, "MyGem"))
 
 
 if __name__ == "__main__":
