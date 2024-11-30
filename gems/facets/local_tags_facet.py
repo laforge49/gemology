@@ -66,7 +66,7 @@ def cluster_get_gems_by_tag(gem: dict | None, tag_name: str, tag_value: str) -> 
     return ltif2.get(tag_value)
 
 
-def del_id(gem: dict | None, tag_name: str, tag_value: str) -> bool:
+def del_tag(gem: dict | None, tag_name: str, tag_value: str) -> bool:
     if gem is None:
         return False
     ltf = get_ltf(gem)
