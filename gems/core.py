@@ -146,22 +146,6 @@ def make_facet_inverted_aggregate_tags(aggregate: dict | None) -> dict | None:
     return inverted_aggregate_tags_facet
 
 
-def get_gems_facet(gem: dict | None ) -> list | None:
-    if gem is None:
-        return None
-    return gem.get("GemsFacet")
-
-
-def make_facet_gems(gem: dict | None) -> dict | None:
-    if gem is None:
-        return None
-    gems_facet = get_gems_facet(gem)
-    if gems_facet is None:
-        gems_facet = {}
-        gem["GemsFacet"] = gems_facet
-    return gems_facet
-
-
 aggregate_ = None
 
 

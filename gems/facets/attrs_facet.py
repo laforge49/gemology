@@ -1,7 +1,5 @@
+from gems.facets import gems_facet
 from pdml import saver
-
-
-dict_keys = type({}.keys())
 
 
 def get_af(gem: dict | None) -> dict | None:
@@ -10,7 +8,7 @@ def get_af(gem: dict | None) -> dict | None:
     return gem.get("AttrsFacet")
 
 
-def get_attr_names(gem: dict | None) -> dict_keys | None:
+def get_attr_names(gem: dict | None) -> gems_facet.dict_keys | None:
     af = get_af(gem)
     if af is None:
         return None
@@ -87,9 +85,10 @@ def del_parent_attr(gem: dict | None) -> None:
     del_attr(gem, "#gem_parent")
 
 
-def create_gem(cluster: dict) -> dict | None:
+def create_gem(cluster: dict, gem_parent: dict) -> dict | None:
     gem = {}
     set_cluster(gem, cluster)
+    set_gem_parent(gem, gem_parent)
     return gem
 
 
@@ -98,7 +97,7 @@ def test():
     print("*** attrs test ***")
     print()
     cluster = {}
-    gem = create_gem(cluster)
+    gem = create_gem(cluster, cluster)
     set_cluster_path(cluster, "fudge")
     del_cluster_path_attr(cluster)
     print(gem)

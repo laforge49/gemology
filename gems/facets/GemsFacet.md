@@ -1,6 +1,6 @@
 # GemsFacet
 
-A GemFacet holds a list of subordinate Gems.
+A GemsFacet holds a list of subordinate Gems.
 A tree of Gems is formed from these subordinate Gems and the
 Gems subordinate to them, recursively. The roots of these 
 Gem trees are the Cluster Gems.

@@ -1,6 +1,4 @@
-from gems.facets import attrs
-
-dict_keys = type({}.keys())
+from gems.facets import gems_facet, attrs_facet
 
 
 def get_lif(gem: dict | None) -> dict | None:
@@ -9,7 +7,7 @@ def get_lif(gem: dict | None) -> dict | None:
     return gem.get("LocalIdsFacet")
 
 
-def get_id_types(gem: dict | None) -> dict_keys | None:
+def get_id_types(gem: dict | None) -> gems.dict_keys | None:
     lif = get_lif(gem)
     if lif is None:
         return None
