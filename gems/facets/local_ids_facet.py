@@ -120,7 +120,7 @@ def get_base_name(gem: dict | None) -> str | None:
     return gem_get_id_name(gem, "gem_base_name")
 
 
-def cluster_get_gem_by_gem_base_name(gem: dict | None, gem_base_name: str) -> dict | None:
+def get_gem_by_gem_base_name(gem: dict | None, gem_base_name: str) -> dict | None:
     return cluster_get_gem_by_id(gem, "gem_base_name", gem_base_name)
 
 
@@ -143,7 +143,7 @@ def test() -> None:
     saver.debug(cluster)
     print()
     print("MyGem:")
-    saver.debug(cluster_get_gem_by_gem_base_name(cluster, "MyGem"))
+    saver.debug(get_gem_by_gem_base_name(cluster, "MyGem"))
 
 
 if __name__ == "__main__":
