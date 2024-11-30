@@ -33,21 +33,22 @@ def make_lif(gem: dict | None) -> dict | None:
     return lif
 
 
-def get_liif(cluster: dict | None) -> dict | None:
-    if cluster is None:
+def get_liif(gem: dict | None) -> dict | None:
+    if gem is None:
         return None
+    cluster = attrs.get_cluster(gem)
     return cluster.get("#LocalIdIndexFacet")
 
 
-def get_index_id_types(cluster: dict | None) -> dict_keys | None:
-    liif = get_liif(cluster)
+def get_index_id_types(gem: dict | None) -> dict_keys | None:
+    liif = get_liif(gem)
     if liif is None:
         return None
     return liif.keys()
 
 
-def get_index_id_names(cluster: dict | None, id_type: str) -> dict_keys | None:
-    liif = get_liif(cluster)
+def get_index_id_names(gem: dict | None, id_type: str) -> dict_keys | None:
+    liif = get_liif(gem)
     if liif is None:
         return None
     liif2 = liif.get(id_type)
@@ -56,8 +57,8 @@ def get_index_id_names(cluster: dict | None, id_type: str) -> dict_keys | None:
     return liif2.keys()
 
 
-def get_gem_by_id(cluster: dict | None, id_type: str, id_name: str) -> dict | None:
-    liif = get_liif(cluster)
+def get_gem_by_id(gem: dict | None, id_type: str, id_name: str) -> dict | None:
+    liif = get_liif(gem)
     if liif is None:
         return None
     liif2 = liif.get(id_type)
@@ -66,18 +67,20 @@ def get_gem_by_id(cluster: dict | None, id_type: str, id_name: str) -> dict | No
     return liif2.get(id_name)
 
 
-def del_id(cluster: dict | None, id_type: str, id_name: str) -> None:
+def del_id(gem: dict | None, id_type: str, id_name: str) -> None:
+    cluster = attrs.get_cluster(gem)
     gem = get_gem_by_id(cluster, id_type, id_name)
     if gem is None:
         return
     lif = get_lif(gem)
     del lif[id_type]
-    liif = get_liif(cluster)
+    liif = get_liif(gem)
     liif2 = liif.get(id_type)
     del liif2[id_name]
 
 
-def make_liif(cluster: dict | None) -> dict | None:
+def make_liif(gem: dict | None) -> dict | None:
+    cluster = attrs.get_cluster(gem)
     if cluster is None:
         return None
     liif = get_liif(cluster)
@@ -87,8 +90,8 @@ def make_liif(cluster: dict | None) -> dict | None:
     return liif
 
 
-def make_liif2(cluster: dict | None, id_type: str) -> dict | None:
-    liif = make_liif(cluster)
+def make_liif2(gem: dict | None, id_type: str) -> dict | None:
+    liif = make_liif(gem)
     if liif is None:
         return
     liif2 = liif.get(id_type)
@@ -113,12 +116,12 @@ def get_gem_base_name(gem: dict | None) -> str | None:
     return get_id_name(gem, "gem_base_name")
 
 
-def get_gem_by_gem_base_name(cluster: dict | None, gem_base_name: str) -> dict | None:
-    return get_gem_by_id(cluster, "gem_base_name", gem_base_name)
+def get_gem_by_gem_base_name(gem: dict | None, gem_base_name: str) -> dict | None:
+    return get_gem_by_id(gem, "gem_base_name", gem_base_name)
 
 
-def del_gem_base_name(cluster: dict | None, id_type: str, id_name: str) -> None:
-    del_id(cluster, id_type, id_name)
+def del_gem_base_name(gem: dict | None, id_type: str, id_name: str) -> None:
+    del_id(gem, id_type, id_name)
 
 
 def set_gem_base_name(gem: dict | None, gem_base_name: str) -> None:

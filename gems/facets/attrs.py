@@ -49,7 +49,10 @@ def del_attr(gem: dict | None, attr_name: str) -> None:
 
 
 def get_cluster(gem: dict | None) -> dict | None:
-    return get_attr_value(gem, "#cluster")
+    cluster = get_attr_value(gem, "#cluster")
+    if cluster is None:
+        cluster = gem
+    return cluster
 
 
 def set_cluster(gem: dict | None, cluster: dict) -> None:
