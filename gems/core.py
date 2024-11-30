@@ -3,33 +3,6 @@ import pathlib
 import copy
 
 
-def get_facet_cluster_tags(gem: dict | None) -> dict | None:
-    if gem is None:
-        return None
-    return gem.get("ClusterTagsFacet")
-
-
-def get_cluster_tag_values(gem: dict | None, tag_name: str) -> list | None:
-    cluster_tags_facet = get_facet_cluster_tags(gem)
-    if cluster_tags_facet is None:
-        return None
-    return cluster_tags_facet.get(tag_name)
-
-
-def get_cluster_tag_facet_names(gem: dict | None) -> list | None:
-    return get_cluster_tag_values(gem, "#facet_names")
-
-
-def make_facet_cluster_tags(gem: dict | None) -> dict | None:
-    if gem is None:
-        return None
-    cluster_tags_facet = get_facet_cluster_tags(gem)
-    if cluster_tags_facet is None:
-        cluster_tags_facet = {}
-        gem["ClusterTagsFacet"] = cluster_tags_facet
-    return cluster_tags_facet
-
-
 def get_facet_inverted_cluster_tags(cluster: dict | None) -> dict | None:
     if cluster is None:
         return None
