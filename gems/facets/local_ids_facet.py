@@ -1,5 +1,6 @@
 from gems import base
 from gems.facets import attrs_facet
+from pdml import saver
 
 
 def get_lif(gem: dict | None) -> dict | None:
@@ -127,3 +128,21 @@ def del_gem_base_name(gem: dict | None, id_type: str, id_name: str) -> bool:
 
 def set_gem_base_name(gem: dict | None, gem_base_name: str) -> bool:
     return set_id(gem, "gem_base_name", gem_base_name)
+
+
+def test() -> None:
+    print()
+    print("*** local_ids_facet test ***")
+    cluster = {}
+    gem = attrs_facet.create_gem(cluster, cluster)
+    set_gem_base_name(gem, "MyGem")
+    print()
+    print("cluster:")
+    saver.debug(cluster)
+    print()
+    print("MyGem:")
+    saver.debug(get_gem_by_gem_base_name(cluster, "MyGem"))
+
+
+if __name__ == "__main__":
+    test()
