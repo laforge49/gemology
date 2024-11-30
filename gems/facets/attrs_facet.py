@@ -99,10 +99,9 @@ def create_gem(cluster: dict, gem_parent: dict) -> dict | None:
     return gem
 
 
-def test():
+def test() -> None:
     print()
-    print("*** attrs test ***")
-    print()
+    print("*** attrs_facet test ***")
     cluster = {}
     gem = create_gem(cluster, cluster)
     set_cluster_path(cluster, "fudge")
