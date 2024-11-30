@@ -32,18 +32,23 @@ def make_af(gem: dict | None) -> dict | None:
     return af
 
 
-def set_attr_value(gem: dict | None, attr_name: str, attr_value: any) -> None:
+def set_attr_value(gem: dict | None, attr_name: str, attr_value: any) -> bool:
     af = make_af(gem)
     if af is None:
-        return None
+        return False
     af[attr_name] = attr_value
+    return True
 
 
-def del_attr(gem: dict | None, attr_name: str) -> None:
+def del_attr(gem: dict | None, attr_name: str) -> bool:
     af = get_af(gem)
     if af is None:
-        return None
+        return False
+    attr_value = af.get(attr_name)
+    if attr_value is None:
+        return False
     del af[attr_name]
+    return True
 
 
 def get_cluster(gem: dict | None) -> dict | None:
@@ -53,36 +58,36 @@ def get_cluster(gem: dict | None) -> dict | None:
     return cluster
 
 
-def set_cluster(gem: dict | None, cluster: dict) -> None:
-    set_attr_value(gem, "#cluster", cluster)
+def set_cluster(gem: dict | None, cluster: dict) -> bool:
+    return set_attr_value(gem, "#cluster", cluster)
 
 
-def del_cluster_attr(gem: dict | None) -> None:
-    del_attr(gem, "#cluster")
+def del_cluster_attr(gem: dict | None) -> bool:
+    return del_attr(gem, "#cluster")
 
 
 def get_cluster_path(gem: dict | None) -> str | None:
     return get_attr_value(gem, "#cluster_path")
 
 
-def set_cluster_path(gem: dict | None, cluster_path: str) -> None:
-    set_attr_value(gem, "#cluster_path", cluster_path)
+def set_cluster_path(gem: dict | None, cluster_path: str) -> bool:
+    return set_attr_value(gem, "#cluster_path", cluster_path)
 
 
-def del_cluster_path_attr(gem: dict | None) -> None:
-    del_attr(gem, "#cluster_path")
+def del_cluster_path_attr(gem: dict | None) -> bool:
+    return del_attr(gem, "#cluster_path")
 
 
 def get_gem_parent(gem: dict | None) -> dict | None:
     return get_attr_value(gem, "#gem_parent")
 
 
-def set_gem_parent(gem: dict | None, gem_parent: dict) -> None:
-    set_attr_value(gem, "#gem_parent", gem_parent)
+def set_gem_parent(gem: dict | None, gem_parent: dict) -> bool:
+    return set_attr_value(gem, "#gem_parent", gem_parent)
 
 
-def del_parent_attr(gem: dict | None) -> None:
-    del_attr(gem, "#gem_parent")
+def del_parent_attr(gem: dict | None) -> bool:
+    return del_attr(gem, "#gem_parent")
 
 
 def create_gem(cluster: dict, gem_parent: dict) -> dict | None:
