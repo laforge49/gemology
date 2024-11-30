@@ -87,13 +87,18 @@ def del_parent_attr(gem: dict | None) -> None:
     del_attr(gem, "#gem_parent")
 
 
+def create_gem(cluster: dict) -> dict | None:
+    gem = {}
+    set_cluster(gem, cluster)
+    return gem
+
+
 def test():
     print()
     print("*** attrs test ***")
     print()
-    gem = {}
     cluster = {}
-    set_cluster(gem, cluster)
+    gem = create_gem(cluster)
     set_cluster_path(cluster, "fudge")
     del_cluster_path_attr(cluster)
     print(gem)
