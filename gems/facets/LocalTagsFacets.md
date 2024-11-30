@@ -7,7 +7,8 @@ is held by a cluster and provides an index to all the gems in
 that cluster.
 
 The LocalTagsFacet is a dict whose keys are the Tag names and whose
-values are the Tag values. 
+values are lists of Tag values. (In a given gem, the same 
+Tag can have more than one value.)
 
 The #LocalTagIndexFacet is a 3-level tree of dicts and lists.
 The first level is a dict whose keys are the Tag names, the values
