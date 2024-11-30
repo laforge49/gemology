@@ -83,3 +83,14 @@ def del_tag(gem: dict | None, tag_name: str, tag_value: str) -> bool:
     gems = ltif2.get(tag_value)
     gems.remove(gem)
     return True
+
+
+def make_ltif(gem: dict | None) -> dict | None:
+    cluster = attrs_facet.get_cluster(gem)
+    if cluster is None:
+        return None
+    ltif = get_ltif(cluster)
+    if ltif is None:
+        ltif = {}
+        cluster["#LocalTagIndexFacet"] = ltif
+    return ltif
