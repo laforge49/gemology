@@ -54,3 +54,13 @@ def cluster_get_tag_values(gem: dict | None, id_type: str) -> base.dict_keys | N
     if ltif2 is None:
         return None
     return ltif2.keys()
+
+
+def cluster_get_gems_by_id(gem: dict | None, id_type: str, id_name: str) -> list | None:
+    ltif = get_ltif(gem)
+    if ltif is None:
+        return None
+    ltif2 = ltif.get(id_type)
+    if ltif2 is None:
+        return None
+    return ltif2.get(id_name)

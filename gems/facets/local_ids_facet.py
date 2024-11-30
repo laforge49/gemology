@@ -68,11 +68,13 @@ def cluster_get_gem_by_id(gem: dict | None, id_type: str, id_name: str) -> dict 
 
 
 def del_id(gem: dict | None, id_type: str, id_name: str) -> bool:
-    cluster = attrs_facet.get_cluster(gem)
-    gem = cluster_get_gem_by_id(cluster, id_type, id_name)
     if gem is None:
         return False
     lif = get_lif(gem)
+    if lif is None:
+        return False
+    if lif.get(id_type) is None:
+        return False
     del lif[id_type]
     liif = get_liif(gem)
     liif2 = liif.get(id_type)
