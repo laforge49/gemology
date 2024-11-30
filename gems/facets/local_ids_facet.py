@@ -65,16 +65,17 @@ def get_gem_by_id(gem: dict | None, id_type: str, id_name: str) -> dict | None:
     return liif2.get(id_name)
 
 
-def del_id(gem: dict | None, id_type: str, id_name: str) -> None:
+def del_id(gem: dict | None, id_type: str, id_name: str) -> bool:
     cluster = attrs_facet.get_cluster(gem)
     gem = get_gem_by_id(cluster, id_type, id_name)
     if gem is None:
-        return
+        False
     lif = get_lif(gem)
     del lif[id_type]
     liif = get_liif(gem)
     liif2 = liif.get(id_type)
     del liif2[id_name]
+    return True
 
 
 def make_liif(gem: dict | None) -> dict | None:
@@ -99,15 +100,16 @@ def make_liif2(gem: dict | None, id_type: str) -> dict | None:
     return liif2
 
 
-def set_id(gem: dict | None, id_type: str, id_name: str) -> None:
+def set_id(gem: dict | None, id_type: str, id_name: str) -> bool:
     cluster = attrs_facet.get_cluster(gem)
     if cluster is None:
-        return
+        return False
     del_id(cluster, id_type, id_name)
     lif = make_lif(gem)
     lif[id_type] = id_name
     liif2 = make_liif2(cluster, id_type)
     liif2[id_name] = gem
+    return True
 
 
 def get_gem_base_name(gem: dict | None) -> str | None:
@@ -118,9 +120,9 @@ def get_gem_by_gem_base_name(gem: dict | None, gem_base_name: str) -> dict | Non
     return get_gem_by_id(gem, "gem_base_name", gem_base_name)
 
 
-def del_gem_base_name(gem: dict | None, id_type: str, id_name: str) -> None:
-    del_id(gem, id_type, id_name)
+def del_gem_base_name(gem: dict | None, id_type: str, id_name: str) -> bool:
+    return del_id(gem, id_type, id_name)
 
 
-def set_gem_base_name(gem: dict | None, gem_base_name: str) -> None:
-    set_id(gem, "gem_base_name", gem_base_name)
+def set_gem_base_name(gem: dict | None, gem_base_name: str) -> bool:
+    return set_id(gem, "gem_base_name", gem_base_name)
