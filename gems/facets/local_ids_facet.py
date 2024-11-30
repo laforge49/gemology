@@ -116,7 +116,7 @@ def set_id(gem: dict | None, id_type: str, id_name: str) -> bool:
     return True
 
 
-def get_base_name(gem: dict | None) -> str | None:
+def get_gem_base_name(gem: dict | None) -> str | None:
     return gem_get_id_name(gem, "gem_base_name")
 
 
