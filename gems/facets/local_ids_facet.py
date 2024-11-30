@@ -1,4 +1,5 @@
-from gems.facets import gems_facet, attrs_facet
+from gems import base
+from gems.facets import attrs_facet
 
 
 def get_lif(gem: dict | None) -> dict | None:
@@ -7,7 +8,7 @@ def get_lif(gem: dict | None) -> dict | None:
     return gem.get("LocalIdsFacet")
 
 
-def get_id_types(gem: dict | None) -> gems_facet.dict_keys | None:
+def get_id_types(gem: dict | None) -> base.dict_keys | None:
     lif = get_lif(gem)
     if lif is None:
         return None
@@ -38,14 +39,14 @@ def get_liif(gem: dict | None) -> dict | None:
     return cluster.get("#LocalIdIndexFacet")
 
 
-def get_index_id_types(gem: dict | None) -> gems_facet.dict_keys | None:
+def get_index_id_types(gem: dict | None) -> base.dict_keys | None:
     liif = get_liif(gem)
     if liif is None:
         return None
     return liif.keys()
 
 
-def get_index_id_names(gem: dict | None, id_type: str) -> gems_facet.dict_keys | None:
+def get_index_id_names(gem: dict | None, id_type: str) -> base.dict_keys | None:
     liif = get_liif(gem)
     if liif is None:
         return None
@@ -69,7 +70,7 @@ def del_id(gem: dict | None, id_type: str, id_name: str) -> bool:
     cluster = attrs_facet.get_cluster(gem)
     gem = get_gem_by_id(cluster, id_type, id_name)
     if gem is None:
-        False
+        return False
     lif = get_lif(gem)
     del lif[id_type]
     liif = get_liif(gem)
