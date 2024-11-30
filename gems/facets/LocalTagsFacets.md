@@ -9,7 +9,7 @@ that cluster.
 The LocalTagsFacet is a dict whose keys are the Tag names and whose
 values are the Tag values. 
 
-The #LocalIdIndexFacet is a 3-level tree of dicts and lists.
+The #LocalTagIndexFacet is a 3-level tree of dicts and lists.
 The first level is a dict whose keys are the Tag names, the values
 being the dicts of the second level.
 The keys of the second level are the Tag values, the values
