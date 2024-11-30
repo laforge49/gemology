@@ -1,4 +1,4 @@
-# Local Id Facets
+# Local Ids Facets
 
 The LocalIdsFacet and the #LocalIdIndexFacet together support
 the use of identifiers with gems. The ids of a gem are placed in
