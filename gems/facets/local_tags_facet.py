@@ -110,12 +110,13 @@ def make_ltif2(gem: dict | None, tag_name: str) -> dict | None:
 def set_tag(gem: dict | None, tag_name: str, tag_value: str) -> bool:
     if gem is None:
         return False
-    del_tag(gem, tag_name, tag_value)
     ltf = make_ltf(gem)
     tag_values = ltf.get(tag_name)
     if tag_values is None:
         tag_values = []
         ltf[tag_name] = tag_values
+    elif tag_value in tag_values:
+        return False
     tag_values.append(tag_value)
     ltif2 = make_ltif2(gem, tag_name)
     gems = ltif2.get(tag_value)
@@ -140,7 +141,8 @@ def build_index(gem: dict) -> None:
                 if gems is None:
                     gems = []
                     ltif2[tag_value] = gems
-                gems.append(tag_value)
+                if gem not in gems:
+                    gems.append(tag_value)
 
 
 def get_facet_names(gem: dict | None) -> list | None:
@@ -155,5 +157,5 @@ def del_facet_name(gem: dict | None, facet_name: str) -> bool:
     return del_tag(gem, "#facet_names", facet_name)
 
 
-def set_gem_base_name(gem: dict | None, facet_name: str) -> bool:
+def set_facet_name(gem: dict | None, facet_name: str) -> bool:
     return set_tag(gem, "#facet_names", facet_name)
