@@ -112,9 +112,17 @@ def set_tag(gem: dict | None, tag_name: str, tag_value: str) -> bool:
         return False
     del_tag(gem, tag_name, tag_value)
     ltf = make_ltf(gem)
-    ltf[tag_name] = tag_value
+    tag_values = ltf.get(tag_name)
+    if tag_values is None:
+        tag_values = []
+        ltf[tag_name] = tag_values
+    tag_values.append(tag_value)
     ltif2 = make_ltif2(gem, tag_name)
-    ltif2[tag_value] = gem
+    gems = ltif2.get(tag_value)
+    if gems is None:
+        gems = []
+        ltif2[tag_value] = gems
+    gems.append(gem)
     return True
 
 
