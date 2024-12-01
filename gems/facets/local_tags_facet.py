@@ -141,8 +141,8 @@ def build_index(gem: dict) -> None:
                 if gems is None:
                     gems = []
                     ltif2[tag_value] = gems
-                if gem not in gems:
-                    gems.append(tag_value)
+                if base.idindex(gems, gem) is None:
+                    gems.append(gem)
 
 
 def get_facet_names(gem: dict | None) -> list | None:
