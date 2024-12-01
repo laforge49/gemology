@@ -116,3 +116,19 @@ def set_tag(gem: dict | None, tag_name: str, tag_value: str) -> bool:
     ltif2 = make_ltif2(gem, tag_name)
     ltif2[tag_value] = gem
     return True
+
+
+def get_facet_names(gem: dict | None) -> list | None:
+    return gem_get_tag_values(gem, "#facet_names")
+
+
+def get_gems_by_facet_name(gem: dict | None, facet_name: str) -> list | None:
+    return cluster_get_gems_by_tag(gem, "#facet_names", facet_name)
+
+
+def del_facet_name(gem: dict | None, facet_name: str) -> bool:
+    return del_tag(gem, "#facet_names", facet_name)
+
+
+def set_gem_base_name(gem: dict | None, facet_name: str) -> bool:
+    return set_tag(gem, "#facet_names", facet_name)

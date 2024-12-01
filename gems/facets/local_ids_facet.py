@@ -123,8 +123,8 @@ def get_gem_by_gem_base_name(gem: dict | None, gem_base_name: str) -> dict | Non
     return cluster_get_gem_by_id(gem, "gem_base_name", gem_base_name)
 
 
-def del_gem_base_name(gem: dict | None, id_type: str, id_name: str) -> bool:
-    return del_id(gem, id_type, id_name)
+def del_gem_base_name(gem: dict | None, id_name: str) -> bool:
+    return del_id(gem, "gem_base_name", id_name)
 
 
 def set_gem_base_name(gem: dict | None, gem_base_name: str) -> bool:
