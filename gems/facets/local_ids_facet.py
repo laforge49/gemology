@@ -105,13 +105,12 @@ def make_liif2(gem: dict | None, id_type: str) -> dict | None:
 
 
 def set_id(gem: dict | None, id_type: str, id_name: str) -> bool:
-    cluster = attrs_facet.get_cluster(gem)
-    if cluster is None:
+    if gem is None:
         return False
-    del_id(cluster, id_type, id_name)
+    del_id(gem, id_type, id_name)
     lif = make_lif(gem)
     lif[id_type] = id_name
-    liif2 = make_liif2(cluster, id_type)
+    liif2 = make_liif2(gem, id_type)
     liif2[id_name] = gem
     return True
 

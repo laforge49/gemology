@@ -105,3 +105,14 @@ def make_ltif2(gem: dict | None, tag_name: str) -> dict | None:
         ltif2 = {}
         ltif[tag_name] = ltif2
     return ltif2
+
+
+def set_tag(gem: dict | None, tag_name: str, tag_value: str) -> bool:
+    if gem is None:
+        return False
+    del_tag(gem, tag_name, tag_value)
+    ltf = make_ltf(gem)
+    ltf[tag_name] = tag_value
+    ltif2 = make_ltif2(gem, tag_name)
+    ltif2[tag_value] = gem
+    return True
