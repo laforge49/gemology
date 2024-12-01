@@ -25,6 +25,15 @@ def add_child_gem(gem: dict | None, child_gem: dict) -> bool:
     return True
 
 
+def get_gems(gem: dict):
+    yield gem
+    gf = get_gf(gem)
+    if gf is not None:
+        for child in gf:
+            yield from get_gems(child)
+
+
+
 def test() -> None:
     print()
     print("*** gems_facet test ***")
