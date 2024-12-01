@@ -2,17 +2,6 @@ from gems.facets import gems_query, attrs_query, local_ids_query, local_tags_que
 from pdml import saver
 
 
-aggregate_ = None
-
-
-def get_aggregate() -> dict:
-    global aggregate_
-    if aggregate_:
-        return aggregate_
-    aggregate_ = {}
-    return aggregate_
-
-
 def build_indexes(cluster: dict) -> None:
     for gem in gems_facet.get_gems(cluster):
         local_ids_facet.build_index(gem)

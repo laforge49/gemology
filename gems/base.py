@@ -1,4 +1,13 @@
 dict_keys = type({}.keys())
+aggregate_ = None
+
+
+def get_aggregate() -> dict:
+    global aggregate_
+    if aggregate_:
+        return aggregate_
+    aggregate_ = {}
+    return aggregate_
 
 
 def idindex(lst: list, e: any) -> int | None:
