@@ -115,6 +115,17 @@ def set_id(gem: dict | None, id_type: str, id_name: str) -> bool:
     return True
 
 
+def build_index(gem: dict) -> None:
+    lif = get_lif(gem)
+    if lif is None:
+        return
+    id_types = lif.keys()
+    for id_type in id_types:
+        id_name = lif.get(id_type)
+        liif2 = make_liif2(gem, id_type)
+        liif2[id_name] = gem
+
+
 def get_gem_base_name(gem: dict | None) -> str | None:
     return gem_get_id_name(gem, "gem_base_name")
 
@@ -134,15 +145,27 @@ def set_gem_base_name(gem: dict | None, gem_base_name: str) -> bool:
 def test() -> None:
     print()
     print("*** local_ids_facet test ***")
-    cluster = {}
-    gem = attrs_facet.create_gem(cluster, cluster)
-    set_gem_base_name(gem, "MyGem")
+    cluster1 = {}
+    gem1 = attrs_facet.create_gem(cluster1, cluster1)
+    set_gem_base_name(gem1, "MyGem")
     print()
-    print("cluster:")
-    saver.debug(cluster)
+    print("cluster1:")
+    saver.debug(cluster1)
     print()
     print("MyGem:")
-    saver.debug(get_gem_by_gem_base_name(cluster, "MyGem"))
+    saver.debug(get_gem_by_gem_base_name(cluster1, "MyGem"))
+    cluster2 = {}
+    gem2 = attrs_facet.create_gem(cluster2, cluster2)
+    lif = make_lif(gem2)
+    lif["gem_base_name"] = "Fred"
+    build_index(gem2)
+    print()
+    print("cluster2:")
+    saver.debug(cluster2)
+    print()
+    print("Fred")
+    saver.debug(get_gem_by_gem_base_name(cluster2, "Fred"))
+
 
 
 if __name__ == "__main__":
