@@ -1,7 +1,7 @@
 # LocalTagsFacets
 
 The LocalTagsFacet and the #LocalTagIndexFacet together support
-the use of tags with gems. The tags of a gem are placed in
+the use of locally scoped tags. The local tags of a gem are placed in
 the LocalTagFacet held by each gem, while the #LocalTagIndexFacet
 is held by a cluster and provides an index to all the gems in
 that cluster.
