@@ -1,4 +1,4 @@
-# GemsFacet
+# Gems Facet
 
 A GemsFacet holds a list of subordinate Gems.
 A tree of Gems is formed from these subordinate Gems and the

@@ -1,7 +1,7 @@
 # Local Ids Facets
 
 The LocalIdsFacet and the #LocalIdIndexFacet together support
-the use of identifiers with gems. The ids of a gem are placed in
+the use of locally scoped identifiers with gems. The ids of a gem are placed in
 the LocalIdFacet held by each gem, while the #LocalIdIndexFacet
 is held by a cluster and provides an index to all the gems in
 that cluster.

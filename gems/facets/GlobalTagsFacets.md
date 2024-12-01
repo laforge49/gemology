@@ -1,4 +1,4 @@
-# GlobalTagsFacets
+# Global Tags Facets
 
 The GlobalTagsFacet and the #GlobalTagIndexFacet together support
 the use of globally scoped tags. The global tags of a gem are

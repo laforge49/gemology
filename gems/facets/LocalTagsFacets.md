@@ -1,4 +1,4 @@
-# LocalTagsFacets
+# Local Tags Facets
 
 The LocalTagsFacet and the #LocalTagIndexFacet together support
 the use of locally scoped tags. The local tags of a gem are placed in

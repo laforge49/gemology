@@ -1,4 +1,4 @@
-# AttrsFacet
+# Attrs Facet
 
 An AttrsFacet holds a dict of attribute name/value pairs.
 The names are strings without whitespace. The values are
