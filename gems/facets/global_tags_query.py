@@ -2,55 +2,53 @@ from gems import base
 from gems.facets import attrs_query
 
 
-def get_ltf(gem: dict | None) -> dict | None:
+def get_gtf(gem: dict | None) -> dict | None:
     if gem is None:
         return None
-    return gem.get("LocalTagsFacet")
+    return gem.get("GlobalTagsFacet")
 
 
 def gem_get_tag_names(gem: dict | None) -> base.dict_keys | None:
-    ltf = get_ltf(gem)
-    if ltf is None:
+    gtf = get_gtf(gem)
+    if gtf is None:
         return None
-    return ltf.keys()
+    return gtf.keys()
 
 
 def gem_get_tag_values(gem: dict | None, tag_name: str) -> list | None:
-    ltf = get_ltf(gem)
-    if ltf is None:
+    gtf = get_gtf(gem)
+    if gtf is None:
         return None
-    return ltf.get(tag_name)
+    return gtf.get(tag_name)
 
 
-def get_ltif(gem: dict | None) -> dict | None:
-    if gem is None:
+def get_gtif() -> dict | None:
+    aggregate = base.get_aggregate()
+    return aggregate.get("#GlobalTagIndexFacet")
+
+
+def aggregate_get_tag_names() -> base.dict_keys | None:
+    gtif = get_gtif()
+    if gtif is None:
         return None
-    cluster = attrs_query.get_cluster(gem)
-    return cluster.get("#LocalTagIndexFacet")
+    return gtif.keys()
 
 
-def cluster_get_tag_names(gem: dict | None) -> base.dict_keys | None:
-    ltif = get_ltif(gem)
-    if ltif is None:
+def aggregate_get_tag_values(tag_name: str) -> base.dict_keys | None:
+    gtif = get_gtif()
+    if gtif is None:
         return None
-    return ltif.keys()
+    gtif2 = gtif.get(tag_name)
+    if gtif2 is None:
+        return None
+    return gtif2.keys()
 
 
-def cluster_get_tag_values(gem: dict | None, tag_name: str) -> base.dict_keys | None:
-    ltif = get_ltif(gem)
-    if ltif is None:
+def aggregate_get_gems_by_tag(tag_name: str, tag_value: str) -> list | None:
+    gtif = get_gtif()
+    if gtif is None:
         return None
-    ltif2 = ltif.get(tag_name)
-    if ltif2 is None:
+    gtif2 = gtif.get(tag_name)
+    if gtif2 is None:
         return None
-    return ltif2.keys()
-
-
-def cluster_get_gems_by_tag(gem: dict | None, tag_name: str, tag_value: str) -> list | None:
-    ltif = get_ltif(gem)
-    if ltif is None:
-        return None
-    ltif2 = ltif.get(tag_name)
-    if ltif2 is None:
-        return None
-    return ltif2.get(tag_value)
+    return gtif2.get(tag_value)
