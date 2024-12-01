@@ -33,7 +33,6 @@ def get_gems(gem: dict):
             yield from get_gems(child)
 
 
-
 def test() -> None:
     print()
     print("*** gems_facet test ***")
