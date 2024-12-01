@@ -1,5 +1,4 @@
 from gems import base
-from gems.facets import attrs_query
 
 
 def get_gtf(gem: dict | None) -> dict | None:
