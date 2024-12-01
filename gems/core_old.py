@@ -103,17 +103,5 @@ def make_facet_inverted_aggregate_tags(aggregate: dict | None) -> dict | None:
     return inverted_aggregate_tags_facet
 
 
-aggregate_ = None
-
-
-def get_aggregate() -> dict:
-    global aggregate_
-    if aggregate_:
-        return aggregate_
-    aggregate_ = {}
-    register_(aggregate_, aggregate_)
-    return aggregate_
-
-
 def register_(gem: dict, cluster: dict) -> None:
     pass
