@@ -126,6 +126,23 @@ def set_tag(gem: dict | None, tag_name: str, tag_value: str) -> bool:
     return True
 
 
+def build_index(gem: dict) -> None:
+    ltf = get_ltf(gem)
+    if ltf is None:
+        return
+    tag_names = ltf.keys()
+    for tag_name in tag_names:
+        tag_values = ltf.get(tag_name)
+        if tag_values is not None:
+            ltif2 = make_ltif2(gem, tag_name)
+            for tag_value in tag_values:
+                gems = ltif2.get(tag_value)
+                if gems is None:
+                    gems = []
+                    ltif2[tag_value] = gems
+                gems.append(tag_value)
+
+
 def get_facet_names(gem: dict | None) -> list | None:
     return gem_get_tag_values(gem, "#facet_names")
 
