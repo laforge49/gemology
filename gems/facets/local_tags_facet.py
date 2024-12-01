@@ -81,7 +81,7 @@ def del_tag(gem: dict | None, tag_name: str, tag_value: str) -> bool:
     ltif = get_ltif(gem)
     ltif2 = ltif.get(tag_name)
     gems = ltif2.get(tag_value)
-    gems.remove(gem)
+    base.idremove(gems, gem)
     return True
 
 
