@@ -3,22 +3,6 @@ import pathlib
 import copy
 
 
-def get_facet_inverted_cluster_tags(cluster: dict | None) -> dict | None:
-    if cluster is None:
-        return None
-    return cluster.get("#InvertedClusterTagsFacet")
-
-
-def make_facet_inverted_cluster_tags(cluster: dict | None) -> dict | None:
-    if cluster is None:
-        return None
-    inverted_cluster_tags_facet = get_facet_inverted_cluster_tags(cluster)
-    if inverted_cluster_tags_facet is None:
-        inverted_cluster_tags_facet = {}
-        cluster["#InvertedClusterTagsFacet"] = inverted_cluster_tags_facet
-    return inverted_cluster_tags_facet
-
-
 def get_facet_aggregate_ids(gem: dict | None) -> dict | None:
     if gem is None:
         return None
@@ -53,7 +37,7 @@ def get_facet_inverted_aggregate_ids(aggregate: dict | None) -> dict | None:
 
 
 def get_inverted_aggregate_ids(aggregate: dict | None, id_type: str) -> dict | None:
-    inverted_aggregate_ids_facet = get_facet_inverted_cluster_ids(aggregate)
+    inverted_aggregate_ids_facet = get_facet_inverted_aggregate_ids(aggregate)
     if inverted_aggregate_ids_facet is None:
         return None
     return inverted_aggregate_ids_facet.get(id_type)
