@@ -1,16 +1,11 @@
+from gems.facets import gems_query
 from pdml import saver
-
-
-def get_gf(gem: dict | None ) -> list | None:
-    if gem is None:
-        return None
-    return gem.get("GemsFacet")
 
 
 def make_gf(gem: dict | None) -> list | None:
     if gem is None:
         return None
-    gf = get_gf(gem)
+    gf = gems_query.get_gf(gem)
     if gf is None:
         gf = []
         gem["GemsFacet"] = gf
@@ -23,14 +18,6 @@ def add_child_gem(gem: dict | None, child_gem: dict) -> bool:
         return False
     gf.append(child_gem)
     return True
-
-
-def get_gems(gem: dict):
-    yield gem
-    gf = get_gf(gem)
-    if gf is not None:
-        for child in gf:
-            yield from get_gems(child)
 
 
 def test() -> None:

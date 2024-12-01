@@ -1,32 +1,11 @@
-from gems import base
-from gems.facets import gems_facet
+from gems.facets import attrs_query, gems_update
 from pdml import saver
-
-
-def get_af(gem: dict | None) -> dict | None:
-    if gem is None:
-        return None
-    return gem.get("AttrsFacet")
-
-
-def get_attr_names(gem: dict | None) -> base.dict_keys | None:
-    af = get_af(gem)
-    if af is None:
-        return None
-    return af.keys()
-
-
-def get_attr_value(gem: dict | None, attr_name: str) -> any:
-    af = get_af(gem)
-    if af is None:
-        return None
-    return af.get(attr_name)
 
 
 def make_af(gem: dict | None) -> dict | None:
     if gem is None:
         return None
-    af = get_af(gem)
+    af = attrs_query.get_af(gem)
     if af is None:
         af = {}
         gem["AttrsFacet"] = af
@@ -42,7 +21,7 @@ def set_attr_value(gem: dict | None, attr_name: str, attr_value: any) -> bool:
 
 
 def del_attr(gem: dict | None, attr_name: str) -> bool:
-    af = get_af(gem)
+    af = attrs_query.get_af(gem)
     if af is None:
         return False
     attr_value = af.get(attr_name)
@@ -50,13 +29,6 @@ def del_attr(gem: dict | None, attr_name: str) -> bool:
         return False
     del af[attr_name]
     return True
-
-
-def get_cluster(gem: dict | None) -> dict | None:
-    cluster = get_attr_value(gem, "#cluster")
-    if cluster is None:
-        cluster = gem
-    return cluster
 
 
 def set_cluster(gem: dict | None, cluster: dict) -> bool:
@@ -68,7 +40,7 @@ def del_cluster_attr(gem: dict | None) -> bool:
 
 
 def get_cluster_path(gem: dict | None) -> str | None:
-    return get_attr_value(gem, "#cluster_path")
+    return attrs_query.get_attr_value(gem, "#cluster_path")
 
 
 def set_cluster_path(gem: dict | None, cluster_path: str) -> bool:
@@ -80,11 +52,11 @@ def del_cluster_path_attr(gem: dict | None) -> bool:
 
 
 def get_gem_parent(gem: dict | None) -> dict | None:
-    return get_attr_value(gem, "#gem_parent")
+    return attrs_query.get_attr_value(gem, "#gem_parent")
 
 
 def set_gem_parent(gem: dict | None, gem_parent: dict) -> bool:
-    gems_facet.add_child_gem(gem_parent, gem)
+    gems_update.add_child_gem(gem_parent, gem)
     return set_attr_value(gem, "#gem_parent", gem_parent)
 
 

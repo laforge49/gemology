@@ -1,4 +1,4 @@
-from gems.facets import gems_facet, attrs_facet, local_ids_facet, local_tags_facet
+from gems.facets import gems_query, attrs_query, local_ids_query, local_tags_query
 from pdml import saver
 
 
