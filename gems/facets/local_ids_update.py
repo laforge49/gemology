@@ -1,5 +1,4 @@
-from gems.facets import local_ids_query, attrs_query, attrs_update
-from pdml import saver
+from gems.facets import local_ids_query, attrs_query
 
 
 def make_lif(gem: dict | None) -> dict | None:
@@ -77,32 +76,3 @@ def del_gem_base_name(gem: dict | None, id_name: str) -> bool:
 
 def set_gem_base_name(gem: dict | None, gem_base_name: str) -> bool:
     return set_id(gem, "gem_base_name", gem_base_name)
-
-
-def test() -> None:
-    print()
-    print("*** local_ids_facet test ***")
-    cluster1 = {}
-    gem1 = attrs_update.create_gem(cluster1, cluster1)
-    set_gem_base_name(gem1, "MyGem")
-    print()
-    print("cluster1:")
-    saver.debug(cluster1)
-    print()
-    print("MyGem:")
-    saver.debug(local_ids_query.get_gem_by_gem_base_name(cluster1, "MyGem"))
-    cluster2 = {}
-    gem2 = attrs_update.create_gem(cluster2, cluster2)
-    lif = make_lif(gem2)
-    lif["gem_base_name"] = "Fred"
-    build_index(gem2)
-    print()
-    print("cluster2:")
-    saver.debug(cluster2)
-    print()
-    print("Fred")
-    saver.debug(local_ids_query.get_gem_by_gem_base_name(cluster2, "Fred"))
-
-
-if __name__ == "__main__":
-    test()
