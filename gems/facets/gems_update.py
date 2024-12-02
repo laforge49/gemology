@@ -1,5 +1,4 @@
 from gems.facets import gems_query
-from pdml import saver
 
 
 def make_gf(gem: dict | None) -> list | None:
@@ -18,21 +17,3 @@ def add_child_gem(gem: dict | None, child_gem: dict) -> bool:
         return False
     gf.append(child_gem)
     return True
-
-
-def test() -> None:
-    print()
-    print("*** gems_facet test ***")
-    parent_gem = {}
-    child_gem = {}
-    add_child_gem(parent_gem, child_gem)
-    print()
-    print("parent gem:")
-    saver.debug(parent_gem)
-    print()
-    print("child gem:")
-    saver.debug(child_gem)
-
-
-if __name__ == "__main__":
-    test()
