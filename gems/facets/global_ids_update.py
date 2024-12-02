@@ -1,6 +1,5 @@
 from gems import base
-from gems.facets import global_ids_query, attrs_query, attrs_update
-from pdml import saver
+from gems.facets import global_ids_query
 
 
 def make_gif(gem: dict | None) -> dict | None:
@@ -76,30 +75,3 @@ def del_cluster_name(gem: dict | None, id_name: str) -> bool:
 
 def set_cluster_name(gem: dict | None, cluster_name: str) -> bool:
     return set_id(gem, "#cluster_name", cluster_name)
-
-
-def test() -> None:
-    print()
-    print("*** local_ids_facet test ***")
-    cluster1 = {}
-    set_cluster_name(cluster1, "Sam")
-    print()
-    print("cluster1:")
-    saver.debug(cluster1)
-    print()
-    print("Sam:")
-    saver.debug(global_ids_query.get_cluster_by_cluster_name("Sam"))
-    cluster2 = {}
-    gif = make_gif(cluster2)
-    gif["#cluster_name"] = "Sonny"
-    build_index(cluster2)
-    print()
-    print("cluster2:")
-    saver.debug(cluster2)
-    print()
-    print("Sonny")
-    saver.debug(global_ids_query.get_cluster_by_cluster_name("Sonny"))
-
-
-if __name__ == "__main__":
-    test()
