@@ -1,5 +1,4 @@
 from gems.facets import attrs_query, gems_update
-from pdml import saver
 
 
 def make_af(gem: dict | None) -> dict | None:
@@ -69,22 +68,3 @@ def create_gem(cluster: dict, gem_parent: dict) -> dict | None:
     set_cluster(gem, cluster)
     set_gem_parent(gem, gem_parent)
     return gem
-
-
-def test() -> None:
-    print()
-    print("*** attrs_facet test ***")
-    cluster = {}
-    gem = create_gem(cluster, cluster)
-    set_cluster_path(cluster, "fudge")
-    del_cluster_path_attr(cluster)
-    print()
-    print("cluster:")
-    saver.debug(cluster)
-    print()
-    print("gem:")
-    saver.debug(gem)
-
-
-if __name__ == "__main__":
-    test()
