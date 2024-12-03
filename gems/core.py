@@ -2,7 +2,9 @@ from gems.facets import gems_query, local_ids_update, local_tags_update, attrs_u
     global_tags_update
 
 
-def register(cluster: dict) -> None:
+def register(cluster: dict, cluster_name: str, cluster_path: str) -> None:
+    global_ids_update.set_cluster_name(cluster, cluster_name)
+    attrs_update.set_cluster_path(cluster, cluster_path)
     for gem, gem_parent in gems_query.get_gems(cluster, None):
         if gem_parent:
             attrs_update.set_gem_parent(gem, gem_parent)
