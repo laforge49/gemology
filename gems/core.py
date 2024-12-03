@@ -17,5 +17,5 @@ def create_gem(cluster: dict, gem_parent: dict, gem_base_name: str) -> dict | No
     gem = {}
     attrs_update.set_cluster(gem, cluster)
     attrs_update.set_gem_parent(gem, gem_parent)
-    local_ids_update.set_gem_base_name(cluster, gem_base_name)
+    local_ids_update.set_gem_base_name(gem, gem_base_name)
     return gem
