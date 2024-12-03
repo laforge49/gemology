@@ -2,8 +2,11 @@ from gems.facets import gems_query, local_ids_update, local_tags_update, attrs_u
     global_tags_update
 
 
-def build_indexes(cluster: dict) -> None:
-    for gem in gems_query.get_gems(cluster):
+def register(cluster: dict) -> None:
+    for gem, gem_parent in gems_query.get_gems(cluster, None):
+        if gem_parent:
+            attrs_update.set_gem_parent(gem, gem_parent)
+            attrs_update.set_cluster(gem, cluster)
         local_ids_update.build_index(gem)
         local_tags_update.build_index(gem)
         global_ids_update.build_index(gem)
