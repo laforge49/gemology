@@ -1,10 +1,13 @@
-from gems.facets import gems_query, local_ids_update, local_tags_update, attrs_update
+from gems.facets import gems_query, local_ids_update, local_tags_update, attrs_update, global_ids_update, \
+    global_tags_update
 
 
 def build_indexes(cluster: dict) -> None:
     for gem in gems_query.get_gems(cluster):
         local_ids_update.build_index(gem)
         local_tags_update.build_index(gem)
+        global_ids_update.build_index(gem)
+        global_tags_update.build_index(gem)
 
 
 def create_gem(cluster: dict, gem_parent: dict, gem_base_name: str) -> dict | None:
