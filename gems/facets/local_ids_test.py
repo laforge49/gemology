@@ -7,10 +7,7 @@ def test() -> None:
     print()
     print("*** core test ***")
     cluster2 = {}
-    gem2 = attrs_update.create_gem(cluster2, cluster2)
-    lif = local_ids_update.make_lif(gem2)
-    lif["gem_base_name"] = "Fred"
-    core.build_indexes(cluster2)
+    gem2 = core.create_gem(cluster2, cluster2, "Fred")
     print()
     print("cluster2:")
     saver.debug(cluster2)

@@ -46,7 +46,7 @@ def set_cluster_path(gem: dict | None, cluster_path: str) -> bool:
     return set_attr_value(gem, "#cluster_path", cluster_path)
 
 
-def del_cluster_path_attr(gem: dict | None) -> bool:
+def del_cluster_path(gem: dict | None) -> bool:
     return del_attr(gem, "#cluster_path")
 
 
