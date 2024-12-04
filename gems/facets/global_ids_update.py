@@ -75,8 +75,24 @@ def build_index(gem: dict) -> None:
     id_types = gif.keys()
     for id_type in id_types:
         id_name = gif.get(id_type)
-        giif2 = make_giif2(id_type)
-        giif2[id_name] = gem
+        if id_name:
+            giif2 = make_giif2(id_type)
+            giif2[id_name] = gem
+
+
+def deindex(gem: dict) -> None:
+    gif = global_ids_query.get_gif(gem)
+    if gif is None:
+        return
+    giif = global_ids_query.get_giif()
+    if giif is None:
+        return
+    id_types = gif.keys()
+    for id_type in id_types:
+        giif2 = giif.get(id_type)
+        id_name = gif.get(id_type)
+        if giif2 and id_name and giif2.get(id_name):
+            del giif2[id_name]
 
 
 def del_cluster_name(gem: dict | None, id_name: str) -> bool:

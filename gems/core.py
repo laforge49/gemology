@@ -15,6 +15,11 @@ def register(cluster: dict, cluster_name: str, cluster_path: str) -> None:
         global_tags_update.build_index(gem)
 
 
+def unplug(cluster: dict) -> None:
+    for gem, _ in gems_query.get_gems(cluster, None):
+        global_ids_update.deindex(gem)
+
+
 def create_gem(cluster: dict, gem_parent: dict, gem_base_name: str) -> dict | None:
     gem = {}
     attrs_update.set_cluster(gem, cluster)
