@@ -12,6 +12,21 @@ def make_gtf(gem: dict | None) -> dict | None:
     return gtf
 
 
+def deindex_tag(gem: dict | None, tag_name: str, tag_value: str) -> bool:
+    if gem is None:
+        return False
+    gtif = global_tags_query.get_gtif()
+    if gtif is None:
+        return False
+    gtif2 = gtif.get(tag_name)
+    if gtif2 is None:
+        return False
+    gems = gtif2.get(tag_value)
+    if gems is None:
+        return False
+    return base.idremove(gems, gem)
+
+
 def del_tag(gem: dict | None, tag_name: str, tag_value: str) -> bool:
     if gem is None:
         return False
@@ -24,10 +39,7 @@ def del_tag(gem: dict | None, tag_name: str, tag_value: str) -> bool:
     if tag_value not in values:
         return False
     values.remove(tag_value)
-    gtif = global_tags_query.get_gtif()
-    gtif2 = gtif.get(tag_name)
-    gems = gtif2.get(tag_value)
-    base.idremove(gems, gem)
+    deindex_tag(gem, tag_name, tag_value)
     return True
 
 
