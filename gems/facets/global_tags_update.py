@@ -1,5 +1,5 @@
 from gems import base
-from gems.facets import attrs_query, global_tags_query
+from gems.facets import global_tags_query
 
 
 def make_gtf(gem: dict | None) -> dict | None:
@@ -99,3 +99,20 @@ def build_index(gem: dict) -> None:
                     gtif2[tag_value] = gems
                 if base.idindex(gems, gem) is None:
                     gems.append(gem)
+
+
+def deindex(gem: dict | None) -> None:
+    gtf = global_tags_query.get_gtf(gem)
+    if gtf is None:
+        return
+    gtif = global_tags_query.get_gtif()
+    if gtif is None:
+        return
+    tag_names = gtf.keys()
+    for tag_name in tag_names:
+        gtif2 = gtif.get(tag_name)
+        tag_values = gtf.get(tag_name)
+        if gtif2 and tag_values:
+            for tag_value in tag_values:
+                gems = gtif2.get(tag_value)
+                base.idremove(gems, gem)
