@@ -12,6 +12,19 @@ def make_gif(gem: dict | None) -> dict | None:
     return gif
 
 
+def deindex_id(id_type: str, id_name: str) -> bool:
+    giif = global_ids_query.get_giif()
+    if giif is None:
+        return False
+    giif2 = giif.get(id_type)
+    if giif2 is None:
+        return False
+    if giif2.get(id_name) is None:
+        return False
+    del giif2[id_name]
+    return True
+
+
 def del_id(gem: dict | None, id_type: str, id_name: str) -> bool:
     if gem is None:
         return False
@@ -20,10 +33,7 @@ def del_id(gem: dict | None, id_type: str, id_name: str) -> bool:
         return False
     if gif.get(id_type) is None:
         return False
-    del gif[id_type]
-    giif = global_ids_query.get_giif()
-    giif2 = giif.get(id_type)
-    del giif2[id_name]
+    deindex_id(id_type, id_name)
     return True
 
 
