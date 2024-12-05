@@ -1,16 +1,24 @@
 import pathlib
 
+from gems import base
 from gems.facets import gems_query, local_ids_update, local_tags_update, attrs_update, global_ids_update, \
-    global_tags_update, attrs_query
+    global_tags_update, attrs_query, local_ids_query
 from pdml import loader, saver
 
 
-def create_gem(cluster: dict, gem_parent: dict, gem_base_name: str) -> dict | None:
+def create_gem(cluster: dict, gem_parent: dict, gem_base_name: str) -> dict:
     gem = {}
     attrs_update.set_cluster(gem, cluster)
     attrs_update.set_gem_parent(gem, gem_parent)
     local_ids_update.set_gem_base_name(gem, gem_base_name)
     return gem
+
+
+def make_gem(cluster: dict, gem_parent: dict, gem_base_name: str) -> dict:
+    gem = local_ids_query.get_gem_by_gem_base_name(cluster, gem_base_name)
+    if gem:
+        return gem
+    return create_gem(cluster, gem_parent, gem_base_name)
 
 
 def register(cluster: dict, cluster_name: str, cluster_path: str) -> None:
@@ -49,6 +57,21 @@ def unplug(cluster: dict) -> None:
         global_tags_update.deindex(gem)
 
 
+def validate_str(v) -> bool:
+    return type(v) == "str"
+
+
+def validate_dict(v) -> bool:
+    return type(v) == "dict"
+
+def add_property_type_validator() -> None:
+    aggregate = base.get_aggregate()
+    validators = make_gem(aggregate, aggregate, "property_type_validators")
+    attrs_update.set_attr_value(validators, "#validate_str", validate_str)
+    attrs_update.set_attr_value(validators, "#validate_dict", validate_dict)
+
+
 def load_types(home_path: pathlib.Path) -> None:
+    add_property_type_validator()
     meta_path = home_path / pathlib.Path("meta")
-    types = load(meta_path / pathlib.Path("types.pdml"))
+    types = load(meta_path / pathlib.Path("property_types.pdml"))
