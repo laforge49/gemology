@@ -1,6 +1,5 @@
 import pathlib
 
-from gems import base
 from gems.facets import gems_query, local_ids_update, local_tags_update, attrs_update, global_ids_update, \
     global_tags_update, attrs_query
 from pdml import loader, saver
@@ -50,23 +49,6 @@ def unplug(cluster: dict) -> None:
         global_tags_update.deindex(gem)
 
 
-def test(home_path: pathlib.Path) -> None:
-    print()
-    print("*** core test ***")
-    test_data_path = home_path / pathlib.Path("test data")
-    print("test data path:", test_data_path)
-    sample1 = load(test_data_path / pathlib.Path("sample1.pdml"))
-    print()
-    print("aggregate:")
-    print(base.get_aggregate())
-    saver.debug(base.get_aggregate())
-    print()
-    print("sample1")
-    print(sample1)
-    saver.debug(sample1)
-    save_as(sample1, test_data_path / pathlib.Path("sample1a.pdml"))
-
-
-if __name__ == "__main__":
-    home_path = pathlib.Path.cwd()
-    test(home_path)
+def load_types(home_path: pathlib.Path) -> None:
+    meta_path = home_path / pathlib.Path("meta")
+    types = load(meta_path / pathlib.Path("types.pdml"))

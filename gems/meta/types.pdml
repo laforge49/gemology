@@ -1,7 +1,7 @@
 dict
     "AttrsFacet": dict
         "AttrsFacet/#cluster": "ref"
-        "AttrsFacet/#cluster_path": str
+        "AttrsFacet/#cluster_path": "str"
         "AttrsFacet/#gem_parent": "ref"
-        "GlobalIdsFacet/#cluster_name" : "str"
-        "LocalIdsFacet/gem_base_name" : "str"
+        "GlobalIdsFacet/#cluster_name": "str"
+        "LocalIdsFacet/gem_base_name": "str"
