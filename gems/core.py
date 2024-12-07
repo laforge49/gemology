@@ -3,7 +3,7 @@ import typing
 
 from gems import base
 from gems.facets import gems_query, local_ids_update, local_tags_update, attrs_update, global_ids_update, \
-    global_tags_update, attrs_query, local_ids_query
+    global_tags_update, attrs_query, local_ids_query, global_tags_query
 from pdml import loader, saver
 
 
@@ -74,10 +74,23 @@ def add_function(function_name: str, function: typing.Callable) -> dict:
     return function_gem
 
 
-def get_function(function_name: str) -> typing.Callable | None:
+def get_function_gem(function_name: str) -> dict | None:
     aggregate = base.get_aggregate()
     function_gem_name = "function." + function_name
     function_gem = local_ids_query.get_gem_by_gem_base_name(aggregate, function_gem_name)
+    return function_gem
+
+
+def get_function_description(function_name: str) -> base.dict_keys | None:
+    function_gem = get_function_gem(function_name)
+    if function_gem is None:
+        return None
+    descriptions = global_tags_query.get_descriptions(function_gem)
+    return descriptions
+
+
+def get_function(function_name: str) -> typing.Callable | None:
+    function_gem = get_function_gem(function_name)
     if function_gem is None:
         return None
     function = attrs_query.get_function(function_gem)

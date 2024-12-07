@@ -53,7 +53,7 @@ def aggregate_get_gems_by_tag(tag_name: str, tag_value: str) -> list | None:
     return gtif2.get(tag_value)
 
 
-def get_descriptions(gem: dict | None) -> str | None:
+def get_descriptions(gem: dict | None) -> base.dict_keys | None:
     return gem_get_tag_values(gem, "description")
 
 
