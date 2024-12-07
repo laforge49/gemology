@@ -51,3 +51,15 @@ def aggregate_get_gems_by_tag(tag_name: str, tag_value: str) -> list | None:
     if gtif2 is None:
         return None
     return gtif2.get(tag_value)
+
+
+def get_descriptions(gem: dict | None) -> str | None:
+    return gem_get_tag_values(gem, "description")
+
+
+def aggregate_get_descriptions() -> base.dict_keys | None:
+    return aggregate_get_tag_values("description")
+
+
+def get_gems_by_description(description: str) -> dict | None:
+    return aggregate_get_gems_by_tag("description", description)

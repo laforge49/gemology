@@ -17,3 +17,9 @@ The keys of the second level are the Tag values, the values
 being the lists of the third level.
 The values held by the third level lists then are the gems
 that have been tagged.
+
+## Tag Names
+
+### description
+
+The value of this tag describes the gem which holds the tag.
