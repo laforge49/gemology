@@ -1,7 +1,6 @@
 import pathlib
 
 from gems import core, base
-from gems.facets import attrs_query
 from pdml import saver
 
 

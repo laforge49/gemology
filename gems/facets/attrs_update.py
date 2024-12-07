@@ -1,4 +1,5 @@
 from gems.facets import attrs_query, gems_update
+import typing
 
 
 def make_af(gem: dict | None) -> dict | None:
@@ -53,6 +54,10 @@ def set_gem_parent(gem: dict | None, gem_parent: dict) -> bool:
 
 def del_parent_attr(gem: dict | None) -> bool:
     return del_attr(gem, "#gem_parent")
+
+
+def set_function(gem: dict | None, function: typing.Callable) -> bool:
+    return set_attr_value(gem, "#function", function)
 
 
 def create_gem(cluster: dict, gem_parent: dict) -> dict | None:
