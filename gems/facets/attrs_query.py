@@ -34,3 +34,7 @@ def get_cluster_path(gem: dict | None) -> str | None:
 
 def get_gem_parent(gem: dict | None) -> dict | None:
     return get_attr_value(gem, "#gem_parent")
+
+
+def get_function(gem: dict | None) -> str | None:
+    return get_attr_value(gem, "#function")

@@ -79,7 +79,7 @@ def get_function(function_name: str):
     function_gem = local_ids_query.get_gem_by_gem_base_name(aggregate, function_gem_name)
     if function_gem is None:
         return None
-    function = attrs_query.get_attr_value(function_gem, "#function")
+    function = attrs_query.get_function(function_gem)
     return function
 
 
