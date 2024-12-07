@@ -2,12 +2,13 @@ dict_keys = type({}.keys())
 aggregate_ = None
 
 
-def get_aggregate() -> dict:
+def get_aggregate() -> dict | None:
     global aggregate_
-    if aggregate_:
-        return aggregate_
-    aggregate_ = {}
     return aggregate_
+
+def set_aggregate(aggregate: dict) -> None:
+    global aggregate_
+    aggregate_ = aggregate
 
 
 def idindex(lst: list, e: any) -> int | None:

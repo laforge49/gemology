@@ -1,7 +1,12 @@
 import pathlib
 
 from gems import core, base
+from gems.facets import attrs_query
 from pdml import saver
+
+
+def hi_there():
+    print("Hello World!")
 
 
 def test(home_path: pathlib.Path) -> None:
@@ -9,6 +14,11 @@ def test(home_path: pathlib.Path) -> None:
     print("*** core test ***")
     test_data_path = home_path / pathlib.Path("test data")
     print("test data path:", test_data_path)
+    print()
+    print("function resource test:")
+    core.initialize(home_path)
+    core.add_function("#hi_there", hi_there)
+    core.get_function("#hi_there")()
     sample1 = core.load(test_data_path / pathlib.Path("sample1.pdml"))
     print()
     print("aggregate:")

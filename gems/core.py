@@ -55,3 +55,33 @@ def unplug(cluster: dict) -> None:
     for gem, _ in gems_query.get_gems(cluster, None):
         global_ids_update.deindex(gem)
         global_tags_update.deindex(gem)
+
+
+def build_aggregate() -> None:
+    aggregate = {}
+    make_gem(aggregate, aggregate, "resources")
+    base.set_aggregate(aggregate)
+
+
+def add_function(function_name: str, function) -> None:
+    resources = local_ids_query.get_gem_by_gem_base_name(base.get_aggregate(), "resources")
+    af = attrs_update.make_af(resources)
+    functions = af.get("functions")
+    if functions is None:
+        functions = {}
+        af["functions"] = functions
+    functions[function_name] = function
+
+
+def get_function(function_name: str):
+    resources = local_ids_query.get_gem_by_gem_base_name(base.get_aggregate(), "resources")
+    af = attrs_update.make_af(resources)
+    functions = af.get("functions")
+    if functions is None:
+        return None
+    function = functions.get(function_name)
+    return function
+
+
+def initialize(home_path: pathlib.Path) -> None:
+    build_aggregate()
