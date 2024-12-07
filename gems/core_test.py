@@ -1,6 +1,7 @@
 import pathlib
 
 from gems import core, base
+from gems.facets import local_ids_update, global_tags_update
 from pdml import saver
 
 
@@ -16,7 +17,8 @@ def test(home_path: pathlib.Path) -> None:
     print()
     print("function resource test:")
     core.initialize(home_path)
-    core.add_function("hi_there", hi_there)
+    hi_there_function = core.add_function("hi_there", hi_there)
+    global_tags_update.set_description(hi_there_function, "Hello World!")
     core.get_function("hi_there")()
     sample1 = core.load(test_data_path / pathlib.Path("sample1.pdml"))
     print()
