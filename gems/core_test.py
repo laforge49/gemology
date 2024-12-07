@@ -7,7 +7,6 @@ from pdml import saver
 def test(home_path: pathlib.Path) -> None:
     print()
     print("*** core test ***")
-    # core.load_types(home_path)
     test_data_path = home_path / pathlib.Path("test data")
     print("test data path:", test_data_path)
     sample1 = core.load(test_data_path / pathlib.Path("sample1.pdml"))
