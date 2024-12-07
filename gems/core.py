@@ -60,7 +60,7 @@ def unplug(cluster: dict) -> None:
 
 def build_aggregate() -> None:
     aggregate = {}
-    resources = make_gem(aggregate, aggregate, "Resourcess")
+    resources = make_gem(aggregate, aggregate, "Resources")
     make_gem(aggregate, resources, "Functions")
     base.set_aggregate(aggregate)
 
