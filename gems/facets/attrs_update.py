@@ -38,20 +38,12 @@ def del_cluster_attr(gem: dict | None) -> bool:
     return del_attr(gem, "#cluster")
 
 
-def get_cluster_path(cluster: dict | None) -> str | None:
-    return attrs_query.get_attr_value(cluster, "#cluster_path")
-
-
 def set_cluster_path(cluster: dict | None, cluster_path: str) -> bool:
     return set_attr_value(cluster, "#cluster_path", cluster_path)
 
 
 def del_cluster_path(cluster: dict | None) -> bool:
     return del_attr(cluster, "#cluster_path")
-
-
-def get_gem_parent(gem: dict | None) -> dict | None:
-    return attrs_query.get_attr_value(gem, "#gem_parent")
 
 
 def set_gem_parent(gem: dict | None, gem_parent: dict) -> bool:
