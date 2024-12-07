@@ -116,3 +116,11 @@ def deindex(gem: dict | None) -> None:
             for tag_value in tag_values:
                 gems = gtif2.get(tag_value)
                 base.idremove(gems, gem)
+
+
+def del_description(gem: dict | None, description: str) -> bool:
+    return del_tag(gem, "description", description)
+
+
+def set_description(gem: dict | None, description: str) -> bool:
+    return set_tag(gem, "description", description)
