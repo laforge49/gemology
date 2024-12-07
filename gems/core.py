@@ -59,26 +59,27 @@ def unplug(cluster: dict) -> None:
 
 def build_aggregate() -> None:
     aggregate = {}
-    make_gem(aggregate, aggregate, "resources")
+    resources = make_gem(aggregate, aggregate, "resourcess")
+    make_gem(aggregate, resources, "functions")
     base.set_aggregate(aggregate)
 
 
-def add_function(function_name: str, function) -> None:
-    resources = local_ids_query.get_gem_by_gem_base_name(base.get_aggregate(), "resources")
-    af = attrs_update.make_af(resources)
-    functions = af.get("functions")
-    if functions is None:
-        functions = {}
-        af["functions"] = functions
-    functions[function_name] = function
+def add_function(function_name: str, function) -> dict:
+    aggregate = base.get_aggregate()
+    functions_gem = local_ids_query.get_gem_by_gem_base_name(aggregate, "functions")
+    function_gem_name = "function." + function_name
+    function_gem = create_gem(aggregate, functions_gem, function_gem_name)
+    attrs_update.set_attr_value(function_gem, "#function", function)
+    return function_gem
 
 
 def get_function(function_name: str):
-    resources = local_ids_query.get_gem_by_gem_base_name(base.get_aggregate(), "resources")
-    functions = attrs_query.get_attr_value(resources, "functions")
-    if functions is None:
+    aggregate = base.get_aggregate()
+    function_gem_name = "function." + function_name
+    function_gem = local_ids_query.get_gem_by_gem_base_name(aggregate, function_gem_name)
+    if function_gem is None:
         return None
-    function = functions.get(function_name)
+    function = attrs_query.get_attr_value(function_gem, "#function")
     return function
 
 
