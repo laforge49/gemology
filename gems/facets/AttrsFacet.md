@@ -27,3 +27,7 @@ Present on neither the Aggregate Gem nor on
 any Cluster Gems, the #gem_parent
 attribute holds a reference to the Gem or
 Cluster Gem that the Gem is subordinate to.
+
+### #function
+
+The value of this attribute is an executable Python function.
