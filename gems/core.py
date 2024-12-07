@@ -55,23 +55,3 @@ def unplug(cluster: dict) -> None:
     for gem, _ in gems_query.get_gems(cluster, None):
         global_ids_update.deindex(gem)
         global_tags_update.deindex(gem)
-
-
-def validate_str(v) -> bool:
-    return type(v) == "str"
-
-
-def validate_dict(v) -> bool:
-    return type(v) == "dict"
-
-def add_property_type_validator() -> None:
-    aggregate = base.get_aggregate()
-    validators = make_gem(aggregate, aggregate, "property_type_validators")
-    attrs_update.set_attr_value(validators, "#validate_str", validate_str)
-    attrs_update.set_attr_value(validators, "#validate_dict", validate_dict)
-
-
-def load_types(home_path: pathlib.Path) -> None:
-    add_property_type_validator()
-    meta_path = home_path / pathlib.Path("meta")
-    types = load(meta_path / pathlib.Path("property_types.pdml"))
