@@ -75,8 +75,7 @@ def add_function(function_name: str, function) -> None:
 
 def get_function(function_name: str):
     resources = local_ids_query.get_gem_by_gem_base_name(base.get_aggregate(), "resources")
-    af = attrs_update.make_af(resources)
-    functions = af.get("functions")
+    functions = attrs_query.get_attr_value(resources, "functions")
     if functions is None:
         return None
     function = functions.get(function_name)
