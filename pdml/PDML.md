@@ -17,7 +17,8 @@ There are three special characters used as well,
 Each item in a list or dict starts on a new line. 
 Dictionary keys are strings followed by a colon (:).
 The line following an include is the relative pathname 
-of the file to be included.
+of the file to be included. (Relative to the file being 
+processed.)
 
 In PDML text, the # indicates the beginning
 of a comment and the remainder of the line is not
