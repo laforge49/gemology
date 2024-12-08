@@ -7,6 +7,7 @@ class Cursor(typing.TypedDict):
     buf: str
     line: int
     more: abc.Iterator[str] | None
+    from_path: pathlib.Path | None
 
 
 def buf(cursor: Cursor) -> str:
@@ -28,11 +29,11 @@ def echo(line: int, buf: str):
     print(str(line) + ":", buf)
 
 
-def create_cursor(more: abc.Iterator[str]) -> Cursor:
+def create_cursor(more: abc.Iterator[str], file_path: pathlib.Path = None) -> Cursor:
     buf: str = next(more, None)
     line: int = 1
-    # echo(line, buf)
-    return {"buf": buf, "line": line, "more": more}
+    from_path: pathlib.Path = file_path
+    return {"buf": buf, "line": line, "more": more, "from_path": from_path}
 
 
 def get_lines(from_path: pathlib.Path) -> abc.Iterator[str]:
@@ -49,7 +50,7 @@ def get_lines(from_path: pathlib.Path) -> abc.Iterator[str]:
 
 
 def cursor_from_file(from_path: pathlib.Path) -> Cursor:
-    return create_cursor(get_lines(from_path))
+    return create_cursor(get_lines(from_path), file_path=from_path)
 
 
 def cursor_from_string(full: str) -> Cursor:

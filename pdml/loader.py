@@ -32,6 +32,13 @@ def get_list(ind: int, cursor: textin.Cursor) -> list:
         ls.append(t)
 
 
+def get_include(ind: int, cursor: textin.Cursor):
+    (ind, t) = get_data(cursor, ind)
+    parent = cursor["from_path"].parent
+    print("file", parent.joinpath(t))
+    get_data(cursor, ind)
+    return file_reader(parent.joinpath(t))
+
 def get_dict(ind: int, cursor: textin.Cursor) -> dict:
     di = {}
     first = True
@@ -64,6 +71,8 @@ def get_set(ind: int, cursor: textin.Cursor) -> set:
 def evaler(ind: int, t: str, cursor: textin.Cursor) -> any:
     if t == "list":
         return get_list(ind, cursor)
+    if t == "include":
+        return get_include(ind, cursor)
     if t == "dict":
         return get_dict(ind, cursor)
     if t == "set":
