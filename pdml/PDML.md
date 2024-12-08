@@ -11,11 +11,13 @@ Python scalars are supported, as well as the list
 and dict collections. Multi-line strings are also
 supported.
 
-There are two keywords used in PDML: list and dict.
+There are three keywords used in PDML: list, dict and include.
 There are three special characters used as well, 
 ", : and #.
 Each item in a list or dict starts on a new line. 
 Dictionary keys are strings followed by a colon (:).
+The line following an include is the relative pathname 
+of the file to be included.
 
 In PDML text, the # indicates the beginning
 of a comment and the remainder of the line is not
