@@ -1,5 +1,7 @@
 import pathlib
 import typing
+import tkinter as tk
+from tkinter import ttk
 
 from gems import base
 from gems.core import make_gem
@@ -17,5 +19,18 @@ def make_tkdescriptor_gem(descriptor_name: str, tkcomposer: typing.Callable, is_
     tkattrs.set_packable(tkdescriptor_gem, packable)
 
 
+def initialize_tkdescriptors() -> None:
+    make_tkdescriptor_gem("tklistbox", tk.Listbox, True, True)
+    make_tkdescriptor_gem("tkradiobutton", tk.Radiobutton, True, True)
+    make_tkdescriptor_gem("tkstringvar", tk.StringVar, False, False)
+    make_tkdescriptor_gem("tktext", tk.Text, True, True)
+    make_tkdescriptor_gem("tkwindow", tk.Tk, True, False)
+    make_tkdescriptor_gem("ttkbutton", ttk.Button, True, True)
+    make_tkdescriptor_gem("ttkentry", ttk.Entry, True, True)
+    make_tkdescriptor_gem("ttkframe", ttk.Frame, True, True)
+    make_tkdescriptor_gem("ttklabel", ttk.Label, True, True)
+    make_tkdescriptor_gem("ttkscrollbar", ttk.Scrollbar, True, True)
+
+
 def initialize(home_path: pathlib.Path) -> None:
-    pass
+    initialize_tkdescriptors()
