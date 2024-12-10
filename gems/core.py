@@ -63,36 +63,35 @@ def build_aggregate() -> None:
     base.set_aggregate(aggregate)
 
 
-def add_function(function_name: str, function: typing.Callable) -> dict:
+def create_resource_gem(resource_name: str, function: typing.Callable) -> dict:
     aggregate = base.get_aggregate()
     resources = make_gem(aggregate, aggregate, "Resources")
-    functions_gem = make_gem(aggregate, resources, "Functions")
-    function_gem_name = "function." + function_name
-    function_gem = create_gem(aggregate, functions_gem, function_gem_name)
-    attrs_update.set_function(function_gem, function)
-    return function_gem
+    group = resource_name.split(".")[0]
+    resource_group_gem = make_gem(aggregate, resources, group)
+    resource_gem = create_gem(aggregate, resource_group_gem, resource_name)
+    attrs_update.set_function(resource_gem, function)
+    return resource_gem
 
 
-def get_function_gem(function_name: str) -> dict | None:
+def get_resource_gem(resource_name: str) -> dict | None:
     aggregate = base.get_aggregate()
-    function_gem_name = "function." + function_name
-    function_gem = local_ids_query.get_gem_by_gem_base_name(aggregate, function_gem_name)
-    return function_gem
+    resource_gem = local_ids_query.get_gem_by_gem_base_name(aggregate, resource_name)
+    return resource_gem
 
 
-def get_function_description(function_name: str) -> base.dict_keys | None:
-    function_gem = get_function_gem(function_name)
-    if function_gem is None:
+def get_resource_description(resource_name: str) -> base.dict_keys | None:
+    resource_gem = get_resource_gem(resource_name)
+    if resource_gem is None:
         return None
-    descriptions = global_tags_query.get_descriptions(function_gem)
+    descriptions = global_tags_query.get_descriptions(resource_gem)
     return descriptions
 
 
-def get_function(function_name: str) -> typing.Callable | None:
-    function_gem = get_function_gem(function_name)
-    if function_gem is None:
+def get_resource_function(resource_name: str) -> typing.Callable | None:
+    resource_gem = get_resource_gem(resource_name)
+    if resource_gem is None:
         return None
-    function = attrs_query.get_function(function_gem)
+    function = attrs_query.get_function(resource_gem)
     return function
 
 
