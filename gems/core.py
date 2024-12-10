@@ -60,13 +60,13 @@ def unplug(cluster: dict) -> None:
 
 def build_aggregate() -> None:
     aggregate = {}
-    resources = make_gem(aggregate, aggregate, "Resources")
-    make_gem(aggregate, resources, "Functions")
     base.set_aggregate(aggregate)
 
 
 def add_function(function_name: str, function: typing.Callable) -> dict:
     aggregate = base.get_aggregate()
+    resources = make_gem(aggregate, aggregate, "Resources")
+    make_gem(aggregate, resources, "Functions")
     functions_gem = local_ids_query.get_gem_by_gem_base_name(aggregate, "Functions")
     function_gem_name = "function." + function_name
     function_gem = create_gem(aggregate, functions_gem, function_gem_name)
