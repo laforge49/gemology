@@ -66,8 +66,7 @@ def build_aggregate() -> None:
 def add_function(function_name: str, function: typing.Callable) -> dict:
     aggregate = base.get_aggregate()
     resources = make_gem(aggregate, aggregate, "Resources")
-    make_gem(aggregate, resources, "Functions")
-    functions_gem = local_ids_query.get_gem_by_gem_base_name(aggregate, "Functions")
+    functions_gem = make_gem(aggregate, resources, "Functions")
     function_gem_name = "function." + function_name
     function_gem = create_gem(aggregate, functions_gem, function_gem_name)
     attrs_update.set_function(function_gem, function)
