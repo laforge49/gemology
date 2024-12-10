@@ -32,5 +32,9 @@ def initialize_tkdescriptors() -> None:
     make_tkdescriptor_gem("ttkscrollbar", ttk.Scrollbar, True, True)
 
 
+def create_window(widget_gem: dict) -> None:
+    pass
+
+
 def initialize(home_path: pathlib.Path) -> None:
     initialize_tkdescriptors()

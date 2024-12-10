@@ -1,1 +1,4 @@
 dict
+    "GlobalTagsFacet": dict
+        "TkType": "tkwindow"
+        "init_tkgem": "tkcreate_window"
