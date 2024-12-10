@@ -44,9 +44,9 @@ def listbox_up_down(listbox_gem: dict, event: any) -> None:
     pass
 
 def create_tkresource_gems() -> None:
-    core.create_resource_gem("tkfunction.persist_value", persist_value)
-    core.create_resource_gem("tkfunction.create_window", create_window)
-    core.create_resource_gem("tkfunction.listbox_up_down", listbox_up_down)
+    core.create_resource_gem("tkcore.persist_value", persist_value)
+    core.create_resource_gem("tkcore.create_window", create_window)
+    core.create_resource_gem("tkcore.listbox_up_down", listbox_up_down)
 
 
 def initialize(home_path: pathlib.Path) -> None:

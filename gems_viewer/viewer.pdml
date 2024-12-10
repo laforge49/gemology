@@ -3,7 +3,7 @@ dict
         dict
             "GlobalTagsFacet": dict
                 "TkType": "tkwindow"
-                "init_tkgem": "tkcreate_window"
+                "init_tkgem": "tkcore.create_window"
             "AttrsFacet": dict
                 "width": 1000
                 "height": 550
