@@ -1,4 +1,11 @@
 dict
-    "GlobalTagsFacet": dict
-        "TkType": "tkwindow"
-        "init_tkgem": "tkcreate_window"
+    "GemsFacet": list
+        dict
+            "GlobalTagsFacet": dict
+                "TkType": "tkwindow"
+                "init_tkgem": "tkcreate_window"
+            "AttrsFacet": dict
+                "width": 1000
+                "height": 550
+            "LocalTagsFacet": dict
+                "gem_base_name": "RootWindow"

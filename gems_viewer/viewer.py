@@ -1,6 +1,7 @@
 import pathlib
 
 from gems import core
+from pdml import saver
 from tkgems import tkcore
 
 
@@ -14,6 +15,8 @@ def initialize(home_path: pathlib.Path) -> None:
     tkcore.initialize(home_path)
     viewer_cluster = core.load(viewer_pdml_path)
     print()
+    print("viewer_cluster:")
+    saver.debug(viewer_cluster)
 
 
 if __name__ == "__main__":

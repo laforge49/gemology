@@ -3,7 +3,7 @@ import typing
 import tkinter as tk
 from tkinter import ttk
 
-from gems import base
+from gems import base, core
 from gems.core import make_gem
 from tkgems.tkfacets import tkattrs
 
@@ -32,8 +32,21 @@ def initialize_tkdescriptors() -> None:
     make_tkdescriptor_gem("ttkscrollbar", ttk.Scrollbar, True, True)
 
 
+def persist_value(tk_gem: dict) -> None:
+    pass
+
+
 def create_window(widget_gem: dict) -> None:
     pass
+
+
+def listbox_up_down(listbox_gem: dict, event: any) -> None:
+    pass
+
+def create_tkresource_gems() -> None:
+    core.create_resource_gem("tkfunction.persist_value", persist_value)
+    core.create_resource_gem("tkfunction.create_window", create_window)
+    core.create_resource_gem("tkfunction.listbox_up_down", listbox_up_down)
 
 
 def initialize(home_path: pathlib.Path) -> None:
