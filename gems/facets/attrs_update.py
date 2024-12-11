@@ -48,7 +48,6 @@ def del_cluster_path(cluster: dict | None) -> bool:
 
 
 def set_gem_parent(gem: dict | None, gem_parent: dict) -> bool:
-    gems_update.add_child_gem(gem_parent, gem)
     return set_attr_value(gem, "#gem_parent", gem_parent)
 
 
@@ -63,5 +62,6 @@ def set_function(gem: dict | None, function: typing.Callable) -> bool:
 def create_gem(cluster: dict, gem_parent: dict) -> dict | None:
     gem = {}
     set_cluster(gem, cluster)
+    gems_update.add_child_gem(gem_parent, gem)
     set_gem_parent(gem, gem_parent)
     return gem

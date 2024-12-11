@@ -3,13 +3,14 @@ import typing
 
 from gems import base
 from gems.facets import gems_query, local_ids_update, local_tags_update, attrs_update, global_ids_update, \
-    global_tags_update, attrs_query, local_ids_query, global_tags_query
+    global_tags_update, attrs_query, local_ids_query, global_tags_query, gems_update
 from pdml import loader, saver
 
 
 def create_gem(cluster: dict, gem_parent: dict, gem_base_name: str) -> dict:
     gem = {}
     attrs_update.set_cluster(gem, cluster)
+    gems_update.add_child_gem(gem_parent, gem)
     attrs_update.set_gem_parent(gem, gem_parent)
     local_ids_update.set_gem_base_name(gem, gem_base_name)
     return gem

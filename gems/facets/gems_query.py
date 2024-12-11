@@ -9,4 +9,4 @@ def get_gems(gem: dict, gem_parent: dict | None):
     gf = get_gf(gem)
     if gf is not None:
         for child in gf:
-            yield from get_gems(child, gem_parent)
+            yield from get_gems(child, gem)

@@ -7,5 +7,5 @@ dict
             "AttrsFacet": dict
                 "width": 1000
                 "height": 550
-            "LocalTagsFacet": dict
+            "LocalIdsFacet": dict
                 "gem_base_name": "RootWindow"
