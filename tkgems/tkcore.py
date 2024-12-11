@@ -5,14 +5,14 @@ from tkinter import ttk
 
 from gems import base, core
 from gems.core import make_gem
-from tkgems.tkfacets import tkattrs
+from tkgems.tkfacets import tkattrs, tkglobal_tags
 
 
 def make_tkdescriptor_gem(descriptor_name: str, tkcomposer: typing.Callable, is_widget: bool, packable: bool)\
         -> dict:
     aggregate = base.get_aggregate()
     resources = make_gem(aggregate, aggregate, "Resources")
-    tkdescriptors_gem = make_gem(aggregate, resources, "TkDescriptors")
+    tkdescriptors_gem = make_gem(aggregate, resources, descriptor_name.split(".")[0])
     tkdescriptor_gem = make_gem(aggregate, tkdescriptors_gem, descriptor_name)
     tkattrs.set_tkcomposer(tkdescriptor_gem, tkcomposer)
     tkattrs.set_is_widget(tkdescriptor_gem, is_widget)
@@ -20,16 +20,23 @@ def make_tkdescriptor_gem(descriptor_name: str, tkcomposer: typing.Callable, is_
 
 
 def initialize_tkdescriptors() -> None:
-    make_tkdescriptor_gem("tklistbox", tk.Listbox, True, True)
-    make_tkdescriptor_gem("tkradiobutton", tk.Radiobutton, True, True)
-    make_tkdescriptor_gem("tkstringvar", tk.StringVar, False, False)
-    make_tkdescriptor_gem("tktext", tk.Text, True, True)
-    make_tkdescriptor_gem("tkwindow", tk.Tk, True, False)
-    make_tkdescriptor_gem("ttkbutton", ttk.Button, True, True)
-    make_tkdescriptor_gem("ttkentry", ttk.Entry, True, True)
-    make_tkdescriptor_gem("ttkframe", ttk.Frame, True, True)
-    make_tkdescriptor_gem("ttklabel", ttk.Label, True, True)
-    make_tkdescriptor_gem("ttkscrollbar", ttk.Scrollbar, True, True)
+    make_tkdescriptor_gem("TkDescriptor.tklistbox", tk.Listbox, True, True)
+    make_tkdescriptor_gem("TkDescriptor.tkradiobutton", tk.Radiobutton, True, True)
+    make_tkdescriptor_gem("TkDescriptor.tkstringvar", tk.StringVar, False, False)
+    make_tkdescriptor_gem("TkDescriptor.tktext", tk.Text, True, True)
+    make_tkdescriptor_gem("TkDescriptor.tkwindow", tk.Tk, True, False)
+    make_tkdescriptor_gem("TkDescriptor.ttkbutton", ttk.Button, True, True)
+    make_tkdescriptor_gem("TkDescriptor.ttkentry", ttk.Entry, True, True)
+    make_tkdescriptor_gem("TkDescriptor.ttkframe", ttk.Frame, True, True)
+    make_tkdescriptor_gem("TkDescriptor.ttklabel", ttk.Label, True, True)
+    make_tkdescriptor_gem("TkDescriptor.ttkscrollbar", ttk.Scrollbar, True, True)
+
+
+def get_tkdescriptor_gem(tkgem: dict)-> dict:
+    tktype = tkglobal_tags.get_tktype(tkgem)
+    if tktype is None:
+        return None
+    return core.get_resource_gem(tktype)
 
 
 def persist_value(tk_gem: dict) -> None:
