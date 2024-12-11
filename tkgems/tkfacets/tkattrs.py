@@ -34,6 +34,17 @@ def get_tkheight(tkgem: dict | None) -> int | None:
     return None
 
 
+def get_tkobject(tkgem: dict | None) -> any:
+    tkobject = attrs_query.get_attr_value(tkgem, "#tkobject")
+    if tkobject:
+        return tkobject
+    return None
+
+
+def set_tkobject(tkgem: dict | None, tkobject: any) -> bool:
+    return attrs_update.set_attr_value(tkgem, "#tkobject", tkobject)
+
+
 def get_tkwidth(tkgem: dict | None) -> int | None:
     w = attrs_query.get_attr_value(tkgem, "width")
     if w:

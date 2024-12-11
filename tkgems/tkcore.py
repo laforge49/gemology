@@ -5,6 +5,7 @@ from tkinter import ttk
 
 from gems import base, core
 from gems.core import make_gem
+from gems.facets import attrs_query
 from tkgems.tkfacets import tkattrs, tkglobal_tags
 
 
@@ -58,3 +59,22 @@ def create_tkresource_gems() -> None:
 
 def initialize(home_path: pathlib.Path) -> None:
     initialize_tkdescriptors()
+
+
+def do_tkoptions(tkgem: dict) -> dict:
+    # todo do_tkoptions
+    return {}
+
+
+def tkeval(tkgem: dict) -> any:
+    if tkgem is None:
+        return None
+    parent_gem = attrs_query.get_gem_parent(tkgem)
+    parent_tkobject = tkattrs.get_tkobject(parent_gem)
+    tkdescriptor_gem = get_tkdescriptor_gem(tkgem)
+    if tkdescriptor_gem is None:
+        return None
+    tkcomposer = tkattrs.get_tkcomposer(tkdescriptor_gem)
+    tkoptions = do_tkoptions(tkgem)
+    tkobject = tkcomposer(parent_tkobject, **tkoptions)
+    tkattrs.set_tkobject(tkgem, tkobject)
