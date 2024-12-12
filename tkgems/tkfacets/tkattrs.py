@@ -28,10 +28,7 @@ def set_tkcomposer(tkdescriptor_gem: dict | None, tkcomposer: typing.Callable) -
 
 
 def get_tkheight(tkgem: dict | None) -> int | None:
-    h = attrs_query.get_attr_value(tkgem, "height")
-    if h:
-        return int(h)
-    return None
+    return attrs_query.get_attr_value(tkgem, "height")
 
 
 def get_tkobject(tkgem: dict | None) -> any:
@@ -46,7 +43,4 @@ def set_tkobject(tkgem: dict | None, tkobject: any) -> bool:
 
 
 def get_tkwidth(tkgem: dict | None) -> int | None:
-    w = attrs_query.get_attr_value(tkgem, "width")
-    if w:
-        return int(w)
-    return None
+    return attrs_query.get_attr_value(tkgem, "width")
