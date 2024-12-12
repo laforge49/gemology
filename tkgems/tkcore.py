@@ -78,3 +78,4 @@ def tkeval(tkgem: dict) -> any:
     tkoptions = do_tkoptions(tkgem)
     tkobject = tkcomposer(parent_tkobject, **tkoptions)
     tkattrs.set_tkobject(tkgem, tkobject)
+    return tkobject

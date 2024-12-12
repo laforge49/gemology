@@ -29,6 +29,7 @@ def initialize(home_path: pathlib.Path) -> None:
         print("window_gem is None")
         return
     window = tkcore.tkeval(window_gem)
+    window.mainloop()
 
 
 if __name__ == "__main__":
