@@ -1,5 +1,5 @@
 dict
-    "AggregateTagsFacet": dict
+    "GlobalTagsFacet": dict
         "TkType": "TkDescriptor.ttkframe"
     "AttrFacet": dict
         "options": dict

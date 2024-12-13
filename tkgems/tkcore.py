@@ -1,3 +1,4 @@
+import copy
 import pathlib
 import typing
 import tkinter as tk
@@ -81,8 +82,14 @@ def initialize(home_path: pathlib.Path) -> None:
 
 
 def do_tkoptions(tkgem: dict) -> dict:
-    # todo do_tkoptions
-    return {}
+    options = tkattrs.get_options(tkgem)
+    if options is None:
+        options = {}
+    else:
+        options = copy.deepcopy(options)
+    # todo variable options
+    return options
+
 
 def tklayout(packable: bool, tkgem: dict, tkobject: any) -> None:
     # todo tklayout
