@@ -15,6 +15,10 @@ def set_is_widget(tkdescriptor_gem: dict | None, is_widget: bool) -> bool:
     return attrs_update.set_attr_value(tkdescriptor_gem, "is_widget", is_widget)
 
 
+def get_manual(tkdescriptor_gem: dict | None) -> bool | None:
+    return attrs_query.get_attr_value(tkdescriptor_gem, "manual")
+
+
 def get_packable(tkdescriptor_gem: dict | None) -> bool | None:
     return attrs_query.get_attr_value(tkdescriptor_gem, "packable")
 
