@@ -5,7 +5,7 @@ from tkinter import ttk
 
 from gems import base, core
 from gems.core import make_gem
-from gems.facets import attrs_query, global_ids_query
+from gems.facets import attrs_query, global_ids_query, gems_query
 from tkgems.tkfacets import tkattrs, tkglobal_tags
 
 
@@ -123,4 +123,7 @@ def tkeval(tkgem: dict) -> any:
     tkinit_func(tkgem)
     tkevents(tkgem, tkobject)
     tkscroll(tkgem, tkobject)
+    gf = gems_query.get_gf(tkgem)
+    if gf is not None:
+        pass
     return tkobject
