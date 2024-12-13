@@ -59,7 +59,7 @@ def get_cluster_name(cluster: dict | None) -> str | None:
 
 
 def aggregate_get_cluster_names() -> base.dict_keys | None:
-    return aggregate_get_id_names("description")
+    return aggregate_get_id_names("#cluster_name")
 
 
 def get_cluster_by_cluster_name(cluster_name: str) -> dict | None:

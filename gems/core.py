@@ -3,7 +3,7 @@ import typing
 
 from gems import base
 from gems.facets import gems_query, local_ids_update, local_tags_update, attrs_update, global_ids_update, \
-    global_tags_update, attrs_query, local_ids_query, global_tags_query, gems_update
+    global_tags_update, attrs_query, local_ids_query, global_tags_query, gems_update, global_ids_query
 from pdml import loader, saver
 
 

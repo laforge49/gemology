@@ -3,6 +3,10 @@ import typing
 from gems.facets import attrs_update, attrs_query
 
 
+def get_geometry(tkdescriptor_gem: dict | None) -> str | None:
+    return attrs_query.get_attr_value(tkdescriptor_gem, "geometry")
+
+
 def get_is_widget(tkdescriptor_gem: dict | None) -> bool | None:
     return attrs_query.get_attr_value(tkdescriptor_gem, "is_widget")
 
@@ -17,6 +21,10 @@ def get_packable(tkdescriptor_gem: dict | None) -> bool | None:
 
 def set_packable(tkdescriptor_gem: dict | None, packable: bool) -> bool:
     return attrs_update.set_attr_value(tkdescriptor_gem, "packable", packable)
+
+
+def get_title(tkdescriptor_gem: dict | None) -> str | None:
+    return attrs_query.get_attr_value(tkdescriptor_gem, "title")
 
 
 def get_tkcomposer(tkdescriptor_gem: dict | None) -> typing.Callable | None:

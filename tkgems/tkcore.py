@@ -5,7 +5,7 @@ from tkinter import ttk
 
 from gems import base, core
 from gems.core import make_gem
-from gems.facets import attrs_query
+from gems.facets import attrs_query, global_ids_query
 from tkgems.tkfacets import tkattrs, tkglobal_tags
 
 
@@ -44,8 +44,25 @@ def persist_value(tk_gem: dict) -> None:
     pass
 
 
+def center_window(window, width, height):
+    x = (window.winfo_screenwidth() // 2) - (width // 2)
+    y = (window.winfo_screenheight() // 2) - (height // 2)
+    window.geometry(f"{width}x{height}+{x}+{y}")
+
+
 def create_window(widget_gem: dict) -> None:
-    pass
+    window = tkattrs.get_tkobject(widget_gem)
+    root_window_title = tkattrs.get_title(widget_gem)
+    if root_window_title is None:
+        cluster = attrs_query.get_cluster(widget_gem)
+        root_window_title = global_ids_query.get_cluster_name(cluster)
+    window.title(root_window_title)
+    root_window_geometry = tkattrs.get_geometry(widget_gem)
+    width = tkattrs.get_tkwidth(widget_gem)
+    height = tkattrs.get_tkheight(widget_gem)
+    if root_window_geometry is None:
+        center_window(window, width, height)
+    window.geometry(root_window_geometry)
 
 
 def listbox_up_down(listbox_gem: dict, event: any) -> None:
@@ -59,11 +76,23 @@ def create_tkresource_gems() -> None:
 
 def initialize(home_path: pathlib.Path) -> None:
     initialize_tkdescriptors()
+    create_tkresource_gems()
 
 
 def do_tkoptions(tkgem: dict) -> dict:
     # todo do_tkoptions
     return {}
+
+def tklayout(packable: bool, tkgem: dict, tkobject: any) -> None:
+    # todo tklayout
+    pass
+
+
+def tkinit_func(tkgem: dict) -> None:
+    func_name = tkglobal_tags.get_init_tkgem(tkgem)
+    if func_name is not None:
+        func = core.get_resource_function(func_name)
+        func(tkgem)
 
 
 def tkeval(tkgem: dict) -> any:
@@ -78,4 +107,7 @@ def tkeval(tkgem: dict) -> any:
     tkoptions = do_tkoptions(tkgem)
     tkobject = tkcomposer(parent_tkobject, **tkoptions)
     tkattrs.set_tkobject(tkgem, tkobject)
+    packable = tkattrs.get_packable(tkdescriptor_gem)
+    tklayout(packable, tkgem, tkobject)
+    tkinit_func(tkgem)
     return tkobject
