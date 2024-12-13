@@ -1,6 +1,6 @@
 import pathlib
 
-from gems import core
+from gems import core, base
 from gems.facets import local_ids_query
 from pdml import saver
 from tkgems import tkcore
@@ -23,6 +23,11 @@ def initialize(home_path: pathlib.Path) -> None:
     print("viewer_cluster is None:", viewer_cluster is None)
     if viewer_cluster is None:
         return
+    print()
+    print("aggregate:")
+    saver.debug(base.get_aggregate())
+    print()
+    print("viewer_cluster:")
     saver.debug(viewer_cluster)
     window_gem = local_ids_query.get_gem_by_gem_base_name(viewer_cluster, "RootWindow")
     if window_gem is None:
