@@ -9,3 +9,6 @@ dict
                 "height": 550
             "LocalIdsFacet": dict
                 "gem_base_name": "RootWindow"
+            "GemsFacet": list
+                include
+                    "viewer_left.pdml"
