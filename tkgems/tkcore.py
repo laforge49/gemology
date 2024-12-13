@@ -125,5 +125,6 @@ def tkeval(tkgem: dict) -> any:
     tkscroll(tkgem, tkobject)
     gf = gems_query.get_gf(tkgem)
     if gf is not None:
-        pass
+        for child_gem in gf:
+            pass
     return tkobject
