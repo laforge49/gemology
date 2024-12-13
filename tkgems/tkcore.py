@@ -96,6 +96,16 @@ def tkinit_func(tkgem: dict) -> None:
         func(tkgem)
 
 
+def tkevents(tkgem: dict, tkobject: any) -> None:
+    # todo tklayout
+    pass
+
+
+def tkscroll(scrollbar_gem: dict, scrollbar_object: any) -> None:
+    # todo tklayout
+    pass
+
+
 def tkeval(tkgem: dict) -> any:
     if tkgem is None:
         return None
@@ -111,4 +121,6 @@ def tkeval(tkgem: dict) -> any:
     packable = tkattrs.get_packable(tkdescriptor_gem)
     tklayout(packable, tkgem, tkobject)
     tkinit_func(tkgem)
+    tkevents(tkgem, tkobject)
+    tkscroll(tkgem, tkobject)
     return tkobject
