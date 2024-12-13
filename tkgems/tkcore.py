@@ -18,6 +18,7 @@ def make_tkdescriptor_gem(descriptor_name: str, tkcomposer: typing.Callable, is_
     tkattrs.set_tkcomposer(tkdescriptor_gem, tkcomposer)
     tkattrs.set_is_widget(tkdescriptor_gem, is_widget)
     tkattrs.set_packable(tkdescriptor_gem, packable)
+    return tkdescriptor_gem
 
 
 def initialize_tkdescriptors() -> None:
@@ -33,7 +34,7 @@ def initialize_tkdescriptors() -> None:
     make_tkdescriptor_gem("TkDescriptor.ttkscrollbar", ttk.Scrollbar, True, True)
 
 
-def get_tkdescriptor_gem(tkgem: dict)-> dict:
+def get_tkdescriptor_gem(tkgem: dict) -> dict | None:
     tktype = tkglobal_tags.get_tktype(tkgem)
     if tktype is None:
         return None
