@@ -19,6 +19,10 @@ def get_manual(tkdescriptor_gem: dict | None) -> bool | None:
     return attrs_query.get_attr_value(tkdescriptor_gem, "manual")
 
 
+def get_options(tkdescriptor_gem: dict | None) -> dict | None:
+    return attrs_query.get_attr_value(tkdescriptor_gem, "options")
+
+
 def get_packable(tkdescriptor_gem: dict | None) -> bool | None:
     return attrs_query.get_attr_value(tkdescriptor_gem, "packable")
 

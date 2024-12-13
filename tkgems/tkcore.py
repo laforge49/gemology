@@ -126,5 +126,7 @@ def tkeval(tkgem: dict) -> any:
     gf = gems_query.get_gf(tkgem)
     if gf is not None:
         for child_gem in gf:
-            pass
+            manual = tkattrs.get_manual(child_gem)
+            if not manual:
+                tkeval(child_gem)
     return tkobject
