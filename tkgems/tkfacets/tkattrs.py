@@ -3,7 +3,7 @@ import typing
 from gems.facets import attrs_update, attrs_query
 
 
-def get_columns(tkgem: dict | None) -> int | None:
+def get_columns(tkgem: dict | None) -> list | None:
     return attrs_query.get_attr_value(tkgem, "columns")
 
 
@@ -43,7 +43,7 @@ def set_packable(tkdescriptor_gem: dict | None, packable: bool) -> bool:
     return attrs_update.set_attr_value(tkdescriptor_gem, "packable", packable)
 
 
-def get_rows(tkgem: dict | None) -> int | None:
+def get_rows(tkgem: dict | None) -> list | None:
     return attrs_query.get_attr_value(tkgem, "rows")
 
 
