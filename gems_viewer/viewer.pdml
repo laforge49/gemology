@@ -12,3 +12,5 @@ dict
             "GemsFacet": list
                 include
                     "viewer_left.pdml"
+                include
+                    "viewer_right.pdml"

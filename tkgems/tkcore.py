@@ -92,8 +92,23 @@ def do_tkoptions(tkgem: dict) -> dict:
 
 
 def tklayout(packable: bool, tkgem: dict, tkobject: any) -> None:
-    # todo tklayout
-    pass
+    columns = tkattrs.get_columns(tkgem)
+    if columns is not None:
+        for column in columns:
+            tkobject.columnconfigure(**column)
+    rows = tkattrs.get_rows(tkgem)
+    if rows is not None:
+        for row in rows:
+            tkobject.rowconfigure(**row)
+    if packable:
+        grid = tkattrs.get_grid(tkgem)
+        if grid is not None:
+            tkobject.grid(**grid)
+        else:
+            pack = tkattrs.get_pack(tkgem)
+            if pack is None:
+                pack = {}
+            tkobject.pack(**pack)
 
 
 def tkinit_func(tkgem: dict) -> None:
