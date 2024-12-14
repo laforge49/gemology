@@ -3,8 +3,16 @@ import typing
 from gems.facets import attrs_update, attrs_query
 
 
+def get_columns(tkgem: dict | None) -> int | None:
+    return attrs_query.get_attr_value(tkgem, "columns")
+
+
 def get_geometry(tkdescriptor_gem: dict | None) -> str | None:
     return attrs_query.get_attr_value(tkdescriptor_gem, "geometry")
+
+
+def get_grid(tkdescriptor_gem: dict | None) -> dict | None:
+     return attrs_query.get_attr_value(tkdescriptor_gem, "grid")
 
 
 def get_is_widget(tkdescriptor_gem: dict | None) -> bool | None:
@@ -20,7 +28,11 @@ def get_manual(tkdescriptor_gem: dict | None) -> bool | None:
 
 
 def get_options(tkdescriptor_gem: dict | None) -> dict | None:
-    return attrs_query.get_attr_value(tkdescriptor_gem, "options")
+     return attrs_query.get_attr_value(tkdescriptor_gem, "options")
+
+
+def get_pack(tkdescriptor_gem: dict | None) -> dict | None:
+     return attrs_query.get_attr_value(tkdescriptor_gem, "pack")
 
 
 def get_packable(tkdescriptor_gem: dict | None) -> bool | None:
@@ -29,6 +41,10 @@ def get_packable(tkdescriptor_gem: dict | None) -> bool | None:
 
 def set_packable(tkdescriptor_gem: dict | None, packable: bool) -> bool:
     return attrs_update.set_attr_value(tkdescriptor_gem, "packable", packable)
+
+
+def get_rows(tkgem: dict | None) -> int | None:
+    return attrs_query.get_attr_value(tkgem, "rows")
 
 
 def get_title(tkdescriptor_gem: dict | None) -> str | None:
