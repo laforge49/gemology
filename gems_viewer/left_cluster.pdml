@@ -12,22 +12,23 @@ dict
         "gem_base_name": "LeftCluster"
     "GemsFacet": list
         dict
-            "AggregateTagsFacet": dict
-                "TkType": "ttklabel"
-            "AttrFacet": dict
+            "GlobalTagsFacet": dict
+                "TkType": "TkDescriptor.ttklabel"
+            "AttrsFacet": dict
                 "options": dict
+                    "relief": "raised"
                     "text": "clusters:"
                     "justify": "left"
                 "pack": dict
                     "expand": True
                     "fill": "x"
                     "side": "top"
-            "ClusterTagsFacet": dict
+            "LocalIdsFacet": dict
                 "gem_base_name": "LabelClusters"
         dict
-            "AggregateTagsFacet": dict
-                "TkType": "ttkframe"
-            "AttrFacet": dict
+            "GlobalTagsFacet": dict
+                "TkType": "TkDescriptor.ttkframe"
+            "AttrsFacet": dict
                 "options": dict
                     "relief": "raised"
                 "pack": dict
@@ -48,5 +49,5 @@ dict
                     dict
                         "index": 1
                         "weight": 1
-            "ClusterTagsFacet": dict
+            "LocalIdsFacet": dict
                 "gem_base_name": "FrameListBoxCluster"
