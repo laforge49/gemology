@@ -10,3 +10,17 @@ dict
             "side": "top"
     "LocalIdsFacet": dict
         "gem_base_name": "LeftCluster"
+    "GemsFacet": list
+        dict
+            "AggregateTagsFacet": dict
+                "TkType": "ttklabel"
+            "AttrFacet": dict
+                "options": dict
+                    "text": "clusters:"
+                    "justify": "left"
+                "pack": dict
+                    "expand": True
+                    "fill": "x"
+                    "side": "top"
+            "ClusterTagsFacet": dict
+                "gem_base_name": "LabelClusters"
