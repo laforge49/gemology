@@ -23,6 +23,10 @@ def init_listbox_cluster(listbox_cluster_gem: dict) -> None:
     listbox_cluster_object.see(0)
 
 
+def create_viewer_resource_gems() -> None:
+    pass
+
+
 def initialize(home_path: pathlib.Path) -> None:
     print()
     print("*** start viewer ***")
@@ -35,6 +39,7 @@ def initialize(home_path: pathlib.Path) -> None:
         return
     core.initialize(home_path)
     tkcore.initialize(home_path)
+    create_viewer_resource_gems()
     viewer_cluster = core.load(viewer_pdml_path)
     print()
     print("viewer_cluster is None:", viewer_cluster is None)
