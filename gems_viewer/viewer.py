@@ -1,9 +1,26 @@
 import pathlib
 
 from gems import core, base
-from gems.facets import local_ids_query
+from gems.facets import local_ids_query, global_ids_query
 from pdml import saver
 from tkgems import tkcore
+from tkgems.tkfacets import tkattrs
+
+selected_listbox_cluster_index: int | None = 0
+selected_cluster_name: str = "Aggregate"
+
+
+def init_listbox_cluster(listbox_cluster_gem: dict) -> None:
+    global selected_listbox_cluster_index
+    global selected_cluster_name
+    listbox_cluster_object = tkattrs.get_tkobject(listbox_cluster_gem)
+    listbox_cluster_object.insert("end", "Aggregate")
+    for cluster_name in sorted(global_ids_query.aggregate_get_cluster_names()):
+        listbox_cluster_object.insert("end", cluster_name)
+    listbox_cluster_object.select_set(0)
+    selected_listbox_cluster_index = 0
+    selected_cluster_name = "Aggregate"
+    listbox_cluster_object.see(0)
 
 
 def initialize(home_path: pathlib.Path) -> None:
