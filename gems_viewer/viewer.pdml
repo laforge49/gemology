@@ -10,7 +10,20 @@ dict
             "LocalIdsFacet": dict
                 "gem_base_name": "RootWindow"
             "GemsFacet": list
-                include
-                    "viewer_left.pdml"
-                include
+                 dict
+                    "GlobalTagsFacet": dict
+                        "TkType": "TkDescriptor.ttkframe"
+                    "AttrsFacet": dict
+                        "options": dict
+                            "relief": "raised"
+                        "pack": dict
+                            "expand": True
+                            "fill": "both"
+                            "side": "left"
+                    "LocalIdsFacet": dict
+                        "gem_base_name": "FrameLeft"
+                    "GemsFacet": list
+                         include
+                            "left_cluster.pdml"
+                 include
                     "viewer_right.pdml"

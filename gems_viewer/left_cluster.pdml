@@ -7,6 +7,6 @@ dict
         "pack": dict
             "expand": True
             "fill": "both"
-            "side": "left"
+            "side": "top"
     "LocalIdsFacet": dict
-        "gem_base_name": "FrameLeft"
+        "gem_base_name": "LeftCluster"
