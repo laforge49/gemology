@@ -51,3 +51,24 @@ dict
                         "weight": 1
             "LocalIdsFacet": dict
                 "gem_base_name": "FrameListBoxCluster"
+            "GemsFacet": list
+                dict
+                    "GlobalTagsFacet": dict
+                        "TkType": "TkDescriptor.tklistbox"
+                        "init_tkgem": "viewer.init_listbox_cluster"
+                    "AttrsFacet": dict
+                        "options": dict
+                            "height": 8
+                            "width": 40
+                            "selectmode": "single"
+                            "exportselection": False
+                        "grid": dict
+                            "row": 0
+                            "column": 0
+                            "sticky": "nsew"
+                        "events": dict
+                            "<<ListboxSelect>>": ".listbox_cluster_selection"
+                            "<Up>": "CoreCluster.listbox_up_down"
+                            "<Down>": "CoreCluster.listbox_up_down"
+                    "LocalTagsFacet": dict
+                        "gem_base_name": "ListBoxCluster"
