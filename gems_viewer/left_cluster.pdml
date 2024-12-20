@@ -24,3 +24,29 @@ dict
                     "side": "top"
             "ClusterTagsFacet": dict
                 "gem_base_name": "LabelClusters"
+        dict
+            "AggregateTagsFacet": dict
+                "TkType": "ttkframe"
+            "AttrFacet": dict
+                "options": dict
+                    "relief": "raised"
+                "pack": dict
+                    "expand": True
+                    "fill": "both"
+                    "side": "top"
+                "columns": list
+                    dict
+                        "index": 0
+                        "weight": 2
+                    dict
+                        "index": 1
+                        "weight": 1
+                "rows": list
+                    dict
+                        "index": 0
+                        "weight": 2
+                    dict
+                        "index": 1
+                        "weight": 1
+            "ClusterTagsFacet": dict
+                "gem_base_name": "FrameListBoxCluster"
