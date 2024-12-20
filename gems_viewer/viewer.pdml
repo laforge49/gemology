@@ -25,5 +25,7 @@ dict
                     "GemsFacet": list
                          include
                             "left_cluster.pdml"
+                         include
+                            "left_gem.pdml"
                  include
                     "viewer_right.pdml"
