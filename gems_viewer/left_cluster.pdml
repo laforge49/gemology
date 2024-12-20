@@ -67,8 +67,8 @@ dict
                             "column": 0
                             "sticky": "nsew"
                         "events": dict
-                            "<<ListboxSelect>>": ".listbox_cluster_selection"
-                            "<Up>": "CoreCluster.listbox_up_down"
-                            "<Down>": "CoreCluster.listbox_up_down"
+                            "<<ListboxSelect>>": "viewer.listbox_cluster_selection"
+                            "<Up>": "tkcore.listbox_up_down"
+                            "<Down>": "tkcore.listbox_up_down"
                     "LocalTagsFacet": dict
                         "gem_base_name": "ListBoxCluster"
