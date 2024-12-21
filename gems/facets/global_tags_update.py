@@ -27,18 +27,16 @@ def deindex_tag(gem: dict | None, tag_name: str, tag_value: str) -> bool:
     return base.idremove(gems, gem)
 
 
-def del_tag(gem: dict | None, tag_name: str, tag_value: str) -> bool:
+def del_tag(gem: dict | None, tag_name: str) -> bool:
     if gem is None:
         return False
     gtf = global_tags_query.get_gtf(gem)
     if gtf is None:
         return False
-    values = gtf.get(tag_name)
-    if values is None:
+    tag_value: str = gtf.get(tag_name)
+    if tag_value is None:
         return False
-    if tag_value not in values:
-        return False
-    values.remove(tag_value)
+    del gtf[tag_name]
     deindex_tag(gem, tag_name, tag_value)
     return True
 
@@ -54,8 +52,6 @@ def make_gtif() -> dict | None:
 
 def make_gtif2(tag_name: str) -> dict | None:
     gtif = make_gtif()
-    if gtif is None:
-        return
     gtif2 = gtif.get(tag_name)
     if gtif2 is None:
         gtif2 = {}
@@ -67,15 +63,14 @@ def set_tag(gem: dict | None, tag_name: str, tag_value: str) -> bool:
     if gem is None:
         return False
     gtf = make_gtf(gem)
-    tag_values = gtf.get(tag_name)
-    if tag_values is None:
-        tag_values = []
-        gtf[tag_name] = tag_values
-    elif tag_value in tag_values:
+    value = gtf.get(tag_name)
+    if value == tag_value:
         return False
-    tag_values.append(tag_value)
+    gtf[tag_name] = tag_value
     gtif2 = make_gtif2(tag_name)
-    gems = gtif2.get(tag_value)
+    gems = gtif2.get(value)
+    if gems:
+        gems.remove(gem)
     if gems is None:
         gems = []
         gtif2[tag_value] = gems
@@ -89,16 +84,15 @@ def build_index(gem: dict) -> None:
         return
     tag_names = gtf.keys()
     for tag_name in tag_names:
-        tag_values = gtf.get(tag_name)
-        if tag_values is not None:
+        tag_value = gtf.get(tag_name)
+        if tag_value is not None:
             gtif2 = make_gtif2(tag_name)
-            for tag_value in tag_values:
-                gems = gtif2.get(tag_value)
-                if gems is None:
-                    gems = []
-                    gtif2[tag_value] = gems
-                if base.idindex(gems, gem) is None:
-                    gems.append(gem)
+            gems = gtif2.get(tag_value)
+            if gems is None:
+                gems = []
+                gtif2[tag_value] = gems
+            if base.idindex(gems, gem) is None:
+                gems.append(gem)
 
 
 def deindex(gem: dict | None) -> None:
@@ -111,15 +105,14 @@ def deindex(gem: dict | None) -> None:
     tag_names = gtf.keys()
     for tag_name in tag_names:
         gtif2 = gtif.get(tag_name)
-        tag_values = gtf.get(tag_name)
-        if gtif2 and tag_values:
-            for tag_value in tag_values:
-                gems = gtif2.get(tag_value)
-                base.idremove(gems, gem)
+        tag_value = gtf.get(tag_name)
+        if gtif2 and tag_value:
+            gems = gtif2.get(tag_value)
+            base.idremove(gems, gem)
 
 
-def del_description(gem: dict | None, description: str) -> bool:
-    return del_tag(gem, "description", description)
+def del_description(gem: dict | None) -> bool:
+    return del_tag(gem, "description")
 
 
 def set_description(gem: dict | None, description: str) -> bool:
