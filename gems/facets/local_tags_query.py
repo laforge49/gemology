@@ -15,7 +15,7 @@ def gem_get_tag_names(gem: dict | None) -> base.dict_keys | None:
     return ltf.keys()
 
 
-def gem_get_tag_values(gem: dict | None, tag_name: str) -> list | None:
+def gem_get_tag_value(gem: dict | None, tag_name: str) -> any:
     ltf = get_ltf(gem)
     if ltf is None:
         return None

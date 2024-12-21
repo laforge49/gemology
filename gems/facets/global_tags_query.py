@@ -14,7 +14,7 @@ def gem_get_tag_names(gem: dict | None) -> base.dict_keys | None:
     return gtf.keys()
 
 
-def gem_get_tag_values(gem: dict | None, tag_name: str) -> list | None:
+def gem_get_tag_value(gem: dict | None, tag_name: str) -> any:
     gtf = get_gtf(gem)
     if gtf is None:
         return None
@@ -54,7 +54,7 @@ def aggregate_get_gems_by_tag(tag_name: str, tag_value: str) -> list | None:
 
 
 def get_descriptions(gem: dict | None) -> base.dict_keys | None:
-    return gem_get_tag_values(gem, "description")
+    return gem_get_tag_value(gem, "description")
 
 
 def aggregate_get_descriptions() -> base.dict_keys | None:
