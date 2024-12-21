@@ -7,8 +7,8 @@ the GlobalTagFacet held by each gem, while the #GlobalTagIndexFacet
 is held by the aggregate and provides an index to all gems.
 
 The GlobalTagsFacet is a dict whose keys are the Tag names and whose
-values are lists of Tag values. (In a given gem, the same 
-Tag can have more than one value.)
+values are Tag values. (In a given gem, the same 
+Tag can have only one value.)
 
 The #GlobalTagIndexFacet is a 3-level tree of dicts and lists.
 The first level is a dict whose keys are the Tag names, the values
