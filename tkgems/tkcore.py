@@ -119,6 +119,17 @@ def tkinit_func(tkgem: dict) -> None:
         func(tkgem)
 
 
+def tkevent(tkgem: dict, event: any, tag_name: str) -> None:
+    events = tkattrs.get_events(tkgem)
+    if events is None:
+        event_function_name = None
+    else:
+        event_function_name = events.get(tag_name)
+    if event_function_name is not None:
+        func = core.get_resource_function(event_function_name)
+        func(tkgem, event)
+
+
 def tkevents(tkgem: dict, tkobject: any) -> None:
     events = tkattrs.get_events(tkgem)
     if events is not None:
