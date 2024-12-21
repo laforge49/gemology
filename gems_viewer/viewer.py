@@ -23,6 +23,10 @@ def init_listbox_cluster(listbox_cluster_gem: dict) -> None:
     listbox_cluster_object.see(0)
 
 
+def listbox_cluster_selection(listbox_cluster_gem: dict, event: any) -> None:
+    pass
+
+
 def create_viewer_resource_gems() -> None:
     core.create_resource_gem("viewer.init_listbox_cluster", init_listbox_cluster)
 
