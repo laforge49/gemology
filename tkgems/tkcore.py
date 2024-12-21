@@ -69,7 +69,17 @@ def create_window(widget_gem: dict) -> None:
 
 
 def listbox_up_down(listbox_gem: dict, event: any) -> None:
-    pass
+    listbox_object = tkattrs.get_tkobject(listbox_gem)
+    index = listbox_object.curselection()[0]
+    if event.keysym == 'Up':
+        index -= 1
+    elif event.keysym == 'Down':
+        index += 1
+    if 0 <= index < listbox_object.size():
+        listbox_object.selection_clear(0, tk.END)
+        listbox_object.select_set(index)
+        listbox_object.see(index)
+    tkevent(listbox_gem, None, "<<ListboxSelect>>")
 
 def create_tkresource_gems() -> None:
     core.create_resource_gem("tkcore.persist_value", persist_value)
@@ -127,7 +137,8 @@ def tkevent(tkgem: dict, event: any, tag_name: str) -> None:
         event_function_name = events.get(tag_name)
     if event_function_name is not None:
         func = core.get_resource_function(event_function_name)
-        func(tkgem, event)
+        if func:
+            func(tkgem, event)
 
 
 def tkevents(tkgem: dict, tkobject: any) -> None:
