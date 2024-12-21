@@ -24,11 +24,12 @@ def init_listbox_cluster(listbox_cluster_gem: dict) -> None:
 
 
 def listbox_cluster_selection(listbox_cluster_gem: dict, event: any) -> None:
-    pass
+    print(123)
 
 
 def create_viewer_resource_gems() -> None:
     core.create_resource_gem("viewer.init_listbox_cluster", init_listbox_cluster)
+    core.create_resource_gem("viewer.listbox_cluster_selection", listbox_cluster_selection)
 
 
 def initialize(home_path: pathlib.Path) -> None:
