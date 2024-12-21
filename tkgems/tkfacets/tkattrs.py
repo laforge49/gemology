@@ -7,12 +7,16 @@ def get_columns(tkgem: dict | None) -> list | None:
     return attrs_query.get_attr_value(tkgem, "columns")
 
 
-def get_geometry(tkdescriptor_gem: dict | None) -> str | None:
-    return attrs_query.get_attr_value(tkdescriptor_gem, "geometry")
+def get_events(tkgem: dict | None) -> dict | None:
+     return attrs_query.get_attr_value(tkgem, "events")
 
 
-def get_grid(tkdescriptor_gem: dict | None) -> dict | None:
-     return attrs_query.get_attr_value(tkdescriptor_gem, "grid")
+def get_geometry(tkgem: dict | None) -> str | None:
+    return attrs_query.get_attr_value(tkgem, "geometry")
+
+
+def get_grid(tkgem: dict | None) -> dict | None:
+     return attrs_query.get_attr_value(tkgem, "grid")
 
 
 def get_is_widget(tkdescriptor_gem: dict | None) -> bool | None:
@@ -23,16 +27,16 @@ def set_is_widget(tkdescriptor_gem: dict | None, is_widget: bool) -> bool:
     return attrs_update.set_attr_value(tkdescriptor_gem, "is_widget", is_widget)
 
 
-def get_manual(tkdescriptor_gem: dict | None) -> bool | None:
-    return attrs_query.get_attr_value(tkdescriptor_gem, "manual")
+def get_manual(tkgem: dict | None) -> bool | None:
+    return attrs_query.get_attr_value(tkgem, "manual")
 
 
-def get_options(tkdescriptor_gem: dict | None) -> dict | None:
-     return attrs_query.get_attr_value(tkdescriptor_gem, "options")
+def get_options(tkgem: dict | None) -> dict | None:
+     return attrs_query.get_attr_value(tkgem, "options")
 
 
-def get_pack(tkdescriptor_gem: dict | None) -> dict | None:
-     return attrs_query.get_attr_value(tkdescriptor_gem, "pack")
+def get_pack(tkgem: dict | None) -> dict | None:
+     return attrs_query.get_attr_value(tkgem, "pack")
 
 
 def get_packable(tkdescriptor_gem: dict | None) -> bool | None:
@@ -47,8 +51,8 @@ def get_rows(tkgem: dict | None) -> list | None:
     return attrs_query.get_attr_value(tkgem, "rows")
 
 
-def get_title(tkdescriptor_gem: dict | None) -> str | None:
-    return attrs_query.get_attr_value(tkdescriptor_gem, "title")
+def get_title(tkgem: dict | None) -> str | None:
+    return attrs_query.get_attr_value(tkgem, "title")
 
 
 def get_tkcomposer(tkdescriptor_gem: dict | None) -> typing.Callable | None:
