@@ -12,22 +12,32 @@ def make_ltf(gem: dict | None) -> dict | None:
     return ltf
 
 
-def del_tag(gem: dict | None, tag_name: str, tag_value: str) -> bool:
+def deindex_tag(gem: dict | None, tag_name: str, tag_value: str) -> bool:
+    if gem is None:
+        return False
+    ltif = local_tags_query.get_ltif(gem)
+    if ltif is None:
+        return False
+    ltif2 = ltif.get(tag_name)
+    if ltif2 is None:
+        return False
+    gems = ltif2.get(tag_value)
+    if gems is None:
+        return False
+    return base.idremove(gems, gem)
+
+
+def del_tag(gem: dict | None, tag_name: str) -> bool:
     if gem is None:
         return False
     ltf = local_tags_query.get_ltf(gem)
     if ltf is None:
         return False
-    values = ltf.get(tag_name)
-    if values is None:
+    tag_value = ltf.get(tag_name)
+    if tag_value is None:
         return False
-    if tag_value not in values:
-        return False
-    values.remove(tag_value)
-    ltif = local_tags_query.get_ltif(gem)
-    ltif2 = ltif.get(tag_name)
-    gems = ltif2.get(tag_value)
-    base.idremove(gems, gem)
+    del ltf[tag_name]
+    deindex_tag(gem, tag_name, tag_value)
     return True
 
 
@@ -57,15 +67,14 @@ def set_tag(gem: dict | None, tag_name: str, tag_value: str) -> bool:
     if gem is None:
         return False
     ltf = make_ltf(gem)
-    tag_values = ltf.get(tag_name)
-    if tag_values is None:
-        tag_values = []
-        ltf[tag_name] = tag_values
-    elif tag_value in tag_values:
+    value = ltf.get(tag_name)
+    if value == tag_value:
         return False
-    tag_values.append(tag_value)
+    ltf[tag_name] = value
     ltif2 = make_ltif2(gem, tag_name)
     gems = ltif2.get(tag_value)
+    if gems:
+        gems.remove(gem)
     if gems is None:
         gems = []
         ltif2[tag_value] = gems
@@ -79,13 +88,12 @@ def build_index(gem: dict) -> None:
         return
     tag_names = ltf.keys()
     for tag_name in tag_names:
-        tag_values = ltf.get(tag_name)
-        if tag_values is not None:
+        tag_value = ltf.get(tag_name)
+        if tag_value is not None:
             ltif2 = make_ltif2(gem, tag_name)
-            for tag_value in tag_values:
-                gems = ltif2.get(tag_value)
-                if gems is None:
-                    gems = []
-                    ltif2[tag_value] = gems
-                if base.idindex(gems, gem) is None:
-                    gems.append(gem)
+            gems = ltif2.get(tag_value)
+            if gems is None:
+                gems = []
+                ltif2[tag_value] = gems
+            if base.idindex(gems, gem) is None:
+                gems.append(gem)
