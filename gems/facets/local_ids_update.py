@@ -21,7 +21,10 @@ def del_id(gem: dict | None, id_type: str, id_name: str) -> bool:
     if lif.get(id_type) is None:
         return False
     del lif[id_type]
-    liif = local_ids_query.get_liif(gem)
+    cluster = attrs_query.get_cluster(gem)
+    if cluster is None:
+        return False
+    liif = local_ids_query.cluster_get_liif(cluster)
     liif2 = liif.get(id_type)
     del liif2[id_name]
     return True
@@ -31,7 +34,7 @@ def make_liif(gem: dict | None) -> dict | None:
     cluster = attrs_query.get_cluster(gem)
     if cluster is None:
         return None
-    liif = local_ids_query.get_liif(cluster)
+    liif = local_ids_query.cluster_get_liif(cluster)
     if liif is None:
         liif = {}
         cluster["#LocalIdIndexFacet"] = liif

@@ -23,22 +23,21 @@ def gem_get_id_name(gem: dict | None, id_type: str) -> str | None:
     return lif.get(id_type)
 
 
-def get_liif(gem: dict | None) -> dict | None:
-    if gem is None:
+def cluster_get_liif(cluster: dict | None) -> dict | None:
+    if cluster is None:
         return None
-    cluster = attrs_query.get_cluster(gem)
     return cluster.get("#LocalIdIndexFacet")
 
 
-def cluster_get_id_types(gem: dict | None) -> base.dict_keys | None:
-    liif = get_liif(gem)
+def cluster_get_id_types(cluster: dict | None) -> base.dict_keys | None:
+    liif = cluster_get_liif(cluster)
     if liif is None:
         return None
     return liif.keys()
 
 
 def cluster_get_id_names(cluster: dict | None, id_type: str) -> base.dict_keys | None:
-    liif = get_liif(cluster)
+    liif = cluster_get_liif(cluster)
     if liif is None:
         return None
     liif2 = liif.get(id_type)
@@ -48,7 +47,7 @@ def cluster_get_id_names(cluster: dict | None, id_type: str) -> base.dict_keys |
 
 
 def cluster_get_gem_by_id(cluster: dict | None, id_type: str, id_name: str) -> dict | None:
-    liif = get_liif(cluster)
+    liif = cluster_get_liif(cluster)
     if liif is None:
         return None
     liif2 = liif.get(id_type)
