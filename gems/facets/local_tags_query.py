@@ -22,22 +22,21 @@ def gem_get_tag_value(gem: dict | None, tag_name: str) -> any:
     return ltf.get(tag_name)
 
 
-def get_ltif(gem: dict | None) -> dict | None:
-    if gem is None:
+def cluster_get_ltif(cluster: dict | None) -> dict | None:
+    if cluster is None:
         return None
-    cluster = attrs_query.get_cluster(gem)
     return cluster.get("#LocalTagIndexFacet")
 
 
 def cluster_get_tag_names(cluster: dict | None) -> base.dict_keys | None:
-    ltif = get_ltif(cluster)
+    ltif = cluster_get_ltif(cluster)
     if ltif is None:
         return None
     return ltif.keys()
 
 
 def cluster_get_tag_values(cluster: dict | None, tag_name: str) -> base.dict_keys | None:
-    ltif = get_ltif(cluster)
+    ltif = cluster_get_ltif(cluster)
     if ltif is None:
         return None
     ltif2 = ltif.get(tag_name)
@@ -47,7 +46,7 @@ def cluster_get_tag_values(cluster: dict | None, tag_name: str) -> base.dict_key
 
 
 def cluster_get_gems_by_tag(cluster: dict | None, tag_name: str, tag_value: str) -> list | None:
-    ltif = get_ltif(cluster)
+    ltif = cluster_get_ltif(cluster)
     if ltif is None:
         return None
     ltif2 = ltif.get(tag_name)

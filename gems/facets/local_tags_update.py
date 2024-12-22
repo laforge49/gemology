@@ -15,7 +15,10 @@ def make_ltf(gem: dict | None) -> dict | None:
 def deindex_tag(gem: dict | None, tag_name: str, tag_value: str) -> bool:
     if gem is None:
         return False
-    ltif = local_tags_query.get_ltif(gem)
+    cluster = attrs_query.get_cluster(gem)
+    if cluster is None:
+        return None
+    ltif = local_tags_query.cluster_get_ltif(cluster)
     if ltif is None:
         return False
     ltif2 = ltif.get(tag_name)
@@ -45,7 +48,7 @@ def make_ltif(gem: dict | None) -> dict | None:
     cluster = attrs_query.get_cluster(gem)
     if cluster is None:
         return None
-    ltif = local_tags_query.get_ltif(cluster)
+    ltif = local_tags_query.cluster_get_ltif(cluster)
     if ltif is None:
         ltif = {}
         cluster["#LocalTagIndexFacet"] = ltif
