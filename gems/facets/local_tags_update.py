@@ -92,21 +92,24 @@ def set_tag(gem: Optional[base.Gem], tag_name: str, tag_value: str) -> bool:
     return True
 
 
-def build_index(gem: Optional[base.Gem]) -> None:
+def build_index(gem: Optional[base.Gem]) -> bool:
     ltf = local_tags_query.get_ltf(gem)
     if ltf is None:
-        return
+        return False
     cluster = attrs_query.get_cluster(gem)
     if cluster is None:
-        return None
+        return False
     tag_names = ltf.keys()
     for tag_name in tag_names:
         tag_value = ltf.get(tag_name)
         if tag_value is not None:
             ltif2 = cluster_make_ltif2(cluster, tag_name)
+            if ltif2 is None:
+                return False
             gems = ltif2.get(tag_value)
             if gems is None:
                 gems = []
                 ltif2[tag_value] = gems
             if base.idindex(gems, gem) is None:
                 gems.append(gem)
+    return True
