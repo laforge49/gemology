@@ -32,10 +32,7 @@ def del_id(gem: Optional[base.Gem], id_type: str, id_name: str) -> bool:
     return True
 
 
-def make_liif(gem: Optional[base.Gem]) -> Optional[dict]:
-    cluster = attrs_query.get_cluster(gem)
-    if cluster is None:
-        return None
+def cluster_make_liif(cluster: Optional[base.Cluster]) -> Optional[dict]:
     liif = local_ids_query.cluster_get_liif(cluster)
     if liif is None:
         liif = {}
@@ -43,8 +40,8 @@ def make_liif(gem: Optional[base.Gem]) -> Optional[dict]:
     return liif
 
 
-def make_liif2(gem: Optional[base.Gem], id_type: str) -> Optional[dict]:
-    liif = make_liif(gem)
+def cluster_make_liif2(cluster: Optional[base.Cluster], id_type: str) -> Optional[dict]:
+    liif = cluster_make_liif(cluster)
     if liif is None:
         return
     liif2 = liif.get(id_type)
@@ -60,7 +57,10 @@ def set_id(gem: Optional[base.Gem], id_type: str, id_name: str) -> bool:
     del_id(gem, id_type, id_name)
     lif = make_lif(gem)
     lif[id_type] = id_name
-    liif2 = make_liif2(gem, id_type)
+    cluster = attrs_query.get_cluster(gem)
+    if cluster is None:
+        return None
+    liif2 = cluster_make_liif2(cluster, id_type)
     liif2[id_name] = gem
     return True
 
@@ -72,7 +72,10 @@ def build_index(gem: Optional[base.Gem]) -> None:
     id_types = lif.keys()
     for id_type in id_types:
         id_name = lif.get(id_type)
-        liif2 = make_liif2(gem, id_type)
+        cluster = attrs_query.get_cluster(gem)
+        if cluster is None:
+            return None
+        liif2 = cluster_make_liif2(cluster, id_type)
         liif2[id_name] = gem
 
 
