@@ -1,8 +1,11 @@
+from typing import *
+
+
 from gems import base
 from gems.facets import global_ids_query
 
 
-def make_gif(gem: dict | None) -> dict | None:
+def make_gif(gem: Optional[base.Gem]) -> dict | None:
     if gem is None:
         return None
     gif = global_ids_query.get_gif(gem)
@@ -25,7 +28,7 @@ def deindex_id(id_type: str, id_name: str) -> bool:
     return True
 
 
-def del_id(gem: dict | None, id_type: str, id_name: str) -> bool:
+def del_id(gem: Optional[base.Gem], id_type: str, id_name: str) -> bool:
     if gem is None:
         return False
     gif = global_ids_query.get_gif(gem)
@@ -57,7 +60,7 @@ def make_giif2(id_type: str) -> dict | None:
     return giif2
 
 
-def set_id(gem: dict | None, id_type: str, id_name: str) -> bool:
+def set_id(gem: Optional[base.Gem], id_type: str, id_name: str) -> bool:
     if gem is None:
         return False
     del_id(gem, id_type, id_name)
@@ -68,7 +71,7 @@ def set_id(gem: dict | None, id_type: str, id_name: str) -> bool:
     return True
 
 
-def build_index(gem: dict) -> None:
+def build_index(gem: Optional[base.Gem]) -> None:
     gif = global_ids_query.get_gif(gem)
     if gif is None:
         return
@@ -80,7 +83,7 @@ def build_index(gem: dict) -> None:
             giif2[id_name] = gem
 
 
-def deindex(gem: dict) -> None:
+def deindex(gem: Optional[base.Gem]) -> None:
     gif = global_ids_query.get_gif(gem)
     if gif is None:
         return
@@ -95,9 +98,9 @@ def deindex(gem: dict) -> None:
             del giif2[id_name]
 
 
-def del_cluster_name(gem: dict | None, id_name: str) -> bool:
-    return del_id(gem, "#cluster_name", id_name)
+def del_cluster_name(cluster: Optional[base.Cluster], id_name: str) -> bool:
+    return del_id(cluster, "#cluster_name", id_name)
 
 
-def set_cluster_name(gem: dict | None, cluster_name: str) -> bool:
-    return set_id(gem, "#cluster_name", cluster_name)
+def set_cluster_name(cluster: Optional[base.Cluster], cluster_name: str) -> bool:
+    return set_id(cluster, "#cluster_name", cluster_name)
