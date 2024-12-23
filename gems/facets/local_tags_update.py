@@ -1,8 +1,11 @@
+from typing import *
+
+
 from gems import base
 from gems.facets import attrs_query, local_tags_query
 
 
-def make_ltf(gem: dict | None) -> dict | None:
+def make_ltf(gem: Optional[base.Gem]) -> Optional[dict]:
     if gem is None:
         return None
     ltf = local_tags_query.get_ltf(gem)
@@ -12,7 +15,7 @@ def make_ltf(gem: dict | None) -> dict | None:
     return ltf
 
 
-def deindex_tag(gem: dict | None, tag_name: str, tag_value: str) -> bool:
+def deindex_tag(gem: Optional[base.Gem], tag_name: str, tag_value: str) -> bool:
     if gem is None:
         return False
     cluster = attrs_query.get_cluster(gem)
@@ -30,7 +33,7 @@ def deindex_tag(gem: dict | None, tag_name: str, tag_value: str) -> bool:
     return base.idremove(gems, gem)
 
 
-def del_tag(gem: dict | None, tag_name: str) -> bool:
+def del_tag(gem: Optional[base.Gem], tag_name: str) -> bool:
     if gem is None:
         return False
     ltf = local_tags_query.get_ltf(gem)
@@ -44,7 +47,7 @@ def del_tag(gem: dict | None, tag_name: str) -> bool:
     return True
 
 
-def make_ltif(gem: dict | None) -> dict | None:
+def make_ltif(gem: Optional[base.Gem]) -> Optional[dict]:
     cluster = attrs_query.get_cluster(gem)
     if cluster is None:
         return None
@@ -55,7 +58,7 @@ def make_ltif(gem: dict | None) -> dict | None:
     return ltif
 
 
-def make_ltif2(gem: dict | None, tag_name: str) -> dict | None:
+def make_ltif2(gem: Optional[base.Gem], tag_name: str) -> Optional[dict]:
     ltif = make_ltif(gem)
     if ltif is None:
         return
@@ -66,7 +69,7 @@ def make_ltif2(gem: dict | None, tag_name: str) -> dict | None:
     return ltif2
 
 
-def set_tag(gem: dict | None, tag_name: str, tag_value: str) -> bool:
+def set_tag(gem: Optional[base.Gem], tag_name: str, tag_value: str) -> bool:
     if gem is None:
         return False
     ltf = make_ltf(gem)
@@ -85,7 +88,7 @@ def set_tag(gem: dict | None, tag_name: str, tag_value: str) -> bool:
     return True
 
 
-def build_index(gem: dict) -> None:
+def build_index(gem: Optional[base.Gem]) -> None:
     ltf = local_tags_query.get_ltf(gem)
     if ltf is None:
         return
