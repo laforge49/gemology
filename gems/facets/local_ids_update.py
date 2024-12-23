@@ -1,8 +1,10 @@
+from typing import *
+
+from gems import base
 from gems.facets import local_ids_query, attrs_query
-from pdml import saver
 
 
-def make_lif(gem: dict | None) -> dict | None:
+def make_lif(gem: Optional[base.Gem]) -> Optional[dict]:
     if gem is None:
         return None
     lif = local_ids_query.get_lif(gem)
@@ -12,7 +14,7 @@ def make_lif(gem: dict | None) -> dict | None:
     return lif
 
 
-def del_id(gem: dict | None, id_type: str, id_name: str) -> bool:
+def del_id(gem: Optional[base.Gem], id_type: str, id_name: str) -> bool:
     if gem is None:
         return False
     lif = local_ids_query.get_lif(gem)
@@ -30,7 +32,7 @@ def del_id(gem: dict | None, id_type: str, id_name: str) -> bool:
     return True
 
 
-def make_liif(gem: dict | None) -> dict | None:
+def make_liif(gem: Optional[base.Gem]) -> Optional[dict]:
     cluster = attrs_query.get_cluster(gem)
     if cluster is None:
         return None
@@ -41,7 +43,7 @@ def make_liif(gem: dict | None) -> dict | None:
     return liif
 
 
-def make_liif2(gem: dict | None, id_type: str) -> dict | None:
+def make_liif2(gem: Optional[base.Gem], id_type: str) -> Optional[dict]:
     liif = make_liif(gem)
     if liif is None:
         return
@@ -52,7 +54,7 @@ def make_liif2(gem: dict | None, id_type: str) -> dict | None:
     return liif2
 
 
-def set_id(gem: dict | None, id_type: str, id_name: str) -> bool:
+def set_id(gem: Optional[base.Gem], id_type: str, id_name: str) -> bool:
     if gem is None:
         return False
     del_id(gem, id_type, id_name)
@@ -63,7 +65,7 @@ def set_id(gem: dict | None, id_type: str, id_name: str) -> bool:
     return True
 
 
-def build_index(gem: dict) -> None:
+def build_index(gem: Optional[base.Gem]) -> None:
     lif = local_ids_query.get_lif(gem)
     if lif is None:
         return
@@ -74,9 +76,9 @@ def build_index(gem: dict) -> None:
         liif2[id_name] = gem
 
 
-def del_gem_base_name(gem: dict | None, id_name: str) -> bool:
+def del_gem_base_name(gem: Optional[base.Gem], id_name: str) -> bool:
     return del_id(gem, "gem_base_name", id_name)
 
 
-def set_gem_base_name(gem: dict | None, gem_base_name: str) -> bool:
+def set_gem_base_name(gem: Optional[base.Gem], gem_base_name: str) -> bool:
     return set_id(gem, "gem_base_name", gem_base_name)
