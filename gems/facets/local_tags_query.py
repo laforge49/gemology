@@ -1,41 +1,43 @@
+from typing import *
+
+
 from gems import base
-from gems.facets import attrs_query
 
 
-def get_ltf(gem: dict | None) -> dict | None:
+def get_ltf(gem: Optional[base.Gem]) -> Optional[dict]:
     if gem is None:
         return None
     return gem.get("LocalTagsFacet")
 
 
-def gem_get_tag_names(gem: dict | None) -> base.dict_keys | None:
+def gem_get_tag_names(gem: Optional[base.Gem]) -> Optional[base.dict_keys]:
     ltf = get_ltf(gem)
     if ltf is None:
         return None
     return ltf.keys()
 
 
-def gem_get_tag_value(gem: dict | None, tag_name: str) -> any:
+def gem_get_tag_value(gem: Optional[base.Gem], tag_name: str) -> any:
     ltf = get_ltf(gem)
     if ltf is None:
         return None
     return ltf.get(tag_name)
 
 
-def cluster_get_ltif(cluster: dict | None) -> dict | None:
+def cluster_get_ltif(cluster: Optional[base.Cluster]) -> Optional[dict]:
     if cluster is None:
         return None
     return cluster.get("#LocalTagIndexFacet")
 
 
-def cluster_get_tag_names(cluster: dict | None) -> base.dict_keys | None:
+def cluster_get_tag_names(cluster: Optional[base.Cluster]) -> Optional[base.dict_keys]:
     ltif = cluster_get_ltif(cluster)
     if ltif is None:
         return None
     return ltif.keys()
 
 
-def cluster_get_tag_values(cluster: dict | None, tag_name: str) -> base.dict_keys | None:
+def cluster_get_tag_values(cluster: Optional[base.Cluster], tag_name: str) -> Optional[base.dict_keys]:
     ltif = cluster_get_ltif(cluster)
     if ltif is None:
         return None
@@ -45,7 +47,7 @@ def cluster_get_tag_values(cluster: dict | None, tag_name: str) -> base.dict_key
     return ltif2.keys()
 
 
-def cluster_get_gems_by_tag(cluster: dict | None, tag_name: str, tag_value: str) -> list | None:
+def cluster_get_gems_by_tag(cluster: Optional[base.Cluster], tag_name: str, tag_value: str) -> Optional[list]:
     ltif = cluster_get_ltif(cluster)
     if ltif is None:
         return None
