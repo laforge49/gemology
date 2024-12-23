@@ -70,14 +70,18 @@ def set_tag(gem: Optional[base.Gem], tag_name: str, tag_value: str) -> bool:
     if gem is None:
         return False
     ltf = make_ltf(gem)
+    if ltf is None:
+        return False
     value = ltf.get(tag_name)
     if value == tag_value:
         return False
     ltf[tag_name] = value
     cluster = attrs_query.get_cluster(gem)
     if cluster is None:
-        return None
+        return False
     ltif2 = cluster_make_ltif2(cluster, tag_name)
+    if ltif2 is None:
+        return False
     gems = ltif2.get(tag_value)
     if gems:
         gems.remove(gem)
