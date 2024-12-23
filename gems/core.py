@@ -23,7 +23,7 @@ def make_gem(cluster: dict, gem_parent: dict, gem_base_name: str) -> dict:
     return create_gem(cluster, gem_parent, gem_base_name)
 
 
-def reclass(raw: dict, class_key: str) -> base.Gem | base.Cluster:
+def reclass(raw: dict, class_key: str) -> typing.Type[base.Gem]:
     cls = base.class_map[class_key]
     refined = cls()
     for fname, facet in raw.items():
@@ -38,7 +38,8 @@ def reclass(raw: dict, class_key: str) -> base.Gem | base.Cluster:
 
 
 def register(raw_cluster: dict, cluster_name: str, cluster_path: str) -> base.Cluster:
-    cluster: base.Cluster = reclass(raw_cluster, "base.Cluster")
+    cluster = reclass(raw_cluster, "base.Cluster")
+    assert isinstance(cluster, base.Cluster)
     global_ids_update.set_cluster_name(cluster, cluster_name)
     attrs_update.set_cluster_path(cluster, cluster_path)
     for gem, gem_parent in gems_query.get_gems(cluster, None):
@@ -104,7 +105,7 @@ def get_resource_description(resource_name: str) -> base.dict_keys | None:
     return descriptions
 
 
-def get_resource_function(resource_name: str) -> typing.Callable | None:
+def get_resource_function(resource_name: str) -> typing.Optional[typing.Callable]:
     resource_gem = get_resource_gem(resource_name)
     if resource_gem is None:
         return None
