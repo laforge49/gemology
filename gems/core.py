@@ -23,22 +23,21 @@ def make_gem(cluster: dict, gem_parent: dict, gem_base_name: str) -> dict:
     return create_gem(cluster, gem_parent, gem_base_name)
 
 
-def reclass(raw: dict, class_key: str) -> typing.Type[base.Gem]:
-    cls = base.class_map[class_key]
+def reclass(raw: dict, cls: type) -> typing.Type[base.Gem]:
     refined = cls()
     for fname, facet in raw.items():
         if fname == "GemsFacet":
-            refined_gems =  list()
+            refined_gems = list()
             refined[fname] = refined_gems
             for child in facet:
-                refined_gems.append(reclass(child, "base.Gem"))
+                refined_gems.append(reclass(child, base.Gem))
         else:
             refined[fname] = facet
     return refined
 
 
 def register(raw_cluster: dict, cluster_name: str, cluster_path: str) -> base.Cluster:
-    cluster = reclass(raw_cluster, "base.Cluster")
+    cluster = reclass(raw_cluster, base.Cluster)
     assert isinstance(cluster, base.Cluster)
     global_ids_update.set_cluster_name(cluster, cluster_name)
     attrs_update.set_cluster_path(cluster, cluster_path)
