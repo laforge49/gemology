@@ -1,3 +1,6 @@
+from typing import *
+
+
 class Gem(dict):
     pass
 
@@ -12,10 +15,10 @@ class Aggregate(Cluster):
 
 class_map = {"base.Gem": Gem, "base.Cluster": Cluster, "base.Aggregate": Aggregate}
 dict_keys = type({}.keys())
-aggregate_: Aggregate | None = None
+aggregate_: Optional[Aggregate] = None
 
 
-def get_aggregate() -> Aggregate | None:
+def get_aggregate() -> Optional[Aggregate]:
     global aggregate_
     return aggregate_
 
@@ -24,7 +27,7 @@ def set_aggregate(aggregate: Aggregate) -> None:
     aggregate_ = aggregate
 
 
-def idindex(lst: list, e: any) -> int | None:
+def idindex(lst: list, e: any) -> Optional[int]:
     ndx = 0
     for x in lst:
         if x is e:
