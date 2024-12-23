@@ -1,4 +1,4 @@
-def get_gf(gem: dict | None ) -> list | None:
+def get_gf(gem: dict | None) -> list | None:
     if gem is None:
         return None
     return gem.get("GemsFacet")

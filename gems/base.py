@@ -1,12 +1,24 @@
+class Gem(dict):
+    pass
+
+
+class Cluster(Gem):
+    pass
+
+
+class Aggregate(Cluster):
+    pass
+
+
 dict_keys = type({}.keys())
-aggregate_ = None
+aggregate_: Aggregate | None = None
 
 
-def get_aggregate() -> dict | None:
+def get_aggregate() -> Aggregate | None:
     global aggregate_
     return aggregate_
 
-def set_aggregate(aggregate: dict) -> None:
+def set_aggregate(aggregate: Aggregate) -> None:
     global aggregate_
     aggregate_ = aggregate
 
