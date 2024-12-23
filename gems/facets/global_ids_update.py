@@ -5,7 +5,7 @@ from gems import base
 from gems.facets import global_ids_query
 
 
-def make_gif(gem: Optional[base.Gem]) -> dict | None:
+def make_gif(gem: Optional[base.Gem]) -> Optional[dict]:
     if gem is None:
         return None
     gif = global_ids_query.get_gif(gem)
@@ -40,7 +40,7 @@ def del_id(gem: Optional[base.Gem], id_type: str, id_name: str) -> bool:
     return True
 
 
-def make_giif() -> dict | None:
+def make_giif() -> Optional[dict]:
     giif = global_ids_query.get_giif()
     if giif is None:
         giif = {}
@@ -49,7 +49,7 @@ def make_giif() -> dict | None:
     return giif
 
 
-def make_giif2(id_type: str) -> dict | None:
+def make_giif2(id_type: str) -> Optional[dict]:
     giif = make_giif()
     if giif is None:
         return

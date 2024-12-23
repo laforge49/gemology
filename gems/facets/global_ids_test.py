@@ -1,3 +1,4 @@
+from gems import base, core
 from gems.facets import global_ids_update, global_ids_query
 from pdml import saver
 
@@ -5,7 +6,8 @@ from pdml import saver
 def test() -> None:
     print()
     print("*** local_ids_facet test ***")
-    cluster1 = {}
+    core.build_aggregate()
+    cluster1 = base.Cluster()
     global_ids_update.set_cluster_name(cluster1, "Sam")
     print()
     print("cluster1:")
@@ -13,7 +15,7 @@ def test() -> None:
     print()
     print("Sam:")
     saver.debug(global_ids_query.get_cluster_by_cluster_name("Sam"))
-    cluster2 = {}
+    cluster2 = base.Cluster()
     gif = global_ids_update.make_gif(cluster2)
     gif["#cluster_name"] = "Sonny"
     global_ids_update.build_index(cluster2)
