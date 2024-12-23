@@ -1,39 +1,42 @@
+from typing import *
+
+
 from gems import base
 
 
-def get_gtf(gem: dict | None) -> dict | None:
+def get_gtf(gem: Optional[base.Gem]) -> Optional[dict]:
     if gem is None:
         return None
     return gem.get("GlobalTagsFacet")
 
 
-def gem_get_tag_names(gem: dict | None) -> base.dict_keys | None:
+def gem_get_tag_names(gem: Optional[base.Gem]) -> Optional[base.dict_keys]:
     gtf = get_gtf(gem)
     if gtf is None:
         return None
     return gtf.keys()
 
 
-def gem_get_tag_value(gem: dict | None, tag_name: str) -> any:
+def gem_get_tag_value(gem: Optional[base.Gem], tag_name: str) -> any:
     gtf = get_gtf(gem)
     if gtf is None:
         return None
     return gtf.get(tag_name)
 
 
-def get_gtif() -> dict | None:
+def get_gtif() -> Optional[dict]:
     aggregate = base.get_aggregate()
     return aggregate.get("#GlobalTagIndexFacet")
 
 
-def aggregate_get_tag_names() -> base.dict_keys | None:
+def aggregate_get_tag_names() -> Optional[base.dict_keys]:
     gtif = get_gtif()
     if gtif is None:
         return None
     return gtif.keys()
 
 
-def aggregate_get_tag_values(tag_name: str) -> base.dict_keys | None:
+def aggregate_get_tag_values(tag_name: str) -> Optional[base.dict_keys]:
     gtif = get_gtif()
     if gtif is None:
         return None
@@ -43,7 +46,7 @@ def aggregate_get_tag_values(tag_name: str) -> base.dict_keys | None:
     return gtif2.keys()
 
 
-def aggregate_get_gems_by_tag(tag_name: str, tag_value: str) -> list | None:
+def aggregate_get_gems_by_tag(tag_name: str, tag_value: str) -> Optional[list]:
     gtif = get_gtif()
     if gtif is None:
         return None
@@ -53,13 +56,13 @@ def aggregate_get_gems_by_tag(tag_name: str, tag_value: str) -> list | None:
     return gtif2.get(tag_value)
 
 
-def get_descriptions(gem: dict | None) -> base.dict_keys | None:
+def get_descriptions(gem: Optional[base.Gem]) -> Optional[base.dict_keys]:
     return gem_get_tag_value(gem, "description")
 
 
-def aggregate_get_descriptions() -> base.dict_keys | None:
+def aggregate_get_descriptions() -> Optional[base.dict_keys]:
     return aggregate_get_tag_values("description")
 
 
-def get_gems_by_description(description: str) -> dict | None:
+def get_gems_by_description(description: str) -> Optional[list]:
     return aggregate_get_gems_by_tag("description", description)
