@@ -1,5 +1,5 @@
 from gems import core, base
-from gems.facets import attrs_update, local_ids_query, local_ids_update
+from gems.facets import local_ids_query
 from pdml import saver
 
 
