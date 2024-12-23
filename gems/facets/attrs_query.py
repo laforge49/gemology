@@ -42,5 +42,5 @@ def get_function(gem: dict | None) -> typing.Callable | None:
     return get_attr_value(gem, "#function")
 
 
-def get_class(gem: typing.Optional[base.Gem]) -> typing.Optional[str]:
-    return get_attr_value(gem, "Class")
+def get_class_name(gem: typing.Optional[typing.Type[base.Gem]]) -> typing.Optional[str]:
+    return get_attr_value(gem, "ClassName")

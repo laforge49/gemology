@@ -23,6 +23,13 @@ def make_gem(cluster: dict, gem_parent: dict, gem_base_name: str) -> dict:
     return create_gem(cluster, gem_parent, gem_base_name)
 
 
+def mapped_class(gem: typing.Optional[typing.Type[base.Gem]]) -> typing.Optional[type]:
+    class_name = attrs_query.get_class_name(gem)
+    if class_name is None:
+        return
+    return base.class_map[class_name]
+
+
 def reclass(raw: dict, cls: type) -> typing.Type[base.Gem]:
     refined = cls()
     for fname, facet in raw.items():
@@ -33,7 +40,11 @@ def reclass(raw: dict, cls: type) -> typing.Type[base.Gem]:
                 refined_gems.append(reclass(child, base.Gem))
         else:
             refined[fname] = facet
+    subclass = mapped_class(refined)
+    if subclass:
+        refined.__class__ = subclass
     return refined
+
 
 
 def register(raw_cluster: dict, cluster_name: str, cluster_path: str) -> base.Cluster:
