@@ -1,7 +1,10 @@
+from typing import *
+
+from gems import base
 from gems.facets import gems_query
 
 
-def make_gf(gem: dict | None) -> list | None:
+def make_gf(gem: Optional[base.Gem]) -> Optional[list]:
     if gem is None:
         return None
     gf = gems_query.get_gf(gem)
@@ -11,7 +14,7 @@ def make_gf(gem: dict | None) -> list | None:
     return gf
 
 
-def add_child_gem(gem: dict | None, child_gem: dict) -> bool:
+def add_child_gem(gem: Optional[base.Gem], child_gem: base.Gem) -> bool:
     gf = make_gf(gem)
     if gf is None:
         return False
