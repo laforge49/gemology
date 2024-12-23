@@ -7,7 +7,7 @@ from gems.facets import gems_query, local_ids_update, local_tags_update, attrs_u
 from pdml import loader, saver
 
 
-def create_gem(cluster: dict, gem_parent: dict, gem_base_name: str) -> dict:
+def create_gem(cluster: base.Cluster, gem_parent: base.Gem, gem_base_name: str) -> dict:
     gem = base.Gem()
     attrs_update.set_cluster(gem, cluster)
     gems_update.add_child_gem(gem_parent, gem)
