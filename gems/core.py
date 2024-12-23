@@ -23,14 +23,14 @@ def make_gem(cluster: dict, gem_parent: dict, gem_base_name: str) -> dict:
     return create_gem(cluster, gem_parent, gem_base_name)
 
 
-def mapped_class(gem: typing.Optional[typing.Type[base.Gem]]) -> typing.Optional[type]:
+def mapped_class(gem: typing.Optional[base.Gem]) -> typing.Optional[type]:
     class_name = attrs_query.get_class_name(gem)
     if class_name is None:
         return
     return base.class_map[class_name]
 
 
-def reclass(raw: dict, cls: type) -> typing.Type[base.Gem]:
+def reclass(raw: dict, cls: type) -> base.Gem:
     refined = cls()
     for fname, facet in raw.items():
         if fname == "GemsFacet":
@@ -71,7 +71,7 @@ def load(cluster_path: pathlib.Path) -> dict:
     return cluster
 
 
-def save(cluster: dict) -> None:
+def save(cluster: base.Cluster) -> None:
     cluster_path = attrs_query.get_attr_value(cluster, "#cluster_path")
     saver.writer(cluster_path, cluster)
 
