@@ -1,12 +1,12 @@
-from gems import core
-from gems.facets import local_ids_query, attrs_update, local_ids_update
+from gems import core, base
+from gems.facets import local_ids_query
 from pdml import saver
 
 
 def test() -> None:
     print()
     print("*** local_ids_facet test ***")
-    cluster1 = {}
+    cluster1 = base.Cluster()
     gem1 = core.create_gem(cluster1, cluster1, "MyGem")
     print()
     print("cluster1:")
@@ -14,7 +14,7 @@ def test() -> None:
     print()
     print("MyGem:")
     saver.debug(local_ids_query.get_gem_by_gem_base_name(cluster1, "MyGem"))
-    cluster2 = {}
+    cluster2 = base.Cluster()
     gem2 = core.create_gem(cluster2, cluster2, "Fred")
     print()
     print("cluster2:")
