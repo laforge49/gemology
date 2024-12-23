@@ -1,8 +1,11 @@
+from typing import *
+
+
 from gems import base
 from gems.facets import global_tags_query
 
 
-def make_gtf(gem: dict | None) -> dict | None:
+def make_gtf(gem: Optional[base.Gem]) -> Optional[dict]:
     if gem is None:
         return None
     gtf = global_tags_query.get_gtf(gem)
@@ -12,7 +15,7 @@ def make_gtf(gem: dict | None) -> dict | None:
     return gtf
 
 
-def deindex_tag(gem: dict | None, tag_name: str, tag_value: str) -> bool:
+def deindex_tag(gem: Optional[base.Gem], tag_name: str, tag_value: str) -> bool:
     if gem is None:
         return False
     gtif = global_tags_query.get_gtif()
@@ -27,7 +30,7 @@ def deindex_tag(gem: dict | None, tag_name: str, tag_value: str) -> bool:
     return base.idremove(gems, gem)
 
 
-def del_tag(gem: dict | None, tag_name: str) -> bool:
+def del_tag(gem: Optional[base.Gem], tag_name: str) -> bool:
     if gem is None:
         return False
     gtf = global_tags_query.get_gtf(gem)
@@ -41,7 +44,7 @@ def del_tag(gem: dict | None, tag_name: str) -> bool:
     return True
 
 
-def make_gtif() -> dict | None:
+def make_gtif() -> Optional[dict]:
     gtif = global_tags_query.get_gtif()
     if gtif is None:
         gtif = {}
@@ -50,7 +53,7 @@ def make_gtif() -> dict | None:
     return gtif
 
 
-def make_gtif2(tag_name: str) -> dict | None:
+def make_gtif2(tag_name: str) -> Optional[dict]:
     gtif = make_gtif()
     gtif2 = gtif.get(tag_name)
     if gtif2 is None:
@@ -59,7 +62,7 @@ def make_gtif2(tag_name: str) -> dict | None:
     return gtif2
 
 
-def set_tag(gem: dict | None, tag_name: str, tag_value: str) -> bool:
+def set_tag(gem: Optional[base.Gem], tag_name: str, tag_value: str) -> bool:
     if gem is None:
         return False
     gtf = make_gtf(gem)
@@ -78,7 +81,7 @@ def set_tag(gem: dict | None, tag_name: str, tag_value: str) -> bool:
     return True
 
 
-def build_index(gem: dict) -> None:
+def build_index(gem: Optional[base.Gem]) -> None:
     gtf = global_tags_query.get_gtf(gem)
     if gtf is None:
         return
@@ -95,7 +98,7 @@ def build_index(gem: dict) -> None:
                 gems.append(gem)
 
 
-def deindex(gem: dict | None) -> None:
+def deindex(gem: Optional[base.Gem]) -> None:
     gtf = global_tags_query.get_gtf(gem)
     if gtf is None:
         return
@@ -111,9 +114,9 @@ def deindex(gem: dict | None) -> None:
             base.idremove(gems, gem)
 
 
-def del_description(gem: dict | None) -> bool:
+def del_description(gem: Optional[base.Gem]) -> bool:
     return del_tag(gem, "description")
 
 
-def set_description(gem: dict | None, description: str) -> bool:
+def set_description(gem: Optional[base.Gem], description: str) -> bool:
     return set_tag(gem, "description", description)
