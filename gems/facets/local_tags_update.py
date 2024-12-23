@@ -47,10 +47,7 @@ def del_tag(gem: Optional[base.Gem], tag_name: str) -> bool:
     return True
 
 
-def make_ltif(gem: Optional[base.Gem]) -> Optional[dict]:
-    cluster = attrs_query.get_cluster(gem)
-    if cluster is None:
-        return None
+def cluster_make_ltif(cluster: Optional[base.Cluster]) -> Optional[dict]:
     ltif = local_tags_query.cluster_get_ltif(cluster)
     if ltif is None:
         ltif = {}
@@ -58,8 +55,8 @@ def make_ltif(gem: Optional[base.Gem]) -> Optional[dict]:
     return ltif
 
 
-def make_ltif2(gem: Optional[base.Gem], tag_name: str) -> Optional[dict]:
-    ltif = make_ltif(gem)
+def cluster_make_ltif2(cluster: Optional[base.Cluster], tag_name: str) -> Optional[dict]:
+    ltif = cluster_make_ltif(cluster)
     if ltif is None:
         return
     ltif2 = ltif.get(tag_name)
@@ -77,7 +74,10 @@ def set_tag(gem: Optional[base.Gem], tag_name: str, tag_value: str) -> bool:
     if value == tag_value:
         return False
     ltf[tag_name] = value
-    ltif2 = make_ltif2(gem, tag_name)
+    cluster = attrs_query.get_cluster(gem)
+    if cluster is None:
+        return None
+    ltif2 = cluster_make_ltif2(cluster, tag_name)
     gems = ltif2.get(tag_value)
     if gems:
         gems.remove(gem)
@@ -92,11 +92,14 @@ def build_index(gem: Optional[base.Gem]) -> None:
     ltf = local_tags_query.get_ltf(gem)
     if ltf is None:
         return
+    cluster = attrs_query.get_cluster(gem)
+    if cluster is None:
+        return None
     tag_names = ltf.keys()
     for tag_name in tag_names:
         tag_value = ltf.get(tag_name)
         if tag_value is not None:
-            ltif2 = make_ltif2(gem, tag_name)
+            ltif2 = cluster_make_ltif2(cluster, tag_name)
             gems = ltif2.get(tag_value)
             if gems is None:
                 gems = []
