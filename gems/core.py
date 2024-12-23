@@ -63,7 +63,7 @@ def register(raw_cluster: dict, cluster_name: str, cluster_path: str) -> base.Cl
     return cluster
 
 
-def load(cluster_path: pathlib.Path) -> dict:
+def load(cluster_path: pathlib.Path) -> base.Cluster:
     cluster_file_name = cluster_path.name
     cluster_name = cluster_file_name.split(".")[0]
     raw_cluster = loader.file_reader(cluster_path)
