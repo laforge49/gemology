@@ -1,4 +1,4 @@
-from gems import core
+from gems import core, base
 from gems.facets import attrs_update, local_ids_query, local_ids_update
 from pdml import saver
 
@@ -6,7 +6,7 @@ from pdml import saver
 def test() -> None:
     print()
     print("*** core test ***")
-    cluster2 = {}
+    cluster2 = base.Cluster()
     gem2 = core.create_gem(cluster2, cluster2, "Fred")
     print()
     print("cluster2:")
