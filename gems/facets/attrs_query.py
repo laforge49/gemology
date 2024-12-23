@@ -1,7 +1,6 @@
 import typing
 
 from gems import base
-from pdml import saver
 
 
 def get_af(gem: dict | None) -> dict | None:
@@ -41,3 +40,7 @@ def get_gem_parent(gem: dict | None) -> dict | None:
 
 def get_function(gem: dict | None) -> typing.Callable | None:
     return get_attr_value(gem, "#function")
+
+
+def get_class(gem: typing.Optional[base.Gem]) -> typing.Optional[str]:
+    return get_attr_value(gem, "Class")
