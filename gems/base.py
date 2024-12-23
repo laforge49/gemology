@@ -10,6 +10,7 @@ class Aggregate(Cluster):
     pass
 
 
+class_map = {"base.Gem": Gem, "base.Cluster": Cluster, "base.Aggregate": Aggregate}
 dict_keys = type({}.keys())
 aggregate_: Aggregate | None = None
 

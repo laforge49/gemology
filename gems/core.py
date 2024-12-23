@@ -23,7 +23,22 @@ def make_gem(cluster: dict, gem_parent: dict, gem_base_name: str) -> dict:
     return create_gem(cluster, gem_parent, gem_base_name)
 
 
-def register(cluster: dict, cluster_name: str, cluster_path: str) -> None:
+def reclass(raw: dict, class_key: str) -> base.Gem | base.Cluster:
+    cls = base.class_map[class_key]
+    refined = cls()
+    for fname, facet in raw.items():
+        if fname == "GemsFacet":
+            refined_gems =  list()
+            refined[fname] = refined_gems
+            for child in facet:
+                refined_gems.append(reclass(child, "base.Gem"))
+        else:
+            refined[fname] = facet
+    return refined
+
+
+def register(raw_cluster: dict, cluster_name: str, cluster_path: str) -> base.Cluster:
+    cluster: base.Cluster = reclass(raw_cluster, "base.Cluster")
     global_ids_update.set_cluster_name(cluster, cluster_name)
     attrs_update.set_cluster_path(cluster, cluster_path)
     for gem, gem_parent in gems_query.get_gems(cluster, None):
@@ -34,13 +49,14 @@ def register(cluster: dict, cluster_name: str, cluster_path: str) -> None:
         local_tags_update.build_index(gem)
         global_ids_update.build_index(gem)
         global_tags_update.build_index(gem)
+    return cluster
 
 
 def load(cluster_path: pathlib.Path) -> dict:
     cluster_file_name = cluster_path.name
     cluster_name = cluster_file_name.split(".")[0]
-    cluster = loader.file_reader(cluster_path)
-    register(cluster, cluster_name, str(cluster_path))
+    raw_cluster = loader.file_reader(cluster_path)
+    cluster = register(raw_cluster, cluster_name, str(cluster_path))
     return cluster
 
 
