@@ -17,7 +17,7 @@ def create_gem(cluster: base.Cluster, gem_parent: base.Gem, gem_base_name: str) 
 
 
 def make_gem(cluster: base.Cluster, gem_parent: base.Gem, gem_base_name: str) -> base.Gem:
-    gem = local_ids_query.get_gem_by_gem_base_name(cluster, gem_base_name)
+    gem = local_ids_query.cluster_get_gem_by_gem_base_name(cluster, gem_base_name)
     if gem:
         return gem
     return create_gem(cluster, gem_parent, gem_base_name)
@@ -128,7 +128,7 @@ def create_resource_gem(resource_name: str, function: Callable) -> dict:
 
 def get_resource_gem(resource_name: str) -> Optional[base.Gem]:
     aggregate = base.get_aggregate()
-    resource_gem = local_ids_query.get_gem_by_gem_base_name(aggregate, resource_name)
+    resource_gem = local_ids_query.cluster_get_gem_by_gem_base_name(aggregate, resource_name)
     return resource_gem
 
 

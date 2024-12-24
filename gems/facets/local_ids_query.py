@@ -26,10 +26,12 @@ def gem_get_id_name(gem: Optional[base.Gem], id_type: str) -> Optional[str]:
     return lif.get(id_type)
 
 
-def cluster_get_liif(cluster: Optional[base.Cluster]) -> Optional[dict]:
+def cluster_get_liif(cluster: Optional[base.Cluster]) -> Optional[base.LocalIdIndexFacet]:
     if cluster is None:
         return None
-    return cluster.get("#LocalIdIndexFacet")
+    liif = cluster.get("#LocalIdIndexFacet")
+    assert isinstance(liif, base.LocalIdIndexFacet) or liif is None
+    return liif
 
 
 def cluster_get_id_types(cluster: Optional[base.Cluster]) -> Optional[base.dict_keys]:
@@ -67,5 +69,5 @@ def cluster_get_gem_base_names(cluster: Optional[base.Cluster]) -> Optional[base
     return cluster_get_id_names(cluster, "gem_base_name")
 
 
-def get_gem_by_gem_base_name(cluster: Optional[base.Cluster], gem_base_name: str) -> Optional[base.Gem]:
+def cluster_get_gem_by_gem_base_name(cluster: Optional[base.Cluster], gem_base_name: str) -> Optional[base.Gem]:
     return cluster_get_gem_by_id(cluster, "gem_base_name", gem_base_name)

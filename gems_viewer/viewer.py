@@ -56,7 +56,7 @@ def initialize(home_path: pathlib.Path) -> None:
     print()
     print("viewer_cluster:")
     saver.debug(viewer_cluster)
-    window_gem = local_ids_query.get_gem_by_gem_base_name(viewer_cluster, "RootWindow")
+    window_gem = local_ids_query.cluster_get_gem_by_gem_base_name(viewer_cluster, "RootWindow")
     if window_gem is None:
         print("window_gem is None")
         return

@@ -13,7 +13,7 @@ def test() -> None:
     saver.debug(cluster2)
     print()
     print("Fred")
-    saver.debug(local_ids_query.get_gem_by_gem_base_name(cluster2, "Fred"))
+    saver.debug(local_ids_query.cluster_get_gem_by_gem_base_name(cluster2, "Fred"))
 
 
 if __name__ == "__main__":
