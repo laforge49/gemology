@@ -1,7 +1,7 @@
 import pathlib
 
 from gems import core, base
-from gems.facets import local_ids_update, global_tags_update
+from gems.facets import global_tags_update
 from pdml import saver
 
 

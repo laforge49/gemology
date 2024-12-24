@@ -1,5 +1,5 @@
 import pathlib
-import typing
+from typing import *
 
 from gems import base
 from gems.facets import gems_query, local_ids_update, local_tags_update, attrs_update, global_ids_update, \
@@ -7,7 +7,7 @@ from gems.facets import gems_query, local_ids_update, local_tags_update, attrs_u
 from pdml import loader, saver
 
 
-def create_gem(cluster: base.Cluster, gem_parent: base.Gem, gem_base_name: str) -> dict:
+def create_gem(cluster: base.Cluster, gem_parent: base.Gem, gem_base_name: str) -> base.Gem:
     gem = base.Gem()
     attrs_update.set_cluster(gem, cluster)
     gems_update.add_child_gem(gem_parent, gem)
@@ -16,14 +16,14 @@ def create_gem(cluster: base.Cluster, gem_parent: base.Gem, gem_base_name: str) 
     return gem
 
 
-def make_gem(cluster: dict, gem_parent: dict, gem_base_name: str) -> dict:
+def make_gem(cluster: base.Cluster, gem_parent: base.Gem, gem_base_name: str) -> base.Gem:
     gem = local_ids_query.get_gem_by_gem_base_name(cluster, gem_base_name)
     if gem:
         return gem
     return create_gem(cluster, gem_parent, gem_base_name)
 
 
-def mapped_class(gem: typing.Optional[base.Gem]) -> typing.Optional[type]:
+def mapped_class(gem: Optional[base.Gem]) -> Optional[type]:
     class_name = attrs_query.get_class_name(gem)
     if class_name is None:
         return
@@ -76,11 +76,11 @@ def save(cluster: base.Cluster) -> None:
     saver.writer(cluster_path, cluster)
 
 
-def save_as(cluster: dict, cluster_path) -> None:
+def save_as(cluster: base.Cluster, cluster_path) -> None:
     saver.writer(cluster_path, cluster)
 
 
-def unplug(cluster: dict) -> None:
+def unplug(cluster: base.Cluster) -> None:
     for gem, _ in gems_query.get_gems(cluster, None):
         global_ids_update.deindex(gem)
         global_tags_update.deindex(gem)
@@ -91,7 +91,7 @@ def build_aggregate() -> None:
     base.set_aggregate(aggregate)
 
 
-def create_resource_gem(resource_name: str, function: typing.Callable) -> dict:
+def create_resource_gem(resource_name: str, function: Callable) -> dict:
     aggregate = base.get_aggregate()
     resources = make_gem(aggregate, aggregate, "Resources")
     group = resource_name.split(".")[0]
@@ -101,13 +101,13 @@ def create_resource_gem(resource_name: str, function: typing.Callable) -> dict:
     return resource_gem
 
 
-def get_resource_gem(resource_name: str) -> dict | None:
+def get_resource_gem(resource_name: str) -> Optional[base.Gem]:
     aggregate = base.get_aggregate()
     resource_gem = local_ids_query.get_gem_by_gem_base_name(aggregate, resource_name)
     return resource_gem
 
 
-def get_resource_description(resource_name: str) -> base.dict_keys | None:
+def get_resource_description(resource_name: str) -> Optional[base.dict_keys]:
     resource_gem = get_resource_gem(resource_name)
     if resource_gem is None:
         return None
@@ -115,7 +115,7 @@ def get_resource_description(resource_name: str) -> base.dict_keys | None:
     return descriptions
 
 
-def get_resource_function(resource_name: str) -> typing.Optional[typing.Callable]:
+def get_resource_function(resource_name: str) -> Optional[Callable]:
     resource_gem = get_resource_gem(resource_name)
     if resource_gem is None:
         return None

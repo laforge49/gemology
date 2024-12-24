@@ -10,7 +10,7 @@ selected_listbox_cluster_index: int | None = 0
 selected_cluster_name: str = "Aggregate"
 
 
-def init_listbox_cluster(listbox_cluster_gem: dict) -> None:
+def init_listbox_cluster(listbox_cluster_gem: base.Gem) -> None:
     global selected_listbox_cluster_index
     global selected_cluster_name
     listbox_cluster_object = tkattrs.get_tkobject(listbox_cluster_gem)
@@ -23,7 +23,7 @@ def init_listbox_cluster(listbox_cluster_gem: dict) -> None:
     listbox_cluster_object.see(0)
 
 
-def listbox_cluster_selection(listbox_cluster_gem: dict, event: any) -> None:
+def listbox_cluster_selection(listbox_cluster_gem: base.Gem, event: any) -> None:
     print(123, "todo")
 
 
