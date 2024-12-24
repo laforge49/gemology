@@ -33,11 +33,12 @@ def del_id(gem: Optional[base.Gem], id_type: str, id_name: str) -> bool:
     return True
 
 
-def cluster_make_liif(cluster: Optional[base.Cluster]) -> Optional[dict]:
+def cluster_make_liif(cluster: Optional[base.Cluster]) -> Optional[base.LocalIdIndexFacet]:
     liif = local_ids_query.cluster_get_liif(cluster)
     if liif is None:
-        liif = {}
+        liif = base.LocalIdIndexFacet()
         cluster["#LocalIdIndexFacet"] = liif
+    assert isinstance(liif, base.LocalIdIndexFacet)
     return liif
 
 
