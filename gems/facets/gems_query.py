@@ -3,10 +3,12 @@ from typing import *
 from gems import base
 
 
-def get_gf(gem: Optional[base.Gem]) -> Optional[list]:
+def get_gf(gem: Optional[base.Gem]) -> Optional[base.GemsFacet]:
     if gem is None:
         return None
-    return gem.get("GemsFacet")
+    facet = gem.get("GemsFacet")
+    assert isinstance(facet, base.GemsFacet) or facet is None
+    return facet
 
 
 def get_gems(gem: Optional[base.Gem], gem_parent: Optional[base.Gem]):
