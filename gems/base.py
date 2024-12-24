@@ -13,6 +13,29 @@ class Aggregate(Cluster):
     pass
 
 
+class AttrsFacet(dict):
+    pass
+
+class GemsFacet(list):
+    pass
+
+
+class GlobalIdsFacet(dict):
+    pass
+
+
+class GlobalTagsFacet(dict):
+    pass
+
+
+class LocalIdsFacet(dict):
+    pass
+
+
+class LocalTagsFacets(dict):
+    pass
+
+
 class_map = {"base.Gem": Gem, "base.Cluster": Cluster, "base.Aggregate": Aggregate}
 dict_keys = type({}.keys())
 aggregate_: Optional[Aggregate] = None
