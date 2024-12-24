@@ -4,10 +4,12 @@ from typing import *
 from gems import base
 
 
-def get_lif(gem: Optional[base.Gem]) -> Optional[dict]:
+def get_lif(gem: Optional[base.Gem]) -> Optional[base.LocalIdsFacet]:
     if gem is None:
         return None
-    return gem.get("LocalIdsFacet")
+    facet = gem.get("LocalIdsFacet")
+    assert isinstance(facet, base.LocalIdsFacet) or facet is None
+    return facet
 
 
 def gem_get_id_types(gem: Optional[base.Gem]) -> Optional[base.dict_keys]:
