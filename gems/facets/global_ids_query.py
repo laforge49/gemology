@@ -29,7 +29,6 @@ def gem_get_id_name(gem: Optional[base.Gem], id_type: str) -> Optional[str]:
 def get_giif() -> Optional[base.GlobalIdIndexFacet]:
     aggregate = base.get_aggregate()
     facet = aggregate.get("#GlobalIdIndexFacet")
-    print(777, facet)
     assert isinstance(facet, base.GlobalIdIndexFacet) or facet is None
     return facet
 

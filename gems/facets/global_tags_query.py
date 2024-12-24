@@ -26,9 +26,11 @@ def gem_get_tag_value(gem: Optional[base.Gem], tag_name: str) -> any:
     return gtf.get(tag_name)
 
 
-def get_gtif() -> Optional[dict]:
+def get_gtif() -> Optional[base.GlobalTagIndexFacet]:
     aggregate = base.get_aggregate()
-    return aggregate.get("#GlobalTagIndexFacet")
+    gtif = aggregate.get("#GlobalTagIndexFacet")
+    assert isinstance(gtif, base.GlobalTagIndexFacet) or gtif is None
+    return gtif
 
 
 def aggregate_get_tag_names() -> Optional[base.dict_keys]:
