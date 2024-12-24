@@ -20,11 +20,11 @@ def get_grid(tkgem: Optional[base.Gem]) -> dict | None:
      return attrs_query.get_attr_value(tkgem, "grid")
 
 
-def get_is_widget(tkdescriptor_gem: dict | None) -> bool | None:
+def get_is_widget(tkdescriptor_gem: Optional[base.Gem]) -> bool | None:
     return attrs_query.get_attr_value(tkdescriptor_gem, "is_widget")
 
 
-def set_is_widget(tkdescriptor_gem: dict | None, is_widget: bool) -> bool:
+def set_is_widget(tkdescriptor_gem: Optional[base.Gem], is_widget: bool) -> bool:
     return attrs_update.set_attr_value(tkdescriptor_gem, "is_widget", is_widget)
 
 
@@ -40,11 +40,11 @@ def get_pack(tkgem: Optional[base.Gem]) -> dict | None:
      return attrs_query.get_attr_value(tkgem, "pack")
 
 
-def get_packable(tkdescriptor_gem: dict | None) -> bool | None:
+def get_packable(tkdescriptor_gem: Optional[base.Gem]) -> bool | None:
     return attrs_query.get_attr_value(tkdescriptor_gem, "packable")
 
 
-def set_packable(tkdescriptor_gem: dict | None, packable: bool) -> bool:
+def set_packable(tkdescriptor_gem: Optional[base.Gem], packable: bool) -> bool:
     return attrs_update.set_attr_value(tkdescriptor_gem, "packable", packable)
 
 
@@ -56,11 +56,11 @@ def get_title(tkgem: Optional[base.Gem]) -> str | None:
     return attrs_query.get_attr_value(tkgem, "title")
 
 
-def get_tkcomposer(tkdescriptor_gem: dict | None) -> Callable | None:
+def get_tkcomposer(tkdescriptor_gem: Optional[base.Gem]) -> Callable | None:
     return attrs_query.get_attr_value(tkdescriptor_gem, "#tkcomposer")
 
 
-def set_tkcomposer(tkdescriptor_gem: dict | None, tkcomposer: Callable) -> bool:
+def set_tkcomposer(tkdescriptor_gem: Optional[base.Gem], tkcomposer: Callable) -> bool:
     return attrs_update.set_attr_value(tkdescriptor_gem, "#tkcomposer", tkcomposer)
 
 
