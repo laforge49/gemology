@@ -5,13 +5,14 @@ from gems import base
 from gems.facets import global_ids_query
 
 
-def make_gif(gem: Optional[base.Gem]) -> Optional[dict]:
+def make_gif(gem: Optional[base.Gem]) -> Optional[base.GlobalIdsFacet]:
     if gem is None:
         return None
     gif = global_ids_query.get_gif(gem)
     if gif is None:
-        gif = {}
+        gif = base.GlobalIdsFacet()
         gem["GlobalIdsFacet"] = gif
+    assert isinstance(gif, base.GlobalIdsFacet)
     return gif
 
 

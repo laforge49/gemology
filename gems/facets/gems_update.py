@@ -4,13 +4,14 @@ from gems import base
 from gems.facets import gems_query
 
 
-def make_gf(gem: Optional[base.Gem]) -> Optional[list]:
+def make_gf(gem: Optional[base.Gem]) -> Optional[base.GemsFacet]:
     if gem is None:
         return None
     gf = gems_query.get_gf(gem)
     if gf is None:
-        gf = []
+        gf = base.GemsFacet()
         gem["GemsFacet"] = gf
+    assert isinstance(gf, base.GemsFacet)
     return gf
 
 

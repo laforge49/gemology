@@ -4,13 +4,14 @@ from gems import base
 from gems.facets import local_ids_query, attrs_query
 
 
-def make_lif(gem: Optional[base.Gem]) -> Optional[dict]:
+def make_lif(gem: Optional[base.Gem]) -> Optional[base.LocalIdsFacet]:
     if gem is None:
         return None
     lif = local_ids_query.get_lif(gem)
     if lif is None:
-        lif = {}
+        lif = base.LocalIdsFacet()
         gem["LocalIdsFacet"] = lif
+    assert isinstance(lif, base.LocalIdsFacet)
     return lif
 
 

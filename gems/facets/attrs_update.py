@@ -4,14 +4,14 @@ from gems import base
 from gems.facets import attrs_query, gems_update
 
 
-def make_af(gem: Optional[base.Gem]) -> Optional[dict]:
+def make_af(gem: Optional[base.Gem]) -> Optional[base.AttrsFacet]:
     if gem is None:
         return None
     af = attrs_query.get_af(gem)
     if af is None:
-        af = {}
+        af = base.AttrsFacet()
         gem["AttrsFacet"] = af
-    assert isinstance(af, dict)
+    assert isinstance(af, base.AttrsFacet)
     return af
 
 

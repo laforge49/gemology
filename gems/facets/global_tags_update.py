@@ -5,13 +5,14 @@ from gems import base
 from gems.facets import global_tags_query
 
 
-def make_gtf(gem: Optional[base.Gem]) -> Optional[dict]:
+def make_gtf(gem: Optional[base.Gem]) -> Optional[base.GlobalTagsFacet]:
     if gem is None:
         return None
     gtf = global_tags_query.get_gtf(gem)
     if gtf is None:
-        gtf = {}
+        gtf = base.GlobalTagsFacet()
         gem["GlobalTagsFacet"] = gtf
+    assert isinstance(gtf, base.GlobalTagsFacet)
     return gtf
 
 
