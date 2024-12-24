@@ -26,10 +26,12 @@ def gem_get_tag_value(gem: Optional[base.Gem], tag_name: str) -> any:
     return ltf.get(tag_name)
 
 
-def cluster_get_ltif(cluster: Optional[base.Cluster]) -> Optional[dict]:
+def cluster_get_ltif(cluster: Optional[base.Cluster]) -> Optional[base.LocalTagIndexFacet]:
     if cluster is None:
         return None
-    return cluster.get("#LocalTagIndexFacet")
+    ltif = cluster.get("#LocalTagIndexFacet")
+    assert isinstance(ltif, base.LocalTagIndexFacet) or ltif is None
+    return ltif
 
 
 def cluster_get_tag_names(cluster: Optional[base.Cluster]) -> Optional[base.dict_keys]:
