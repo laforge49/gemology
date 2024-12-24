@@ -24,7 +24,15 @@ class GlobalIdsFacet(dict):
     pass
 
 
+class GlobalIdIndexFacet(dict):
+    pass
+
+
 class GlobalTagsFacet(dict):
+    pass
+
+
+class GlobalTagIndexFacet(dict):
     pass
 
 
@@ -32,7 +40,15 @@ class LocalIdsFacet(dict):
     pass
 
 
+class LocalIdIndexFacet(dict):
+    pass
+
+
 class LocalTagsFacet(dict):
+    pass
+
+
+class LocalTagIndexFacet(dict):
     pass
 
 
