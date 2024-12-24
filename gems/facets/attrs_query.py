@@ -3,11 +3,11 @@ from typing import *
 from gems import base
 
 
-def get_af(gem: Optional[base.Gem]) -> Optional[dict]:
+def get_af(gem: Optional[base.Gem]) -> Optional[base.AttrsFacet]:
     if gem is None:
         return None
     facet = gem.get("AttrsFacet")
-    assert isinstance(facet, dict) or facet is None
+    assert isinstance(facet, base.AttrsFacet) or facet is None
     return facet
 
 
