@@ -4,10 +4,12 @@ from typing import *
 from gems import base
 
 
-def get_gtf(gem: Optional[base.Gem]) -> Optional[dict]:
+def get_gtf(gem: Optional[base.Gem]) -> Optional[base.GlobalTagsFacet]:
     if gem is None:
         return None
-    return gem.get("GlobalTagsFacet")
+    facet = gem.get("GlobalTagsFacet")
+    assert isinstance(facet, base.GlobalTagsFacet) or facet is None
+    return facet
 
 
 def gem_get_tag_names(gem: Optional[base.Gem]) -> Optional[base.dict_keys]:
