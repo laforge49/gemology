@@ -41,12 +41,13 @@ def del_id(gem: Optional[base.Gem], id_type: str, id_name: str) -> bool:
     return True
 
 
-def make_giif() -> Optional[dict]:
+def make_giif() -> Optional[base.GlobalIdIndexFacet]:
     giif = global_ids_query.get_giif()
     if giif is None:
-        giif = {}
+        giif = base.GlobalIdIndexFacet()
         aggregate = base.get_aggregate()
         aggregate["#GlobalIdIndexFacet"] = giif
+    assert isinstance(giif, base.GlobalIdIndexFacet)
     return giif
 
 

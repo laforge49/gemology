@@ -26,9 +26,12 @@ def gem_get_id_name(gem: Optional[base.Gem], id_type: str) -> Optional[str]:
     return gif.get(id_type)
 
 
-def get_giif() -> Optional[dict]:
+def get_giif() -> Optional[base.GlobalIdIndexFacet]:
     aggregate = base.get_aggregate()
-    return aggregate.get("#GlobalIdIndexFacet")
+    facet = aggregate.get("#GlobalIdIndexFacet")
+    print(777, facet)
+    assert isinstance(facet, base.GlobalIdIndexFacet) or facet is None
+    return facet
 
 
 def aggregate_get_id_types() -> Optional[base.dict_keys]:
@@ -48,14 +51,16 @@ def aggregate_get_id_names(id_type: str) -> Optional[base.dict_keys]:
     return giif2.keys()
 
 
-def aggregate_get_gem_by_id(id_type: str, id_name: str) -> Optional[dict]:
+def aggregate_get_gem_by_id(id_type: str, id_name: str) -> Optional[base.Gem]:
     giif = get_giif()
     if giif is None:
         return None
     giif2 = giif.get(id_type)
     if giif2 is None:
         return None
-    return giif2.get(id_name)
+    gem = giif2.get(id_name)
+    assert isinstance(gem, base.Gem) or gem is None
+    return gem
 
 
 def get_cluster_name(cluster: Optional[base.Cluster]) -> Optional[str]:
@@ -66,5 +71,7 @@ def aggregate_get_cluster_names() -> Optional[base.dict_keys]:
     return aggregate_get_id_names("#cluster_name")
 
 
-def get_cluster_by_cluster_name(cluster_name: str) -> Optional[dict]:
-    return aggregate_get_gem_by_id("#cluster_name", cluster_name)
+def get_cluster_by_cluster_name(cluster_name: str) -> Optional[base.Cluster]:
+    cluster = aggregate_get_gem_by_id("#cluster_name", cluster_name)
+    assert isinstance(cluster, base.Cluster) or cluster is None
+    return cluster
