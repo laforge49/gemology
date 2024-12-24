@@ -4,23 +4,23 @@ from gems import base
 from gems.facets import attrs_update, attrs_query
 
 
-def get_columns(tkgem: Optional[base.Gem]) -> list | None:
+def get_columns(tkgem: Optional[base.Gem]) -> Optional[list]:
     return attrs_query.get_attr_value(tkgem, "columns")
 
 
-def get_events(tkgem: Optional[base.Gem]) -> dict | None:
+def get_events(tkgem: Optional[base.Gem]) -> Optional[dict]:
      return attrs_query.get_attr_value(tkgem, "events")
 
 
-def get_geometry(tkgem: Optional[base.Gem]) -> str | None:
+def get_geometry(tkgem: Optional[base.Gem]) -> Optional[str]:
     return attrs_query.get_attr_value(tkgem, "geometry")
 
 
-def get_grid(tkgem: Optional[base.Gem]) -> dict | None:
+def get_grid(tkgem: Optional[base.Gem]) -> Optional[dict]:
      return attrs_query.get_attr_value(tkgem, "grid")
 
 
-def get_is_widget(tkdescriptor_gem: Optional[base.Gem]) -> bool | None:
+def get_is_widget(tkdescriptor_gem: Optional[base.Gem]) -> Optional[bool]:
     return attrs_query.get_attr_value(tkdescriptor_gem, "is_widget")
 
 
@@ -28,19 +28,19 @@ def set_is_widget(tkdescriptor_gem: Optional[base.Gem], is_widget: bool) -> bool
     return attrs_update.set_attr_value(tkdescriptor_gem, "is_widget", is_widget)
 
 
-def get_manual(tkgem: Optional[base.Gem]) -> bool | None:
+def get_manual(tkgem: Optional[base.Gem]) -> Optional[bool]:
     return attrs_query.get_attr_value(tkgem, "manual")
 
 
-def get_options(tkgem: Optional[base.Gem]) -> dict | None:
+def get_options(tkgem: Optional[base.Gem]) -> Optional[dict]:
      return attrs_query.get_attr_value(tkgem, "options")
 
 
-def get_pack(tkgem: Optional[base.Gem]) -> dict | None:
+def get_pack(tkgem: Optional[base.Gem]) -> Optional[dict]:
      return attrs_query.get_attr_value(tkgem, "pack")
 
 
-def get_packable(tkdescriptor_gem: Optional[base.Gem]) -> bool | None:
+def get_packable(tkdescriptor_gem: Optional[base.Gem]) -> Optional[bool]:
     return attrs_query.get_attr_value(tkdescriptor_gem, "packable")
 
 
@@ -48,15 +48,15 @@ def set_packable(tkdescriptor_gem: Optional[base.Gem], packable: bool) -> bool:
     return attrs_update.set_attr_value(tkdescriptor_gem, "packable", packable)
 
 
-def get_rows(tkgem: Optional[base.Gem]) -> list | None:
+def get_rows(tkgem: Optional[base.Gem]) -> Optional[list]:
     return attrs_query.get_attr_value(tkgem, "rows")
 
 
-def get_title(tkgem: Optional[base.Gem]) -> str | None:
+def get_title(tkgem: Optional[base.Gem]) -> Optional[str]:
     return attrs_query.get_attr_value(tkgem, "title")
 
 
-def get_tkcomposer(tkdescriptor_gem: Optional[base.Gem]) -> Callable | None:
+def get_tkcomposer(tkdescriptor_gem: Optional[base.Gem]) -> Optional[Callable]:
     return attrs_query.get_attr_value(tkdescriptor_gem, "#tkcomposer")
 
 
@@ -64,7 +64,7 @@ def set_tkcomposer(tkdescriptor_gem: Optional[base.Gem], tkcomposer: Callable) -
     return attrs_update.set_attr_value(tkdescriptor_gem, "#tkcomposer", tkcomposer)
 
 
-def get_tkheight(tkgem: Optional[base.Gem]) -> int | None:
+def get_tkheight(tkgem: Optional[base.Gem]) -> Optional[int]:
     return attrs_query.get_attr_value(tkgem, "height")
 
 
@@ -79,5 +79,5 @@ def set_tkobject(tkgem: Optional[base.Gem], tkobject: any) -> bool:
     return attrs_update.set_attr_value(tkgem, "#tkobject", tkobject)
 
 
-def get_tkwidth(tkgem: Optional[base.Gem]) -> int | None:
+def get_tkwidth(tkgem: Optional[base.Gem]) -> Optional[int]:
     return attrs_query.get_attr_value(tkgem, "width")
