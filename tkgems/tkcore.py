@@ -36,14 +36,14 @@ def initialize_tkdescriptors() -> None:
     make_tkdescriptor_gem("TkDescriptor.ttkscrollbar", ttk.Scrollbar, True, True)
 
 
-def get_tkdescriptor_gem(tkgem: dict) -> dict | None:
+def get_tkdescriptor_gem(tkgem: base.Gem) -> dict | None:
     tktype = tkglobal_tags.get_tktype(tkgem)
     if tktype is None:
         return None
     return core.get_resource_gem(tktype)
 
 
-def persist_value(tk_gem: dict) -> None:
+def persist_value(tk_gem: base.Gem) -> None:
     pass
 
 
@@ -53,7 +53,7 @@ def center_window(window, width, height):
     window.geometry(f"{width}x{height}+{x}+{y}")
 
 
-def create_window(widget_gem: dict) -> None:
+def create_window(widget_gem: base.Gem) -> None:
     window = tkattrs.get_tkobject(widget_gem)
     root_window_title = tkattrs.get_title(widget_gem)
     if root_window_title is None:
@@ -68,7 +68,7 @@ def create_window(widget_gem: dict) -> None:
     window.geometry(root_window_geometry)
 
 
-def listbox_up_down(listbox_gem: dict, event: any) -> None:
+def listbox_up_down(listbox_gem: base.Gem, event: any) -> None:
     listbox_object = tkattrs.get_tkobject(listbox_gem)
     index = listbox_object.curselection()[0]
     if event.keysym == 'Up':
@@ -92,7 +92,7 @@ def initialize(home_path: pathlib.Path) -> None:
     create_tkresource_gems()
 
 
-def do_tkoptions(tkgem: dict) -> dict:
+def do_tkoptions(tkgem: base.Gem) -> dict:
     options = tkattrs.get_options(tkgem)
     if options is None:
         options = {}
@@ -102,7 +102,7 @@ def do_tkoptions(tkgem: dict) -> dict:
     return options
 
 
-def tklayout(packable: bool, tkgem: dict, tkobject: any) -> None:
+def tklayout(packable: bool, tkgem: base.Gem, tkobject: any) -> None:
     columns = tkattrs.get_columns(tkgem)
     if columns is not None:
         for column in columns:
@@ -122,14 +122,14 @@ def tklayout(packable: bool, tkgem: dict, tkobject: any) -> None:
             tkobject.pack(**pack)
 
 
-def tkinit_func(tkgem: dict) -> None:
+def tkinit_func(tkgem: base.Gem) -> None:
     func_name = tkglobal_tags.get_init_tkgem(tkgem)
     if func_name is not None:
         func = core.get_resource_function(func_name)
         func(tkgem)
 
 
-def tkevent(tkgem: dict, event: any, tag_name: str) -> None:
+def tkevent(tkgem: base.Gem, event: any, tag_name: str) -> None:
     events = tkattrs.get_events(tkgem)
     if events is None:
         event_function_name = None
@@ -141,7 +141,7 @@ def tkevent(tkgem: dict, event: any, tag_name: str) -> None:
             func(tkgem, event)
 
 
-def tkevents(tkgem: dict, tkobject: any) -> None:
+def tkevents(tkgem: base.Gem, tkobject: any) -> None:
     events = tkattrs.get_events(tkgem)
     if events is not None:
         for event_name, event_function_name in events.items():
@@ -149,12 +149,12 @@ def tkevents(tkgem: dict, tkobject: any) -> None:
             tkobject.bind(event_name, lambda event: func(tkgem, event))
 
 
-def tkscroll(scrollbar_gem: dict, scrollbar_object: any) -> None:
+def tkscroll(scrollbar_gem: base.Gem, scrollbar_object: any) -> None:
     # todo tkscroll
     pass
 
 
-def tkeval(tkgem: dict) -> any:
+def tkeval(tkgem: base.Gem) -> any:
     if tkgem is None:
         return None
     parent_gem = attrs_query.get_gem_parent(tkgem)

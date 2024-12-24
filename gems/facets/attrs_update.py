@@ -51,6 +51,7 @@ def del_cluster_path(cluster: Optional[base.Cluster]) -> bool:
 
 
 def set_gem_parent(gem: Optional[base.Gem], gem_parent: base.Gem) -> bool:
+    assert isinstance(gem_parent, base.Gem)
     return set_attr_value(gem, "#gem_parent", gem_parent)
 
 

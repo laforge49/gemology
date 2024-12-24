@@ -23,24 +23,45 @@ def make_gem(cluster: base.Cluster, gem_parent: base.Gem, gem_base_name: str) ->
     return create_gem(cluster, gem_parent, gem_base_name)
 
 
-def mapped_class(gem: Optional[base.Gem]) -> Optional[type]:
+def mapped_gem_class(gem: Optional[base.Gem]) -> Optional[type]:
     class_name = attrs_query.get_class_name(gem)
     if class_name is None:
         return
     return base.class_map[class_name]
 
 
+def reclass_facets(refined: dict, fname: str, facet: any) -> None:
+    match fname:
+        case "GemsFacet":
+            refined_facet = base.GemsFacet()
+            refined[fname] = refined_facet
+            for child in facet:
+                refined_facet.append(reclass(child, base.Gem))
+        case "AttrsFacet":
+            refined_facet = base.AttrsFacet()
+            refined_facet.update(facet)
+            refined[fname] = refined_facet
+        case "GlobalIdsFacet":
+            refined_facet = base.GlobalIdsFacet()
+            refined_facet.update(facet)
+            refined[fname] = refined_facet
+        case "LocalIdsFacet":
+            refined_facet = base.LocalIdsFacet()
+            refined_facet.update(facet)
+            refined[fname] = refined_facet
+        case "GlobalTagsFacet":
+            refined_facet = base.GlobalTagsFacet()
+            refined_facet.update(facet)
+            refined[fname] = refined_facet
+        case _:
+            refined[fname] = facet
+
+
 def reclass(raw: dict, cls: type) -> base.Gem:
     refined = cls()
     for fname, facet in raw.items():
-        if fname == "GemsFacet":
-            refined_gems = list()
-            refined[fname] = refined_gems
-            for child in facet:
-                refined_gems.append(reclass(child, base.Gem))
-        else:
-            refined[fname] = facet
-    subclass = mapped_class(refined)
+        reclass_facets(refined, fname, facet)
+    subclass = mapped_gem_class(refined)
     if subclass:
         refined.__class__ = subclass
     return refined
