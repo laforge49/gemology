@@ -45,12 +45,13 @@ def del_tag(gem: Optional[base.Gem], tag_name: str) -> bool:
     return True
 
 
-def make_gtif() -> Optional[dict]:
+def make_gtif() -> Optional[base.GlobalTagIndexFacet]:
     gtif = global_tags_query.get_gtif()
     if gtif is None:
-        gtif = {}
+        gtif = base.GlobalTagIndexFacet()
         aggregate = base.get_aggregate()
         aggregate["#GlobalTagIndexFacet"] = gtif
+    assert isinstance(gtif, base.GlobalTagIndexFacet)
     return gtif
 
 
