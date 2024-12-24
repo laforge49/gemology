@@ -1,21 +1,22 @@
-import typing
+from typing import *
 
+from gems import base
 from gems.facets import attrs_update, attrs_query
 
 
-def get_columns(tkgem: dict | None) -> list | None:
+def get_columns(tkgem: Optional[base.Gem]) -> list | None:
     return attrs_query.get_attr_value(tkgem, "columns")
 
 
-def get_events(tkgem: dict | None) -> dict | None:
+def get_events(tkgem: Optional[base.Gem]) -> dict | None:
      return attrs_query.get_attr_value(tkgem, "events")
 
 
-def get_geometry(tkgem: dict | None) -> str | None:
+def get_geometry(tkgem: Optional[base.Gem]) -> str | None:
     return attrs_query.get_attr_value(tkgem, "geometry")
 
 
-def get_grid(tkgem: dict | None) -> dict | None:
+def get_grid(tkgem: Optional[base.Gem]) -> dict | None:
      return attrs_query.get_attr_value(tkgem, "grid")
 
 
@@ -27,15 +28,15 @@ def set_is_widget(tkdescriptor_gem: dict | None, is_widget: bool) -> bool:
     return attrs_update.set_attr_value(tkdescriptor_gem, "is_widget", is_widget)
 
 
-def get_manual(tkgem: dict | None) -> bool | None:
+def get_manual(tkgem: Optional[base.Gem]) -> bool | None:
     return attrs_query.get_attr_value(tkgem, "manual")
 
 
-def get_options(tkgem: dict | None) -> dict | None:
+def get_options(tkgem: Optional[base.Gem]) -> dict | None:
      return attrs_query.get_attr_value(tkgem, "options")
 
 
-def get_pack(tkgem: dict | None) -> dict | None:
+def get_pack(tkgem: Optional[base.Gem]) -> dict | None:
      return attrs_query.get_attr_value(tkgem, "pack")
 
 
@@ -47,36 +48,36 @@ def set_packable(tkdescriptor_gem: dict | None, packable: bool) -> bool:
     return attrs_update.set_attr_value(tkdescriptor_gem, "packable", packable)
 
 
-def get_rows(tkgem: dict | None) -> list | None:
+def get_rows(tkgem: Optional[base.Gem]) -> list | None:
     return attrs_query.get_attr_value(tkgem, "rows")
 
 
-def get_title(tkgem: dict | None) -> str | None:
+def get_title(tkgem: Optional[base.Gem]) -> str | None:
     return attrs_query.get_attr_value(tkgem, "title")
 
 
-def get_tkcomposer(tkdescriptor_gem: dict | None) -> typing.Callable | None:
+def get_tkcomposer(tkdescriptor_gem: dict | None) -> Callable | None:
     return attrs_query.get_attr_value(tkdescriptor_gem, "#tkcomposer")
 
 
-def set_tkcomposer(tkdescriptor_gem: dict | None, tkcomposer: typing.Callable) -> bool:
+def set_tkcomposer(tkdescriptor_gem: dict | None, tkcomposer: Callable) -> bool:
     return attrs_update.set_attr_value(tkdescriptor_gem, "#tkcomposer", tkcomposer)
 
 
-def get_tkheight(tkgem: dict | None) -> int | None:
+def get_tkheight(tkgem: Optional[base.Gem]) -> int | None:
     return attrs_query.get_attr_value(tkgem, "height")
 
 
-def get_tkobject(tkgem: dict | None) -> any:
+def get_tkobject(tkgem: Optional[base.Gem]) -> any:
     tkobject = attrs_query.get_attr_value(tkgem, "#tkobject")
     if tkobject:
         return tkobject
     return None
 
 
-def set_tkobject(tkgem: dict | None, tkobject: any) -> bool:
+def set_tkobject(tkgem: Optional[base.Gem], tkobject: any) -> bool:
     return attrs_update.set_attr_value(tkgem, "#tkobject", tkobject)
 
 
-def get_tkwidth(tkgem: dict | None) -> int | None:
+def get_tkwidth(tkgem: Optional[base.Gem]) -> int | None:
     return attrs_query.get_attr_value(tkgem, "width")
