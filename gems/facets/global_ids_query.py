@@ -4,10 +4,12 @@ from typing import *
 from gems import base
 
 
-def get_gif(gem: Optional[base.Gem]) -> Optional[dict]:
+def get_gif(gem: Optional[base.Gem]) -> Optional[base.GlobalIdsFacet]:
     if gem is None:
         return None
-    return gem.get("GlobalIdsFacet")
+    facet = gem.get("GlobalIdsFacet")
+    assert isinstance(facet, base.GlobalIdsFacet) or facet is None
+    return facet
 
 
 def gem_get_id_types(gem: Optional[base.Gem]) -> Optional[base.dict_keys]:
