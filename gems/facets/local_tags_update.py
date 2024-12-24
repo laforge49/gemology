@@ -21,7 +21,7 @@ def deindex_tag(gem: Optional[base.Gem], tag_name: str, tag_value: str) -> bool:
         return False
     cluster = attrs_query.get_cluster(gem)
     if cluster is None:
-        return None
+        return False
     ltif = local_tags_query.cluster_get_ltif(cluster)
     if ltif is None:
         return False
@@ -48,11 +48,12 @@ def del_tag(gem: Optional[base.Gem], tag_name: str) -> bool:
     return True
 
 
-def cluster_make_ltif(cluster: Optional[base.Cluster]) -> Optional[dict]:
+def cluster_make_ltif(cluster: Optional[base.Cluster]) -> Optional[base.LocalTagIndexFacet]:
     ltif = local_tags_query.cluster_get_ltif(cluster)
     if ltif is None:
-        ltif = {}
+        ltif = base.LocalTagIndexFacet()
         cluster["#LocalTagIndexFacet"] = ltif
+    assert isinstance(ltif, base.LocalTagIndexFacet)
     return ltif
 
 
