@@ -53,6 +53,10 @@ def reclass_facets(refined: dict, fname: str, facet: any) -> None:
             refined_facet = base.GlobalTagsFacet()
             refined_facet.update(facet)
             refined[fname] = refined_facet
+        case "LocalTagsFacet":
+            refined_facet = base.LocalTagsFacet()
+            refined_facet.update(facet)
+            refined[fname] = refined_facet
         case _:
             refined[fname] = facet
 

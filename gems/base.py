@@ -32,7 +32,7 @@ class LocalIdsFacet(dict):
     pass
 
 
-class LocalTagsFacets(dict):
+class LocalTagsFacet(dict):
     pass
 
 

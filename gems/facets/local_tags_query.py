@@ -4,10 +4,12 @@ from typing import *
 from gems import base
 
 
-def get_ltf(gem: Optional[base.Gem]) -> Optional[dict]:
+def get_ltf(gem: Optional[base.Gem]) -> Optional[base.LocalTagsFacet]:
     if gem is None:
         return None
-    return gem.get("LocalTagsFacet")
+    facet = gem.get("LocalTagsFacet")
+    assert isinstance(facet, base.LocalTagsFacet) or facet is None
+    return facet
 
 
 def gem_get_tag_names(gem: Optional[base.Gem]) -> Optional[base.dict_keys]:

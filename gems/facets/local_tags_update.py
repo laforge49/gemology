@@ -5,14 +5,14 @@ from gems import base
 from gems.facets import attrs_query, local_tags_query
 
 
-def make_ltf(gem: Optional[base.Gem]) -> Optional[base.LocalTagsFacets]:
+def make_ltf(gem: Optional[base.Gem]) -> Optional[base.LocalTagsFacet]:
     if gem is None:
         return None
     ltf = local_tags_query.get_ltf(gem)
     if ltf is None:
-        ltf = base.LocalTagsFacets()
+        ltf = base.LocalTagsFacet()
         gem["LocalTagsFacet"] = ltf
-    assert isinstance(ltf, base.LocalTagsFacets)
+    assert isinstance(ltf, base.LocalTagsFacet)
     return ltf
 
 
