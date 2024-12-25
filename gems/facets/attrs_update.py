@@ -61,13 +61,3 @@ def del_parent_attr(gem: Optional[base.Gem]) -> bool:
 
 def set_function(gem: Optional[base.Gem], function: Callable) -> bool:
     return set_attr_value(gem, "#function", function)
-
-
-def create_gem(cluster: Optional[base.Cluster], gem_parent: base.Gem) -> dict | None:
-    if cluster is None:
-        return None
-    gem = base.Gem()
-    set_cluster(gem, cluster)
-    gems_update.add_child_gem(gem_parent, gem)
-    set_gem_parent(gem, gem_parent)
-    return gem
