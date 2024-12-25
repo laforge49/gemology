@@ -34,19 +34,14 @@ def make_gem(cluster: base.Cluster, gem_parent: base.Gem, gem_base_name: str, cl
     gem = local_ids_query.cluster_get_gem_by_gem_base_name(cluster, gem_base_name)
     if gem:
         return gem
-    return create_gem(cluster, gem_parent, gem_base_name, class_name)
+    gem = create_gem(cluster, gem_parent, gem_base_name, class_name)
+    assert isinstance(gem, base.Gem)
+    return gem
 
 
 def build_aggregate() -> None:
     aggregate: base.Aggregate = base.Aggregate()
     base.set_aggregate(aggregate)
-
-
-def make_resources_gem() -> base.Resources:
-    aggregate = base.get_aggregate()
-    resources = make_gem(aggregate, aggregate, "Resources", "base.Resources")
-    assert isinstance(resources, base.Resources)
-    return resources
 
 
 def get_resources_gem() -> Optional[base.Resources]:
@@ -56,9 +51,23 @@ def get_resources_gem() -> Optional[base.Resources]:
     return resource_gem
 
 
+def make_resources_gem() -> base.Resources:
+    aggregate = base.get_aggregate()
+    resources = make_gem(aggregate, aggregate, "Resources", "base.Resources")
+    assert isinstance(resources, base.Resources)
+    return resources
+
+
 def get_resource_group_gem(group_name: str) -> Optional[base.ResourceGroup]:
     aggregate = base.get_aggregate()
     resource_group_gem = local_ids_query.cluster_get_gem_by_gem_base_name(aggregate, group_name)
+    assert isinstance(resource_group_gem, base.ResourceGroup)
+    return resource_group_gem
+
+
+def make_resource_group_gem(group_name: str) -> base.ResourceGroup:
+    aggregate = base.get_aggregate()
+    resource_group_gem = make_gem(aggregate, aggregate, "ResourceGroup", "base.ResourceGroup")
     assert isinstance(resource_group_gem, base.ResourceGroup)
     return resource_group_gem
 
@@ -146,9 +155,8 @@ def unplug(cluster: base.Cluster) -> None:
 
 def create_resource_gem(resource_name: str, function: Callable) -> dict:
     aggregate = base.get_aggregate()
-    resources = make_resources_gem()
     group_name = resource_name.split(".")[0]
-    resource_group_gem = make_gem(aggregate, resources, group_name)
+    resource_group_gem = make_resource_group_gem(group_name)
     resource_gem = make_gem(aggregate, resource_group_gem, resource_name)
     attrs_update.set_function(resource_gem, function)
     return resource_gem
