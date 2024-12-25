@@ -52,7 +52,15 @@ def make_resources_gem() -> base.Resources:
 def get_resources_gem() -> Optional[base.Resources]:
     aggregate = base.get_aggregate()
     resource_gem = local_ids_query.cluster_get_gem_by_gem_base_name(aggregate, "Resources")
+    assert isinstance(resource_gem, base.Resources)
     return resource_gem
+
+
+def get_resource_group_gem(group_name: str) -> Optional[base.ResourceGroup]:
+    aggregate = base.get_aggregate()
+    resource_group_gem = local_ids_query.cluster_get_gem_by_gem_base_name(aggregate, group_name)
+    assert isinstance(resource_group_gem, base.ResourceGroup)
+    return resource_group_gem
 
 
 def reclass_facets(refined: dict, fname: str, facet: any) -> None:
