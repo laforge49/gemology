@@ -14,7 +14,7 @@ def mapped_gem_class(gem: Optional[base.Gem]) -> Optional[type]:
     return base.class_map[class_name]
 
 
-def create_gem(cluster: base.Cluster, gem_parent: base.Gem, gem_base_name: str, class_name: str | None = None)\
+def create_gem(cluster: base.Cluster, gem_parent: base.Gem, gem_base_name: str, class_name: Optional[str] = None)\
         -> base.Gem:
     gem = base.Gem()
     attrs_update.set_cluster(gem, cluster)
@@ -29,11 +29,17 @@ def create_gem(cluster: base.Cluster, gem_parent: base.Gem, gem_base_name: str, 
     return gem
 
 
-def make_gem(cluster: base.Cluster, gem_parent: base.Gem, gem_base_name: str) -> base.Gem:
+def make_gem(cluster: base.Cluster, gem_parent: base.Gem, gem_base_name: str, class_name: Optional[str] = None)\
+        -> base.Gem:
     gem = local_ids_query.cluster_get_gem_by_gem_base_name(cluster, gem_base_name)
     if gem:
         return gem
-    return create_gem(cluster, gem_parent, gem_base_name)
+    return create_gem(cluster, gem_parent, gem_base_name, class_name)
+
+
+def make_resources_gem() -> base.Resources:
+    aggregate = base.get_aggregate()
+    return make_gem(aggregate, aggregate, "Resources", "base.Resources")
 
 
 def reclass_facets(refined: dict, fname: str, facet: any) -> None:
@@ -124,10 +130,10 @@ def build_aggregate() -> None:
 
 def create_resource_gem(resource_name: str, function: Callable) -> dict:
     aggregate = base.get_aggregate()
-    resources = make_gem(aggregate, aggregate, "Resources")
+    resources = make_resources_gem()
     group = resource_name.split(".")[0]
     resource_group_gem = make_gem(aggregate, resources, group)
-    resource_gem = create_gem(aggregate, resource_group_gem, resource_name)
+    resource_gem = make_gem(aggregate, resource_group_gem, resource_name)
     attrs_update.set_function(resource_gem, function)
     return resource_gem
 

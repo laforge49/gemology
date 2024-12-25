@@ -14,7 +14,7 @@ from tkgems.tkfacets import tkattrs, tkglobal_tags
 def make_tkdescriptor_gem(descriptor_name: str, tkcomposer: typing.Callable, is_widget: bool, packable: bool)\
         -> dict:
     aggregate = base.get_aggregate()
-    resources = make_gem(aggregate, aggregate, "Resources")
+    resources = core.make_resources_gem()
     tkdescriptors_gem = make_gem(aggregate, resources, descriptor_name.split(".")[0])
     tkdescriptor_gem = make_gem(aggregate, tkdescriptors_gem, descriptor_name)
     tkattrs.set_tkcomposer(tkdescriptor_gem, tkcomposer)
