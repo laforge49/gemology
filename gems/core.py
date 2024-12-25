@@ -7,12 +7,25 @@ from gems.facets import gems_query, local_ids_update, local_tags_update, attrs_u
 from pdml import loader, saver
 
 
-def create_gem(cluster: base.Cluster, gem_parent: base.Gem, gem_base_name: str) -> base.Gem:
+def mapped_gem_class(gem: Optional[base.Gem]) -> Optional[type]:
+    class_name = attrs_query.get_class_name(gem)
+    if class_name is None:
+        return
+    return base.class_map[class_name]
+
+
+def create_gem(cluster: base.Cluster, gem_parent: base.Gem, gem_base_name: str, class_name: str | None = None)\
+        -> base.Gem:
     gem = base.Gem()
     attrs_update.set_cluster(gem, cluster)
     gems_update.add_child_gem(gem_parent, gem)
     attrs_update.set_gem_parent(gem, gem_parent)
     local_ids_update.set_gem_base_name(gem, gem_base_name)
+    if class_name:
+        attrs_update.set_class_name(gem, class_name)
+    subclass = mapped_gem_class(gem)
+    if subclass:
+        gem.__class__ = subclass
     return gem
 
 
@@ -21,13 +34,6 @@ def make_gem(cluster: base.Cluster, gem_parent: base.Gem, gem_base_name: str) ->
     if gem:
         return gem
     return create_gem(cluster, gem_parent, gem_base_name)
-
-
-def mapped_gem_class(gem: Optional[base.Gem]) -> Optional[type]:
-    class_name = attrs_query.get_class_name(gem)
-    if class_name is None:
-        return
-    return base.class_map[class_name]
 
 
 def reclass_facets(refined: dict, fname: str, facet: any) -> None:
@@ -62,13 +68,13 @@ def reclass_facets(refined: dict, fname: str, facet: any) -> None:
 
 
 def reclass(raw: dict, cls: type) -> base.Gem:
-    refined = cls()
+    gem = cls()
     for fname, facet in raw.items():
-        reclass_facets(refined, fname, facet)
-    subclass = mapped_gem_class(refined)
+        reclass_facets(gem, fname, facet)
+    subclass = mapped_gem_class(gem)
     if subclass:
-        refined.__class__ = subclass
-    return refined
+        gem.__class__ = subclass
+    return gem
 
 
 

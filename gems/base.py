@@ -1,18 +1,6 @@
 from typing import *
 
 
-class Gem(dict):
-    pass
-
-
-class Cluster(Gem):
-    pass
-
-
-class Aggregate(Cluster):
-    pass
-
-
 class AttrsFacet(dict):
     pass
 
@@ -52,7 +40,21 @@ class LocalTagIndexFacet(dict):
     pass
 
 
-class_map = {"base.Gem": Gem, "base.Cluster": Cluster, "base.Aggregate": Aggregate}
+class Gem(dict):
+    pass
+
+
+class Cluster(Gem):
+    pass
+
+
+class Aggregate(Cluster):
+    pass
+
+
+class_map = {"base.Gem": Gem,
+             "base.Cluster": Cluster,
+             "base.Aggregate": Aggregate}
 dict_keys = type({}.keys())
 aggregate_: Optional[Aggregate] = None
 

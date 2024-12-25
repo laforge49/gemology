@@ -61,3 +61,7 @@ def del_parent_attr(gem: Optional[base.Gem]) -> bool:
 
 def set_function(gem: Optional[base.Gem], function: Callable) -> bool:
     return set_attr_value(gem, "#function", function)
+
+
+def set_class_name(gem: Optional[base.Gem], function: str) -> bool:
+    return set_attr_value(gem, "ClassName", function)
