@@ -1,3 +1,4 @@
+from gems import base
 from gems.facets import gems_update
 from pdml import saver
 
@@ -5,8 +6,8 @@ from pdml import saver
 def test() -> None:
     print()
     print("*** gems_facet test ***")
-    parent_gem = {}
-    child_gem = {}
+    parent_gem = base.Gem()
+    child_gem = base.Gem()
     gems_update.add_child_gem(parent_gem, child_gem)
     print()
     print("parent gem:")

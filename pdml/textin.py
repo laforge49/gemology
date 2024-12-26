@@ -21,6 +21,7 @@ def line(cursor: Cursor) -> int:
 def more(cursor: Cursor) -> abc.Iterator | None:
     return cursor["more"]
 
+
 def buf_count(cursor: Cursor) -> int:
     return len(buf(cursor))
 
@@ -55,6 +56,7 @@ def cursor_from_file(from_path: pathlib.Path) -> Cursor:
 
 def cursor_from_string(full: str) -> Cursor:
     lines = full.split("\n")
+
     def it() -> abc.Iterator[str]:
         for ln in lines:
             yield ln + "\n"
@@ -117,7 +119,7 @@ def is_nl(c: str) -> bool:
 
 def spaces_count(cursor: Cursor) -> int:
     i = 0
-    while(True):
+    while True:
         c = peek_char(cursor, i)
         if c is None or is_not_space(c):
             return i

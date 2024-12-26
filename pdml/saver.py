@@ -96,6 +96,7 @@ def data_to_strings(ind: int, data, nested: bool) -> abc.Iterator[str]:
 def data_to_string(ind: int, data: any, nested: bool) -> str:
     return "".join(data_to_strings(ind, data, nested))
 
+
 def debug(data: any) -> None:
     if data is None:
         print(None)

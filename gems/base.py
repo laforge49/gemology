@@ -1,46 +1,14 @@
 from typing import *
 
 
-class AttrsFacet(dict):
-    pass
-
-class GemsFacet(list):
-    pass
+def isscalar(x: any) -> bool:
+    return isinstance(x, (int, float, complex, str, bytes, bool))
 
 
-class GlobalIdsFacet(dict):
-    pass
+scalar = int | float | complex | str | bytes | bool
 
 
-class GlobalIdIndexFacet(dict):
-    pass
-
-
-class GlobalTagsFacet(dict):
-    pass
-
-
-class GlobalTagIndexFacet(dict):
-    pass
-
-
-class LocalIdsFacet(dict):
-    pass
-
-
-class LocalIdIndexFacet(dict):
-    pass
-
-
-class LocalTagsFacet(dict):
-    pass
-
-
-class LocalTagIndexFacet(dict):
-    pass
-
-
-class Gem(dict):
+class Gem(Dict[str, dict | list]):
     pass
 
 
@@ -64,6 +32,46 @@ class Resource(Gem):
     pass
 
 
+class AttrsFacet(Dict[str, scalar]):
+    pass
+
+
+class GemsFacet(List[Gem]):
+    pass
+
+
+class GlobalIdsFacet(Dict[str, scalar]):
+    pass
+
+
+class GlobalIdIndexFacet(Dict[str, Dict[str, Gem]]):
+    pass
+
+
+class GlobalTagsFacet(Dict[str, scalar]):
+    pass
+
+
+class GlobalTagIndexFacet(Dict[str, Dict[scalar, List[Gem]]]):
+    pass
+
+
+class LocalIdsFacet(Dict[str, str]):
+    pass
+
+
+class LocalIdIndexFacet(Dict[str, Dict[str, Gem]]):
+    pass
+
+
+class LocalTagsFacet(Dict[str, scalar]):
+    pass
+
+
+class LocalTagIndexFacet(Dict[str, Dict[scalar, List[Gem]]]):
+    pass
+
+
 class_map = {"base.Gem": Gem,
              "base.Cluster": Cluster,
              "base.Aggregate": Aggregate,
@@ -77,6 +85,7 @@ aggregate_: Optional[Aggregate] = None
 def get_aggregate() -> Optional[Aggregate]:
     global aggregate_
     return aggregate_
+
 
 def set_aggregate(aggregate: Aggregate) -> None:
     global aggregate_

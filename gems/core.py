@@ -151,7 +151,6 @@ def reclass(raw: dict, cls: type) -> base.Gem:
     return gem
 
 
-
 def register(raw_cluster: dict, cluster_name: str, cluster_path: str) -> base.Cluster:
     cluster = reclass(raw_cluster, base.Cluster)
     assert isinstance(cluster, base.Cluster)

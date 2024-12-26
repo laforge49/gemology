@@ -1,7 +1,7 @@
 from typing import *
 
 from gems import base
-from gems.facets import attrs_query, gems_update
+from gems.facets import attrs_query
 
 
 def make_af(gem: Optional[base.Gem]) -> Optional[base.AttrsFacet]:
