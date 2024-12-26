@@ -60,11 +60,16 @@ class ResourceGroup(Gem):
     pass
 
 
+class Resource(Gem):
+    pass
+
+
 class_map = {"base.Gem": Gem,
              "base.Cluster": Cluster,
              "base.Aggregate": Aggregate,
              "base.Resources": Resources,
-             "base.ResourceGroup": ResourceGroup}
+             "base.ResourceGroup": ResourceGroup,
+             "base.Resource": Resource}
 dict_keys = type({}.keys())
 aggregate_: Optional[Aggregate] = None
 

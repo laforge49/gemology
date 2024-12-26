@@ -47,7 +47,7 @@ def build_aggregate() -> None:
 def get_resources_gem() -> Optional[base.Resources]:
     aggregate = base.get_aggregate()
     resource_gem = local_ids_query.cluster_get_gem_by_gem_base_name(aggregate, "Resources")
-    assert isinstance(resource_gem, base.Resources)
+    assert isinstance(resource_gem, base.Resources) or resource_gem is None
     return resource_gem
 
 
@@ -61,15 +61,53 @@ def make_resources_gem() -> base.Resources:
 def get_resource_group_gem(group_name: str) -> Optional[base.ResourceGroup]:
     aggregate = base.get_aggregate()
     resource_group_gem = local_ids_query.cluster_get_gem_by_gem_base_name(aggregate, group_name)
-    assert isinstance(resource_group_gem, base.ResourceGroup)
+    assert isinstance(resource_group_gem, base.ResourceGroup) or resource_group_gem is None
     return resource_group_gem
 
 
 def make_resource_group_gem(group_name: str) -> base.ResourceGroup:
     aggregate = base.get_aggregate()
-    resource_group_gem = make_gem(aggregate, aggregate, "ResourceGroup", "base.ResourceGroup")
+    resource_group_gem = make_gem(aggregate, aggregate, group_name, "base.ResourceGroup")
     assert isinstance(resource_group_gem, base.ResourceGroup)
     return resource_group_gem
+
+
+def get_resource_gem(resource_name: str) -> Optional[base.Gem]:
+    aggregate = base.get_aggregate()
+    resource_gem = local_ids_query.cluster_get_gem_by_gem_base_name(aggregate, resource_name)
+    return resource_gem
+
+
+def make_resource_gem(resource_name: str) -> base.Resource:
+    aggregate = base.get_aggregate()
+    group_name = resource_name.split(".")[0]
+    resource_group_gem = make_resource_group_gem(group_name)
+    resource_gem = make_gem(aggregate, resource_group_gem, resource_name, "base.Resource")
+    assert isinstance(resource_gem, base.Resource)
+    return resource_gem
+
+
+def make_resource_function_gem(resource_name: str, function: Callable) -> base.Resource:
+    resource_gem = make_resource_gem(resource_name)
+    assert isinstance(resource_gem, base.Resource)
+    attrs_update.set_function(resource_gem, function)
+    return resource_gem
+
+
+def get_resource_description(resource_name: str) -> Optional[any]:
+    resource_gem = get_resource_gem(resource_name)
+    if resource_gem is None:
+        return None
+    description = global_tags_query.get_description(resource_gem)
+    return description
+
+
+def get_resource_function(resource_name: str) -> Optional[Callable]:
+    resource_gem = get_resource_gem(resource_name)
+    if resource_gem is None:
+        return None
+    function = attrs_query.get_function(resource_gem)
+    return function
 
 
 def reclass_facets(refined: dict, fname: str, facet: any) -> None:
@@ -151,37 +189,6 @@ def unplug(cluster: base.Cluster) -> None:
     for gem, _ in gems_query.get_gems(cluster, None):
         global_ids_update.deindex(gem)
         global_tags_update.deindex(gem)
-
-
-def create_resource_gem(resource_name: str, function: Callable) -> dict:
-    aggregate = base.get_aggregate()
-    group_name = resource_name.split(".")[0]
-    resource_group_gem = make_resource_group_gem(group_name)
-    resource_gem = make_gem(aggregate, resource_group_gem, resource_name)
-    attrs_update.set_function(resource_gem, function)
-    return resource_gem
-
-
-def get_resource_gem(resource_name: str) -> Optional[base.Gem]:
-    aggregate = base.get_aggregate()
-    resource_gem = local_ids_query.cluster_get_gem_by_gem_base_name(aggregate, resource_name)
-    return resource_gem
-
-
-def get_resource_description(resource_name: str) -> Optional[base.dict_keys]:
-    resource_gem = get_resource_gem(resource_name)
-    if resource_gem is None:
-        return None
-    descriptions = global_tags_query.get_descriptions(resource_gem)
-    return descriptions
-
-
-def get_resource_function(resource_name: str) -> Optional[Callable]:
-    resource_gem = get_resource_gem(resource_name)
-    if resource_gem is None:
-        return None
-    function = attrs_query.get_function(resource_gem)
-    return function
 
 
 def initialize(home_path: pathlib.Path) -> None:

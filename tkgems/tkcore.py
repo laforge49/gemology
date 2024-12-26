@@ -1,6 +1,6 @@
 import copy
 import pathlib
-import typing
+from typing import *
 import tkinter as tk
 from tkinter import ttk
 
@@ -11,16 +11,13 @@ from pdml import saver
 from tkgems.tkfacets import tkattrs, tkglobal_tags
 
 
-def make_tkdescriptor_gem(descriptor_name: str, tkcomposer: typing.Callable, is_widget: bool, packable: bool)\
+def make_tkdescriptor_gem(descriptor_name: str, tkcomposer: Callable, is_widget: bool, packable: bool)\
         -> dict:
-    aggregate = base.get_aggregate()
-    resources = core.make_resources_gem()
-    tkdescriptors_gem = make_gem(aggregate, resources, descriptor_name.split(".")[0])
-    tkdescriptor_gem = make_gem(aggregate, tkdescriptors_gem, descriptor_name)
-    tkattrs.set_tkcomposer(tkdescriptor_gem, tkcomposer)
-    tkattrs.set_is_widget(tkdescriptor_gem, is_widget)
-    tkattrs.set_packable(tkdescriptor_gem, packable)
-    return tkdescriptor_gem
+    resource_gem = core.make_resource_function_gem(descriptor_name, tkcomposer)
+    assert isinstance(resource_gem, base.Resource)
+    tkattrs.set_is_widget(resource_gem, is_widget)
+    tkattrs.set_packable(resource_gem, packable)
+    return resource_gem
 
 
 def initialize_tkdescriptors() -> None:
@@ -36,7 +33,7 @@ def initialize_tkdescriptors() -> None:
     make_tkdescriptor_gem("TkDescriptor.ttkscrollbar", ttk.Scrollbar, True, True)
 
 
-def get_tkdescriptor_gem(tkgem: base.Gem) -> dict | None:
+def get_tkdescriptor_gem(tkgem: base.Gem) -> Optional[base.Gem]:
     tktype = tkglobal_tags.get_tktype(tkgem)
     if tktype is None:
         return None
@@ -82,9 +79,9 @@ def listbox_up_down(listbox_gem: base.Gem, event: any) -> None:
     tkevent(listbox_gem, None, "<<ListboxSelect>>")
 
 def create_tkresource_gems() -> None:
-    core.create_resource_gem("tkcore.persist_value", persist_value)
-    core.create_resource_gem("tkcore.create_window", create_window)
-    core.create_resource_gem("tkcore.listbox_up_down", listbox_up_down)
+    core.make_resource_function_gem("tkcore.persist_value", persist_value)
+    core.make_resource_function_gem("tkcore.create_window", create_window)
+    core.make_resource_function_gem("tkcore.listbox_up_down", listbox_up_down)
 
 
 def initialize(home_path: pathlib.Path) -> None:
@@ -162,7 +159,7 @@ def tkeval(tkgem: base.Gem) -> any:
     tkdescriptor_gem = get_tkdescriptor_gem(tkgem)
     if tkdescriptor_gem is None:
        return None
-    tkcomposer = tkattrs.get_tkcomposer(tkdescriptor_gem)
+    tkcomposer = attrs_query.get_function(tkdescriptor_gem)
     tkoptions = do_tkoptions(tkgem)
     tkobject = tkcomposer(parent_tkobject, **tkoptions)
     tkattrs.set_tkobject(tkgem, tkobject)

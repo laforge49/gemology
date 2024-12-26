@@ -60,7 +60,7 @@ def aggregate_get_gems_by_tag(tag_name: str, tag_value: str) -> Optional[list]:
     return gtif2.get(tag_value)
 
 
-def get_descriptions(gem: Optional[base.Gem]) -> Optional[base.dict_keys]:
+def get_description(gem: Optional[base.Gem]) -> Optional[any]:
     return gem_get_tag_value(gem, "description")
 
 

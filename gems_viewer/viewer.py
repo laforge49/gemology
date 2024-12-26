@@ -28,8 +28,8 @@ def listbox_cluster_selection(listbox_cluster_gem: base.Gem, event: any) -> None
 
 
 def create_viewer_resource_gems() -> None:
-    core.create_resource_gem("viewer.init_listbox_cluster", init_listbox_cluster)
-    core.create_resource_gem("viewer.listbox_cluster_selection", listbox_cluster_selection)
+    core.make_resource_function_gem("viewer.init_listbox_cluster", init_listbox_cluster)
+    core.make_resource_function_gem("viewer.listbox_cluster_selection", listbox_cluster_selection)
 
 
 def initialize(home_path: pathlib.Path) -> None:
