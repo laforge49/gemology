@@ -56,14 +56,6 @@ def get_title(tkgem: Optional[base.Gem]) -> Optional[str]:
     return attrs_query.get_attr_value(tkgem, "title")
 
 
-def get_tkcomposer(tkdescriptor_gem: Optional[base.Gem]) -> Optional[Callable]:
-    return attrs_query.get_attr_value(tkdescriptor_gem, "#tkcomposer")
-
-
-def set_tkcomposer(tkdescriptor_gem: Optional[base.Gem], tkcomposer: Callable) -> bool:
-    return attrs_update.set_attr_value(tkdescriptor_gem, "#tkcomposer", tkcomposer)
-
-
 def get_tkheight(tkgem: Optional[base.Gem]) -> Optional[int]:
     return attrs_query.get_attr_value(tkgem, "height")
 
