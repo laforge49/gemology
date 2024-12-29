@@ -72,3 +72,16 @@ dict
                             "<Down>": "tkcore.listbox_up_down"
                     "LocalTagsFacet": dict
                         "gem_base_name": "ListBoxCluster"
+                dict
+                    "GlobalTagsFacet": dict
+                        "TkType": "TkDescriptor.ttkscrollbar"
+                        "ScrollingName": "ListBoxCluster"
+                    "AttrsFacet": dict
+                        "grid": dict
+                            "row": 0
+                            "column": 1
+                            "sticky": "ns"
+                        "options": dict
+                            "orient": "vertical"
+                    "LocalTagsFacet": dict
+                        "gem_base_name": "ListBoxCluster_Y"
