@@ -3,7 +3,7 @@ from typing import *
 
 from gems import base
 from gems.facets import gems_query, local_ids_update, local_tags_update, attrs_update, global_ids_update, \
-    global_tags_update, attrs_query, local_ids_query, global_tags_query, gems_update
+    global_tags_update, attrs_query, local_ids_query, global_tags_query, gems_update, global_ids_query
 from pdml import loader, saver
 
 
@@ -12,6 +12,22 @@ def mapped_gem_class(gem: Optional[base.Gem]) -> Optional[type]:
     if class_name is None:
         return
     return base.class_map[class_name]
+
+
+def resolve_link(source_gem: base.Gem, tag_name: str) -> Optional[base.Gem]:
+    full_gemname = global_tags_query.gem_get_tag_value(source_gem, tag_name)
+    if full_gemname is None:
+        return None
+    if full_gemname.startswith("."):
+        gem_basename = full_gemname[1:]
+        cluster = attrs_query.get_cluster(source_gem)
+    else:
+        cluster_name, gem_basename = full_gemname.split(".")
+        cluster = global_ids_query.get_cluster_by_cluster_name(cluster_name)
+    if cluster is None:
+        return None
+    gem = local_ids_query.cluster_get_gem_by_gem_base_name(cluster, gem_basename)
+    return gem
 
 
 def create_gem(cluster: base.Cluster, gem_parent: base.Gem, gem_base_name: str, class_name: Optional[str] = None)\

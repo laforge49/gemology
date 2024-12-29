@@ -75,7 +75,7 @@ dict
                 dict
                     "GlobalTagsFacet": dict
                         "TkType": "TkDescriptor.ttkscrollbar"
-                        "ScrollingName": "ListBoxCluster"
+                        "ScrollingName": ".ListBoxCluster"
                     "AttrsFacet": dict
                         "grid": dict
                             "row": 0
