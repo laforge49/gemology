@@ -158,9 +158,18 @@ def tkevents(tkgem: base.Gem, tkobject: any) -> None:
             tkobject.bind(event_name, lambda event: func(tkgem, event))
 
 
-def tkscroll(scrollbar_gem: base.Gem, scrollbar_object: any) -> None:
-    # todo tkscroll
-    pass
+def tkscroll(scrollbar_gem: base.Gem, scrollbar_object: any, tkoptions: dict) -> None:
+    orient = tkoptions.get("orient")
+    scrolling_object = get_tkobject(scrollbar_gem, "ScrollingName")
+    if scrolling_object is None:
+        return
+    # scrollbar_object["command"] = scrolling_object
+    if orient == "vertical":
+        scrollbar_object["command"] = scrolling_object.yview
+        scrolling_object["yscrollcommand"] = scrollbar_object.set
+    elif orient == "horizontal":
+        scrollbar_object["command"] = scrolling_object.xview
+        scrolling_object["xscrollcommand"] = scrollbar_object.set
 
 
 def tkeval(tkgem: base.Gem) -> any:
@@ -179,7 +188,7 @@ def tkeval(tkgem: base.Gem) -> any:
     tklayout(packable, tkgem, tkobject)
     tkinit_func(tkgem)
     tkevents(tkgem, tkobject)
-    tkscroll(tkgem, tkobject)
+    tkscroll(tkgem, tkobject, tkoptions)
     gf = gems_query.get_gf(tkgem)
     if gf is not None:
         for child_gem in gf:
