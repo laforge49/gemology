@@ -19,7 +19,7 @@ def gem_get_tag_names(gem: Optional[base.Gem]) -> Optional[base.dict_keys]:
     return gtf.keys()
 
 
-def gem_get_tag_value(gem: Optional[base.Gem], tag_name: str) -> any:
+def gem_get_tag_value(gem: Optional[base.Gem], tag_name: str) -> base.scalar:
     gtf = get_gtf(gem)
     if gtf is None:
         return None
