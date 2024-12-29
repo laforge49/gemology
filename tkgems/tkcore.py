@@ -6,9 +6,21 @@ from tkinter import ttk
 
 from gems import base, core
 from gems.core import make_gem
-from gems.facets import attrs_query, global_ids_query, gems_query
+from gems.facets import attrs_query, global_ids_query, gems_query, global_tags_query, local_ids_query
 from pdml import saver
 from tkgems.tkfacets import tkattrs, tkglobal_tags
+
+
+def get_tkobject(source_gem: base.Gem, tag_name: str) -> any:
+    tkgemname = global_tags_query.gem_get_tag_value(source_gem, tag_name)
+    if tkgemname is None:
+        return None
+    cluster = attrs_query.get_cluster(source_gem)
+    if cluster is None:
+        return None
+    tkgem = local_ids_query.cluster_get_gem_by_gem_base_name(cluster, tkgemname)
+    tkobject = tkattrs.get_tkobject(tkgem)
+    return tkobject
 
 
 def make_tkdescriptor_gem(descriptor_name: str, tkcomposer: Callable, is_widget: bool, packable: bool)\
