@@ -15,3 +15,5 @@ dict
             "FrameGemRadiobuttons.pdml"
         include
             "FrameGemsList.pdml"
+        include
+            "FrameGemsTree.pdml"

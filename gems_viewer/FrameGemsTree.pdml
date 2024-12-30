@@ -1,0 +1,26 @@
+dict
+    "GlobalTagsFacet": dict
+        "TkType": "TkDescriptor.ttkframe"
+    "AttrsFacet": dict
+        "manual": True
+        "pack": dict
+            "expand": True
+            "fill": "both"
+            "side": "top"
+        "columns": list
+            dict
+                "index": 0
+                "weight": 2
+            dict
+                "index": 1
+                "weight": 1
+        "rows": list
+            dict
+                "index": 0
+                "weight": 2
+            dict
+                "index": 1
+                "weight": 1
+    "LocalTagsFacet": dict
+        "gem_base_name": "FrameGemsTree"
+    "GemsFacet": list
