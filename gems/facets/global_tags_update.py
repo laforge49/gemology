@@ -33,6 +33,9 @@ def deindex_tag(gem: Optional[base.Gem], tag_name: str, tag_value: str) -> bool:
     gtif2 = gtif.get(tag_name)
     if gtif2 is None:
         return False
+    tag_value = expand_tag_value(gem, tag_name, tag_value)
+    if tag_value is None:
+        return False
     gems = gtif2.get(tag_value)
     if gems is None:
         return False
@@ -77,16 +80,25 @@ def set_tag(gem: Optional[base.Gem], tag_name: str, tag_value: str) -> bool:
         return False
     gtf = make_gtf(gem)
     value = gtf.get(tag_name)
+    if tag_value is None:
+        return False
     if value == tag_value:
         return False
     gtf[tag_name] = tag_value
     gtif2 = make_gtif2(tag_name)
-    gems = gtif2.get(value)
-    if gems:
-        gems.remove(gem)
+    xtag_value = expand_tag_value(gem, tag_name, tag_value)
+    if xtag_value is None:
+        return False
+    if value is not None:
+        xvalue = expand_tag_value(gem, tag_name, value)
+        if xvalue is not None:
+            gems = gtif2.get(xvalue)
+            if gems:
+                gems.remove(gem)
+    gems = gtif2.get(xtag_value)
     if gems is None:
         gems = []
-        gtif2[tag_value] = gems
+        gtif2[xtag_value] = gems
     gems.append(gem)
     return True
 
