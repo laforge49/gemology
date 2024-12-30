@@ -13,3 +13,5 @@ dict
     "GemsFacet": list
         include
             "FrameGemRadiobuttons.pdml"
+        include
+            "FrameGemsList.pdml"
