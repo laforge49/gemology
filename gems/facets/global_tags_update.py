@@ -16,6 +16,14 @@ def make_gtf(gem: Optional[base.Gem]) -> Optional[base.GlobalTagsFacet]:
     return gtf
 
 
+def expand_tag_value(source_gem: Optional[base.Gem], tag_name: str, tag_value: str) -> Optional[str]:
+    if source_gem is None:
+        return None
+    if not tag_name.endswith("GemName"):
+        return tag_value
+    return global_tags_query.expand_gem_name(source_gem, tag_value)
+
+
 def deindex_tag(gem: Optional[base.Gem], tag_name: str, tag_value: str) -> bool:
     if gem is None:
         return False
