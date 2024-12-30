@@ -21,11 +21,19 @@ def resolve_link(source_gem: base.Gem, tag_name: str) -> Optional[base.Gem]:
     if full_gemname.startswith("."):
         gem_basename = full_gemname[1:]
         cluster = attrs_query.get_cluster(source_gem)
+    elif full_gemname == "Aggregate":
+        gem_basename = None
+        cluster = global_ids_query.get_cluster_by_cluster_name(full_gemname)
+    elif "." not in full_gemname:
+        gem_basename = None
+        cluster = global_ids_query.get_cluster_by_cluster_name(full_gemname)
     else:
         cluster_name, gem_basename = full_gemname.split(".")
         cluster = global_ids_query.get_cluster_by_cluster_name(cluster_name)
     if cluster is None:
         return None
+    if gem_basename is None:
+        return cluster
     gem = local_ids_query.cluster_get_gem_by_gem_base_name(cluster, gem_basename)
     return gem
 

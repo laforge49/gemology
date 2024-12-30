@@ -154,7 +154,7 @@ def tkevents(tkgem: base.Gem, tkobject: any) -> None:
 
 def tkscroll(scrollbar_gem: base.Gem, scrollbar_object: any, tkoptions: dict) -> None:
     orient = tkoptions.get("orient")
-    scrolling_object = get_tkobject(scrollbar_gem, "ScrollingName")
+    scrolling_object = get_tkobject(scrollbar_gem, "ScrollingGemName")
     if scrolling_object is None:
         return
     # scrollbar_object["command"] = scrolling_object
