@@ -110,12 +110,13 @@ def build_index(gem: Optional[base.Gem]) -> None:
     tag_names = gtf.keys()
     for tag_name in tag_names:
         tag_value = gtf.get(tag_name)
-        if tag_value is not None:
+        xtag_value = expand_tag_value(gem, tag_name, tag_value)
+        if xtag_value is not None:
             gtif2 = make_gtif2(tag_name)
-            gems = gtif2.get(tag_value)
+            gems = gtif2.get(xtag_value)
             if gems is None:
                 gems = []
-                gtif2[tag_value] = gems
+                gtif2[xtag_value] = gems
             if base.idindex(gems, gem) is None:
                 gems.append(gem)
 
@@ -132,8 +133,10 @@ def deindex(gem: Optional[base.Gem]) -> None:
         gtif2 = gtif.get(tag_name)
         tag_value = gtf.get(tag_name)
         if gtif2 and tag_value:
-            gems = gtif2.get(tag_value)
-            base.idremove(gems, gem)
+            xtag_value = expand_tag_value(gem, tag_name, tag_value)
+            if xtag_value:
+                gems = gtif2.get(tag_value)
+                base.idremove(gems, gem)
 
 
 def del_description(gem: Optional[base.Gem]) -> bool:
