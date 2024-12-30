@@ -15,13 +15,10 @@ def mapped_gem_class(gem: Optional[base.Gem]) -> Optional[type]:
 
 
 def resolve_link(source_gem: base.Gem, tag_name: str) -> Optional[base.Gem]:
-    full_gemname = global_tags_query.gem_get_tag_value(source_gem, tag_name)
+    full_gemname = global_tags_query.gem_get_full_gem_name(source_gem, tag_name)
     if full_gemname is None:
         return None
-    if full_gemname.startswith("."):
-        gem_basename = full_gemname[1:]
-        cluster = attrs_query.get_cluster(source_gem)
-    elif full_gemname == "Aggregate":
+    if full_gemname == "Aggregate":
         gem_basename = None
         cluster = global_ids_query.get_cluster_by_cluster_name(full_gemname)
     elif "." not in full_gemname:

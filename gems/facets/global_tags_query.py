@@ -2,6 +2,7 @@ from typing import *
 
 
 from gems import base
+from gems.facets import attrs_query, global_ids_query
 
 
 def get_gtf(gem: Optional[base.Gem]) -> Optional[base.GlobalTagsFacet]:
@@ -19,11 +20,29 @@ def gem_get_tag_names(gem: Optional[base.Gem]) -> Optional[base.dict_keys]:
     return gtf.keys()
 
 
-def gem_get_tag_value(gem: Optional[base.Gem], tag_name: str) -> base.scalar:
+def gem_get_tag_value(gem: Optional[base.Gem], tag_name: str) -> Optional[base.scalar]:
     gtf = get_gtf(gem)
     if gtf is None:
         return None
     return gtf.get(tag_name)
+
+
+def gem_get_full_gem_name(source_gem: Optional[base.Gem], tag_name: str) -> Optional[str]:
+    full_gemname = gem_get_tag_value(source_gem, tag_name)
+    if full_gemname is None:
+        return None
+    aggregate = base.get_aggregate()
+    if full_gemname.startswith("."):
+        cluster = attrs_query.get_cluster(source_gem)
+        if isinstance(cluster, base.Aggregate):
+            cluster_name = "Aggregate"
+        else:
+            cluster_name = global_ids_query.get_cluster_name(cluster)
+            if cluster_name is None:
+                return None
+        return cluster_name + full_gemname
+    else:
+        return full_gemname
 
 
 def get_gtif() -> Optional[base.GlobalTagIndexFacet]:
