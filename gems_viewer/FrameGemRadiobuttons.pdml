@@ -17,3 +17,17 @@
                         "ValueGemName": ".FrameGemsList"
                     "LocalIdsFacet": dict
                         "gem_base_name": "GemsRadiobuttonSV"
+                dict
+                    "GlobalTagsFacet": dict
+                        "TkType": "TkDescriptor.tkradiobutton"
+                        "command": ".gems_radiobutton_clicked"
+                        "VariableGemName": ".GemsRadiobuttonSV"
+                        "ValueGemName": ".FrameGemsList"
+                    "AttrsFacet": dict
+                        "pack": dict
+                            "side": "left"
+                            "padx": 5
+                        "options": dict
+                            "text": "Gems List"
+                    "LocalIdsFacet": dict
+                        "gem_base_name": "GemsRadiobuttonFlat"
