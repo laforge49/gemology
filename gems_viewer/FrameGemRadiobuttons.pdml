@@ -14,8 +14,6 @@
                 dict
                     "GlobalTagsFacet": dict
                         "TkType": "TkDescriptor.tkstringvar"
-                    "AttrFacet": dict
-                        "options": dict
-                            "value": ".FrameGemsList"
+                        "ValueGemName": ".FrameGemsList"
                     "LocalIdsFacet": dict
                         "gem_base_name": "GemsRadiobuttonSV"
