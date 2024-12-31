@@ -110,7 +110,7 @@ def do_tkoptions(tkgem: base.Gem) -> dict:
     listvar_object = get_tkobject(tkgem, "ListVariableGemName")
     if listvar_object is not None:
         options["listvariable"] = listvar_object
-    command_name = global_tags_query.get_command(tkgem)
+    command_name = tkglobal_tags.get_command(tkgem)
     if command_name is not None:
         func = core.get_resource_function(command_name)
         options["command"] = lambda: func(tkgem)

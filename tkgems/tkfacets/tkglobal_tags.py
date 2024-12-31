@@ -14,3 +14,7 @@ def get_tktype(tkgem: Optional[base.Gem]) -> str:
     tktype = global_tags_query.gem_get_tag_value(tkgem, "TkType")
     assert isinstance(tktype, str)
     return tktype
+
+
+def get_command(gem: Optional[base.Gem]) -> Optional[any]:
+    return global_tags_query.gem_get_tag_value(gem, "command")

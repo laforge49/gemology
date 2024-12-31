@@ -94,7 +94,3 @@ def aggregate_get_descriptions() -> Optional[base.dict_keys]:
 
 def get_gems_by_description(description: str) -> Optional[list]:
     return aggregate_get_gems_by_tag("description", description)
-
-
-def get_command(gem: Optional[base.Gem]) -> Optional[any]:
-    return gem_get_tag_value(gem, "command")
