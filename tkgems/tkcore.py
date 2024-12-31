@@ -101,6 +101,15 @@ def do_tkoptions(tkgem: base.Gem) -> dict:
         options = {}
     else:
         options = copy.deepcopy(options)
+    var_object = get_tkobject(tkgem, "VariableGemName")
+    if var_object is not None:
+        options["variable"] = var_object
+    textvar_object = get_tkobject(tkgem, "TextVariableGemName")
+    if textvar_object is not None:
+        options["textvariable"] = textvar_object
+    listvar_object = get_tkobject(tkgem, "ListVariableGemName")
+    if listvar_object is not None:
+        options["listvariable"] = listvar_object
     # todo variable options
     return options
 
