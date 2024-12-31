@@ -70,7 +70,7 @@ dict
                             "<<ListboxSelect>>": "viewer.listbox_cluster_selection"
                             "<Up>": "tkcore.listbox_up_down"
                             "<Down>": "tkcore.listbox_up_down"
-                    "LocalTagsFacet": dict
+                    "LocalIdsFacet": dict
                         "gem_base_name": "ListBoxCluster"
                 dict
                     "GlobalTagsFacet": dict
@@ -83,7 +83,7 @@ dict
                             "sticky": "ns"
                         "options": dict
                             "orient": "vertical"
-                    "LocalTagsFacet": dict
+                    "LocalIdsFacet": dict
                         "gem_base_name": "ListBoxCluster_Y"
                 dict
                     "GlobalTagsFacet": dict
@@ -96,5 +96,5 @@ dict
                             "sticky": "ew"
                         "options": dict
                             "orient": "horizontal"
-                    "LocalTagsFacet": dict
+                    "LocalIdsFacet": dict
                         "gem_base_name": "ListBoxCluster_X"

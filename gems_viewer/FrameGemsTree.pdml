@@ -21,6 +21,6 @@ dict
             dict
                 "index": 1
                 "weight": 1
-    "LocalTagsFacet": dict
+    "LocalIdsFacet": dict
         "gem_base_name": "FrameGemsTree"
     "GemsFacet": list

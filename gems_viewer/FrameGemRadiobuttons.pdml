@@ -11,3 +11,11 @@
             "LocalIdsFacet": dict
                 "gem_base_name": "FrameGemRadiobuttons"
             "GemsFacet": list
+                dict
+                    "GlobalTagsFacet": dict
+                        "TkType": "TkDescriptor.tkstringvar"
+                    "AttrFacet": dict
+                        "options": dict
+                            "value": ".FrameGemsList"
+                    "LocalIdsFacet": dict
+                        "gem_base_name": "GemsRadiobuttonSV"
