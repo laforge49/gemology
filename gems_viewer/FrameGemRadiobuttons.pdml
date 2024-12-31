@@ -20,7 +20,7 @@
                 dict
                     "GlobalTagsFacet": dict
                         "TkType": "TkDescriptor.tkradiobutton"
-                        "command": ".gems_radiobutton_clicked"
+                        "command": "viewer.gems_radiobutton_clicked"
                         "VariableGemName": ".GemsRadiobuttonSV"
                         "ValueGemName": ".FrameGemsList"
                     "AttrsFacet": dict
@@ -31,3 +31,17 @@
                             "text": "Gems List"
                     "LocalIdsFacet": dict
                         "gem_base_name": "GemsRadiobuttonFlat"
+                dict
+                    "GlobalTagsFacet": dict
+                        "TkType": "TkDescriptor.tkradiobutton"
+                        "command": "viewer.gems_radiobutton_clicked"
+                        "VariableGemName": ".GemsRadiobuttonSV"
+                        "ValueGemName": ".FrameGemsTree"
+                    "AttrFacet": dict
+                        "pack": dict
+                            "side": "left"
+                            "padx": 5
+                        "options": dict
+                            "text": "Gems Tree"
+                    "LocalIdsFacet": dict
+                        "gem_base_name": "GemsRadiobuttonNested"
