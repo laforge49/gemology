@@ -7,3 +7,7 @@ dict
         dict
             "LocalIdsFacet": dict
                 "gem_base_name": "LeftGem"
+            "GlobalTagsFacet": dict
+                "simpleGlobalTag": 76
+                "aGemName": "Aggregate.Resources"
+                "bGemName": "."
