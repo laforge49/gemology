@@ -2,3 +2,8 @@ dict
     "GlobalTagsFacet": dict
         "simpleGlobalTag": 42
         "aGemName": "Aggregate"
+        "bGemName": ".LeftGem"
+    "GemsFacet": list
+        dict
+            "LocalIdsFacet": dict
+                "gem_base_name": "LeftGem"
