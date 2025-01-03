@@ -20,6 +20,7 @@ def test(home_path: pathlib.Path) -> None:
     print("simpleGlobalTag:", global_tags_query.aggregate_get_tag_values("simpleGlobalTag"))
     print("aGemName:", global_tags_query.aggregate_get_tag_values("aGemName"))
     print("bGemName:", global_tags_query.aggregate_get_tag_values("bGemName"))
+    saver.debug(global_tags_query.aggregate_get_gems_by_tag("bGemName", "Aggregate.unknown"))
 
 
 if __name__ == "__main__":

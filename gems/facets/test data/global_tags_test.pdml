@@ -1,6 +1,6 @@
 dict
     "GlobalTagsFacet": dict
-        "simpleGlobalTag": 42
+        "simpleGlobalTag": "42"
         "aGemName": "Aggregate"
         "bGemName": ".LeftGem"
     "GemsFacet": list
@@ -8,6 +8,12 @@ dict
             "LocalIdsFacet": dict
                 "gem_base_name": "LeftGem"
             "GlobalTagsFacet": dict
-                "simpleGlobalTag": 76
+                "simpleGlobalTag": "76"
                 "aGemName": "Aggregate.Resources"
                 "bGemName": "."
+        dict
+            "LocalIdsFacet": dict
+                "gem_base_name": "foofoo"
+            "GlobalTagsFacet": dict
+                "aGemName": ".LeftGem"
+                "bGemName": "Aggregate.unknown"
