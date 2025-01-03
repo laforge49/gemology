@@ -13,20 +13,13 @@ def test(home_path: pathlib.Path) -> None:
     core.initialize(home_path)
     global_tags_test = core.load(test_data_path / pathlib.Path("global_tags_test.pdml"))
     print()
-    print("aggregate:")
-    print(base.get_aggregate())
-    saver.debug(base.get_aggregate())
-    print()
-    print("test_data_path")
-    print(global_tags_test)
-    saver.debug(global_tags_test)
-    print()
     print("aggregate tag names:")
     print(global_tags_query.aggregate_get_tag_names())
     print()
     print("aggregate get tag values:")
     print("simpleGlobalTag:", global_tags_query.aggregate_get_tag_values("simpleGlobalTag"))
     print("aGemName:", global_tags_query.aggregate_get_tag_values("aGemName"))
+    print("bGemName:", global_tags_query.aggregate_get_tag_values("bGemName"))
 
 
 if __name__ == "__main__":
