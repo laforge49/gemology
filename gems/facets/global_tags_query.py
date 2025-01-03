@@ -32,8 +32,13 @@ def expand_gem_name(source_gem: base.Gem, gemname: str) -> Optional[str]:
         return None
     if gemname.startswith("."):
         cluster = attrs_query.get_cluster(source_gem)
+        if cluster is None:
+            cluster = source_gem
         if isinstance(cluster, base.Aggregate):
             cluster_name = "Aggregate"
+        elif gemname == ".":
+            cluster_name = global_ids_query.get_cluster_name(cluster)
+            return cluster_name
         else:
             cluster_name = global_ids_query.get_cluster_name(cluster)
             if cluster_name is None:
