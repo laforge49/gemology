@@ -62,9 +62,7 @@ def get_tkheight(tkgem: Optional[base.Gem]) -> Optional[int]:
 
 def get_tkobject(tkgem: Optional[base.Gem]) -> any:
     tkobject = attrs_query.get_attr_value(tkgem, "#tkobject")
-    if tkobject:
-        return tkobject
-    return None
+    return tkobject
 
 
 def set_tkobject(tkgem: Optional[base.Gem], tkobject: any) -> bool:
@@ -73,3 +71,11 @@ def set_tkobject(tkgem: Optional[base.Gem], tkobject: any) -> bool:
 
 def get_tkwidth(tkgem: Optional[base.Gem]) -> Optional[int]:
     return attrs_query.get_attr_value(tkgem, "width")
+
+
+def get_view_gem(tkgem: Optional[base.Gem]) -> Optional[base.Gem]:
+    return attrs_query.get_attr_value(tkgem, "#view_gem")
+
+
+def set_view_gem(tkgem: Optional[base.Gem], view_gem: Optional[base.Gem]) -> bool:
+    return attrs_update.set_attr_value(tkgem, "#view_gem", view_gem)
