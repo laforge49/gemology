@@ -8,6 +8,9 @@ from tkgems.tkfacets import tkattrs
 
 selected_listbox_cluster_index: int | None = 0
 selected_cluster_name: str = "Aggregate"
+selected_listbox_gem_index: int | None = 0
+selected_gem_base_name: str = "Aggregate"
+selected_gem_base_names: list = []
 
 
 def init_listbox_cluster(listbox_cluster_gem: base.Gem) -> None:
@@ -27,9 +30,18 @@ def listbox_cluster_selection(listbox_cluster_gem: base.Gem, event: any) -> None
     print(123, "todo")
 
 
+def init_listbox_gem(listbox_gem_gem: dict):
+    global selected_listbox_gem_index
+    global selected_cluster_name
+    global selected_gem_base_name
+    global selected_gem_base_names
+    print(124, "todo")
+
+
 def create_viewer_resource_gems() -> None:
     core.make_resource_function_gem("viewer.init_listbox_cluster", init_listbox_cluster)
     core.make_resource_function_gem("viewer.listbox_cluster_selection", listbox_cluster_selection)
+    core.make_resource_function_gem("viewer.init_listbox_gem", init_listbox_gem)
 
 
 def initialize(home_path: pathlib.Path) -> None:
