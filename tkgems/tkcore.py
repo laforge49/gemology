@@ -10,7 +10,7 @@ from tkgems.tkfacets import tkattrs, tkglobal_tags
 
 
 def get_tkobject(source_gem: base.Gem, tag_name: str) -> any:
-    tkgem = core.resolve_link(source_gem, tag_name)
+    tkgem = global_tags_query.resolve_link(source_gem, tag_name)
     if tkgem is None:
         return None
     tkobject = tkattrs.get_tkobject(tkgem)
