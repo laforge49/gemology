@@ -40,6 +40,7 @@ def init_listbox_gem(listbox_gem_gem: base.Gem):
     listbox_gem_object = tkattrs.get_tkobject(listbox_gem_gem)
     listbox_gem_object.delete(0, "end")
     selected_gem_base_names = []
+    cluster_gem = global_ids_query.get_cluster_by_cluster_name(selected_cluster_name)
     print(124, "todo")
 
 

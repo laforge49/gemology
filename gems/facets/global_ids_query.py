@@ -71,6 +71,8 @@ def aggregate_get_cluster_names() -> Optional[base.dict_keys]:
 
 
 def get_cluster_by_cluster_name(cluster_name: str) -> Optional[base.Cluster]:
+    if cluster_name == "Aggregate":
+        return base.get_aggregate()
     cluster = aggregate_get_gem_by_id("#cluster_name", cluster_name)
     assert isinstance(cluster, base.Cluster) or cluster is None
     return cluster
