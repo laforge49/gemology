@@ -1,7 +1,7 @@
 import pathlib
 
 from gems import core, base
-from gems.facets import local_ids_query, global_ids_query
+from gems.facets import local_ids_query, global_ids_query, global_tags_query
 from pdml import saver
 from tkgems import tkcore
 from tkgems.tkfacets import tkattrs, tkglobal_tags
@@ -35,9 +35,8 @@ def init_listbox_gem(listbox_gem_gem: base.Gem):
     global selected_cluster_name
     global selected_gem_base_name
     global selected_gem_base_names
-    master_frame_name = tkglobal_tags.get_master_frame(listbox_gem_gem)
+    master_frame_gem = tkglobal_tags.resolve_master_frame(listbox_gem_gem)
     print(124, "todo")
-    print(master_frame_name)
 
 
 def create_viewer_resource_gems() -> None:
