@@ -9,14 +9,6 @@ from gems.facets import attrs_query, global_ids_query, gems_query, global_tags_q
 from tkgems.tkfacets import tkattrs, tkglobal_tags
 
 
-def get_tkobject(source_gem: base.Gem, tag_name: str) -> any:
-    tkgem = global_tags_query.resolve_link(source_gem, tag_name)
-    if tkgem is None:
-        return None
-    tkobject = tkattrs.get_tkobject(tkgem)
-    return tkobject
-
-
 def make_tkdescriptor_gem(descriptor_name: str, tkcomposer: Callable, is_widget: bool, packable: bool)\
         -> dict:
     resource_gem = core.make_resource_function_gem(descriptor_name, tkcomposer)
@@ -101,13 +93,13 @@ def do_tkoptions(tkgem: base.Gem) -> dict:
         options = {}
     else:
         options = copy.deepcopy(options)
-    var_object = get_tkobject(tkgem, "VariableGemName")
+    var_object = tkattrs.get_tkobject(tkglobal_tags.resolve_VariableGemName(tkgem))
     if var_object is not None:
         options["variable"] = var_object
-    textvar_object = get_tkobject(tkgem, "TextVariableGemName")
+    textvar_object = tkattrs.get_tkobject(tkglobal_tags.resolve_TextVariableGemName(tkgem))
     if textvar_object is not None:
         options["textvariable"] = textvar_object
-    listvar_object = get_tkobject(tkgem, "ListVariableGemName")
+    listvar_object = tkattrs.get_tkobject(tkglobal_tags.resolve_ListVariableGemName(tkgem))
     if listvar_object is not None:
         options["listvariable"] = listvar_object
     command_name = tkglobal_tags.get_command(tkgem)
@@ -166,7 +158,7 @@ def tkevents(tkgem: base.Gem, tkobject: any) -> None:
 
 def tkscroll(scrollbar_gem: base.Gem, scrollbar_object: any, tkoptions: dict) -> None:
     orient = tkoptions.get("orient")
-    scrolling_object = get_tkobject(scrollbar_gem, "ScrollingGemName")
+    scrolling_object = tkattrs.get_tkobject(tkglobal_tags.resolve_ScrollingGemName(scrollbar_gem))
     if scrolling_object is None:
         return
     # scrollbar_object["command"] = scrolling_object
