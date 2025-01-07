@@ -24,17 +24,17 @@ def resolve_master_frame(gem: Optional[base.Gem]) -> Optional[any]:
     return global_tags_query.resolve_link(gem, "master_frame")
 
 
-def resolve_VariableGemName(gem: Optional[base.Gem]) -> Optional[any]:
-    return global_tags_query.resolve_link(gem, "VariableGemName")
-
-
-def resolve_TextVariableGemName(gem: Optional[base.Gem]) -> Optional[any]:
-    return global_tags_query.resolve_link(gem, "TextVariableGemName")
-
-
 def resolve_ListVariableGemName(gem: Optional[base.Gem]) -> Optional[any]:
     return global_tags_query.resolve_link(gem, "ListVariableGemName")
 
 
 def resolve_ScrollingGemName(gem: Optional[base.Gem]) -> Optional[any]:
     return global_tags_query.resolve_link(gem, "ScrollingGemName")
+
+
+def resolve_TextVariableGemName(gem: Optional[base.Gem]) -> Optional[any]:
+    return global_tags_query.resolve_link(gem, "TextVariableGemName")
+
+
+def resolve_VariableGemName(gem: Optional[base.Gem]) -> Optional[any]:
+    return global_tags_query.resolve_link(gem, "VariableGemName")
