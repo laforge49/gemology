@@ -18,3 +18,7 @@ def get_tktype(tkgem: Optional[base.Gem]) -> str:
 
 def get_command(gem: Optional[base.Gem]) -> Optional[any]:
     return global_tags_query.gem_get_tag_value(gem, "command")
+
+
+def get_master_frame(gem: Optional[base.Gem]) -> Optional[any]:
+    return global_tags_query.gem_get_tag_value(gem, "master_frame")

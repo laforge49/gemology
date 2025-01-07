@@ -4,7 +4,7 @@ from gems import core, base
 from gems.facets import local_ids_query, global_ids_query
 from pdml import saver
 from tkgems import tkcore
-from tkgems.tkfacets import tkattrs
+from tkgems.tkfacets import tkattrs, tkglobal_tags
 
 selected_listbox_cluster_index: int | None = 0
 selected_cluster_name: str = "Aggregate"
@@ -30,12 +30,14 @@ def listbox_cluster_selection(listbox_cluster_gem: base.Gem, event: any) -> None
     print(123, "todo")
 
 
-def init_listbox_gem(listbox_gem_gem: dict):
+def init_listbox_gem(listbox_gem_gem: base.Gem):
     global selected_listbox_gem_index
     global selected_cluster_name
     global selected_gem_base_name
     global selected_gem_base_names
+    master_frame_name = tkglobal_tags.get_master_frame(listbox_gem_gem)
     print(124, "todo")
+    print(master_frame_name)
 
 
 def create_viewer_resource_gems() -> None:
