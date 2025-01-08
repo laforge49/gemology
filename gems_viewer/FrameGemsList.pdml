@@ -55,7 +55,7 @@ dict
                     "sticky": "ns"
                 "options": dict
                     "orient": "vertical"
-            "ClusterTagsFacet": dict
+            "LocalIdsFacet": dict
                 "gem_base_name": "ListBoxGem_Y"
         dict
             "GlobalTagsFacet": dict
@@ -68,5 +68,5 @@ dict
                     "sticky": "ew"
                 "options": dict
                     "orient": "horizontal"
-            "ClusterTagsFacet": dict
+            "LocalIdsFacet": dict
                 "gem_base_name": "ListBoxGem_X"
