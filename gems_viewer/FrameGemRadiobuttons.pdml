@@ -37,7 +37,7 @@
                         "command": "viewer.gems_radiobutton_clicked"
                         "VariableGemName": ".GemsRadiobuttonSV"
                         "ValueGemName": ".FrameGemsTree"
-                    "AttrFacet": dict
+                    "AttrsFacet": dict
                         "pack": dict
                             "side": "left"
                             "padx": 5
