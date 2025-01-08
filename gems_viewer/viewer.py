@@ -59,7 +59,7 @@ def init_listbox_gem(listbox_gem_gem: base.Gem):
         gem_index = 0
     selected_listbox_gem_index = gem_index
     listbox_gem_object.select_set(selected_listbox_gem_index)
-    print(124, "todo")
+    listbox_gem_object.see(selected_listbox_gem_index)
 
 
 def create_viewer_resource_gems() -> None:
