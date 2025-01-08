@@ -30,7 +30,7 @@ def listbox_cluster_selection(listbox_cluster_gem: base.Gem, event: any) -> None
     print(123, "todo")
 
 
-def load_gems(tk_gem: base.Gem, listbox_gem_object: any, prefix: str) -> None:
+def load_gems(tk_gem: base.Gem, listbox_gem_object: any, prefix: str = "") -> None:
     global selected_gem_base_names
     base_name = core.get_gem_name(tk_gem)
     selected_gem_base_names.append(base_name)
@@ -53,7 +53,7 @@ def init_listbox_gem(listbox_gem_gem: base.Gem):
     listbox_gem_object.delete(0, "end")
     selected_gem_base_names = []
     cluster_gem = global_ids_query.get_cluster_by_cluster_name(selected_cluster_name)
-    load_gems(cluster_gem, listbox_gem_object, "")
+    load_gems(cluster_gem, listbox_gem_object)
     gem_index = base.findin(selected_gem_base_names, selected_gem_base_name)
     if gem_index is None:
         gem_index = 0
