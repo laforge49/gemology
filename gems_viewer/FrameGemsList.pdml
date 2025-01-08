@@ -47,7 +47,7 @@ dict
         dict
             "GlobalTagsFacet": dict
                 "TkType": "TkDescriptor.ttkscrollbar"
-                "ScrollingName": ".ListBoxGem"
+                "ScrollingGemName": ".ListBoxGem"
             "AttrsFacet": dict
                 "grid": dict
                     "row": 0
