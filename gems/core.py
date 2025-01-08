@@ -7,6 +7,14 @@ from gems.facets import gems_query, local_ids_update, local_tags_update, attrs_u
 from pdml import loader, saver
 
 
+def get_gem_name(gem: Optional[base.Gem]) -> Optional[str]:
+    if isinstance(gem, base.Aggregate):
+        return "Aggregate"
+    if isinstance(gem, base.Cluster):
+        return global_ids_query.get_cluster_name(gem)
+    return local_ids_query.get_gem_base_name(gem)
+
+
 def mapped_gem_class(gem: Optional[base.Gem]) -> Optional[type]:
     class_name = attrs_query.get_class_name(gem)
     if class_name is None:

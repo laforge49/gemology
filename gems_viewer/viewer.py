@@ -1,7 +1,7 @@
 import pathlib
 
 from gems import core, base
-from gems.facets import local_ids_query, global_ids_query, global_tags_query
+from gems.facets import local_ids_query, global_ids_query, global_tags_query, gems_query
 from pdml import saver
 from tkgems import tkcore
 from tkgems.tkfacets import tkattrs, tkglobal_tags
@@ -30,6 +30,18 @@ def listbox_cluster_selection(listbox_cluster_gem: base.Gem, event: any) -> None
     print(123, "todo")
 
 
+def load_gems(tk_gem: base.Gem, listbox_gem_object: any, prefix: str) -> None:
+    global selected_gem_base_names
+    base_name = core.get_gem_name(tk_gem)
+    selected_gem_base_names.append(base_name)
+    listbox_gem_object.insert("end", prefix + base_name)
+    gemsfacet: base.GemsFacet = gems_query.get_gf(tk_gem)
+    if gemsfacet is None:
+        return
+    for gem in gemsfacet:
+        load_gems(gem, listbox_gem_object, prefix + "+")
+
+
 def init_listbox_gem(listbox_gem_gem: base.Gem):
     global selected_listbox_gem_index
     global selected_cluster_name
@@ -41,6 +53,7 @@ def init_listbox_gem(listbox_gem_gem: base.Gem):
     listbox_gem_object.delete(0, "end")
     selected_gem_base_names = []
     cluster_gem = global_ids_query.get_cluster_by_cluster_name(selected_cluster_name)
+    load_gems(cluster_gem, listbox_gem_object, "")
     print(124, "todo")
 
 
