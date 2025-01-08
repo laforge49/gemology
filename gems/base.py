@@ -1,6 +1,12 @@
 from typing import *
 
 
+def findin(col: list | str, v: str) -> int | None:
+    if v in col:
+        return col.index(v)
+    return None
+
+
 def isscalar(x: any) -> bool:
     return isinstance(x, (int, float, complex, str, bytes, bool))
 
