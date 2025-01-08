@@ -20,8 +20,8 @@ def get_command(gem: Optional[base.Gem]) -> Optional[any]:
     return global_tags_query.gem_get_tag_value(gem, "command")
 
 
-def resolve_master_frame(gem: Optional[base.Gem]) -> Optional[any]:
-    return global_tags_query.resolve_link(gem, "master_frame")
+def resolve_master_frame_GemName(gem: Optional[base.Gem]) -> Optional[any]:
+    return global_tags_query.resolve_link(gem, "MasterFrameGemName")
 
 
 def resolve_ListVariableGemName(gem: Optional[base.Gem]) -> Optional[any]:

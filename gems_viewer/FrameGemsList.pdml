@@ -27,7 +27,7 @@ dict
             "GlobalTagsFacet": dict
                 "TkType": "TkDescriptor.tklistbox"
                 "init_tkgem": "viewer.init_listbox_gem"
-                "master_frame": ".FrameGemsList"
+                "MasterFrameGemName": ".FrameGemsList"
             "AttrsFacet": dict
                 "options": dict
                     "height": 15

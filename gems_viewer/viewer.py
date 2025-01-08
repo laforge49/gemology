@@ -47,7 +47,7 @@ def init_listbox_gem(listbox_gem_gem: base.Gem):
     global selected_cluster_name
     global selected_gem_base_name
     global selected_gem_base_names
-    master_frame_gem = tkglobal_tags.resolve_master_frame(listbox_gem_gem)
+    master_frame_gem = tkglobal_tags.resolve_master_frame_GemName(listbox_gem_gem)
     tkattrs.set_view_gem(master_frame_gem, listbox_gem_gem)
     listbox_gem_object = tkattrs.get_tkobject(listbox_gem_gem)
     listbox_gem_object.delete(0, "end")

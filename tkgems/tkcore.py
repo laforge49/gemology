@@ -105,6 +105,8 @@ def do_tkoptions(tkgem: base.Gem) -> dict:
     command_name = tkglobal_tags.get_command(tkgem)
     if command_name is not None:
         func = core.get_resource_function(command_name)
+        if func is None:
+            print(222, command_name)
         options["command"] = lambda: func(tkgem)
     return options
 
