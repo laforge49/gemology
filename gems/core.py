@@ -12,7 +12,7 @@ def get_gem_name(gem: Optional[base.Gem]) -> Optional[str]:
         return "Aggregate"
     if isinstance(gem, base.Cluster):
         return global_ids_query.get_cluster_name(gem)
-    return local_ids_query.get_gem_base_name(gem)
+    return "." + local_ids_query.get_gem_base_name(gem)
 
 
 def mapped_gem_class(gem: Optional[base.Gem]) -> Optional[type]:

@@ -32,9 +32,9 @@ def listbox_cluster_selection(listbox_cluster_gem: base.Gem, event: any) -> None
 
 def load_gems(tk_gem: base.Gem, listbox_gem_object: any, prefix: str = "") -> None:
     global selected_gem_base_names
-    base_name = core.get_gem_name(tk_gem)
-    selected_gem_base_names.append(base_name)
-    listbox_gem_object.insert("end", prefix + base_name)
+    gem_name = core.get_gem_name(tk_gem)
+    selected_gem_base_names.append(gem_name)
+    listbox_gem_object.insert("end", prefix + gem_name)
     gemsfacet: base.GemsFacet = gems_query.get_gf(tk_gem)
     if gemsfacet is None:
         return
