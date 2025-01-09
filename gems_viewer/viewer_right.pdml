@@ -24,3 +24,18 @@ dict
                     "side": "top"
             "LocalIdsFacet": dict
                 "gem_base_name": "LabelName"
+        include
+            "FrameNameEntry.pdml"
+        dict
+            "GlobalTagsFacet": dict
+                "TkType": "TkDescriptor-ttklabel"
+            "AttrsFacet": dict
+                "options": dict
+                    "text": ""
+                    "foreground": "red"
+                "pack": dict
+                    "expand": True
+                    "fill": "x"
+                    "side": "top"
+            "LocalIdsFacet": dict
+                "gem_base_name": "LabelError"
