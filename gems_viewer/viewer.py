@@ -42,6 +42,10 @@ def load_gems(tk_gem: base.Gem, listbox_gem_object: any, prefix: str = "") -> No
         load_gems(gem, listbox_gem_object, prefix + "+")
 
 
+def gems_radiobutton_clicked(gems_radiobutton_gem: base.Gem) -> None:
+    print(128, "todo")
+
+
 def init_listbox_gem(listbox_gem_gem: base.Gem):
     global selected_listbox_gem_index
     global selected_cluster_name
@@ -73,6 +77,7 @@ def listbox_gem_selection(listbox_gem_gem: base.Gem, event: any) -> None:
 def create_viewer_resource_gems() -> None:
     core.make_resource_function_gem("viewer-init_listbox_cluster", init_listbox_cluster)
     core.make_resource_function_gem("viewer-listbox_cluster_selection", listbox_cluster_selection)
+    core.make_resource_function_gem("viewer-gems_radiobutton_clicked", gems_radiobutton_clicked)
     core.make_resource_function_gem("viewer-init_listbox_gem", init_listbox_gem)
     core.make_resource_function_gem("viewer-init_listbox_gem_tree", init_listbox_gem_tree)
     core.make_resource_function_gem("viewer-listbox_gem_selection", listbox_gem_selection)

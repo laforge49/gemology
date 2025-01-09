@@ -45,3 +45,29 @@ dict
                     "<Down>": "tkcore-listbox_up_down"
             "LocalIdsFacet": dict
                 "gem_base_name": "ListBoxGem2"
+        dict
+            "GlobalTagsFacet": dict
+                "TkType": "TkDescriptor-ttkscrollbar"
+                "ScrollingName": ".ListBoxGem2"
+            "AttrsFacet": dict
+                "grid": dict
+                    "row": 0
+                    "column": 1
+                    "sticky": "ns"
+                "options": dict
+                    "orient": "vertical"
+            "LocalIdsFacet": dict
+                "gem_base_name": "ListBoxGem_Y2"
+        dict
+            "GlobalTagsFacet": dict
+                "TkType": "TkDescriptor-ttkscrollbar"
+                "ScrollingName": ".ListBoxGem2"
+            "AttrsFacet": dict
+                "grid": dict
+                    "row": 1
+                    "column": 0
+                    "sticky": "ew"
+                "options": dict
+                    "orient": "horizontal"
+            "LocalIdsFacet": dict
+                "gem_base_name": "ListBoxGem2_X"
