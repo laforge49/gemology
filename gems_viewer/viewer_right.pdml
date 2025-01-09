@@ -11,3 +11,16 @@ dict
     "LocalIdsFacet": dict
         "gem_base_name": "FrameRight"
     "GemsFacet": list
+        dict
+            "GlobalTagsFacet": dict
+                "TkType": "TkDescriptor-ttklabel"
+            "AttrsFacet": dict
+                "options": dict
+                    "text": "cluster name or cluster.gem name:"
+                    "justify": "left"
+                "pack": dict
+                    "expand": True
+                    "fill": "x"
+                    "side": "top"
+            "LocalIdsFacet": dict
+                "gem_base_name": "LabelName"
