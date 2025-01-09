@@ -1,6 +1,6 @@
 dict
     "GlobalTagsFacet": dict
-        "TkType": "TkDescriptor.ttkframe"
+        "TkType": "TkDescriptor-ttkframe"
     "AttrsFacet": dict
         "options": dict
             "relief": "raised"
@@ -13,7 +13,7 @@ dict
     "GemsFacet": list
         dict
             "GlobalTagsFacet": dict
-                "TkType": "TkDescriptor.ttklabel"
+                "TkType": "TkDescriptor-ttklabel"
             "AttrsFacet": dict
                 "options": dict
                     "relief": "raised"
@@ -27,7 +27,7 @@ dict
                 "gem_base_name": "LabelClusters"
         dict
             "GlobalTagsFacet": dict
-                "TkType": "TkDescriptor.ttkframe"
+                "TkType": "TkDescriptor-ttkframe"
             "AttrsFacet": dict
                 "options": dict
                     "relief": "raised"
@@ -54,8 +54,8 @@ dict
             "GemsFacet": list
                 dict
                     "GlobalTagsFacet": dict
-                        "TkType": "TkDescriptor.tklistbox"
-                        "init_tkgem": "viewer.init_listbox_cluster"
+                        "TkType": "TkDescriptor-tklistbox"
+                        "init_tkgem": "viewer-init_listbox_cluster"
                     "AttrsFacet": dict
                         "options": dict
                             "height": 8
@@ -67,14 +67,14 @@ dict
                             "column": 0
                             "sticky": "nsew"
                         "events": dict
-                            "<<ListboxSelect>>": "viewer.listbox_cluster_selection"
-                            "<Up>": "tkcore.listbox_up_down"
-                            "<Down>": "tkcore.listbox_up_down"
+                            "<<ListboxSelect>>": "viewer-listbox_cluster_selection"
+                            "<Up>": "tkcore-listbox_up_down"
+                            "<Down>": "tkcore-listbox_up_down"
                     "LocalIdsFacet": dict
                         "gem_base_name": "ListBoxCluster"
                 dict
                     "GlobalTagsFacet": dict
-                        "TkType": "TkDescriptor.ttkscrollbar"
+                        "TkType": "TkDescriptor-ttkscrollbar"
                         "ScrollingGemName": ".ListBoxCluster"
                     "AttrsFacet": dict
                         "grid": dict
@@ -87,7 +87,7 @@ dict
                         "gem_base_name": "ListBoxCluster_Y"
                 dict
                     "GlobalTagsFacet": dict
-                        "TkType": "TkDescriptor.ttkscrollbar"
+                        "TkType": "TkDescriptor-ttkscrollbar"
                         "ScrollingGemName": ".ListBoxCluster"
                     "AttrsFacet": dict
                         "grid": dict

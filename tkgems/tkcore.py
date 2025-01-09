@@ -19,16 +19,16 @@ def make_tkdescriptor_gem(descriptor_name: str, tkcomposer: Callable, is_widget:
 
 
 def initialize_tkdescriptors() -> None:
-    make_tkdescriptor_gem("TkDescriptor.tklistbox", tk.Listbox, True, True)
-    make_tkdescriptor_gem("TkDescriptor.tkradiobutton", tk.Radiobutton, True, True)
-    make_tkdescriptor_gem("TkDescriptor.tkstringvar", tk.StringVar, False, False)
-    make_tkdescriptor_gem("TkDescriptor.tktext", tk.Text, True, True)
-    make_tkdescriptor_gem("TkDescriptor.tkwindow", tk.Tk, True, False)
-    make_tkdescriptor_gem("TkDescriptor.ttkbutton", ttk.Button, True, True)
-    make_tkdescriptor_gem("TkDescriptor.ttkentry", ttk.Entry, True, True)
-    make_tkdescriptor_gem("TkDescriptor.ttkframe", ttk.Frame, True, True)
-    make_tkdescriptor_gem("TkDescriptor.ttklabel", ttk.Label, True, True)
-    make_tkdescriptor_gem("TkDescriptor.ttkscrollbar", ttk.Scrollbar, True, True)
+    make_tkdescriptor_gem("TkDescriptor-tklistbox", tk.Listbox, True, True)
+    make_tkdescriptor_gem("TkDescriptor-tkradiobutton", tk.Radiobutton, True, True)
+    make_tkdescriptor_gem("TkDescriptor-tkstringvar", tk.StringVar, False, False)
+    make_tkdescriptor_gem("TkDescriptor-tktext", tk.Text, True, True)
+    make_tkdescriptor_gem("TkDescriptor-tkwindow", tk.Tk, True, False)
+    make_tkdescriptor_gem("TkDescriptor-ttkbutton", ttk.Button, True, True)
+    make_tkdescriptor_gem("TkDescriptor-ttkentry", ttk.Entry, True, True)
+    make_tkdescriptor_gem("TkDescriptor-ttkframe", ttk.Frame, True, True)
+    make_tkdescriptor_gem("TkDescriptor-ttklabel", ttk.Label, True, True)
+    make_tkdescriptor_gem("TkDescriptor-ttkscrollbar", ttk.Scrollbar, True, True)
 
 
 def get_tkdescriptor_gem(tkgem: base.Gem) -> Optional[base.Gem]:
@@ -77,9 +77,9 @@ def listbox_up_down(listbox_gem: base.Gem, event: any) -> None:
     tkevent(listbox_gem, None, "<<ListboxSelect>>")
 
 def create_tkresource_gems() -> None:
-    core.make_resource_function_gem("tkcore.persist_value", persist_value)
-    core.make_resource_function_gem("tkcore.create_window", create_window)
-    core.make_resource_function_gem("tkcore.listbox_up_down", listbox_up_down)
+    core.make_resource_function_gem("tkcore-persist_value", persist_value)
+    core.make_resource_function_gem("tkcore-create_window", create_window)
+    core.make_resource_function_gem("tkcore-listbox_up_down", listbox_up_down)
 
 
 def initialize(home_path: pathlib.Path) -> None:

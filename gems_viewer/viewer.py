@@ -62,15 +62,20 @@ def init_listbox_gem(listbox_gem_gem: base.Gem):
     listbox_gem_object.see(selected_listbox_gem_index)
 
 
+def init_listbox_gem_tree(listbox_gem_gem: base.Gem):
+    print(126, "todo")
+
+
 def listbox_gem_selection(listbox_gem_gem: base.Gem, event: any) -> None:
     print(125, "todo")
 
 
 def create_viewer_resource_gems() -> None:
-    core.make_resource_function_gem("viewer.init_listbox_cluster", init_listbox_cluster)
-    core.make_resource_function_gem("viewer.listbox_cluster_selection", listbox_cluster_selection)
-    core.make_resource_function_gem("viewer.init_listbox_gem", init_listbox_gem)
-    core.make_resource_function_gem("viewer.listbox_gem_selection", listbox_gem_selection)
+    core.make_resource_function_gem("viewer-init_listbox_cluster", init_listbox_cluster)
+    core.make_resource_function_gem("viewer-listbox_cluster_selection", listbox_cluster_selection)
+    core.make_resource_function_gem("viewer-init_listbox_gem", init_listbox_gem)
+    core.make_resource_function_gem("viewer-init_listbox_gem_tree", init_listbox_gem_tree)
+    core.make_resource_function_gem("viewer-listbox_gem_selection", listbox_gem_selection)
 
 
 def initialize(home_path: pathlib.Path) -> None:
@@ -91,12 +96,6 @@ def initialize(home_path: pathlib.Path) -> None:
     print("viewer_cluster is None:", viewer_cluster is None)
     if viewer_cluster is None:
         return
-    print()
-    print("aggregate:")
-    saver.debug(base.get_aggregate())
-    print()
-    print("viewer_cluster:")
-    saver.debug(viewer_cluster)
     window_gem = local_ids_query.cluster_get_gem_by_gem_base_name(viewer_cluster, "RootWindow")
     if window_gem is None:
         print("window_gem is None")

@@ -2,8 +2,8 @@ dict
     "GemsFacet": list
         dict
             "GlobalTagsFacet": dict
-                "TkType": "TkDescriptor.tkwindow"
-                "init_tkgem": "tkcore.create_window"
+                "TkType": "TkDescriptor-tkwindow"
+                "init_tkgem": "tkcore-create_window"
             "AttrsFacet": dict
                 "width": 1000
                 "height": 550
@@ -12,7 +12,7 @@ dict
             "GemsFacet": list
                  dict
                     "GlobalTagsFacet": dict
-                        "TkType": "TkDescriptor.ttkframe"
+                        "TkType": "TkDescriptor-ttkframe"
                     "AttrsFacet": dict
                         "options": dict
                             "relief": "raised"

@@ -1,6 +1,6 @@
 dict
     "GlobalTagsFacet": dict
-        "TkType": "TkDescriptor.ttkframe"
+        "TkType": "TkDescriptor-ttkframe"
     "AttrsFacet": dict
         "options": dict
             "relief": "raised"

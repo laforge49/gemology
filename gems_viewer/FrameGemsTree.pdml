@@ -1,6 +1,6 @@
 dict
     "GlobalTagsFacet": dict
-        "TkType": "TkDescriptor.ttkframe"
+        "TkType": "TkDescriptor-ttkframe"
     "AttrsFacet": dict
         "manual": True
         "pack": dict
@@ -24,3 +24,24 @@ dict
     "LocalIdsFacet": dict
         "gem_base_name": "FrameGemsTree"
     "GemsFacet": list
+        dict
+            "GlobalTagsFacet": dict
+                "TkType": "TkDescriptor-tklistbox"
+                "MasterFrameGemName": ".FrameGemsTree"
+                "init_tkgem": "viewer-init_listbox_gem_tree"
+            "AttrsFacet": dict
+                "options": dict
+                    "height": 15
+                    "width": 40
+                    "selectmode": "single"
+                    "exportselection": False
+                "grid": dict
+                    "row": 0
+                    "column": 0
+                    "sticky": "nsew"
+                "events": dict
+                    "<<ListboxSelect>>": "viewer-listbox_gem_selection"
+                    "<Up>": "tkcore-listbox_up_down"
+                    "<Down>": "tkcore-listbox_up_down"
+            "LocalIdsFacet": dict
+                "gem_base_name": "ListBoxGem2"

@@ -88,7 +88,7 @@ def get_resource_gem(resource_name: str) -> Optional[base.Gem]:
 
 def make_resource_gem(resource_name: str) -> base.Resource:
     aggregate = base.get_aggregate()
-    group_name = resource_name.split(".")[0]
+    group_name = resource_name.split("-")[0]
     resource_group_gem = make_resource_group_gem(group_name)
     resource_gem = make_gem(aggregate, resource_group_gem, resource_name, "base.Resource")
     assert isinstance(resource_gem, base.Resource)

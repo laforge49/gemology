@@ -1,6 +1,6 @@
 dict
     "GlobalTagsFacet": dict
-        "TkType": "TkDescriptor.ttkframe"
+        "TkType": "TkDescriptor-ttkframe"
     "AttrsFacet": dict
         "pack": dict
             "expand": True
@@ -25,8 +25,8 @@ dict
     "GemsFacet": list
         dict
             "GlobalTagsFacet": dict
-                "TkType": "TkDescriptor.tklistbox"
-                "init_tkgem": "viewer.init_listbox_gem"
+                "TkType": "TkDescriptor-tklistbox"
+                "init_tkgem": "viewer-init_listbox_gem"
                 "MasterFrameGemName": ".FrameGemsList"
             "AttrsFacet": dict
                 "options": dict
@@ -39,14 +39,14 @@ dict
                     "column": 0
                     "sticky": "nsew"
                 "events": dict
-                    "<<ListboxSelect>>": "viewer.listbox_gem_selection"
-                    "<Up>": "tkcore.listbox_up_down"
-                    "<Down>": "tkcore.listbox_up_down"
+                    "<<ListboxSelect>>": "viewer-listbox_gem_selection"
+                    "<Up>": "tkcore-listbox_up_down"
+                    "<Down>": "tkcore-listbox_up_down"
             "LocalIdsFacet": dict
                 "gem_base_name": "ListBoxGem"
         dict
             "GlobalTagsFacet": dict
-                "TkType": "TkDescriptor.ttkscrollbar"
+                "TkType": "TkDescriptor-ttkscrollbar"
                 "ScrollingGemName": ".ListBoxGem"
             "AttrsFacet": dict
                 "grid": dict
@@ -59,7 +59,7 @@ dict
                 "gem_base_name": "ListBoxGem_Y"
         dict
             "GlobalTagsFacet": dict
-                "TkType": "TkDescriptor.ttkscrollbar"
+                "TkType": "TkDescriptor-ttkscrollbar"
                 "ScrollingGemName": ".ListBoxGem"
             "AttrsFacet": dict
                 "grid": dict
