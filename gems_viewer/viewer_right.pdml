@@ -43,3 +43,5 @@ dict
             "FrameContentRadiobuttons.pdml"
         include
             "FramePdml.pdml"
+        include
+            "FrameContentFacets.pdml"
