@@ -41,3 +41,5 @@ dict
                 "gem_base_name": "LabelError"
         include
             "FrameContentRadiobuttons.pdml"
+        include
+            "FramePdml.pdml"
