@@ -5,7 +5,7 @@ import tkinter as tk
 from tkinter import ttk
 
 from gems import base, core
-from gems.facets import attrs_query, global_ids_query, gems_query, global_tags_query, local_ids_query
+from gems.facets import attrs_query, global_ids_query, gems_query, global_tags_query, local_ids_query, attrs_update
 from tkgems.tkfacets import tkattrs, tkglobal_tags
 
 
@@ -85,6 +85,20 @@ def create_tkresource_gems() -> None:
 def initialize(home_path: pathlib.Path) -> None:
     initialize_tkdescriptors()
     create_tkresource_gems()
+
+
+def tk_destroy(tk_gem: base.Gem) -> None:
+    if tk_gem is None:
+        return
+    tk_object = tkattrs.del_tkobject(tk_gem)
+    if tk_object is None:
+        return
+    tk_object.destroy()
+    gems_facet = gems_query.get_gf(tk_gem)
+    if gems_facet is None:
+        return
+    for gem in gems_facet:
+        tk_destroy(gem)
 
 
 def do_tkoptions(tkgem: base.Gem) -> dict:

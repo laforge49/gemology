@@ -65,6 +65,10 @@ def get_tkobject(tkgem: Optional[base.Gem]) -> any:
     return tkobject
 
 
+def del_tkobject(tkgem: Optional[base.Gem]) -> any:
+    return attrs_update.del_attr(tkgem, "#tk_object")
+
+
 def set_tkobject(tkgem: Optional[base.Gem], tkobject: any) -> bool:
     return attrs_update.set_attr_value(tkgem, "#tkobject", tkobject)
 

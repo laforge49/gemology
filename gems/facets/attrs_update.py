@@ -23,7 +23,7 @@ def set_attr_value(gem: Optional[base.Gem], attr_name: str, attr_value: any) -> 
     return True
 
 
-def del_attr(gem: Optional[base.Gem], attr_name: str) -> bool:
+def del_attr(gem: Optional[base.Gem], attr_name: str) -> any:
     af = attrs_query.get_af(gem)
     if af is None:
         return False
@@ -38,7 +38,7 @@ def set_cluster(gem: Optional[base.Gem], cluster: base.Cluster) -> bool:
     return set_attr_value(gem, "#cluster", cluster)
 
 
-def del_cluster_attr(gem: Optional[base.Gem]) -> bool:
+def del_cluster_attr(gem: Optional[base.Gem]) -> any:
     return del_attr(gem, "#cluster")
 
 
@@ -46,7 +46,7 @@ def set_cluster_path(cluster: Optional[base.Cluster], cluster_path: str) -> bool
     return set_attr_value(cluster, "#cluster_path", cluster_path)
 
 
-def del_cluster_path(cluster: Optional[base.Cluster]) -> bool:
+def del_cluster_path(cluster: Optional[base.Cluster]) -> Optional[str]:
     return del_attr(cluster, "#cluster_path")
 
 
@@ -55,7 +55,7 @@ def set_gem_parent(gem: Optional[base.Gem], gem_parent: base.Gem) -> bool:
     return set_attr_value(gem, "#gem_parent", gem_parent)
 
 
-def del_parent_attr(gem: Optional[base.Gem]) -> bool:
+def del_parent_attr(gem: Optional[base.Gem]) -> Optional[base.Gem]:
     return del_attr(gem, "#gem_parent")
 
 
