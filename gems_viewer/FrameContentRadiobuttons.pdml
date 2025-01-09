@@ -1,0 +1,13 @@
+                        dict
+                            "GlobalTagsFacet": dict
+                                "TkType": "TkDescriptor-ttkframe"
+                            "AttrsFacet": dict
+                                "options": dict
+                                    "relief": "raised"
+                                "pack": dict
+                                    "expand": True
+                                    "fill": "x"
+                                    "side": "top"
+                            "LocalIdsFacet": dict
+                                "gem_base_name": "FrameContentRadiobuttons"
+                            "GemsFacet": list

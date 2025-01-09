@@ -39,3 +39,5 @@ dict
                     "side": "top"
             "LocalIdsFacet": dict
                 "gem_base_name": "LabelError"
+        include
+            "FrameContentRadiobuttons.pdml"
