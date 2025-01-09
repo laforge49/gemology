@@ -10,3 +10,4 @@ dict
             "side": "left"
     "LocalIdsFacet": dict
         "gem_base_name": "FrameRight"
+    "GemsFacet": list
