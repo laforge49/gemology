@@ -1,13 +1,21 @@
-                        dict
-                            "GlobalTagsFacet": dict
-                                "TkType": "TkDescriptor-ttkframe"
-                            "AttrsFacet": dict
-                                "options": dict
-                                    "relief": "raised"
-                                "pack": dict
-                                    "expand": True
-                                    "fill": "x"
-                                    "side": "top"
-                            "LocalIdsFacet": dict
-                                "gem_base_name": "FrameNameEntry"
-                            "GemsFacet": list
+dict
+    "GlobalTagsFacet": dict
+        "TkType": "TkDescriptor-ttkframe"
+    "AttrsFacet": dict
+        "options": dict
+            "relief": "raised"
+        "pack": dict
+            "expand": True
+            "fill": "x"
+            "side": "top"
+    "LocalIdsFacet": dict
+        "gem_base_name": "FrameNameEntry"
+    "GemsFacet": list
+        dict
+            "GlobalTagsFacet": dict
+                "TkType": "TkDescriptor-tkstringvar"
+            "AttrsFacet": dict
+                "options": dict
+                    "value": "Aggregate"
+            "LocalIdsFacet": dict
+                "gem_base_name": "StringVarName"
