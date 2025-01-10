@@ -74,6 +74,10 @@ def listbox_gem_selection(listbox_gem_gem: base.Gem, event: any) -> None:
     print(125, "todo")
 
 
+def entry_name_return(entry_name_gem, event):
+    print(124, "todo")
+
+
 def create_viewer_resource_gems() -> None:
     core.make_resource_function_gem("viewer-init_listbox_cluster", init_listbox_cluster)
     core.make_resource_function_gem("viewer-listbox_cluster_selection", listbox_cluster_selection)
@@ -81,6 +85,7 @@ def create_viewer_resource_gems() -> None:
     core.make_resource_function_gem("viewer-init_listbox_gem", init_listbox_gem)
     core.make_resource_function_gem("viewer-init_listbox_gem_tree", init_listbox_gem_tree)
     core.make_resource_function_gem("viewer-listbox_gem_selection", listbox_gem_selection)
+    core.make_resource_function_gem("viewer-entry_name_return", entry_name_return)
 
 
 def initialize(home_path: pathlib.Path) -> None:

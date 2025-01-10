@@ -169,6 +169,8 @@ def tkevents(tkgem: base.Gem, tkobject: any) -> None:
     if events is not None:
         for event_name, event_function_name in events.items():
             func = core.get_resource_function(event_function_name)
+            if func is None:
+                print(987, event_function_name)
             tkobject.bind(event_name, lambda event: func(tkgem, event))
 
 

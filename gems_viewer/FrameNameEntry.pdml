@@ -25,7 +25,7 @@ dict
                 "TextVariableGemName": ".StringVarName"
             "AttrsFacet": dict
                 "events": dict
-                    "<Return>": "viewer.entry_name_return"
+                    "<Return>": "viewer-entry_name_return"
                 "options": dict
                     "width": 0
                 "pack": dict
