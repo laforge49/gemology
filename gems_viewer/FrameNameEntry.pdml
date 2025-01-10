@@ -19,3 +19,18 @@ dict
                     "value": "Aggregate"
             "LocalIdsFacet": dict
                 "gem_base_name": "StringVarName"
+        dict
+            "GlobalTagsFacet": dict
+                "TkType": "TkDescriptor-ttkentry"
+                "TextVariableGemName": ".StringVarName"
+            "AttrsFacet": dict
+                "events": dict
+                    "<Return>": "viewer.entry_name_return"
+                "options": dict
+                    "width": 0
+                "pack": dict
+                    "side": "left"
+                    "fill": "x"
+                    "expand": True
+            "LocalIdsFacet": dict
+                "gem_base_name": "EntryName"
