@@ -34,3 +34,14 @@ dict
                     "expand": True
             "LocalIdsFacet": dict
                 "gem_base_name": "EntryName"
+        dict
+            "GlobalTagsFacet": dict
+                "command": "viewer-button_name_function"
+                "TkType": "TkDescriptor-ttkbutton"
+            "AttrsFacet": dict
+                "options": dict
+                    "text": "View"
+                "pack": dict
+                    "side": "left"
+            "LocalIdsFacet": dict
+                "gem_base_name": "ButtonName"
