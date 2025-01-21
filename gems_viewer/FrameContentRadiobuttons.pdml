@@ -48,3 +48,18 @@ dict
                     # "state": "disabled"
             "LocalIdsFacet": dict
                 "gem_base_name": "ContentRadiobuttonFacets"
+        dict
+            "GlobalTagsFacet": dict
+                "TkType": "TkDescriptor-ttklabel"
+            "AttrsFacet": dict
+                "manual": True
+                "options": dict
+                    "text": "No Facet Selected"
+                    "justify": "left"
+                "pack": dict
+                    "expand": True
+                    "fill": "x"
+                    "side": "left"
+                    "padx": 5
+            "LocalIdsFacet": dict
+                "gem_base_name": "FacetState"

@@ -86,6 +86,10 @@ def button_name_function(entry_name_gem: base.Gem) -> None:
     print(124, "todo")
 
 
+def init_pdml_text(text_gem: base.Gem) -> None:
+    print(121, "todo")
+
+
 def create_viewer_resource_gems() -> None:
     core.make_resource_function_gem("viewer-init_listbox_cluster", init_listbox_cluster)
     core.make_resource_function_gem("viewer-listbox_cluster_selection", listbox_cluster_selection)
@@ -96,6 +100,7 @@ def create_viewer_resource_gems() -> None:
     core.make_resource_function_gem("viewer-listbox_gem_selection", listbox_gem_selection)
     core.make_resource_function_gem("viewer-entry_name_return", entry_name_return)
     core.make_resource_function_gem("viewer-button_name_function", button_name_function)
+    core.make_resource_function_gem("viewer-init_pdml_text", init_pdml_text)
 
 
 def initialize(home_path: pathlib.Path) -> None:
