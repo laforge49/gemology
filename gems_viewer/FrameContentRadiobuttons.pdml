@@ -30,6 +30,21 @@ dict
                     "padx": 5
                 "options": dict
                     "text": "Gems List"
+                    "value": "FramePdml"
+            "LocalIdsFacet": dict
+                "gem_base_name": "ContentRadiobuttonPdml"
+        dict
+            "GlobalTagsFacet": dict
+                "TkType": "TkDescriptor-tkradiobutton"
+                "command": "viewer-content_radiobutton_clicked"
+                "VariableGemName": ".ContentRadiobuttonSV"
+            "AttrsFacet": dict
+                "pack": dict
+                    "side": "left"
+                    "padx": 5
+                "options": dict
+                    "text": "Facets"
                     "value": "FrameContentFacets"
+                    # "state": "disabled"
             "LocalIdsFacet": dict
                 "gem_base_name": "ContentRadiobuttonFacets"
