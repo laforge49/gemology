@@ -19,3 +19,17 @@ dict
                     "value": "FramePdml"
             "LocalIdsFacet": dict
                 "gem_base_name": "ContentRadiobuttonSV"
+        dict
+            "GlobalTagsFacet": dict
+                "TkType": "TkDescriptor-tkradiobutton"
+                "command": "viewer-content_radiobutton_clicked"
+                "VariableGemName": ".ContentRadiobuttonSV"
+            "AttrsFacet": dict
+                "pack": dict
+                    "side": "left"
+                    "padx": 5
+                "options": dict
+                    "text": "Gems List"
+                    "value": "FrameContentFacets"
+            "LocalIdsFacet": dict
+                "gem_base_name": "ContentRadiobuttonFacets"
