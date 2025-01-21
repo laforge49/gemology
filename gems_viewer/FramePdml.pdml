@@ -54,3 +54,16 @@ dict
                     "orient": "vertical"
             "LocalIdsFacet": dict
                 "gem_base_name": "TextPdml_Y"
+        dict
+            "GlobalTagsFacet": dict
+                "TkType": "TkDescriptor-ttkscrollbar"
+                "ScrollingGemName": ".TextPdml"
+            "AttrsFacet": dict
+                "grid": dict
+                    "row": 1
+                    "column": 0
+                    "sticky": "ew"
+                "options": dict
+                    "orient": "horizontal"
+            "LocalIdsFacet": dict
+                "gem_base_name": "TextPdml_X"
