@@ -1,43 +1,43 @@
-                        dict
-                            "GlobalTagsFacet": dict
-                                "TkType": "TkDescriptor-ttkframe"
-                            "AttrsFacet": dict
-                                # "manual": True
-                                "pack": dict
-                                    "expand": True
-                                    "fill": "both"
-                                    "side": "top"
-                                "columns": list
-                                    dict
-                                        "index": 0
-                                        "weight": 2
-                                    dict
-                                        "index": 1
-                                        "weight": 1
-                                "rows": list
-                                    dict
-                                        "index": 0
-                                        "weight": 2
-                                    dict
-                                        "index": 1
-                                        "weight": 1
-                            "LocalIdsFacet": dict
-                                "gem_base_name": "FramePdml"
-                            "GemsFacet": list
-                                dict
-                                    "GlobalTagsFacet": dict
-                                        "TkType": "TkDescriptor-tktext"
-                                        "init_tkgem": "viewer-init_pdml_text"
-                                    "AttrsFacet": dict
-                                        "options": dict
-                                            # "state": "readonly"
-                                            "exportselection": False
-                                            "height": 25
-                                            "width": 75
-                                            "wrap": "none"
-                                        "grid": dict
-                                            "row": 0
-                                            "column": 0
-                                            "sticky": "nsew"
-                                    "LocalIdsFacet": dict
-                                        "gem_base_name": "TextPdml"
+dict
+    "GlobalTagsFacet": dict
+        "TkType": "TkDescriptor-ttkframe"
+    "AttrsFacet": dict
+        # "manual": True
+        "pack": dict
+            "expand": True
+            "fill": "both"
+            "side": "top"
+        "columns": list
+            dict
+                "index": 0
+                "weight": 2
+            dict
+                "index": 1
+                "weight": 1
+        "rows": list
+            dict
+                "index": 0
+                "weight": 2
+            dict
+                "index": 1
+                "weight": 1
+    "LocalIdsFacet": dict
+        "gem_base_name": "FramePdml"
+    "GemsFacet": list
+        dict
+            "GlobalTagsFacet": dict
+                "TkType": "TkDescriptor-tktext"
+                "init_tkgem": "viewer-init_pdml_text"
+            "AttrsFacet": dict
+                "options": dict
+                    # "state": "readonly"
+                    "exportselection": False
+                    "height": 25
+                    "width": 75
+                    "wrap": "none"
+                "grid": dict
+                    "row": 0
+                    "column": 0
+                    "sticky": "nsew"
+            "LocalIdsFacet": dict
+                "gem_base_name": "TextPdml"
