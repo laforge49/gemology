@@ -43,5 +43,19 @@ dict
             "FrameContentRadiobuttons.pdml"
         include
             "FramePdml.pdml"
-        include
-            "FrameContentFacets.pdml"
+        dict
+            "GlobalTagsFacet": dict
+                "TkType": "TkDescriptor-ttkframe"
+            "AttrsFacet": dict
+                "manual": True
+                "pack": dict
+                    "expand": True
+                    "fill": "both"
+                    "side": "top"
+            "LocalIdsFacet": dict
+                "gem_base_name": "FrameContentFacets"
+            "GemsFacet": list
+                include
+                    "FrameFacetsList.pdml"
+                include
+                    "FrameFacetText.pdml"
