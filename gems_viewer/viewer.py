@@ -98,6 +98,10 @@ def init_listbox_facet(listbox_facet_gem: base.Gem) -> None:
     print(120, "todo")
 
 
+def init_facet_text(facet_text_gem: base.Gem) -> None:
+    print(130, "todo")
+
+
 def create_viewer_resource_gems() -> None:
     core.make_resource_function_gem("viewer-init_listbox_cluster", init_listbox_cluster)
     core.make_resource_function_gem("viewer-listbox_cluster_selection", listbox_cluster_selection)
@@ -111,6 +115,7 @@ def create_viewer_resource_gems() -> None:
     core.make_resource_function_gem("viewer-init_pdml_text", init_pdml_text)
     core.make_resource_function_gem("viewer-init_listbox_facet", init_listbox_facet)
     core.make_resource_function_gem("viewer-listbox_facet_selection", listbox_facet_selection)
+    core.make_resource_function_gem("viewer-init_facet_text", init_facet_text)
 
 
 def initialize(home_path: pathlib.Path) -> None:
