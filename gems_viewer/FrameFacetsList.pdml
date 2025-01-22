@@ -22,3 +22,50 @@ dict
     "LocalIdsFacet": dict
         "gem_base_name": "FrameFacetsList"
     "GemsFacet": list
+        dict
+            "GlobalTagsFacet": dict
+                "TkType": "TkDescriptor-tklistbox"
+                "init_tkgem": ".init_listbox_facet"
+                "MasterFrameGemName": ".FrameContentFacets"
+            "AttrsFacet": dict
+                "options": dict
+                    "height": 25
+                    "width": 30
+                    "selectmode": "single"
+                    "exportselection": False
+                "grid": dict
+                    "row": 0
+                    "column": 0
+                    "sticky": "nsew"
+                "events": dict
+                    "<<ListboxSelect>>": "viewer-listbox_facet_selection"
+                    "<Up>": "tkcore-listbox_up_down"
+                    "<Down>": "tkcore-listbox_up_down"
+            "LocalIdsFacet": dict
+                "gem_base_name": "ListBoxFacet"
+        dict
+            "GlobalTagsFacet": dict
+                "TkType": "TkDescriptor-ttkscrollbar"
+                "ScrollingGemName": ".ListBoxFacet"
+            "AttrsFacet": dict
+                "grid": dict
+                    "row": 0
+                    "column": 1
+                    "sticky": "ns"
+                "options": dict
+                    "orient": "vertical"
+            "LocalIdsFacet": dict
+                "gem_base_name": "ListBoxFacet_Y"
+        dict
+            "GlobalTagsFacet": dict
+                "TkType": "TkDescriptor-ttkscrollbar"
+                "ScrollingGemName": ".ListBoxFacet"
+            "AttrsFacet": dict
+                "grid": dict
+                    "row": 1
+                    "column": 0
+                    "sticky": "ew"
+                "options": dict
+                    "orient": "horizontal"
+            "LocalIdsFacet": dict
+                "gem_base_name": "ListBoxFacet_X"

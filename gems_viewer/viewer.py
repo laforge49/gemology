@@ -78,6 +78,10 @@ def listbox_gem_selection(listbox_gem_gem: base.Gem, event: any) -> None:
     print(125, "todo")
 
 
+def listbox_facet_selection(listbox_facet_gem: base.Gem, event: any) -> None:
+    print(129, "todo")
+
+
 def entry_name_return(entry_name_gem: base.Gem, event: any) -> None:
     button_name_function(entry_name_gem)
 
@@ -88,6 +92,10 @@ def button_name_function(entry_name_gem: base.Gem) -> None:
 
 def init_pdml_text(text_gem: base.Gem) -> None:
     print(121, "todo")
+
+
+def init_listbox_facet(listbox_facet_gem: base.Gem) -> None:
+    print(120, "todo")
 
 
 def create_viewer_resource_gems() -> None:
@@ -101,6 +109,8 @@ def create_viewer_resource_gems() -> None:
     core.make_resource_function_gem("viewer-entry_name_return", entry_name_return)
     core.make_resource_function_gem("viewer-button_name_function", button_name_function)
     core.make_resource_function_gem("viewer-init_pdml_text", init_pdml_text)
+    core.make_resource_function_gem("viewer-init_listbox_facet", init_listbox_facet)
+    core.make_resource_function_gem("viewer-listbox_facet_selection", listbox_facet_selection)
 
 
 def initialize(home_path: pathlib.Path) -> None:
