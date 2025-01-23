@@ -1,10 +1,12 @@
 import pathlib
 
+
 from gems import core, base
-from gems.facets import local_ids_query, global_ids_query, global_tags_query, gems_query
+from gems.facets import local_ids_query, global_ids_query, global_tags_query, gems_query, attrs_query
 from pdml import saver
 from tkgems import tkcore
 from tkgems.tkfacets import tkattrs, tkglobal_tags
+
 
 selected_listbox_cluster_index: int | None = 0
 selected_cluster_name: str = "Aggregate"
@@ -91,7 +93,21 @@ def button_name_function(entry_name_gem: base.Gem) -> None:
 
 
 def init_pdml_text(text_gem: base.Gem) -> None:
-    print(121, "todo")
+    global selected_gem_base_name
+    cluster = attrs_query.get_cluster(text_gem)
+    if cluster is None:
+        return
+    facet_state_gem = local_ids_query.cluster_get_gem_by_gem_base_name(cluster,"FacetState")
+    tkcore.tk_destroy(facet_state_gem)
+    parent_gem = attrs_query.get_gem_parent(text_gem)
+
+#    build.set_attr(parent_gem, "#view_gem", text_gem)
+#    gem = build.get_gem(selected_gem_name, text_gem)
+#    text_object = build.get_attr(text_gem, "#tk_object")
+#    text_object.delete("1.0", "end")
+#    s = saver.data_to_string(0, gem, False)
+#    text_object.insert("1.0", s)
+#    text_object.see("1.0")
 
 
 def init_listbox_facet(listbox_facet_gem: base.Gem) -> None:
@@ -132,9 +148,8 @@ def initialize(home_path: pathlib.Path) -> None:
     tkcore.initialize(home_path)
     create_viewer_resource_gems()
     viewer_cluster = core.load(viewer_pdml_path)
-    print()
-    print("viewer_cluster is None:", viewer_cluster is None)
     if viewer_cluster is None:
+        print("viewer_cluster is None")
         return
     window_gem = local_ids_query.cluster_get_gem_by_gem_base_name(viewer_cluster, "RootWindow")
     if window_gem is None:

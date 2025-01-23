@@ -26,12 +26,12 @@ def set_attr_value(gem: Optional[base.Gem], attr_name: str, attr_value: any) -> 
 def del_attr(gem: Optional[base.Gem], attr_name: str) -> any:
     af = attrs_query.get_af(gem)
     if af is None:
-        return False
+        return None
     attr_value = af.get(attr_name)
     if attr_value is None:
-        return False
+        return None
     del af[attr_name]
-    return True
+    return attr_value
 
 
 def set_cluster(gem: Optional[base.Gem], cluster: base.Cluster) -> bool:
