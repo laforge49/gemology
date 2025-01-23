@@ -27,32 +27,11 @@ def gem_get_tag_value(gem: Optional[base.Gem], tag_name: str) -> Optional[base.s
     return gtf.get(tag_name)
 
 
-def expand_gem_name(source_gem: base.Gem, gemname: str) -> Optional[str]:
-    if gemname is None:
-        return None
-    if gemname.startswith("."):
-        cluster = attrs_query.get_cluster(source_gem)
-        if cluster is None:
-            cluster = source_gem
-        if isinstance(cluster, base.Aggregate):
-            cluster_name = "Aggregate"
-        elif gemname == ".":
-            cluster_name = global_ids_query.get_cluster_name(cluster)
-            return cluster_name
-        else:
-            cluster_name = global_ids_query.get_cluster_name(cluster)
-            if cluster_name is None:
-                return None
-        return cluster_name + gemname
-    else:
-        return gemname
-
-
 def gem_get_full_gem_name(source_gem: Optional[base.Gem], tag_name: str) -> Optional[str]:
     if source_gem is None:
         return None
     gemname = gem_get_tag_value(source_gem, tag_name)
-    return expand_gem_name(source_gem, gemname)
+    return global_ids_query.expand_gem_name(source_gem, gemname)
 
 
 def resolve_link(source_gem: base.Gem, tag_name: str) -> Optional[base.Gem]:

@@ -2,6 +2,7 @@ from typing import *
 
 
 from gems import base
+from gems.facets import attrs_query
 
 
 def get_gif(gem: Optional[base.Gem]) -> Optional[base.GlobalIdsFacet]:
@@ -76,3 +77,24 @@ def get_cluster_by_cluster_name(cluster_name: str) -> Optional[base.Cluster]:
     cluster = aggregate_get_gem_by_id("#cluster_name", cluster_name)
     assert isinstance(cluster, base.Cluster) or cluster is None
     return cluster
+
+
+def expand_gem_name(source_gem: base.Gem, gemname: str) -> Optional[str]:
+    if gemname is None:
+        return None
+    if gemname.startswith("."):
+        cluster = attrs_query.get_cluster(source_gem)
+        if cluster is None:
+            cluster = source_gem
+        if isinstance(cluster, base.Aggregate):
+            cluster_name = "Aggregate"
+        elif gemname == ".":
+            cluster_name = get_cluster_name(cluster)
+            return cluster_name
+        else:
+            cluster_name = get_cluster_name(cluster)
+            if cluster_name is None:
+                return None
+        return cluster_name + gemname
+    else:
+        return gemname

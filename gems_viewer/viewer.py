@@ -103,7 +103,7 @@ def init_pdml_text(text_gem: base.Gem) -> None:
     tkattrs.set_view_gem(parent_gem, text_gem)
     print(100, "todo")
 
-#    gem = build.get_gem(selected_gem_name, text_gem)
+#    gem = build.get_gem(selected_gem_base_name, text_gem)
 #    text_object = build.get_attr(text_gem, "#tk_object")
 #    text_object.delete("1.0", "end")
 #    s = saver.data_to_string(0, gem, False)

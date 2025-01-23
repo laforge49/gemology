@@ -2,7 +2,7 @@ from typing import *
 
 
 from gems import base
-from gems.facets import global_tags_query
+from gems.facets import global_tags_query, global_ids_query
 
 
 def make_gtf(gem: Optional[base.Gem]) -> Optional[base.GlobalTagsFacet]:
@@ -21,7 +21,7 @@ def expand_tag_value(source_gem: Optional[base.Gem], tag_name: str, tag_value: s
         return None
     if not tag_name.endswith("GemName"):
         return tag_value
-    gem_name = global_tags_query.expand_gem_name(source_gem, tag_value)
+    gem_name = global_ids_query.expand_gem_name(source_gem, tag_value)
     return gem_name
 
 
