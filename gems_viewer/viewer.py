@@ -101,9 +101,11 @@ def init_pdml_text(text_gem: base.Gem) -> None:
     tkcore.tk_destroy(facet_state_gem)
     parent_gem = attrs_query.get_gem_parent(text_gem)
     tkattrs.set_view_gem(parent_gem, text_gem)
-    print(100, "todo")
+    gem = global_ids_query.get_gem(selected_gem_base_name, text_gem)
+    if gem is None:
+        return
+    print(100, "todo", gem is None)
 
-#    gem = build.get_gem(selected_gem_base_name, text_gem)
 #    text_object = build.get_attr(text_gem, "#tk_object")
 #    text_object.delete("1.0", "end")
 #    s = saver.data_to_string(0, gem, False)
