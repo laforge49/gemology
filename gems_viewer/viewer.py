@@ -104,13 +104,12 @@ def init_pdml_text(text_gem: base.Gem) -> None:
     gem = global_ids_query.get_gem(selected_gem_base_name, text_gem)
     if gem is None:
         return
-    print(100, "todo", gem is None)
-
-#    text_object = build.get_attr(text_gem, "#tk_object")
+    text_object = tkattrs.get_tkobject(text_gem)
 #    text_object.delete("1.0", "end")
 #    s = saver.data_to_string(0, gem, False)
 #    text_object.insert("1.0", s)
 #    text_object.see("1.0")
+    print(100, "todo", gem is None)
 
 
 def init_listbox_facet(listbox_facet_gem: base.Gem) -> None:
