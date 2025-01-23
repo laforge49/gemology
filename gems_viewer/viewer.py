@@ -100,9 +100,9 @@ def init_pdml_text(text_gem: base.Gem) -> None:
     facet_state_gem = local_ids_query.cluster_get_gem_by_gem_base_name(cluster,"FacetState")
     tkcore.tk_destroy(facet_state_gem)
     parent_gem = attrs_query.get_gem_parent(text_gem)
+    tkattrs.set_view_gem(parent_gem, text_gem)
     print(100, "todo")
 
-#    build.set_attr(parent_gem, "#view_gem", text_gem)
 #    gem = build.get_gem(selected_gem_name, text_gem)
 #    text_object = build.get_attr(text_gem, "#tk_object")
 #    text_object.delete("1.0", "end")
