@@ -95,8 +95,7 @@ def init_listbox_gem_tree(listbox_gem_gem: base.Gem):
     global selected_cluster_name
     global selected_gem_base_name
     global selected_gem_base_names
-#    master_frame_name = build.get_aggregate_tag(listbox_gem_gem, "master_frame")
-#    master_frame_gem = build.get_gem(master_frame_name, listbox_gem_gem)
+    master_frame_gem = tkglobal_tags.resolve_master_frame_GemName(listbox_gem_gem)
 #    build.set_attr(master_frame_gem, "#view_gem", listbox_gem_gem)
 #    listbox_gem_object = build.get_attr(listbox_gem_gem, "#tk_object")
 #    listbox_gem_object.delete(0, "end")
@@ -109,7 +108,7 @@ def init_listbox_gem_tree(listbox_gem_gem: base.Gem):
 #    selected_listbox_gem_index = gem_index
 #    listbox_gem_object.select_set(selected_listbox_gem_index)
 #    listbox_gem_object.see(selected_listbox_gem_index)
-    print(126, "todo")
+    print(126, "todo", master_frame_gem is None)
 
 
 def listbox_gem_selection(listbox_gem_gem: base.Gem, event: any) -> None:
