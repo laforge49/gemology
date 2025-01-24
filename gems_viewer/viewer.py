@@ -163,9 +163,9 @@ def init_listbox_facet(listbox_facet_gem: base.Gem) -> None:
 
     facet_state_gem = global_ids_query.get_gem(".FacetState", listbox_facet_gem)
     facet_state_object = tkattrs.get_tkobject(facet_state_gem)
-#    if facet_state_object is None:
-#        tkgems.tk_eval(facet_state_gem)
-#        facet_state_object = build.get_attr(facet_state_gem, "#tk_object")
+    if facet_state_object is None:
+        tkcore.tkeval(facet_state_gem)
+        facet_state_object = tkattrs.get_tkobject(facet_state_gem)
 #    master_frame_name = build.get_aggregate_tag(listbox_facet_gem, "master_frame")
 #    master_frame_gem = build.get_gem(master_frame_name, listbox_facet_gem)
 #    build.set_attr(master_frame_gem, "#view_gem", listbox_facet_gem)
