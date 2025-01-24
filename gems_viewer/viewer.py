@@ -9,8 +9,8 @@ from tkgems.tkfacets import tkattrs, tkglobal_tags
 
 
 selected_listbox_cluster_index: int | None = 0
-selected_cluster_name: str = "Aggregate"
 selected_listbox_gem_index: int | None = 0
+selected_cluster_name: str = "Aggregate"
 selected_gem_base_name: str = "Aggregate"
 selected_gem_base_names: list = []
 selected_gems_radiobutton: str = ".FrameGemsList"
@@ -91,6 +91,24 @@ def init_listbox_gem(listbox_gem_gem: base.Gem):
 
 
 def init_listbox_gem_tree(listbox_gem_gem: base.Gem):
+    global selected_listbox_gem_index
+    global selected_cluster_name
+    global selected_gem_base_name
+    global selected_gem_base_names
+#    master_frame_name = build.get_aggregate_tag(listbox_gem_gem, "master_frame")
+#    master_frame_gem = build.get_gem(master_frame_name, listbox_gem_gem)
+#    build.set_attr(master_frame_gem, "#view_gem", listbox_gem_gem)
+#    listbox_gem_object = build.get_attr(listbox_gem_gem, "#tk_object")
+#    listbox_gem_object.delete(0, "end")
+#    selected_gem_base_names = []
+#    cluster_gem = build.get_cluster(selected_cluster_name)
+#    load_gems(cluster_gem, listbox_gem_object, "")
+#    gem_index = build.findin(selected_gem_base_names, selected_gem_base_name)
+#    if gem_index is None:
+#        gem_index = 0
+#    selected_listbox_gem_index = gem_index
+#    listbox_gem_object.select_set(selected_listbox_gem_index)
+#    listbox_gem_object.see(selected_listbox_gem_index)
     print(126, "todo")
 
 
