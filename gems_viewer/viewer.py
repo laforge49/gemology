@@ -79,9 +79,14 @@ def init_listbox_gem(listbox_gem_gem: base.Gem):
     tkattrs.set_view_gem(master_frame_gem, listbox_gem_gem)
     listbox_gem_object = tkattrs.get_tkobject(listbox_gem_gem)
     listbox_gem_object.delete(0, "end")
-    selected_gem_base_names = []
+    selected_gem_base_names = [selected_cluster_name]
     cluster_gem = global_ids_query.get_cluster_by_cluster_name(selected_cluster_name)
-    load_gems(cluster_gem, listbox_gem_object)
+    gem_base_names = local_ids_query.cluster_get_gem_base_names(cluster_gem)
+    if gem_base_names is not None:
+        for gem_name in sorted(gem_base_names):
+            selected_gem_base_names.append(gem_name)
+    for gem_name in selected_gem_base_names:
+        listbox_gem_object.insert("end", gem_name)
     gem_index = base.findin(selected_gem_base_names, selected_gem_base_name)
     if gem_index is None:
         gem_index = 0
@@ -102,13 +107,12 @@ def init_listbox_gem_tree(listbox_gem_gem: base.Gem):
     selected_gem_base_names = []
     cluster_gem = global_ids_query.get_cluster_by_cluster_name(selected_cluster_name)
     load_gems(cluster_gem, listbox_gem_object, "")
-#    gem_index = build.findin(selected_gem_base_names, selected_gem_base_name)
-#    if gem_index is None:
-#        gem_index = 0
-#    selected_listbox_gem_index = gem_index
-#    listbox_gem_object.select_set(selected_listbox_gem_index)
-#    listbox_gem_object.see(selected_listbox_gem_index)
-    print(126, "todo", cluster_gem is None)
+    gem_index = base.findin(selected_gem_base_names, selected_gem_base_name)
+    if gem_index is None:
+        gem_index = 0
+    selected_listbox_gem_index = gem_index
+    listbox_gem_object.select_set(selected_listbox_gem_index)
+    listbox_gem_object.see(selected_listbox_gem_index)
 
 
 def listbox_gem_selection(listbox_gem_gem: base.Gem, event: any) -> None:
