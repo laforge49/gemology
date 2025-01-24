@@ -162,7 +162,7 @@ def init_listbox_facet(listbox_facet_gem: base.Gem) -> None:
     global selected_listbox_facet_index
 
     facet_state_gem = global_ids_query.get_gem(".FacetState", listbox_facet_gem)
-#    facet_state_object = build.get_attr(facet_state_gem, "#tk_object")
+    facet_state_object = tkattrs.get_tkobject(facet_state_gem)
 #    if facet_state_object is None:
 #        tkgems.tk_eval(facet_state_gem)
 #        facet_state_object = build.get_attr(facet_state_gem, "#tk_object")
