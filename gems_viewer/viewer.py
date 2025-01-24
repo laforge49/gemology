@@ -156,6 +156,44 @@ def init_pdml_text(text_gem: base.Gem) -> None:
 
 
 def init_listbox_facet(listbox_facet_gem: base.Gem) -> None:
+    global selected_gem_name
+    global selected_facet_names
+    global selected_facet_name
+    global selected_listbox_facet_index
+
+#    facet_state_gem = build.get_gem(".FacetState", listbox_facet_gem)
+#    facet_state_object = build.get_attr(facet_state_gem, "#tk_object")
+#    if facet_state_object is None:
+#        tkgems.tk_eval(facet_state_gem)
+#        facet_state_object = build.get_attr(facet_state_gem, "#tk_object")
+#    master_frame_name = build.get_aggregate_tag(listbox_facet_gem, "master_frame")
+#    master_frame_gem = build.get_gem(master_frame_name, listbox_facet_gem)
+#    build.set_attr(master_frame_gem, "#view_gem", listbox_facet_gem)
+#    listbox_facet_gem_object = build.get_attr(listbox_facet_gem, "#tk_object")
+#    listbox_facet_gem_object.delete(0, "end")
+#    gem_gem = build.get_gem(selected_gem_name)
+#    selected_facet_names = []
+#    if gem_gem is not None:
+#        for facet_name in sorted(gem_gem):
+#            selected_facet_names.append(facet_name)
+#            listbox_facet_gem_object.insert("end", facet_name)
+#    if selected_facet_name is None:
+#        facet_state_object.config(text="No Facet Selected")
+#        facet_index = None
+#    else:
+#        facet_index = build.findin(selected_facet_names, selected_facet_name)
+#        if facet_index is None:
+#            facet_state_object.config(text="No matching Facet: " + selected_facet_name)
+#        else:
+#            facet_state_object.config(text="")
+#    selected_listbox_facet_index = facet_index
+#    if facet_index is None:
+#        listbox_facet_gem_object.see(0)
+#    else:
+#        listbox_facet_gem_object.select_set(selected_listbox_facet_index)
+#        listbox_facet_gem_object.see(selected_listbox_facet_index)
+#    facet_text_gem = build.get_gem(".TextFacet", listbox_facet_gem)
+#    init_facet_text(facet_text_gem)
     print(120, "todo")
 
 
