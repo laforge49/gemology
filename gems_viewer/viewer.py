@@ -101,7 +101,7 @@ def init_listbox_gem_tree(listbox_gem_gem: base.Gem):
     listbox_gem_object.delete(0, "end")
     selected_gem_base_names = []
     cluster_gem = global_ids_query.get_cluster_by_cluster_name(selected_cluster_name)
-#    load_gems(cluster_gem, listbox_gem_object, "")
+    load_gems(cluster_gem, listbox_gem_object, "")
 #    gem_index = build.findin(selected_gem_base_names, selected_gem_base_name)
 #    if gem_index is None:
 #        gem_index = 0
