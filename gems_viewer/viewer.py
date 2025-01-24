@@ -2,7 +2,7 @@ import pathlib
 
 
 from gems import core, base
-from gems.facets import local_ids_query, global_ids_query, global_tags_query, gems_query, attrs_query
+from gems.facets import local_ids_query, global_ids_query, gems_query, attrs_query
 from pdml import saver
 from tkgems import tkcore
 from tkgems.tkfacets import tkattrs, tkglobal_tags
@@ -14,6 +14,7 @@ selected_listbox_gem_index: int | None = 0
 selected_gem_base_name: str = "Aggregate"
 selected_gem_base_names: list = []
 selected_gems_radiobutton: str = ".FrameGemsList"
+selected_content_radiobutton: str = ".FramePdml"
 
 
 def init_listbox_cluster(listbox_cluster_gem: base.Gem) -> None:
@@ -58,7 +59,15 @@ def gems_radiobutton_clicked(gems_radiobutton_gem: base.Gem) -> None:
 
 
 def content_radiobutton_clicked(content_radiobutton_gem: base.Gem) -> None:
-    print(122, "todo")
+    global selected_content_radiobutton
+    value = tkattrs.get_options(content_radiobutton_gem)["value"]
+    if value == selected_content_radiobutton:
+        return
+    frame_gem = global_ids_query.get_gem(selected_content_radiobutton, content_radiobutton_gem)
+    tkcore.tk_destroy(frame_gem)
+    selected_content_radiobutton = value
+    frame_gem = global_ids_query.get_gem(selected_content_radiobutton, content_radiobutton_gem)
+    tkcore.tkeval(frame_gem)
 
 
 def init_listbox_gem(listbox_gem_gem: base.Gem):
@@ -106,7 +115,7 @@ def init_pdml_text(text_gem: base.Gem) -> None:
     cluster = attrs_query.get_cluster(text_gem)
     if cluster is None:
         return
-    facet_state_gem = local_ids_query.cluster_get_gem_by_gem_base_name(cluster,"FacetState")
+    facet_state_gem = local_ids_query.cluster_get_gem_by_gem_base_name(cluster, "FacetState")
     tkcore.tk_destroy(facet_state_gem)
     parent_gem = attrs_query.get_gem_parent(text_gem)
     tkattrs.set_view_gem(parent_gem, text_gem)
