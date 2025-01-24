@@ -11,10 +11,15 @@ from tkgems.tkfacets import tkattrs, tkglobal_tags
 selected_listbox_cluster_index: int | None = 0
 selected_listbox_gem_index: int | None = 0
 selected_cluster_name: str = "Aggregate"
+Selected_cluster_gems: list = ["Aggregate"]
 selected_gem_base_name: str = "Aggregate"
 selected_gem_base_names: list = []
+selected_gem_name: str = "Aggregate"
 selected_gems_radiobutton: str = ".FrameGemsList"
 selected_content_radiobutton: str = ".FramePdml"
+selected_facet_names: list = []
+selected_facet_name: str | None = None
+selected_listbox_facet_index: int | None = None
 
 
 def init_listbox_cluster(listbox_cluster_gem: base.Gem) -> None:
