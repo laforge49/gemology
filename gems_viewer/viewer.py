@@ -13,6 +13,7 @@ selected_cluster_name: str = "Aggregate"
 selected_listbox_gem_index: int | None = 0
 selected_gem_base_name: str = "Aggregate"
 selected_gem_base_names: list = []
+selected_gems_radiobutton: str = ".FrameGemsList"
 
 
 def init_listbox_cluster(listbox_cluster_gem: base.Gem) -> None:
@@ -45,7 +46,15 @@ def load_gems(tk_gem: base.Gem, listbox_gem_object: any, prefix: str = "") -> No
 
 
 def gems_radiobutton_clicked(gems_radiobutton_gem: base.Gem) -> None:
-    print(128, "todo")
+    global selected_gems_radiobutton
+    value = tkattrs.get_options(gems_radiobutton_gem)["value"]
+    if value == selected_gems_radiobutton:
+        return
+    frame_gem = global_ids_query.get_gem(selected_gems_radiobutton, gems_radiobutton_gem)
+    tkcore.tk_destroy(frame_gem)
+    selected_gems_radiobutton = value
+    frame_gem = global_ids_query.get_gem(selected_gems_radiobutton, gems_radiobutton_gem)
+    tkcore.tkeval(frame_gem)
 
 
 def content_radiobutton_clicked(content_radiobutton_gem: base.Gem) -> None:

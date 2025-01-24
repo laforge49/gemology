@@ -16,7 +16,7 @@
                         "TkType": "TkDescriptor-tkstringvar"
                     "AttrsFacet": dict
                         "options": dict
-                            "value": "FrameGemsList"
+                            "value": ".FrameGemsList"
                     "LocalIdsFacet": dict
                         "gem_base_name": "GemsRadiobuttonSV"
                 dict
@@ -30,7 +30,7 @@
                             "padx": 5
                         "options": dict
                             "text": "Gems List"
-                            "value": "FrameGemsList"
+                            "value": ".FrameGemsList"
                     "LocalIdsFacet": dict
                         "gem_base_name": "GemsRadiobuttonFlat"
                 dict
@@ -44,6 +44,6 @@
                             "padx": 5
                         "options": dict
                             "text": "Gems Tree"
-                            "value": "FrameGemsTree"
+                            "value": ".FrameGemsTree"
                     "LocalIdsFacet": dict
                         "gem_base_name": "GemsRadiobuttonNested"

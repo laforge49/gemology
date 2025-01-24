@@ -16,7 +16,7 @@ dict
                 "TkType": "TkDescriptor-tkstringvar"
             "AttrsFacet": dict
                 "options": dict
-                    "value": "FramePdml"
+                    "value": ".FramePdml"
             "LocalIdsFacet": dict
                 "gem_base_name": "ContentRadiobuttonSV"
         dict
@@ -29,8 +29,8 @@ dict
                     "side": "left"
                     "padx": 5
                 "options": dict
-                    "text": "Gems List"
-                    "value": "FramePdml"
+                    "text": "PDML"
+                    "value": ".FramePdml"
             "LocalIdsFacet": dict
                 "gem_base_name": "ContentRadiobuttonPdml"
         dict
@@ -44,7 +44,7 @@ dict
                     "padx": 5
                 "options": dict
                     "text": "Facets"
-                    "value": "FrameContentFacets"
+                    "value": ".FrameContentFacets"
                     # "state": "disabled"
             "LocalIdsFacet": dict
                 "gem_base_name": "ContentRadiobuttonFacets"
