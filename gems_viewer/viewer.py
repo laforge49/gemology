@@ -191,9 +191,8 @@ def init_listbox_facet(listbox_facet_gem: base.Gem) -> None:
     else:
         listbox_facet_gem_object.select_set(selected_listbox_facet_index)
         listbox_facet_gem_object.see(selected_listbox_facet_index)
-#    facet_text_gem = build.get_gem(".TextFacet", listbox_facet_gem)
-#    init_facet_text(facet_text_gem)
-    print(120, "todo", gem_gem is None)
+    facet_text_gem = global_ids_query.get_gem(".TextFacet", listbox_facet_gem)
+    init_facet_text(facet_text_gem)
 
 
 def init_facet_text(facet_text_gem: base.Gem) -> None:
