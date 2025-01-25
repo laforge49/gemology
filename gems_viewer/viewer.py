@@ -196,7 +196,22 @@ def init_listbox_facet(listbox_facet_gem: base.Gem) -> None:
 
 
 def init_facet_text(facet_text_gem: base.Gem) -> None:
-    print(130, "todo")
+    global selected_gem_name
+    global selected_facet_name
+    gem = global_ids_query.get_gem(selected_gem_name, facet_text_gem)
+    saver.debug(facet_text_gem)
+    text_object = tkattrs.get_tkobject(facet_text_gem)
+    if text_object is None:
+        return
+    text_object.delete("1.0", "end")
+    if selected_facet_name is None:
+        return
+    facet = gem.get(selected_facet_name)
+    if facet is None:
+        return
+    s = saver.data_to_string(0, facet, False)
+    text_object.insert("1.0", s)
+    text_object.see("1.0")
 
 
 def create_viewer_resource_gems() -> None:
