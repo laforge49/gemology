@@ -36,7 +36,33 @@ def init_listbox_cluster(listbox_cluster_gem: base.Gem) -> None:
 
 
 def listbox_cluster_selection(listbox_cluster_gem: base.Gem, event: any) -> None:
+    global selected_listbox_cluster_index
+    global selected_cluster_name
+    global selected_gem_name
+    label_error_gem = global_ids_query.get_gem(".LabelError", listbox_cluster_gem)
+    label_error_object = tkattrs.get_tkobject(label_error_gem)
+    label_error_object["text"] = ""
+    listbox_cluster_object = tkattrs.get_tkobject(listbox_cluster_gem)
+    cluster_indexes = listbox_cluster_object.curselection()
+    cluster_index = cluster_indexes[0]
+    cluster_name = listbox_cluster_object.get(cluster_index)
+    sv_name_gem = global_ids_query.get_gem(".StringVarName", listbox_cluster_gem)
+    sv_name_object = tkattrs.get_tkobject(sv_name_gem)
+    sv_name_object.set(cluster_name)
+    selected_listbox_cluster_index = cluster_index
+    selected_cluster_name = cluster_name
+    selected_gem_name = cluster_name
+    init_gems_view(listbox_cluster_gem)
+    #init_content_view(listbox_cluster_gem)
     print(123, "todo")
+
+
+def init_gems_view(tk_gem: base.Gem) -> None:
+    frame_gem = global_ids_query.get_gem(selected_gems_radiobutton, tk_gem)
+    if frame_gem is None:
+        return
+    view_gem = tkattrs.get_view_gem(frame_gem)
+    tkcore.tkinit_func(view_gem)
 
 
 def load_gems(tk_gem: base.Gem, listbox_gem_object: any, prefix: str = "") -> None:
@@ -199,7 +225,6 @@ def init_facet_text(facet_text_gem: base.Gem) -> None:
     global selected_gem_name
     global selected_facet_name
     gem = global_ids_query.get_gem(selected_gem_name, facet_text_gem)
-    saver.debug(facet_text_gem)
     text_object = tkattrs.get_tkobject(facet_text_gem)
     if text_object is None:
         return
