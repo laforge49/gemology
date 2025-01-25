@@ -170,7 +170,7 @@ def init_listbox_facet(listbox_facet_gem: base.Gem) -> None:
     tkattrs.set_view_gem(master_frame_gem, listbox_facet_gem)
     listbox_facet_gem_object = tkattrs.get_tkobject(listbox_facet_gem)
     listbox_facet_gem_object.delete(0, "end")
-#    gem_gem = build.get_gem(selected_gem_name)
+    gem_gem = global_ids_query.get_gem(selected_gem_name)
 #    selected_facet_names = []
 #    if gem_gem is not None:
 #        for facet_name in sorted(gem_gem):
@@ -193,7 +193,7 @@ def init_listbox_facet(listbox_facet_gem: base.Gem) -> None:
 #        listbox_facet_gem_object.see(selected_listbox_facet_index)
 #    facet_text_gem = build.get_gem(".TextFacet", listbox_facet_gem)
 #    init_facet_text(facet_text_gem)
-    print(120, "todo")
+    print(120, "todo", gem_gem is None)
 
 
 def init_facet_text(facet_text_gem: base.Gem) -> None:
