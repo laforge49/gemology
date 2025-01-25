@@ -176,21 +176,21 @@ def init_listbox_facet(listbox_facet_gem: base.Gem) -> None:
         for facet_name in sorted(gem_gem):
             selected_facet_names.append(facet_name)
             listbox_facet_gem_object.insert("end", facet_name)
-#    if selected_facet_name is None:
-#        facet_state_object.config(text="No Facet Selected")
-#        facet_index = None
-#    else:
-#        facet_index = build.findin(selected_facet_names, selected_facet_name)
-#        if facet_index is None:
-#            facet_state_object.config(text="No matching Facet: " + selected_facet_name)
-#        else:
-#            facet_state_object.config(text="")
-#    selected_listbox_facet_index = facet_index
-#    if facet_index is None:
-#        listbox_facet_gem_object.see(0)
-#    else:
-#        listbox_facet_gem_object.select_set(selected_listbox_facet_index)
-#        listbox_facet_gem_object.see(selected_listbox_facet_index)
+    if selected_facet_name is None:
+        facet_state_object.config(text="No Facet Selected")
+        facet_index = None
+    else:
+        facet_index = base.findin(selected_facet_names, selected_facet_name)
+        if facet_index is None:
+            facet_state_object.config(text="No matching Facet: " + selected_facet_name)
+        else:
+            facet_state_object.config(text="")
+    selected_listbox_facet_index = facet_index
+    if facet_index is None:
+        listbox_facet_gem_object.see(0)
+    else:
+        listbox_facet_gem_object.select_set(selected_listbox_facet_index)
+        listbox_facet_gem_object.see(selected_listbox_facet_index)
 #    facet_text_gem = build.get_gem(".TextFacet", listbox_facet_gem)
 #    init_facet_text(facet_text_gem)
     print(120, "todo", gem_gem is None)
