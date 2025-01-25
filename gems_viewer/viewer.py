@@ -89,7 +89,7 @@ def init_listbox_gem(listbox_gem_gem: base.Gem):
     gem_base_names = local_ids_query.cluster_get_gem_base_names(cluster_gem)
     if gem_base_names is not None:
         for gem_name in sorted(gem_base_names):
-            selected_gem_base_names.append(gem_name)
+            selected_gem_base_names.append("." + gem_name)
     for gem_name in selected_gem_base_names:
         listbox_gem_object.insert("end", gem_name)
     gem_index = base.findin(selected_gem_base_names, selected_gem_base_name)
@@ -169,7 +169,7 @@ def init_listbox_facet(listbox_facet_gem: base.Gem) -> None:
     master_frame_gem = tkglobal_tags.resolve_master_frame_GemName(listbox_facet_gem)
     tkattrs.set_view_gem(master_frame_gem, listbox_facet_gem)
     listbox_facet_gem_object = tkattrs.get_tkobject(listbox_facet_gem)
-#    listbox_facet_gem_object.delete(0, "end")
+    listbox_facet_gem_object.delete(0, "end")
 #    gem_gem = build.get_gem(selected_gem_name)
 #    selected_facet_names = []
 #    if gem_gem is not None:
