@@ -171,11 +171,11 @@ def init_listbox_facet(listbox_facet_gem: base.Gem) -> None:
     listbox_facet_gem_object = tkattrs.get_tkobject(listbox_facet_gem)
     listbox_facet_gem_object.delete(0, "end")
     gem_gem = global_ids_query.get_gem(selected_gem_name)
-#    selected_facet_names = []
-#    if gem_gem is not None:
-#        for facet_name in sorted(gem_gem):
-#            selected_facet_names.append(facet_name)
-#            listbox_facet_gem_object.insert("end", facet_name)
+    selected_facet_names = []
+    if gem_gem is not None:
+        for facet_name in sorted(gem_gem):
+            selected_facet_names.append(facet_name)
+            listbox_facet_gem_object.insert("end", facet_name)
 #    if selected_facet_name is None:
 #        facet_state_object.config(text="No Facet Selected")
 #        facet_index = None
