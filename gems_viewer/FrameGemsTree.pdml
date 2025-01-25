@@ -48,7 +48,7 @@ dict
         dict
             "GlobalTagsFacet": dict
                 "TkType": "TkDescriptor-ttkscrollbar"
-                "ScrollingName": ".ListBoxGem2"
+                "ScrollingGemName": ".ListBoxGem2"
             "AttrsFacet": dict
                 "grid": dict
                     "row": 0
@@ -57,11 +57,11 @@ dict
                 "options": dict
                     "orient": "vertical"
             "LocalIdsFacet": dict
-                "gem_base_name": "ListBoxGem_Y2"
+                "gem_base_name": "ListBoxGem2_Y"
         dict
             "GlobalTagsFacet": dict
                 "TkType": "TkDescriptor-ttkscrollbar"
-                "ScrollingName": ".ListBoxGem2"
+                "ScrollingGemName": ".ListBoxGem2"
             "AttrsFacet": dict
                 "grid": dict
                     "row": 1
