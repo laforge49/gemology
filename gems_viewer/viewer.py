@@ -53,8 +53,15 @@ def listbox_cluster_selection(listbox_cluster_gem: base.Gem, event: any) -> None
     selected_cluster_name = cluster_name
     selected_gem_name = cluster_name
     init_gems_view(listbox_cluster_gem)
-    #init_content_view(listbox_cluster_gem)
-    print(123, "todo")
+    init_content_view(listbox_cluster_gem)
+
+
+def init_content_view(tk_gem: base.Gem) -> None:
+    frame_gem = global_ids_query.get_gem(selected_content_radiobutton, tk_gem)
+    if frame_gem is None:
+        return
+    view_gem = tkattrs.get_view_gem(frame_gem)
+    tkcore.tkinit_func(view_gem)
 
 
 def init_gems_view(tk_gem: base.Gem) -> None:
