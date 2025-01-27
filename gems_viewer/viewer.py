@@ -38,7 +38,7 @@ def init_listbox_cluster(listbox_cluster_gem: base.Gem) -> None:
 def listbox_cluster_selection(listbox_cluster_gem: base.Gem, event: any) -> None:
     global selected_listbox_cluster_index
     global selected_cluster_name
-    global selected_gem_name
+    global selected_gem_base_name
     label_error_gem = global_ids_query.get_gem(".LabelError", listbox_cluster_gem)
     label_error_object = tkattrs.get_tkobject(label_error_gem)
     label_error_object["text"] = ""
@@ -51,7 +51,7 @@ def listbox_cluster_selection(listbox_cluster_gem: base.Gem, event: any) -> None
     sv_name_object.set(cluster_name)
     selected_listbox_cluster_index = cluster_index
     selected_cluster_name = cluster_name
-    selected_gem_name = cluster_name
+    selected_gem_base_name = cluster_name
     init_gems_view(listbox_cluster_gem)
     init_content_view(listbox_cluster_gem)
 
