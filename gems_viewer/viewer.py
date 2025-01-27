@@ -177,7 +177,6 @@ def listbox_gem_selection(listbox_gem_gem: base.Gem, event: any) -> None:
     selected_listbox_gem_index = gem_index
     selected_gem_name = gem_name
     init_content_view(listbox_gem_gem)
-    print(125, "todo", gem_name)
 
 
 def listbox_facet_selection(listbox_facet_gem: base.Gem, event: any) -> None:
@@ -212,12 +211,10 @@ def init_pdml_text(text_gem: base.Gem) -> None:
 
 
 def init_listbox_facet(listbox_facet_gem: base.Gem) -> None:
-    print(400)
     global selected_gem_full_name
     global selected_facet_names
     global selected_facet_name
     global selected_listbox_facet_index
-    print(401, selected_gem_full_name)
 
     facet_state_gem = global_ids_query.get_gem(".FacetState", listbox_facet_gem)
     facet_state_object = tkattrs.get_tkobject(facet_state_gem)
@@ -229,7 +226,6 @@ def init_listbox_facet(listbox_facet_gem: base.Gem) -> None:
     listbox_facet_gem_object = tkattrs.get_tkobject(listbox_facet_gem)
     listbox_facet_gem_object.delete(0, "end")
     gem_gem = global_ids_query.get_gem(selected_gem_full_name)
-    print(402, gem_gem is None)
     selected_facet_names = []
     if gem_gem is not None:
         for facet_name in sorted(gem_gem):
