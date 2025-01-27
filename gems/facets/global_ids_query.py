@@ -111,4 +111,10 @@ def get_gem(gem_name: str, context_gem: Optional[base.Gem] = None) -> Optional[b
         else:
             cluster = attrs_query.get_cluster(context_gem)
         return local_ids_query.cluster_get_gem_by_gem_base_name(cluster, gem_name[1:])
-    return get_cluster_by_cluster_name(gem_name)
+    ndx = base.findin(gem_name, ".")
+    if ndx is None:
+        return get_cluster_by_cluster_name(gem_name)
+    cluster_name = gem_name[:ndx]
+    cluster = get_cluster_by_cluster_name(cluster_name)
+    gem_base_name = gem_name[ndx + 1:]
+    return local_ids_query.cluster_get_gem_by_gem_base_name(cluster, gem_base_name)
