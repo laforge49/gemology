@@ -1,3 +1,4 @@
+from typing import *
 import pathlib
 
 
@@ -229,16 +230,24 @@ def button_name_function(entry_name_gem: base.Gem) -> None:
     if gem_index is None:
         label_error_object["text"] = "Unknown gem name."
         return
-#    selected_listbox_gem_index = gem_index
-#    selected_gem_full_name = full_gem_name
-#    selected_gem_name = gem_name
-#    listbox_gem_gem = get_listbox_gem_gem(entry_name_gem)
-#    listbox_gem_object = tkattrs.get_tkobject(listbox_gem_gem)
-#    listbox_gem_object.selection_clear(0, "end")
-#    listbox_gem_object.select_set(selected_listbox_gem_index)
-#    listbox_gem_object.see(selected_listbox_gem_index)
-#    init_content_view(entry_name_gem)
+    selected_listbox_gem_index = gem_index
+    selected_gem_full_name = gem_name
+    selected_gem_name = dot_gem_name
+    listbox_gem_gem = get_listbox_gem_gem(entry_name_gem)
+    listbox_gem_object = tkattrs.get_tkobject(listbox_gem_gem)
+    listbox_gem_object.selection_clear(0, "end")
+    listbox_gem_object.select_set(selected_listbox_gem_index)
+    listbox_gem_object.see(selected_listbox_gem_index)
+    init_content_view(entry_name_gem)
     print(124, "todo", gem_name, dot_gem_name)
+
+
+def get_listbox_gem_gem(tk_gem: base.Gem) -> Optional[base.Gem]:
+    frame_gem = global_ids_query.get_gem(selected_gems_radiobutton, tk_gem)
+    if frame_gem is None:
+        return None
+    view_gem = tkattrs.get_view_gem(frame_gem)
+    return view_gem
 
 
 def init_pdml_text(text_gem: base.Gem) -> None:
