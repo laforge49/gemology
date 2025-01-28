@@ -202,14 +202,14 @@ def button_name_function(entry_name_gem: base.Gem) -> None:
     dot_index = base.findin(gem_name, ".")
     if dot_index is None:
         cluster_name = gem_name
-        full_gem_name = cluster_name
+        dot_gem_name = gem_name
     else:
         cluster_name = gem_name[:dot_index]
         if gem_name.endswith("."):
             label_error_object["text"] = "Improper name."
             return
         else:
-            full_gem_name = gem_name
+            dot_gem_name = gem_name[dot_index:]
     listbox_cluster_gem = global_ids_query.get_gem(".ListBoxCluster", entry_name_gem)
     listbox_cluster_object = tkattrs.get_tkobject(listbox_cluster_gem)
     cluster_names = listbox_cluster_object.get(0, "end")
@@ -225,7 +225,8 @@ def button_name_function(entry_name_gem: base.Gem) -> None:
         selected_listbox_cluster_index = cluster_index
         init_gems_view(entry_name_gem)
         selected_listbox_gem_index = 0
-#    gem_index = base.findin(selected_gem_names, full_gem_name)
+    gem_index = base.findin(selected_gem_names, dot_gem_name)
+    print(789, gem_index)
 #    if gem_index is None:
 #        label_error_object["text"] = "Unknown gem name."
 #        return
@@ -238,7 +239,7 @@ def button_name_function(entry_name_gem: base.Gem) -> None:
 #    listbox_gem_object.select_set(selected_listbox_gem_index)
 #    listbox_gem_object.see(selected_listbox_gem_index)
 #    init_content_view(entry_name_gem)
-    print(124, "todo", gem_name, full_gem_name)
+    print(124, "todo", gem_name, dot_gem_name)
 
 
 def init_pdml_text(text_gem: base.Gem) -> None:
