@@ -194,10 +194,10 @@ def button_name_function(entry_name_gem: base.Gem) -> None:
     global selected_listbox_gem_index
     global selected_gem_full_name
     global selected_gem_name
-#    sv_name_gem = build.get_gem(".StringVarName", tk_gem)
+    sv_name_gem = global_ids_query.get_gem(".StringVarName", entry_name_gem)
 #    sv_name_object = build.get_attr(sv_name_gem, "#tk_object")
 #    gem_name = sv_name_object.get()
-#    label_error_gem = build.get_gem(".LabelError", tk_gem)
+#    label_error_gem = global_ids_query.get_gem(".LabelError", entry_name_gem)
 #    label_error_object = build.get_attr(label_error_gem, "#tk_object")
 #    dot_index = build.findin(gem_name, ".")
 #    if dot_index is None:
@@ -212,7 +212,7 @@ def button_name_function(entry_name_gem: base.Gem) -> None:
 #            if cluster_name == gem_base_name:
 #                label_error_object["text"] = "Improper name."
 #                return
-#    listbox_cluster_gem = build.get_gem(".ListBoxCluster", tk_gem)
+#    listbox_cluster_gem = global_ids_query.get_gem(".ListBoxCluster", entry_name_gem)
 #    listbox_cluster_object = build.get_attr(listbox_cluster_gem, "#tk_object")
 #    cluster_names = listbox_cluster_object.get(0, "end")
 #    cluster_index = build.findin(cluster_names, cluster_name)
@@ -225,7 +225,7 @@ def button_name_function(entry_name_gem: base.Gem) -> None:
 #    if selected_cluster_name != cluster_name:
 #        selected_cluster_name = cluster_name
 #        selected_listbox_cluster_index = cluster_index
-#        init_gems_view(tk_gem)
+#        init_gems_view(entry_name_gem)
 #        selected_listbox_gem_index = 0
 #    gem_index = build.findin(selected_gem_names, gem_base_name)
 #    if gem_index is None:
@@ -234,12 +234,12 @@ def button_name_function(entry_name_gem: base.Gem) -> None:
 #    selected_listbox_gem_index = gem_index
 #    selected_gem_full_name = gem_base_name
 #    selected_gem_name = gem_name
-#    listbox_gem_gem = get_listbox_gem_gem(tk_gem)
+#    listbox_gem_gem = get_listbox_gem_gem(entry_name_gem)
 #    listbox_gem_object = build.get_attr(listbox_gem_gem, "#tk_object")
 #    listbox_gem_object.selection_clear(0, "end")
 #    listbox_gem_object.select_set(selected_listbox_gem_index)
 #    listbox_gem_object.see(selected_listbox_gem_index)
-#    init_content_view(tk_gem)
+#    init_content_view(entry_name_gem)
     print(124, "todo")
 
 
