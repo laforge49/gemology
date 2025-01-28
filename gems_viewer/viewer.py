@@ -210,13 +210,13 @@ def button_name_function(entry_name_gem: base.Gem) -> None:
             return
         else:
             full_gem_name = gem_name
-#    listbox_cluster_gem = global_ids_query.get_gem(".ListBoxCluster", entry_name_gem)
-#    listbox_cluster_object = tkattrs.get_tkobject(listbox_cluster_gem)
-#    cluster_names = listbox_cluster_object.get(0, "end")
-#    cluster_index = base.findin(cluster_names, cluster_name)
-#    if cluster_index is None:
-#        label_error_object["text"] = "Unknown cluster."
-#        return
+    listbox_cluster_gem = global_ids_query.get_gem(".ListBoxCluster", entry_name_gem)
+    listbox_cluster_object = tkattrs.get_tkobject(listbox_cluster_gem)
+    cluster_names = listbox_cluster_object.get(0, "end")
+    cluster_index = base.findin(cluster_names, cluster_name)
+    if cluster_index is None:
+        label_error_object["text"] = "Unknown cluster."
+        return
 #    label_error_object["text"] = ""
 #    listbox_cluster_object.selection_clear(0, "end")
 #    listbox_cluster_object.selection_set(cluster_index)
