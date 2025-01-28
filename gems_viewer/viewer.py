@@ -217,14 +217,14 @@ def button_name_function(entry_name_gem: base.Gem) -> None:
     if cluster_index is None:
         label_error_object["text"] = "Unknown cluster."
         return
-#    label_error_object["text"] = ""
-#    listbox_cluster_object.selection_clear(0, "end")
-#    listbox_cluster_object.selection_set(cluster_index)
-#    if selected_cluster_name != cluster_name:
-#        selected_cluster_name = cluster_name
-#        selected_listbox_cluster_index = cluster_index
-#        init_gems_view(entry_name_gem)
-#        selected_listbox_gem_index = 0
+    label_error_object["text"] = ""
+    listbox_cluster_object.selection_clear(0, "end")
+    listbox_cluster_object.selection_set(cluster_index)
+    if selected_cluster_name != cluster_name:
+        selected_cluster_name = cluster_name
+        selected_listbox_cluster_index = cluster_index
+        init_gems_view(entry_name_gem)
+        selected_listbox_gem_index = 0
 #    gem_index = base.findin(selected_gem_names, full_gem_name)
 #    if gem_index is None:
 #        label_error_object["text"] = "Unknown gem name."
