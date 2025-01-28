@@ -226,10 +226,9 @@ def button_name_function(entry_name_gem: base.Gem) -> None:
         init_gems_view(entry_name_gem)
         selected_listbox_gem_index = 0
     gem_index = base.findin(selected_gem_names, dot_gem_name)
-    print(789, gem_index)
-#    if gem_index is None:
-#        label_error_object["text"] = "Unknown gem name."
-#        return
+    if gem_index is None:
+        label_error_object["text"] = "Unknown gem name."
+        return
 #    selected_listbox_gem_index = gem_index
 #    selected_gem_full_name = full_gem_name
 #    selected_gem_name = gem_name
