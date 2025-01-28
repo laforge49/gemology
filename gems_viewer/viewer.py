@@ -196,7 +196,7 @@ def button_name_function(entry_name_gem: base.Gem) -> None:
     global selected_gem_name
     sv_name_gem = global_ids_query.get_gem(".StringVarName", entry_name_gem)
     sv_name_object = tkattrs.get_tkobject(sv_name_gem)
-#    gem_name = sv_name_object.get()
+    gem_name = sv_name_object.get()
 #    label_error_gem = global_ids_query.get_gem(".LabelError", entry_name_gem)
 #    label_error_object = tkattrs.get_tkobject(label_error_gem)
 #    dot_index = build.findin(gem_name, ".")
@@ -240,7 +240,7 @@ def button_name_function(entry_name_gem: base.Gem) -> None:
 #    listbox_gem_object.select_set(selected_listbox_gem_index)
 #    listbox_gem_object.see(selected_listbox_gem_index)
 #    init_content_view(entry_name_gem)
-    print(124, "todo")
+    print(124, "todo", gem_name)
 
 
 def init_pdml_text(text_gem: base.Gem) -> None:
