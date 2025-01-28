@@ -40,6 +40,7 @@ def listbox_cluster_selection(listbox_cluster_gem: base.Gem, event: any) -> None
     global selected_listbox_cluster_index
     global selected_cluster_name
     global selected_gem_name
+    global selected_gem_full_name
     label_error_gem = global_ids_query.get_gem(".LabelError", listbox_cluster_gem)
     label_error_object = tkattrs.get_tkobject(label_error_gem)
     label_error_object["text"] = ""
@@ -53,6 +54,7 @@ def listbox_cluster_selection(listbox_cluster_gem: base.Gem, event: any) -> None
     selected_listbox_cluster_index = cluster_index
     selected_cluster_name = cluster_name
     selected_gem_name = cluster_name
+    selected_gem_full_name = cluster_name
     init_gems_view(listbox_cluster_gem)
     init_content_view(listbox_cluster_gem)
 
@@ -239,7 +241,6 @@ def button_name_function(entry_name_gem: base.Gem) -> None:
     listbox_gem_object.select_set(selected_listbox_gem_index)
     listbox_gem_object.see(selected_listbox_gem_index)
     init_content_view(entry_name_gem)
-    print(124, "todo", gem_name, dot_gem_name)
 
 
 def get_listbox_gem_gem(tk_gem: base.Gem) -> Optional[base.Gem]:
@@ -251,7 +252,7 @@ def get_listbox_gem_gem(tk_gem: base.Gem) -> Optional[base.Gem]:
 
 
 def init_pdml_text(text_gem: base.Gem) -> None:
-    global selected_gem_name
+    global selected_gem_full_name
     cluster = attrs_query.get_cluster(text_gem)
     if cluster is None:
         return
@@ -259,7 +260,7 @@ def init_pdml_text(text_gem: base.Gem) -> None:
     tkcore.tk_destroy(facet_state_gem)
     parent_gem = attrs_query.get_gem_parent(text_gem)
     tkattrs.set_view_gem(parent_gem, text_gem)
-    gem = global_ids_query.get_gem(selected_gem_name, text_gem)
+    gem = global_ids_query.get_gem(selected_gem_full_name)
     if gem is None:
         return
     text_object = tkattrs.get_tkobject(text_gem)
