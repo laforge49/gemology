@@ -192,10 +192,10 @@ def listbox_facet_selection(listbox_facet_gem: base.Gem, event: any) -> None:
     facet_name = selected_facet_names[facet_index]
     selected_listbox_facet_index = facet_index
     selected_facet_name = facet_name
-#    facet_state_gem = build.get_gem(".FacetState", listbox_facet_gem)
-#    facet_state_object = build.get_attr(facet_state_gem, "#tk_object")
+    facet_state_gem = global_ids_query.get_gem(".FacetState", listbox_facet_gem)
+    facet_state_object = tkattrs.get_tkobject(facet_state_gem)
 #    facet_state_object.config(text="")
-#    facet_text_gem = build.get_gem(".TextFacet", listbox_facet_gem)
+#    facet_text_gem = global_ids_query.get_gem(".TextFacet", listbox_facet_gem)
 #    init_facet_text(facet_text_gem)
     print(129, "todo")
 
