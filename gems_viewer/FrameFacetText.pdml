@@ -2,7 +2,6 @@ dict
     "GlobalTagsFacet": dict
         "TkType": "TkDescriptor-ttkframe"
     "AttrsFacet": dict
-        "manual": True
         "pack": dict
             "expand": True
             "fill": "both"

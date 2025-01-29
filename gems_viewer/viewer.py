@@ -326,7 +326,6 @@ def init_listbox_facet(listbox_facet_gem: base.Gem) -> None:
 def init_facet_text(facet_text_gem: base.Gem) -> None:
     global selected_gem_full_name
     global selected_facet_name
-    print(200, selected_gem_full_name, selected_facet_name)
     gem = global_ids_query.get_gem(selected_gem_full_name, facet_text_gem)
     text_object = tkattrs.get_tkobject(facet_text_gem)
     if text_object is None:
