@@ -79,7 +79,7 @@ def get_cluster_by_cluster_name(cluster_name: base.ClusterName) -> Optional[base
     return cluster
 
 
-def expand_gem_name(source_gem: base.Gem, gemname: str) -> Optional[str]:
+def expand_gem_name(source_gem: base.Gem, gemname: base.GemName) -> Optional[base.FullGemName]:
     if gemname is None:
         return None
     if gemname.startswith("."):
@@ -95,12 +95,13 @@ def expand_gem_name(source_gem: base.Gem, gemname: str) -> Optional[str]:
             cluster_name = get_cluster_name(cluster)
             if cluster_name is None:
                 return None
-        return cluster_name + gemname
+        return base.FullGemName(cluster_name + gemname)
     else:
+        assert isinstance(gemname, base.FullGemName)
         return gemname
 
 
-def get_gem(gem_name: str, context_gem: Optional[base.Gem] = None, global_ids_query=None) -> Optional[base.Gem]:
+def get_gem(gem_name: base.GemName, context_gem: Optional[base.Gem] = None, global_ids_query=None) -> Optional[base.Gem]:
     if gem_name is None:
         return None
     if gem_name == "Aggregate":
@@ -113,10 +114,8 @@ def get_gem(gem_name: str, context_gem: Optional[base.Gem] = None, global_ids_qu
         return local_ids_query.cluster_get_gem_by_gem_base_name(cluster, gem_name[1:])
     ndx = base.findin(gem_name, ".")
     if ndx is None:
-        assert isinstance(gem_name, base.ClusterName)
-        return get_cluster_by_cluster_name(gem_name)
-    cluster_name = gem_name[:ndx]
-    assert isinstance(cluster_name, base.ClusterName)
+        return get_cluster_by_cluster_name(base.ClusterName(gem_name))
+    cluster_name = base.ClusterName(gem_name[:ndx])
     cluster = get_cluster_by_cluster_name(cluster_name)
-    gem_base_name = gem_name[ndx + 1:]
+    gem_base_name = base.GemBaseName(gem_name[ndx + 1:])
     return local_ids_query.cluster_get_gem_by_gem_base_name(cluster, gem_base_name)

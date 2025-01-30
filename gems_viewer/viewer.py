@@ -13,11 +13,11 @@ selected_listbox_cluster_index: int | None = 0
 selected_listbox_gem_index: int | None = 0
 selected_cluster_name = base.ClusterName("Aggregate")
 Selected_cluster_gems: list = ["Aggregate"]
-selected_gem_name: str = "Aggregate"
+selected_gem_name = base.ClusterName("Aggregate")
 selected_gem_names: list = []
-selected_gem_full_name: str = "Aggregate"
-selected_gems_radiobutton: str = ".FrameGemsList"
-selected_content_radiobutton: str = ".FramePdml"
+selected_gem_full_name = base.FullGemName("Aggregate")
+selected_gems_radiobutton = base.GemName(".FrameGemsList")
+selected_content_radiobutton = base.GemName(".FramePdml")
 selected_facet_names: list = []
 selected_facet_name: str | None = None
 selected_listbox_facet_index: int | None = None
@@ -41,14 +41,14 @@ def listbox_cluster_selection(listbox_cluster_gem: base.Gem, event: any) -> None
     global selected_cluster_name
     global selected_gem_name
     global selected_gem_full_name
-    label_error_gem = global_ids_query.get_gem(".LabelError", listbox_cluster_gem)
+    label_error_gem = global_ids_query.get_gem(base.GemName(".LabelError"), listbox_cluster_gem)
     label_error_object = tkattrs.get_tkobject(label_error_gem)
     label_error_object["text"] = ""
     listbox_cluster_object = tkattrs.get_tkobject(listbox_cluster_gem)
     cluster_indexes = listbox_cluster_object.curselection()
     cluster_index = cluster_indexes[0]
     cluster_name = listbox_cluster_object.get(cluster_index)
-    sv_name_gem = global_ids_query.get_gem(".StringVarName", listbox_cluster_gem)
+    sv_name_gem = global_ids_query.get_gem(base.GemName(".StringVarName"), listbox_cluster_gem)
     sv_name_object = tkattrs.get_tkobject(sv_name_gem)
     sv_name_object.set(cluster_name)
     selected_listbox_cluster_index = cluster_index
@@ -60,6 +60,7 @@ def listbox_cluster_selection(listbox_cluster_gem: base.Gem, event: any) -> None
 
 
 def init_content_view(tk_gem: base.Gem) -> None:
+    global selected_content_radiobutton
     frame_gem = global_ids_query.get_gem(selected_content_radiobutton, tk_gem)
     if frame_gem is None:
         return
@@ -68,6 +69,7 @@ def init_content_view(tk_gem: base.Gem) -> None:
 
 
 def init_gems_view(tk_gem: base.Gem) -> None:
+    global selected_gems_radiobutton
     frame_gem = global_ids_query.get_gem(selected_gems_radiobutton, tk_gem)
     if frame_gem is None:
         return
@@ -162,14 +164,14 @@ def listbox_gem_selection(listbox_gem_gem: base.Gem, event: any) -> None:
     global selected_gem_name
     global selected_gem_full_name
     global selected_gem_names
-    label_error_gem = global_ids_query.get_gem(".LabelError", listbox_gem_gem)
+    label_error_gem = global_ids_query.get_gem(base.GemName(".LabelError"), listbox_gem_gem)
     label_error_object = tkattrs.get_tkobject(label_error_gem)
     label_error_object["text"] = ""
     listbox_gem_object = tkattrs.get_tkobject(listbox_gem_gem)
     gem_indexes = listbox_gem_object.curselection()
     gem_index = gem_indexes[0]
     gem_name = selected_gem_names[gem_index]
-    sv_name_gem = global_ids_query.get_gem(".StringVarName", listbox_gem_gem)
+    sv_name_gem = global_ids_query.get_gem(base.GemName(".StringVarName"), listbox_gem_gem)
     sv_name_object = tkattrs.get_tkobject(sv_name_gem)
     if selected_cluster_name == gem_name:
         selected_gem_full_name = selected_cluster_name
@@ -192,10 +194,10 @@ def listbox_facet_selection(listbox_facet_gem: base.Gem, event: any) -> None:
     facet_name = selected_facet_names[facet_index]
     selected_listbox_facet_index = facet_index
     selected_facet_name = facet_name
-    facet_state_gem = global_ids_query.get_gem(".FacetState", listbox_facet_gem)
+    facet_state_gem = global_ids_query.get_gem(base.GemName(".FacetState"), listbox_facet_gem)
     facet_state_object = tkattrs.get_tkobject(facet_state_gem)
     facet_state_object.config(text="")
-    facet_text_gem = global_ids_query.get_gem(".TextFacet", listbox_facet_gem)
+    facet_text_gem = global_ids_query.get_gem(base.GemName(".TextFacet"), listbox_facet_gem)
     init_facet_text(facet_text_gem)
 
 
@@ -210,10 +212,10 @@ def button_name_function(entry_name_gem: base.Gem) -> None:
     global selected_listbox_gem_index
     global selected_gem_full_name
     global selected_gem_name
-    sv_name_gem = global_ids_query.get_gem(".StringVarName", entry_name_gem)
+    sv_name_gem = global_ids_query.get_gem(base.GemName(".StringVarName"), entry_name_gem)
     sv_name_object = tkattrs.get_tkobject(sv_name_gem)
     gem_name = sv_name_object.get()
-    label_error_gem = global_ids_query.get_gem(".LabelError", entry_name_gem)
+    label_error_gem = global_ids_query.get_gem(base.GemName(".LabelError"), entry_name_gem)
     label_error_object = tkattrs.get_tkobject(label_error_gem)
     dot_index = base.findin(gem_name, ".")
     if dot_index is None:
@@ -226,7 +228,7 @@ def button_name_function(entry_name_gem: base.Gem) -> None:
             return
         else:
             dot_gem_name = gem_name[dot_index:]
-    listbox_cluster_gem = global_ids_query.get_gem(".ListBoxCluster", entry_name_gem)
+    listbox_cluster_gem = global_ids_query.get_gem(base.GemName(".ListBoxCluster"), entry_name_gem)
     listbox_cluster_object = tkattrs.get_tkobject(listbox_cluster_gem)
     cluster_names = listbox_cluster_object.get(0, "end")
     cluster_index = base.findin(cluster_names, cluster_name)
@@ -289,7 +291,7 @@ def init_listbox_facet(listbox_facet_gem: base.Gem) -> None:
     global selected_facet_name
     global selected_listbox_facet_index
 
-    facet_state_gem = global_ids_query.get_gem(".FacetState", listbox_facet_gem)
+    facet_state_gem = global_ids_query.get_gem(base.GemName(".FacetState"), listbox_facet_gem)
     facet_state_object = tkattrs.get_tkobject(facet_state_gem)
     if facet_state_object is None:
         tkcore.tkeval(facet_state_gem)
@@ -319,7 +321,7 @@ def init_listbox_facet(listbox_facet_gem: base.Gem) -> None:
     else:
         listbox_facet_gem_object.select_set(selected_listbox_facet_index)
         listbox_facet_gem_object.see(selected_listbox_facet_index)
-    facet_text_gem = global_ids_query.get_gem(".TextFacet", listbox_facet_gem)
+    facet_text_gem = global_ids_query.get_gem(base.GemName(".TextFacet"), listbox_facet_gem)
     init_facet_text(facet_text_gem)
 
 

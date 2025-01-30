@@ -14,7 +14,7 @@ def isscalar(x: any) -> bool:
 scalar = int | float | complex | str | bytes | bool
 
 
-class BaseGemName(str):
+class GemBaseName(str):
     pass
 
 
@@ -26,7 +26,7 @@ class ClusterName(str):
     pass
 
 
-class FullGemName(str):
+class FullGemName(GemName):
     pass
 
 

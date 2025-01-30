@@ -21,7 +21,7 @@ def expand_tag_value(source_gem: Optional[base.Gem], tag_name: str, tag_value: s
         return None
     if not tag_name.endswith("GemName"):
         return tag_value
-    gem_name = global_ids_query.expand_gem_name(source_gem, tag_value)
+    gem_name = global_ids_query.expand_gem_name(source_gem, base.GemName(tag_value))
     return gem_name
 
 
