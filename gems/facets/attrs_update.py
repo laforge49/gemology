@@ -2,8 +2,6 @@ from typing import *
 
 from gems import base
 from gems.facets import attrs_query
-from pdml import saver
-from tkgems.tkfacets import tkattrs
 
 
 def make_af(gem: Optional[base.Gem]) -> Optional[base.AttrsFacet]:
