@@ -27,7 +27,7 @@ def gem_get_tag_value(gem: Optional[base.Gem], tag_name: str) -> Optional[base.s
     return gtf.get(tag_name)
 
 
-def gem_get_full_gem_name(source_gem: Optional[base.Gem], tag_name: str) -> Optional[str]:
+def gem_get_full_gem_name(source_gem: Optional[base.Gem], tag_name: str) -> Optional[base.FullGemName]:
     if source_gem is None:
         return None
     gemname = gem_get_tag_value(source_gem, tag_name)
@@ -40,9 +40,11 @@ def resolve_link(source_gem: base.Gem, tag_name: str) -> Optional[base.Gem]:
         return None
     if full_gemname == "Aggregate":
         gem_basename = None
+        assert isinstance(full_gemname, base.ClusterName)
         cluster = global_ids_query.get_cluster_by_cluster_name(full_gemname)
     elif "." not in full_gemname:
         gem_basename = None
+        assert isinstance(full_gemname, base.ClusterName)
         cluster = global_ids_query.get_cluster_by_cluster_name(full_gemname)
     else:
         cluster_name, gem_basename = full_gemname.split(".")

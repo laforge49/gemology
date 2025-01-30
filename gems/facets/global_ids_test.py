@@ -14,7 +14,7 @@ def test() -> None:
     saver.debug(cluster1)
     print()
     print("Sam:")
-    saver.debug(global_ids_query.get_cluster_by_cluster_name("Sam"))
+    saver.debug(global_ids_query.get_cluster_by_cluster_name(base.ClusterName("Sam")))
     cluster2 = base.Cluster()
     gif = global_ids_update.make_gif(cluster2)
     gif["#cluster_name"] = "Sonny"
@@ -24,7 +24,7 @@ def test() -> None:
     saver.debug(cluster2)
     print()
     print("Sonny")
-    saver.debug(global_ids_query.get_cluster_by_cluster_name("Sonny"))
+    saver.debug(global_ids_query.get_cluster_by_cluster_name(base.ClusterName("Sonny")))
 
 
 if __name__ == "__main__":

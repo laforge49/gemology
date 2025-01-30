@@ -11,7 +11,7 @@ from tkgems.tkfacets import tkattrs, tkglobal_tags
 
 selected_listbox_cluster_index: int | None = 0
 selected_listbox_gem_index: int | None = 0
-selected_cluster_name: str = "Aggregate"
+selected_cluster_name = base.ClusterName("Aggregate")
 Selected_cluster_gems: list = ["Aggregate"]
 selected_gem_name: str = "Aggregate"
 selected_gem_names: list = []

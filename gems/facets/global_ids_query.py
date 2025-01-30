@@ -63,7 +63,7 @@ def aggregate_get_gem_by_id(id_type: str, id_name: str) -> Optional[base.Gem]:
     return gem
 
 
-def get_cluster_name(cluster: Optional[base.Cluster]) -> Optional[str]:
+def get_cluster_name(cluster: Optional[base.Cluster]) -> Optional[base.ClusterName]:
     return gem_get_id_name(cluster, "#cluster_name")
 
 
@@ -71,7 +71,7 @@ def aggregate_get_cluster_names() -> Optional[base.dict_keys]:
     return aggregate_get_id_names("#cluster_name")
 
 
-def get_cluster_by_cluster_name(cluster_name: str) -> Optional[base.Cluster]:
+def get_cluster_by_cluster_name(cluster_name: base.ClusterName) -> Optional[base.Cluster]:
     if cluster_name == "Aggregate":
         return base.get_aggregate()
     cluster = aggregate_get_gem_by_id("#cluster_name", cluster_name)
@@ -113,8 +113,10 @@ def get_gem(gem_name: str, context_gem: Optional[base.Gem] = None, global_ids_qu
         return local_ids_query.cluster_get_gem_by_gem_base_name(cluster, gem_name[1:])
     ndx = base.findin(gem_name, ".")
     if ndx is None:
+        assert isinstance(gem_name, base.ClusterName)
         return get_cluster_by_cluster_name(gem_name)
     cluster_name = gem_name[:ndx]
+    assert isinstance(cluster_name, base.ClusterName)
     cluster = get_cluster_by_cluster_name(cluster_name)
     gem_base_name = gem_name[ndx + 1:]
     return local_ids_query.cluster_get_gem_by_gem_base_name(cluster, gem_base_name)
