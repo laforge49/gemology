@@ -8,7 +8,7 @@ def test() -> None:
     print("*** local_ids_facet test ***")
     core.build_aggregate()
     cluster1 = base.Cluster()
-    global_ids_update.set_cluster_name(cluster1, "Sam")
+    global_ids_update.set_cluster_name(cluster1, base.ClusterName("Sam"))
     print()
     print("cluster1:")
     saver.debug(cluster1)

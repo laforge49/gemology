@@ -159,7 +159,7 @@ def reclass(raw: dict, cls: type) -> base.Gem:
     return gem
 
 
-def register(raw_cluster: dict, cluster_name: str, cluster_path: str) -> base.Cluster:
+def register(raw_cluster: dict, cluster_name: base.ClusterName, cluster_path: str) -> base.Cluster:
     cluster = reclass(raw_cluster, base.Cluster)
     assert isinstance(cluster, base.Cluster)
     global_ids_update.set_cluster_name(cluster, cluster_name)
@@ -177,7 +177,7 @@ def register(raw_cluster: dict, cluster_name: str, cluster_path: str) -> base.Cl
 
 def load(cluster_path: pathlib.Path) -> base.Cluster:
     cluster_file_name = cluster_path.name
-    cluster_name = cluster_file_name.split(".")[0]
+    cluster_name = base.ClusterName(cluster_file_name.split(".")[0])
     raw_cluster = loader.file_reader(cluster_path)
     cluster = register(raw_cluster, cluster_name, str(cluster_path))
     return cluster

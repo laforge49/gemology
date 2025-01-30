@@ -104,5 +104,5 @@ def del_cluster_name(cluster: Optional[base.Cluster], id_name: str) -> bool:
     return del_id(cluster, "#cluster_name", id_name)
 
 
-def set_cluster_name(cluster: Optional[base.Cluster], cluster_name: str) -> bool:
+def set_cluster_name(cluster: Optional[base.Cluster], cluster_name: base.ClusterName) -> bool:
     return set_id(cluster, "#cluster_name", cluster_name)
