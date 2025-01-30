@@ -14,6 +14,22 @@ def isscalar(x: any) -> bool:
 scalar = int | float | complex | str | bytes | bool
 
 
+class BaseGemName(str):
+    pass
+
+
+class GemName(str):
+    pass
+
+
+class ClusterName(str):
+    pass
+
+
+class fullGemName(str):
+    pass
+
+
 class Gem(Dict[str, dict | list]):
     pass
 
