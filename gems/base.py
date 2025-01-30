@@ -26,8 +26,34 @@ class ClusterName(str):
     pass
 
 
-class fullGemName(str):
+class FullGemName(str):
     pass
+
+
+def full_gem_name_to_cluster_name(name: FullGemName) -> Optional[ClusterName]:
+    if name is None:
+        return None
+    i = findin(name, ".")
+    if i is None:
+        assert isinstance(name, ClusterName)
+        return name
+    cluster_name = name[:i]
+    assert isinstance(cluster_name, ClusterName)
+    return cluster_name
+
+
+def expand_gem_name(name: GemName, context: FullGemName) -> Optional[FullGemName]:
+    if name is None:
+        return None
+    i = findin(name, ".")
+    if i == 1:
+        cluster_name = full_gem_name_to_cluster_name(context)
+        full_gem_name = cluster_name + name
+        assert isinstance(full_gem_name, FullGemName)
+        return full_gem_name
+    assert isinstance(name, FullGemName)
+    return name
+
 
 
 class Gem(Dict[str, dict | list]):
