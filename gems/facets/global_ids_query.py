@@ -79,7 +79,7 @@ def get_cluster_by_cluster_name(cluster_name: base.ClusterName) -> Optional[base
     return cluster
 
 
-def expand_gem_name(source_gem: base.Gem, gemname: base.GemName) -> Optional[base.FullGemName]:
+def expand_gem_name(source_gem: base.Gem, gemname: base.GemName) -> Optional[base.GemFullName]:
     if gemname is None:
         return None
     if gemname.startswith("."):
@@ -95,9 +95,9 @@ def expand_gem_name(source_gem: base.Gem, gemname: base.GemName) -> Optional[bas
             cluster_name = get_cluster_name(cluster)
             if cluster_name is None:
                 return None
-        return base.FullGemName(cluster_name + gemname)
+        return base.GemFullName(cluster_name + gemname)
     else:
-        assert isinstance(gemname, base.FullGemName)
+        assert isinstance(gemname, base.GemFullName)
         return gemname
 
 
