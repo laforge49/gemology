@@ -271,7 +271,7 @@ def init_pdml_text(text_gem: base.Gem) -> None:
     cluster = attrs_query.get_cluster(text_gem)
     if cluster is None:
         return
-    facet_state_gem = local_ids_query.cluster_get_gem_by_gem_base_name(cluster, "FacetState")
+    facet_state_gem = local_ids_query.cluster_get_gem_by_gem_base_name(cluster, base.GemBaseName("FacetState"))
     tkcore.tk_destroy(facet_state_gem)
     parent_gem = attrs_query.get_gem_parent(text_gem)
     tkattrs.set_view_gem(parent_gem, text_gem)
@@ -376,7 +376,7 @@ def initialize(home_path: pathlib.Path) -> None:
     if viewer_cluster is None:
         print("viewer_cluster is None")
         return
-    window_gem = local_ids_query.cluster_get_gem_by_gem_base_name(viewer_cluster, "RootWindow")
+    window_gem = local_ids_query.cluster_get_gem_by_gem_base_name(viewer_cluster, base.GemBaseName("RootWindow"))
     if window_gem is None:
         print("window_gem is None")
         return
