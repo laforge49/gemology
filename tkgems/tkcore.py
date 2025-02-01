@@ -5,7 +5,7 @@ import tkinter as tk
 from tkinter import ttk
 
 from gems import base, core
-from gems.facets import attrs_query, global_ids_query, gems_query, global_tags_query, local_ids_query, attrs_update
+from gems.facets import attrs_query, global_ids_query, gems_query
 from tkgems.tkfacets import tkattrs, tkglobal_tags
 
 
@@ -36,10 +36,6 @@ def get_tkdescriptor_gem(tkgem: base.Gem) -> Optional[base.Gem]:
     if tktype is None:
         return None
     return core.get_resource_gem(tktype)
-
-
-def persist_value(tk_gem: base.Gem) -> None:
-    pass
 
 
 def center_window(window, width, height):
@@ -77,7 +73,6 @@ def listbox_up_down(listbox_gem: base.Gem, event: any) -> None:
     tkevent(listbox_gem, None, "<<ListboxSelect>>")
 
 def create_tkresource_gems() -> None:
-    core.make_resource_function_gem("tkcore-persist_value", persist_value)
     core.make_resource_function_gem("tkcore-create_window", create_window)
     core.make_resource_function_gem("tkcore-listbox_up_down", listbox_up_down)
 
