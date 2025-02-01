@@ -61,7 +61,7 @@ def cluster_get_gem_by_id(cluster: Optional[base.Cluster], id_type: str, id_name
     return liif2.get(id_name)
 
 
-def get_gem_base_name(gem: Optional[base.Gem]) -> Optional[str]:
+def get_gem_base_name(gem: Optional[base.Gem]) -> Optional[base.GemBaseName]:
     return gem_get_id_name(gem, "gem_base_name")
 
 
@@ -69,5 +69,6 @@ def cluster_get_gem_base_names(cluster: Optional[base.Cluster]) -> Optional[base
     return cluster_get_id_names(cluster, "gem_base_name")
 
 
-def cluster_get_gem_by_gem_base_name(cluster: Optional[base.Cluster], gem_base_name: str) -> Optional[base.Gem]:
+def cluster_get_gem_by_gem_base_name(cluster: Optional[base.Cluster], gem_base_name: base.GemBaseName)\
+        -> Optional[base.Gem]:
     return cluster_get_gem_by_id(cluster, "gem_base_name", gem_base_name)

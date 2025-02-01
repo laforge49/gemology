@@ -22,8 +22,8 @@ def mapped_gem_class(gem: Optional[base.Gem]) -> Optional[type]:
     return base.class_map[class_name]
 
 
-def create_gem(cluster: base.Cluster, gem_parent: base.Gem, gem_base_name: str, class_name: Optional[str] = None)\
-        -> base.Gem:
+def create_gem(cluster: base.Cluster, gem_parent: base.Gem, gem_base_name: base.GemBaseName,
+               class_name: Optional[str] = None) -> base.Gem:
     gem = base.Gem()
     attrs_update.set_cluster(gem, cluster)
     gems_update.add_child_gem(gem_parent, gem)
@@ -37,8 +37,8 @@ def create_gem(cluster: base.Cluster, gem_parent: base.Gem, gem_base_name: str, 
     return gem
 
 
-def make_gem(cluster: base.Cluster, gem_parent: base.Gem, gem_base_name: str, class_name: Optional[str] = None)\
-        -> base.Gem:
+def make_gem(cluster: base.Cluster, gem_parent: base.Gem, gem_base_name: base.GemBaseName,
+             class_name: Optional[str] = None) -> base.Gem:
     gem = local_ids_query.cluster_get_gem_by_gem_base_name(cluster, gem_base_name)
     if gem:
         return gem
@@ -54,35 +54,35 @@ def build_aggregate() -> None:
 
 def get_resources_gem() -> Optional[base.Resources]:
     aggregate = base.get_aggregate()
-    resource_gem = local_ids_query.cluster_get_gem_by_gem_base_name(aggregate, "Resources")
+    resource_gem = local_ids_query.cluster_get_gem_by_gem_base_name(aggregate, base.GemBaseName("Resources"))
     assert isinstance(resource_gem, base.Resources) or resource_gem is None
     return resource_gem
 
 
 def make_resources_gem() -> base.Resources:
     aggregate = base.get_aggregate()
-    resources = make_gem(aggregate, aggregate, "Resources", "base.Resources")
+    resources = make_gem(aggregate, aggregate, base.GemBaseName("Resources"), "base.Resources")
     assert isinstance(resources, base.Resources)
     return resources
 
 
 def get_resource_group_gem(group_name: str) -> Optional[base.ResourceGroup]:
     aggregate = base.get_aggregate()
-    resource_group_gem = local_ids_query.cluster_get_gem_by_gem_base_name(aggregate, group_name)
+    resource_group_gem = local_ids_query.cluster_get_gem_by_gem_base_name(aggregate, base.GemBaseName(group_name))
     assert isinstance(resource_group_gem, base.ResourceGroup) or resource_group_gem is None
     return resource_group_gem
 
 
 def make_resource_group_gem(group_name: str) -> base.ResourceGroup:
     aggregate = base.get_aggregate()
-    resource_group_gem = make_gem(aggregate, aggregate, group_name, "base.ResourceGroup")
+    resource_group_gem = make_gem(aggregate, aggregate, base.GemBaseName(group_name), "base.ResourceGroup")
     assert isinstance(resource_group_gem, base.ResourceGroup)
     return resource_group_gem
 
 
 def get_resource_gem(resource_name: str) -> Optional[base.Gem]:
     aggregate = base.get_aggregate()
-    resource_gem = local_ids_query.cluster_get_gem_by_gem_base_name(aggregate, resource_name)
+    resource_gem = local_ids_query.cluster_get_gem_by_gem_base_name(aggregate, base.GemBaseName(resource_name))
     return resource_gem
 
 
@@ -90,7 +90,7 @@ def make_resource_gem(resource_name: str) -> base.Resource:
     aggregate = base.get_aggregate()
     group_name = resource_name.split("-")[0]
     resource_group_gem = make_resource_group_gem(group_name)
-    resource_gem = make_gem(aggregate, resource_group_gem, resource_name, "base.Resource")
+    resource_gem = make_gem(aggregate, resource_group_gem, base.GemBaseName(resource_name), "base.Resource")
     assert isinstance(resource_gem, base.Resource)
     return resource_gem
 
