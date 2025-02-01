@@ -2,7 +2,7 @@ from typing import *
 
 
 from gems import base
-from gems.facets import attrs_query, global_ids_query, local_ids_query
+from gems.facets import global_ids_query, local_ids_query
 
 
 def get_gtf(gem: Optional[base.Gem]) -> Optional[base.GlobalTagsFacet]:
