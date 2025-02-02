@@ -48,6 +48,15 @@ def gem_full_name_to_cluster_name(name: GemFullName) -> Optional[ClusterName]:
     return cluster_name
 
 
+def gem_full_name_to_gem_name(name: GemFullName) -> Optional[GemName]:
+    if name is None:
+        return None
+    i = findin(name, ".")
+    if i is None:
+        return GemName(name)
+    return GemName(name[i:])
+
+
 def expand_gem_name(name: GemName, context: GemFullName) -> Optional[GemFullName]:
     if name is None:
         return None

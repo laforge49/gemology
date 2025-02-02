@@ -26,6 +26,11 @@ def get_selected_cluster_name() -> Optional[base.ClusterName]:
     return base.gem_full_name_to_cluster_name(selected_gem_full_name)
 
 
+def get_selected_gem_name() -> Optional[base.GemName]:
+    global selected_gem_full_name
+    return base.gem_full_name_to_gem_name(selected_gem_full_name)
+
+
 def init_listbox_cluster(listbox_cluster_gem: base.Gem) -> None:
     global selected_listbox_cluster_index
     global selected_gem_full_name
