@@ -38,7 +38,7 @@ class ClusterName(GemName):
         GemName.__init__(self, name)
 
 
-def full_gem_name_to_cluster_name(name: GemFullName) -> Optional[ClusterName]:
+def gem_full_name_to_cluster_name(name: GemFullName) -> Optional[ClusterName]:
     if name is None:
         return None
     i = findin(name, ".")
@@ -53,7 +53,7 @@ def expand_gem_name(name: GemName, context: GemFullName) -> Optional[GemFullName
         return None
     i = findin(name, ".")
     if i == 1:
-        cluster_name = full_gem_name_to_cluster_name(context)
+        cluster_name = gem_full_name_to_cluster_name(context)
         full_gem_name = cluster_name + name
         assert isinstance(full_gem_name, GemFullName)
         return full_gem_name
