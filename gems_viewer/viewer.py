@@ -12,7 +12,7 @@ from tkgems.tkfacets import tkattrs, tkglobal_tags
 selected_listbox_cluster_index: int | None = 0
 selected_listbox_gem_index: int | None = 0
 selected_cluster_name = base.ClusterName("Aggregate")
-selected_gem_name = base.ClusterName("Aggregate")
+selected_gem_name = base.GemName("Aggregate")
 selected_gem_names: list = []
 selected_gem_full_name = base.GemFullName("Aggregate")
 selected_gems_radiobutton = base.GemName(".FrameGemsList")
@@ -52,7 +52,7 @@ def listbox_cluster_selection(listbox_cluster_gem: base.Gem, event: any) -> None
     sv_name_object.set(cluster_name)
     selected_listbox_cluster_index = cluster_index
     selected_cluster_name = cluster_name
-    selected_gem_name = cluster_name
+    selected_gem_name = base.GemName(cluster_name)
     selected_gem_full_name = cluster_name
     init_gems_view(listbox_cluster_gem)
     init_content_view(listbox_cluster_gem)
@@ -169,7 +169,7 @@ def listbox_gem_selection(listbox_gem_gem: base.Gem, event: any) -> None:
     listbox_gem_object = tkattrs.get_tkobject(listbox_gem_gem)
     gem_indexes = listbox_gem_object.curselection()
     gem_index = gem_indexes[0]
-    gem_name = selected_gem_names[gem_index]
+    gem_name = base.GemName(selected_gem_names[gem_index])
     sv_name_gem = global_ids_query.get_gem(base.GemName(".StringVarName"), listbox_gem_gem)
     sv_name_object = tkattrs.get_tkobject(sv_name_gem)
     if selected_cluster_name == gem_name:
@@ -219,14 +219,14 @@ def button_name_function(entry_name_gem: base.Gem) -> None:
     dot_index = base.findin(gem_full_name, ".")
     if dot_index is None:
         cluster_name = gem_full_name
-        dot_gem_name = gem_full_name
+        gem_name = gem_full_name
     else:
         cluster_name = gem_full_name[:dot_index]
         if gem_full_name.endswith("."):
             label_error_object["text"] = "Improper name."
             return
         else:
-            dot_gem_name = gem_full_name[dot_index:]
+            gem_name = gem_full_name[dot_index:]
     listbox_cluster_gem = global_ids_query.get_gem(base.GemName(".ListBoxCluster"), entry_name_gem)
     listbox_cluster_object = tkattrs.get_tkobject(listbox_cluster_gem)
     cluster_names = listbox_cluster_object.get(0, "end")
@@ -242,13 +242,13 @@ def button_name_function(entry_name_gem: base.Gem) -> None:
         selected_listbox_cluster_index = cluster_index
         init_gems_view(entry_name_gem)
         selected_listbox_gem_index = 0
-    gem_index = base.findin(selected_gem_names, dot_gem_name)
+    gem_index = base.findin(selected_gem_names, gem_name)
     if gem_index is None:
         label_error_object["text"] = "Unknown gem name."
         return
     selected_listbox_gem_index = gem_index
     selected_gem_full_name = gem_full_name
-    selected_gem_name = dot_gem_name
+    selected_gem_name = gem_name
     listbox_gem_gem = get_listbox_gem_gem(entry_name_gem)
     listbox_gem_object = tkattrs.get_tkobject(listbox_gem_gem)
     listbox_gem_object.selection_clear(0, "end")
