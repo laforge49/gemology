@@ -43,10 +43,8 @@ def full_gem_name_to_cluster_name(name: GemFullName) -> Optional[ClusterName]:
         return None
     i = findin(name, ".")
     if i is None:
-        assert isinstance(name, ClusterName)
-        return name
-    cluster_name = name[:i]
-    assert isinstance(cluster_name, ClusterName)
+        return ClusterName(name)
+    cluster_name = ClusterName(name[:i])
     return cluster_name
 
 
