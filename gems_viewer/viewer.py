@@ -213,20 +213,20 @@ def button_name_function(entry_name_gem: base.Gem) -> None:
     global selected_gem_name
     sv_name_gem = global_ids_query.get_gem(base.GemName(".StringVarName"), entry_name_gem)
     sv_name_object = tkattrs.get_tkobject(sv_name_gem)
-    gem_name = sv_name_object.get()
+    gem_full_name = sv_name_object.get()
     label_error_gem = global_ids_query.get_gem(base.GemName(".LabelError"), entry_name_gem)
     label_error_object = tkattrs.get_tkobject(label_error_gem)
-    dot_index = base.findin(gem_name, ".")
+    dot_index = base.findin(gem_full_name, ".")
     if dot_index is None:
-        cluster_name = gem_name
-        dot_gem_name = gem_name
+        cluster_name = gem_full_name
+        dot_gem_name = gem_full_name
     else:
-        cluster_name = gem_name[:dot_index]
-        if gem_name.endswith("."):
+        cluster_name = gem_full_name[:dot_index]
+        if gem_full_name.endswith("."):
             label_error_object["text"] = "Improper name."
             return
         else:
-            dot_gem_name = gem_name[dot_index:]
+            dot_gem_name = gem_full_name[dot_index:]
     listbox_cluster_gem = global_ids_query.get_gem(base.GemName(".ListBoxCluster"), entry_name_gem)
     listbox_cluster_object = tkattrs.get_tkobject(listbox_cluster_gem)
     cluster_names = listbox_cluster_object.get(0, "end")
@@ -247,7 +247,7 @@ def button_name_function(entry_name_gem: base.Gem) -> None:
         label_error_object["text"] = "Unknown gem name."
         return
     selected_listbox_gem_index = gem_index
-    selected_gem_full_name = gem_name
+    selected_gem_full_name = gem_full_name
     selected_gem_name = dot_gem_name
     listbox_gem_gem = get_listbox_gem_gem(entry_name_gem)
     listbox_gem_object = tkattrs.get_tkobject(listbox_gem_gem)
