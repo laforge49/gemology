@@ -17,13 +17,13 @@ scalar = int | float | complex | str | bytes | bool
 class GemBaseName(str):
     def __init__(self, name):
         assert "." not in name
-        str.__init__(self)
+        super().__init__()
 
 
 class GemName(str):
     def __init__(self, name):
         assert not name.endswith(".")
-        str.__init__(self)
+        super().__init__()
 
 
 class GemFullName(GemName):
@@ -61,7 +61,7 @@ def expand_gem_name(name: GemName, context: GemFullName) -> Optional[GemFullName
     if name is None:
         return None
     i = findin(name, ".")
-    if i == 0:
+    if i == 0 :
         cluster_name = gem_full_name_to_cluster_name(context)
         return GemFullName(cluster_name + name)
     assert isinstance(name, GemFullName)
