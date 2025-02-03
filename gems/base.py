@@ -61,11 +61,9 @@ def expand_gem_name(name: GemName, context: GemFullName) -> Optional[GemFullName
     if name is None:
         return None
     i = findin(name, ".")
-    if i == 1:
+    if i == 0:
         cluster_name = gem_full_name_to_cluster_name(context)
-        full_gem_name = cluster_name + name
-        assert isinstance(full_gem_name, GemFullName)
-        return full_gem_name
+        return GemFullName(cluster_name + name)
     assert isinstance(name, GemFullName)
     return name
 
