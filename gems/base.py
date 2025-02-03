@@ -17,13 +17,11 @@ scalar = int | float | complex | str | bytes | bool
 class GemBaseName(str):
     def __init__(self, name):
         assert "." not in name
-        super().__init__()
 
 
 class GemName(str):
     def __init__(self, name):
         assert not name.endswith(".")
-        super().__init__()
 
 
 class GemFullName(GemName):
