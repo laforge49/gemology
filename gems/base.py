@@ -15,25 +15,27 @@ scalar = int | float | complex | str | bytes | bool
 
 
 class GemBaseName(str):
-    def __init__(self, name):
+    def __new__(cls, name):
         assert "." not in name
+        return str.__new__(cls, name)
 
 
 class GemName(str):
-    def __init__(self, name):
+    def __new__(cls, name):
         assert not name.endswith(".")
+        return str.__new__(cls, name)
 
 
 class GemFullName(GemName):
-    def __init__(self, name):
+    def __new__(cls, name):
         assert not name.startswith(".")
-        GemName.__init__(self, name)
+        return GemName.__new__(cls, name)
 
 
 class ClusterName(GemName):
-    def __init__(self, name):
+    def __new__(cls, name):
         assert "." not in name
-        GemName.__init__(self, name)
+        return GemName.__new__(cls, name)
 
 
 def gem_full_name_to_cluster_name(name: GemFullName) -> Optional[ClusterName]:
