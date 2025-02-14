@@ -242,15 +242,15 @@ def button_name_function(entry_name_gem: base.Gem) -> None:
         return
     selected_listbox_gem_index = gem_index
     selected_gem_full_name = gem_full_name
-    listbox_gem_gem = get_listbox_gem_gem(entry_name_gem)
-    listbox_gem_object = tkattrs.get_tkobject(listbox_gem_gem)
-    listbox_gem_object.selection_clear(0, "end")
-    listbox_gem_object.select_set(selected_listbox_gem_index)
-    listbox_gem_object.see(selected_listbox_gem_index)
+    listbox_view_gem = get_listbox_view_gem(entry_name_gem)
+    listbox_view_object = tkattrs.get_tkobject(listbox_view_gem)
+    listbox_view_object.selection_clear(0, "end")
+    listbox_view_object.select_set(selected_listbox_gem_index)
+    listbox_view_object.see(selected_listbox_gem_index)
     init_content_view(entry_name_gem)
 
 
-def get_listbox_gem_gem(tk_gem: base.Gem) -> Optional[base.Gem]:
+def get_listbox_view_gem(tk_gem: base.Gem) -> Optional[base.Gem]:
     frame_gem = global_ids_query.get_gem(selected_gems_frame, tk_gem)
     if frame_gem is None:
         return None
