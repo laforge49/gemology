@@ -101,7 +101,7 @@ def expand_gem_name(source_gem: base.Gem, gemname: base.GemName) -> Optional[bas
         return gemname
 
 
-def get_gem(gem_name: base.GemName, context_gem: Optional[base.Gem] = None, global_ids_query=None) -> Optional[base.Gem]:
+def get_gem(gem_name: base.GemName, context_gem: Optional[base.Gem] = None) -> Optional[base.Gem]:
     if gem_name is None:
         return None
     if gem_name == "Aggregate":
