@@ -321,6 +321,9 @@ def reset_text_object(text_object) -> None:
     if text_object is None:
         return
     text_object.delete("1.0", "end")
+    tags = text_object.tag_names()
+    for tag in tags:
+        text_object.tag_remove(tag, "1.0", "end")
 
 
 def init_facet_text(facet_text_gem: base.Gem) -> None:
