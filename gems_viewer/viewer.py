@@ -9,6 +9,7 @@ from tkgems import tkcore
 from tkgems.tkfacets import tkattrs, tkglobal_tags
 
 
+window_gem = None
 selected_listbox_cluster_index: int | None = 0
 selected_listbox_gem_index: int | None = 0
 selected_gem_names: list = []
@@ -202,14 +203,17 @@ def entry_name_return(entry_name_gem: base.Gem, event: any) -> None:
 
 
 def button_name_function(entry_name_gem: base.Gem) -> None:
+    sv_name_gem = global_ids_query.get_gem(base.GemName(".StringVarName"), entry_name_gem)
+    sv_name_object = tkattrs.get_tkobject(sv_name_gem)
+    gem_full_name = sv_name_object.get()
+    select_gem(gem_full_name)
+
+def select_gem(gem_full_name: base.GemFullName, event: Optional[any] = None) -> None:
     global selected_listbox_cluster_index
     global selected_gem_names
     global selected_listbox_gem_index
     global selected_gem_full_name
-    sv_name_gem = global_ids_query.get_gem(base.GemName(".StringVarName"), entry_name_gem)
-    sv_name_object = tkattrs.get_tkobject(sv_name_gem)
-    gem_full_name = sv_name_object.get()
-    label_error_gem = global_ids_query.get_gem(base.GemName(".LabelError"), entry_name_gem)
+    label_error_gem = global_ids_query.get_gem(base.GemName(".LabelError"), window_gem)
     label_error_object = tkattrs.get_tkobject(label_error_gem)
     if gem_full_name.endswith("."):
         label_error_object["text"] = "Improper name."
@@ -221,7 +225,7 @@ def button_name_function(entry_name_gem: base.Gem) -> None:
     else:
         cluster_name = gem_full_name[:dot_index]
         gem_name = gem_full_name[dot_index:]
-    listbox_cluster_gem = global_ids_query.get_gem(base.GemName(".ListBoxCluster"), entry_name_gem)
+    listbox_cluster_gem = global_ids_query.get_gem(base.GemName(".ListBoxCluster"), window_gem)
     listbox_cluster_object = tkattrs.get_tkobject(listbox_cluster_gem)
     cluster_names = listbox_cluster_object.get(0, "end")
     cluster_index = base.findin(cluster_names, cluster_name)
@@ -232,21 +236,26 @@ def button_name_function(entry_name_gem: base.Gem) -> None:
     listbox_cluster_object.selection_clear(0, "end")
     listbox_cluster_object.selection_set(cluster_index)
     if get_selected_cluster_name() != cluster_name:
+        selected_gem_full_name = gem_full_name
         selected_listbox_cluster_index = cluster_index
-        init_gems_view(entry_name_gem)
+        print(444, cluster_index)
+        init_gems_view(window_gem)
         selected_listbox_gem_index = 0
+    else:
+        selected_gem_full_name = gem_full_name
     gem_index = base.findin(selected_gem_names, gem_name)
     if gem_index is None:
+        print(gem_name)
+        print(selected_gem_names)
         label_error_object["text"] = "Unknown gem name."
         return
     selected_listbox_gem_index = gem_index
-    selected_gem_full_name = gem_full_name
-    listbox_view_gem = get_listbox_view_gem(entry_name_gem)
+    listbox_view_gem = get_listbox_view_gem(window_gem)
     listbox_view_object = tkattrs.get_tkobject(listbox_view_gem)
     listbox_view_object.selection_clear(0, "end")
     listbox_view_object.select_set(selected_listbox_gem_index)
     listbox_view_object.see(selected_listbox_gem_index)
-    init_content_view(entry_name_gem)
+    init_content_view(window_gem)
 
 
 def get_listbox_view_gem(tk_gem: base.Gem) -> Optional[base.Gem]:
@@ -375,6 +384,7 @@ def create_viewer_resource_gems() -> None:
 
 
 def initialize(home_path: pathlib.Path) -> None:
+    global window_gem
     print()
     print("*** start viewer ***")
     print("home path:", home_path)
