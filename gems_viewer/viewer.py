@@ -333,7 +333,12 @@ def default_facet_display(facet, text_object) -> None:
     text_object.see("1.0")
 
 def gems_facet_display(gems: list, text_object) -> None:
-    default_facet_display(gems, text_object)
+    for gem in gems:
+        gem_base_name = local_ids_query.get_gem_base_name(gem)
+        gem_name = base.GemName("." + gem_base_name)
+        gem_full_name = global_ids_query.expand_gem_name(gem, gem_name)
+        text_object.insert("end", gem_full_name + "\n")
+
 
 def init_facet_text(facet_text_gem: base.Gem) -> None:
     global selected_gem_full_name
