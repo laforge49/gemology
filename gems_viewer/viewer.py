@@ -346,20 +346,28 @@ def default_facet_display(facet, text_object) -> None:
 def change_cursor(gems: list, event) -> None:
     index = event.widget.index(tkinter.CURRENT)
     line, column = map(int, index.split('.'))
-    if line > len(gems):
+    line -= 1
+    if line >= len(gems):
         event.widget.config(cursor="arrow")
     else:
-        event.widget.config(cursor="hand2")
+        w = len(gems[line])
+        if column >= w:
+            event.widget.config(cursor="arrow")
+        else:
+            event.widget.config(cursor="hand2")
 
 
 def gems_facet_display(gems: list, text_object) -> None:
-    text_object.bind("<Motion>", lambda event: change_cursor(gems, event))
+    sels = []
+    text_object.bind("<Motion>", lambda event: change_cursor(sels, event))
     for gem in gems:
         gem_base_name = local_ids_query.get_gem_base_name(gem)
         gem_name = base.GemName("." + gem_base_name)
         gem_full_name = global_ids_query.expand_gem_name(gem, gem_name)
+        sels.append(gem_full_name)
         text_object.tag_config(gem_base_name, foreground="blue", underline=True)
-        text_object.insert("end", gem_full_name + "\n", gem_base_name)
+        text_object.insert("end", gem_full_name, gem_base_name)
+        text_object.insert("end", " \n")
         text_object.tag_bind(gem_base_name, "<Button-1>",
                              lambda event: select_gem(base.GemFullName(gem_full_name), event))
 
