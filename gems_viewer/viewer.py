@@ -9,7 +9,7 @@ from tkgems import tkcore
 from tkgems.tkfacets import tkattrs, tkglobal_tags
 
 
-window_gem = None
+window_gem: base.Gem
 selected_listbox_cluster_index: int | None = 0
 selected_listbox_gem_index: int | None = 0
 selected_gem_names: list = []
@@ -208,6 +208,7 @@ def button_name_function(entry_name_gem: base.Gem) -> None:
     gem_full_name = sv_name_object.get()
     select_gem(gem_full_name)
 
+
 def select_gem(gem_full_name: base.GemFullName, event: Optional[any] = None) -> None:
     global selected_listbox_cluster_index
     global selected_gem_names
@@ -339,6 +340,7 @@ def default_facet_display(facet, text_object) -> None:
     s = saver.data_to_string(0, facet, False)
     text_object.insert("1.0", s)
     text_object.see("1.0")
+
 
 def gems_facet_display(gems: list, text_object) -> None:
     for gem in gems:
