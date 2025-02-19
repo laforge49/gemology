@@ -327,6 +327,14 @@ def reset_text_object(text_object) -> None:
     text_object.mark_set("insert", "1.0")
 
 
+def default_facet_display(facet, text_object) -> None:
+    s = saver.data_to_string(0, facet, False)
+    text_object.insert("1.0", s)
+    text_object.see("1.0")
+
+def gems_facet_display(facet, text_object) -> None:
+    default_facet_display(facet, text_object)
+
 def init_facet_text(facet_text_gem: base.Gem) -> None:
     global selected_gem_full_name
     global selected_facet_name
@@ -338,9 +346,11 @@ def init_facet_text(facet_text_gem: base.Gem) -> None:
     facet = gem.get(selected_facet_name)
     if facet is None:
         return
-    s = saver.data_to_string(0, facet, False)
-    text_object.insert("1.0", s)
-    text_object.see("1.0")
+    match selected_facet_name:
+        case "GemsFacet":
+            gems_facet_display(facet, text_object)
+        case _:
+            default_facet_display(facet, text_object)
 
 
 def create_viewer_resource_gems() -> None:
