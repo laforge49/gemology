@@ -1,5 +1,6 @@
 from typing import *
 import pathlib
+import tkinter
 
 
 from gems import core, base
@@ -342,7 +343,17 @@ def default_facet_display(facet, text_object) -> None:
     text_object.see("1.0")
 
 
+def change_cursor(gems: list, event) -> None:
+    index = event.widget.index(tkinter.CURRENT)
+    line, column = map(int, index.split('.'))
+    if line > len(gems):
+        event.widget.config(cursor="arrow")
+    else:
+        event.widget.config(cursor="hand2")
+
+
 def gems_facet_display(gems: list, text_object) -> None:
+    text_object.bind("<Motion>", lambda event: change_cursor(gems, event))
     for gem in gems:
         gem_base_name = local_ids_query.get_gem_base_name(gem)
         gem_name = base.GemName("." + gem_base_name)
@@ -351,7 +362,6 @@ def gems_facet_display(gems: list, text_object) -> None:
         text_object.insert("end", gem_full_name + "\n", gem_base_name)
         text_object.tag_bind(gem_base_name, "<Button-1>",
                              lambda event: select_gem(base.GemFullName(gem_full_name), event))
-        text_object.config(cursor="hand2")
 
 
 def init_facet_text(facet_text_gem: base.Gem) -> None:
