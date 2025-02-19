@@ -337,6 +337,7 @@ def gems_facet_display(gems: list, text_object) -> None:
         gem_base_name = local_ids_query.get_gem_base_name(gem)
         gem_name = base.GemName("." + gem_base_name)
         gem_full_name = global_ids_query.expand_gem_name(gem, gem_name)
+        text_object.tag_config(gem_base_name, foreground="blue", underline=True)
         text_object.insert("end", gem_full_name + "\n", gem_base_name)
 
 
