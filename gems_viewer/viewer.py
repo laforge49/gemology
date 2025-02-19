@@ -332,8 +332,8 @@ def default_facet_display(facet, text_object) -> None:
     text_object.insert("1.0", s)
     text_object.see("1.0")
 
-def gems_facet_display(facet, text_object) -> None:
-    default_facet_display(facet, text_object)
+def gems_facet_display(gems: list, text_object) -> None:
+    default_facet_display(gems, text_object)
 
 def init_facet_text(facet_text_gem: base.Gem) -> None:
     global selected_gem_full_name
