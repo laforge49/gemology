@@ -351,6 +351,7 @@ def gems_facet_display(gems: list, text_object) -> None:
         text_object.insert("end", gem_full_name + "\n", gem_base_name)
         text_object.tag_bind(gem_base_name, "<Button-1>",
                              lambda event: select_gem(base.GemFullName(gem_full_name), event))
+        text_object.config(cursor="hand2")
 
 
 def init_facet_text(facet_text_gem: base.Gem) -> None:
