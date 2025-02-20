@@ -369,18 +369,42 @@ def gems_facet_display(gems: base.GemsFacet, text_object) -> None:
                              lambda event: select_gem(gem_full_name, event))
 
 
+def local_id_index_facet_change_cursor(sels: dict, event) -> None:
+    index = event.widget.index(tkinter.CURRENT)
+    line, column = map(int, index.split('.'))
+    line -= 1
+    gem_full_name = sels.get(line)
+    if gem_full_name is None:
+        event.widget.config(cursor="arrow")
+    else:
+        w = 8 + len(gem_full_name)
+        if column >= w:
+            event.widget.config(cursor="arrow")
+        elif column < 8:
+            event.widget.config(cursor="arrow")
+        else:
+            event.widget.config(cursor="hand2")
+
+
 def local_id_index_facet(liif: base.LocalIdIndexFacet, text_object) -> None:
+    sels = {}
+    text_object.bind("<Motion>", lambda event: local_id_index_facet_change_cursor(sels, event))
+    line = 0
     for (id_type, type_dict) in liif.items():
         text_object.insert("end", "id type = " + id_type + "\n")
+        line += 1
         for (id, gem) in type_dict.items():
             text_object.insert("end", "    id = " + id + "\n")
+            line += 1
             gem_base_name = local_ids_query.get_gem_base_name(gem)
             gem_name = base.GemName("." + gem_base_name)
             gem_full_name = global_ids_query.expand_gem_name(gem, gem_name)
-            text_object.insert("end", "        ")
+            sels[line] = gem_full_name
             text_object.tag_config(gem_base_name, foreground="blue", underline=True)
+            text_object.insert("end", "        ")
             text_object.insert("end", gem_full_name, gem_base_name)
             text_object.insert("end", " \n")
+            line += 1
 
 
 def init_facet_text(facet_text_gem: base.Gem) -> None:
