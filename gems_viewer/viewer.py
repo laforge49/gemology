@@ -371,7 +371,9 @@ def gems_facet_display(gems: base.GemsFacet, text_object) -> None:
 
 def local_id_index_facet(liif: base.LocalIdIndexFacet, text_object) -> None:
     for (id_type, type_dict) in liif.items():
-        text_object.insert("end", "id = " + id_type + "\n")
+        text_object.insert("end", "id type = " + id_type + "\n")
+        for (id, gem) in type_dict.items():
+            text_object.insert("end", "    id = " + id + "\n")
 
 
 def init_facet_text(facet_text_gem: base.Gem) -> None:
