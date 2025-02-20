@@ -340,23 +340,23 @@ def default_facet_display(facet, text_object) -> None:
     text_object.see("1.0")
 
 
-def change_cursor(gems: list, event) -> None:
+def gems_facet_change_cursor(sels: list, event) -> None:
     index = event.widget.index(tkinter.CURRENT)
     line, column = map(int, index.split('.'))
     line -= 1
-    if line >= len(gems):
+    if line >= len(sels):
         event.widget.config(cursor="arrow")
     else:
-        w = len(gems[line])
+        w = len(sels[line])
         if column >= w:
             event.widget.config(cursor="arrow")
         else:
             event.widget.config(cursor="hand2")
 
 
-def gems_facet_display(gems: list, text_object) -> None:
+def gems_facet_display(gems: base.GemsFacet, text_object) -> None:
     sels = []
-    text_object.bind("<Motion>", lambda event: change_cursor(sels, event))
+    text_object.bind("<Motion>", lambda event: gems_facet_change_cursor(sels, event))
     for gem in gems:
         gem_base_name = local_ids_query.get_gem_base_name(gem)
         gem_name = base.GemName("." + gem_base_name)
@@ -367,6 +367,11 @@ def gems_facet_display(gems: list, text_object) -> None:
         text_object.insert("end", " \n")
         text_object.tag_bind(gem_base_name, "<Button-1>",
                              lambda event: select_gem(gem_full_name, event))
+
+
+def local_id_index_facet(liif: base.LocalIdIndexFacet, text_object) -> None:
+    for (id_type, type_dict) in liif.items():
+        text_object.insert("end", "id = " + id_type + "\n")
 
 
 def init_facet_text(facet_text_gem: base.Gem) -> None:
@@ -383,6 +388,8 @@ def init_facet_text(facet_text_gem: base.Gem) -> None:
     if facet is None:
         return
     match selected_facet_name:
+        case "#LocalIdIndexFacet":
+            local_id_index_facet(facet, text_object)
         case "GemsFacet":
             gems_facet_display(facet, text_object)
         case _:
