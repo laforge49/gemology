@@ -405,6 +405,8 @@ def local_id_index_facet(liif: base.LocalIdIndexFacet, text_object) -> None:
             text_object.insert("end", gem_full_name, gem_base_name)
             text_object.insert("end", " \n")
             line += 1
+            text_object.tag_bind(gem_base_name, "<Button-1>",
+                                 lambda event: select_gem(gem_full_name, event))
 
 
 def init_facet_text(facet_text_gem: base.Gem) -> None:
