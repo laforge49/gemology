@@ -240,15 +240,12 @@ def select_gem(gem_full_name: base.GemFullName, event: Optional[any] = None) -> 
     if get_selected_cluster_name() != cluster_name:
         selected_gem_full_name = gem_full_name
         selected_listbox_cluster_index = cluster_index
-        print(444, cluster_index)
         init_gems_view(window_gem)
         selected_listbox_gem_index = 0
     else:
         selected_gem_full_name = gem_full_name
     gem_index = base.findin(selected_gem_names, gem_name)
     if gem_index is None:
-        print(gem_name)
-        print(selected_gem_names)
         label_error_object["text"] = "Unknown gem name."
         return
     selected_listbox_gem_index = gem_index
@@ -369,13 +366,15 @@ def gems_facet_display(gems: list, text_object) -> None:
         text_object.insert("end", gem_full_name, gem_base_name)
         text_object.insert("end", " \n")
         text_object.tag_bind(gem_base_name, "<Button-1>",
-                             lambda event: select_gem(base.GemFullName(gem_full_name), event))
+                             lambda event: select_gem(gem_full_name, event))
 
 
 def init_facet_text(facet_text_gem: base.Gem) -> None:
     global selected_gem_full_name
     global selected_facet_name
     gem = global_ids_query.get_gem(selected_gem_full_name, facet_text_gem)
+    if gem is None:
+        return
     text_object = tkattrs.get_tkobject(facet_text_gem)
     reset_text_object(text_object)
     if selected_facet_name is None:
