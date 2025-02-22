@@ -32,7 +32,7 @@ dict
     "key2": 42
     "#obj": ...
 
-#### Multi-line Strings
+#### Multi-line Strings 
 ```
 dict
     "text": "line1\nline2"
