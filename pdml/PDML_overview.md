@@ -26,7 +26,8 @@ list
 
 #### Dicts
 - Python: `{"key1": "value", "key2": 42}` (`"#obj"` omitted).
-- Output: ```
+- Output: 
+```
 dict
     "key1": "value"
     "key2": 42
