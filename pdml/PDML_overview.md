@@ -25,13 +25,13 @@ list
 - Maps to Python: `[1, 2, 3]`.
 
 #### Dicts
-- Python: `{"key1": "value", "key2": 42}` (`"#obj"` omitted).
+- Python: `{"key1": "value", "key2": 42`, "#obj" "Ignore this"}
 - Output: 
 ```
 dict
     "key1": "value"
     "key2": 42
-    "#obj": ...
+    # "#obj": ...
 
 #### Multi-line Strings 
 ```
