@@ -1,0 +1,31 @@
+# top_context.txt
+# Last Updated: 2025-02-23
+# Purpose: Bootstrap sessions for the Gemology project (https://github.com/laforge49/gemology).
+# Scope: Root is gemology/ dir; higher dirs ignored.
+
+# Dependency Order
+pdml -> gems -> tkgems -> gems_viewer
+
+# Subdirectory Contexts
+- pdml: Persistence layer (PDML markup).
+  - local_context.txt: Deep dive for pdml work.
+  - general_context.txt: Summary for dependents (gems, tkgems, gems_viewer).
+- gems: Object model (gems, clusters, facets).
+  - local_context.txt: Deep dive for gems work.
+  - general_context.txt: Summary for dependents (tkgems, gems_viewer).
+- tkgems: Tkinter integration for gems/pdml.
+  - local_context.txt: Deep dive for tkgems work.
+  - general_context.txt: Summary for dependents (gems_viewer).
+- gems_viewer: Tkinter UI for browsing PDML structures.
+  - local_context.txt: Deep dive for gems_viewer work.
+  - general_context.txt: None (top-level, no dependents yet).
+
+# Collaboration
+- Kickoff: Link this file, specify subdir, state task.
+- I focus on given subdir’s local_context.txt (deep work) or general_context.txt (cross-subdir work) per task.
+- Post-session: Update relevant context files, push to GitHub.
+- Use GitHub history for older versions if needed.
+
+# Notes
+- Hooks to .md files (e.g., pdml/PDML_overview.md) in subdir contexts guide extra detail inclusion.
+- Keep contexts lean; offload static docs to .md files.
