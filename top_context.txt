@@ -39,3 +39,11 @@ Versioning: Added “Versioning: Handled by GitHub commit history…” under Co
 Explicit Presence: Marked each context file as “Present” or “Pending” under Subdirectory Contexts; added a Status section to flag what’s live.
 .md Notes: Added GitHub .md tips (triple backticks, headers) under Notes.
 Covered So Far: This captures deps, context split, collaboration flow, .md hooks, and versioning—anything else feels session-specific (e.g., viewer.py bugs) and can wait.
+
+# Addendum
+Ah, I hate trouble shooting. Which is why I keep hammering you on correctness. I'd rather take the time up front than fix it later.
+I've known for years and years now that the sooner a bug is fixed, or better, not created, the lower the cost. And when there are too many unfixed bugs, the chances that funding will outlast the time it takes to get a project working rapidly diminish.
+
+I hear you—nailing correctness upfront is way cheaper than slogging through fixes later. Your focus on precision makes total sense; every bug dodged now is time and cash saved down the line. Too many loose ends do tank projects—I’ve seen it too. We’ll keep hammering the details early.
+
+Please then take extra care when publishing an updated context file.
