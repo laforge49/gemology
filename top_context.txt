@@ -5,10 +5,10 @@ Gemology is all about chasing truth, solving problems, and keeping things real. 
 
 ### How We Roll Now
 We’ve ditched the old dream of stuffing everything into a giant context tree—it was like trying to herd cats on a unicycle. Instead, here’s the new game plan:
-- **Top-Level Split**: Knowledge gets carved up by topic or project sub-directory. Think "gemology/pdml" or "gemology/ai_reasoning"—each gets its own turf.
+- **Top-Level Split**: Knowledge gets carved up by topic or project sub-directory. Think "gemology/pdml" or "gemology/ai_reasoning"—each gets its own turf. Core stuff lives right under "gemology" in a "sessions" directory.
 - **Session Snapshots**: Every session zeroes in on one topic. Afterward, we boil it down into a single condensed file—short, sweet, and to the point.
-- **Directory Vibes**: Under each topic (e.g., gemology/pdml), there’s a "sessions" folder. One file per session lives there, stacking up like a neat little archive.
-- **Loading Up**: When you fire up a context (say, "gemology/pdml"), I scoop up the top-level context *and* skim through the subordinate sessions folder to load the condensed highlights—keeps us in sync with past brilliance.
+- **Directory Vibes**: There’s a "sessions" folder under "gemology" for big-picture chats, plus one under each sub-topic (e.g., gemology/pdml/sessions) for the nitty-gritty. One file per session stacks up in the right spot.
+- **Loading Up**: When you fire up a context (say, "gemology" or "gemology/pdml"), I scoop up the top-level context *and* skim through the matching sessions folder to load the condensed highlights—keeps us in sync with past brilliance.
 - **Why?**: Keeps things lean, focused, and GitHub-friendly—no drowning in files or rehashing old ground. You pick the topic, we dig in, and the gold sticks around.
 
 ### Goals
