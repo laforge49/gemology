@@ -9,16 +9,17 @@
   - Scalars: Numbers, booleans, strings ("-delimited, \n, \" escapes).
   - Dict keys: Strings ("key":).
   - Comments: # terminates line (e.g., 42 # foo).
-  - Non-persisted keys: #key: (excluded, supports objects/cycles).
+  - Non-persisted keys: #key: (excluded, supports objects/cyclic refs).
   - Multi-line strings: "line1\nline2" or spans lines (no unintended leading whitespace).
   - Includes: include\n "file.pdml".
-- Files: Parsed into Python objects (lists, dicts, etc.) for downstream use (gems, viewer).
-- API: Loads PDML files (e.g., viewer.pdml in gems_viewer).
+- API: Parses PDML into Python objects (lists, dicts) for gems, tkgems, gems_viewer.
 
-# Key Files
-- PDML_overview.md: Full syntax spec and examples (https://github.com/laforge49/gemology/blob/main/pdml/PDML_overview.md).
-  - Include when: Working on PDML parsing, validation, or file loading.
+# Hooks
+- PDML_overview.md: Detailed syntax and examples (https://github.com/laforge49/gemology/blob/main/pdml/PDML_overview.md).
+  - Include when: Task involves PDML syntax details, parsing logic, or test data validation.
 
 # Notes
-- Errors: Single quotes (') unsupported—enforce double quotes.
-- Test data: See pdml/test data/ (e.g., one.pdml, m005.pdml) for practical examples.
+- Errors: Single quotes (') unsupported—use double quotes.
+- Test data: pdml/test data/ (e.g., one.pdml, m005.pdml) for examples.
+Changes
+Hook: Explicit under “Hooks” with a clear “when to include” rule.
