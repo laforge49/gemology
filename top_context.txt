@@ -8,24 +8,34 @@ pdml -> gems -> tkgems -> gems_viewer
 
 # Subdirectory Contexts
 - pdml: Persistence layer (PDML markup).
-  - local_context.txt: Deep dive for pdml work.
-  - general_context.txt: Summary for dependents (gems, tkgems, gems_viewer).
+  - local_context.txt: Present (deep dive for pdml work).
+  - general_context.txt: Pending (summary for dependents: gems, tkgems, gems_viewer).
 - gems: Object model (gems, clusters, facets).
-  - local_context.txt: Deep dive for gems work.
-  - general_context.txt: Summary for dependents (tkgems, gems_viewer).
+  - local_context.txt: Pending (deep dive for gems work).
+  - general_context.txt: Pending (summary for dependents: tkgems, gems_viewer).
 - tkgems: Tkinter integration for gems/pdml.
-  - local_context.txt: Deep dive for tkgems work.
-  - general_context.txt: Summary for dependents (gems_viewer).
+  - local_context.txt: Pending (deep dive for tkgems work).
+  - general_context.txt: Pending (summary for dependents: gems_viewer).
 - gems_viewer: Tkinter UI for browsing PDML structures.
-  - local_context.txt: Deep dive for gems_viewer work.
+  - local_context.txt: Pending (deep dive for gems_viewer work).
   - general_context.txt: None (top-level, no dependents yet).
 
 # Collaboration
 - Kickoff: Link this file, specify subdir, state task.
 - I focus on given subdir’s local_context.txt (deep work) or general_context.txt (cross-subdir work) per task.
 - Post-session: Update relevant context files, push to GitHub.
-- Use GitHub history for older versions if needed.
+- Versioning: Handled by GitHub commit history—check logs for prior versions if needed.
 
 # Notes
 - Hooks to .md files (e.g., pdml/PDML_overview.md) in subdir contexts guide extra detail inclusion.
 - Keep contexts lean; offload static docs to .md files.
+- GitHub .md tips: Code blocks use triple backticks (```) at start/end, on new lines; headers use #.
+
+# Status
+- Present files: top_context.txt, pdml/local_context.txt.
+- Pending: All other local_context.txt and general_context.txt files.
+Updates
+Versioning: Added “Versioning: Handled by GitHub commit history…” under Collaboration.
+Explicit Presence: Marked each context file as “Present” or “Pending” under Subdirectory Contexts; added a Status section to flag what’s live.
+.md Notes: Added GitHub .md tips (triple backticks, headers) under Notes.
+Covered So Far: This captures deps, context split, collaboration flow, .md hooks, and versioning—anything else feels session-specific (e.g., viewer.py bugs) and can wait.
