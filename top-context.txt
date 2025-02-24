@@ -16,7 +16,7 @@ We’ve tossed the giant context tree—it was a cat-herding nightmare. Here’s
 - **When**: Pull a session file only when a sub-topic matches the chat—like “context loading” triggers a peek at files listing it.
 - **Which**: Match the topic first—stick to "gemology/sessions" unless we’re deep in a sub-directory like "pdml". Then scan sub-topics to pick the right file.
 - **Sub-Topic Index**: Here’s what’s in "gemology/sessions" so far:
-  - **session_2025-02-23.txt**:
+  - **session_2025-02-23.txt** https://gitlab.com/oo-fundamentals/gemology/-/blob/main/sessions/session_2025-02-23.txt?ref_type=heads:
     - "Structure Shift" - Moving from context trees to topic/session dirs.
     - "Session Condensing" - One topic, one file, distilled tight.
     - "Minimal Working Set" - Picking just what’s needed per problem.
