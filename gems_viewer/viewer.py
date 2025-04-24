@@ -82,18 +82,6 @@ def init_gems_view(tk_gem: base.Gem) -> None:
     tkcore.tkinit_func(view_gem)
 
 
-def load_gems(tk_gem: base.Gem, listbox_gem_object: any, prefix: str = "") -> None:
-    global selected_gem_names
-    gem_name = core.get_gem_name(tk_gem)
-    selected_gem_names.append(gem_name)
-    listbox_gem_object.insert("end", prefix + gem_name)
-    gemsfacet: base.GemsFacet = gems_query.get_gf(tk_gem)
-    if gemsfacet is None:
-        return
-    for gem in gemsfacet:
-        load_gems(gem, listbox_gem_object, prefix + "+")
-
-
 def gems_radiobutton_clicked(gems_radiobutton_gem: base.Gem) -> None:
     global selected_gems_frame
     value = tkattrs.get_options(gems_radiobutton_gem)["value"]
@@ -139,6 +127,18 @@ def init_listbox_gem(listbox_gem_gem: base.Gem):
     selected_listbox_gem_index = gem_index
     listbox_gem_object.select_set(selected_listbox_gem_index)
     listbox_gem_object.see(selected_listbox_gem_index)
+
+
+def load_gems(tk_gem: base.Gem, listbox_gem_object: any, prefix: str = "") -> None:
+    global selected_gem_names
+    gem_name = core.get_gem_name(tk_gem)
+    selected_gem_names.append(gem_name)
+    listbox_gem_object.insert("end", prefix + gem_name)
+    gemsfacet: base.GemsFacet = gems_query.get_gf(tk_gem)
+    if gemsfacet is None:
+        return
+    for gem in gemsfacet:
+        load_gems(gem, listbox_gem_object, prefix + "+")
 
 
 def init_listbox_gem_tree(listbox_gem_gem: base.Gem):
