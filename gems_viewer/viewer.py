@@ -22,12 +22,12 @@ selected_facet_name: str | None = None
 selected_listbox_facet_index: int | None = None
 
 
-def get_selected_cluster_name() -> Optional[base.ClusterName]:
+def cluster_name_from_selected_gem_full_name() -> Optional[base.ClusterName]:
     global selected_gem_full_name
     return base.gem_full_name_to_cluster_name(selected_gem_full_name)
 
 
-def get_selected_gem_name() -> Optional[base.GemName]:
+def gem_name_from_selected_gem_full_name() -> Optional[base.GemName]:
     global selected_gem_full_name
     return base.gem_full_name_to_gem_name(selected_gem_full_name)
 
@@ -125,15 +125,15 @@ def init_listbox_gem(listbox_gem_gem: base.Gem):
     tkattrs.set_view_gem(master_frame_gem, listbox_gem_gem)
     listbox_gem_object = tkattrs.get_tkobject(listbox_gem_gem)
     listbox_gem_object.delete(0, "end")
-    selected_gem_names = [get_selected_cluster_name()]
-    cluster_gem = global_ids_query.get_cluster_by_cluster_name(get_selected_cluster_name())
+    selected_gem_names = [cluster_name_from_selected_gem_full_name()]
+    cluster_gem = global_ids_query.get_cluster_by_cluster_name(cluster_name_from_selected_gem_full_name())
     gem_base_names = local_ids_query.cluster_get_gem_base_names(cluster_gem)
     if gem_base_names is not None:
         for gem_name in sorted(gem_base_names):
             selected_gem_names.append("." + gem_name)
     for gem_name in selected_gem_names:
         listbox_gem_object.insert("end", gem_name)
-    gem_index = base.findin(selected_gem_names, get_selected_gem_name())
+    gem_index = base.findin(selected_gem_names, gem_name_from_selected_gem_full_name())
     if gem_index is None:
         gem_index = 0
     selected_listbox_gem_index = gem_index
@@ -149,9 +149,9 @@ def init_listbox_gem_tree(listbox_gem_gem: base.Gem):
     listbox_gem_object = tkattrs.get_tkobject(listbox_gem_gem)
     listbox_gem_object.delete(0, "end")
     selected_gem_names = []
-    cluster_gem = global_ids_query.get_cluster_by_cluster_name(get_selected_cluster_name())
+    cluster_gem = global_ids_query.get_cluster_by_cluster_name(cluster_name_from_selected_gem_full_name())
     load_gems(cluster_gem, listbox_gem_object, "")
-    gem_index = base.findin(selected_gem_names, get_selected_gem_name())
+    gem_index = base.findin(selected_gem_names, gem_name_from_selected_gem_full_name())
     if gem_index is None:
         gem_index = 0
     selected_listbox_gem_index = gem_index
@@ -172,11 +172,11 @@ def listbox_gem_selection(listbox_gem_gem: base.Gem, event: any) -> None:
     gem_name = base.GemName(selected_gem_names[gem_index])
     sv_name_gem = global_ids_query.get_gem(base.GemName(".StringVarName"), listbox_gem_gem)
     sv_name_object = tkattrs.get_tkobject(sv_name_gem)
-    if get_selected_cluster_name() == gem_name:
-        selected_gem_full_name = base.GemFullName(get_selected_cluster_name())
+    if cluster_name_from_selected_gem_full_name() == gem_name:
+        selected_gem_full_name = base.GemFullName(cluster_name_from_selected_gem_full_name())
         sv_name_object.set(selected_gem_full_name)
     else:
-        selected_gem_full_name = get_selected_cluster_name() + gem_name
+        selected_gem_full_name = cluster_name_from_selected_gem_full_name() + gem_name
         sv_name_object.set(selected_gem_full_name)
     selected_listbox_gem_index = gem_index
     init_content_view(listbox_gem_gem)
@@ -237,7 +237,7 @@ def select_gem(gem_full_name: base.GemFullName, event: Optional[any] = None) -> 
     label_error_object["text"] = ""
     listbox_cluster_object.selection_clear(0, "end")
     listbox_cluster_object.selection_set(cluster_index)
-    if get_selected_cluster_name() != cluster_name:
+    if cluster_name_from_selected_gem_full_name() != cluster_name:
         selected_gem_full_name = gem_full_name
         selected_listbox_cluster_index = cluster_index
         init_gems_view(window_gem)
