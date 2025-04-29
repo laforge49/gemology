@@ -210,6 +210,8 @@ def button_name_function(entry_name_gem: base.Gem) -> None:
     select_gem(gem_full_name)
 
 
+#
+
 def select_gem(gem_full_name: base.GemFullName, event: Optional[any] = None) -> None:
     global selected_listbox_cluster_index
     global selected_gem_names
