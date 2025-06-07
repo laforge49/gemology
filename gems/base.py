@@ -17,25 +17,33 @@ scalar = int | float | complex | str | bytes | bool
 class GemBaseName(str):
     def __new__(cls, name):
         assert "." not in name
-        return str.__new__(cls, name)
+        instance = str.__new__(cls, name)
+        assert isinstance(instance, GemBaseName)
+        return instance
 
 
 class GemName(str):
     def __new__(cls, name):
         assert not name.endswith(".")
-        return str.__new__(cls, name)
+        instance = super().__new__(cls, name)
+        assert isinstance(instance, GemName)
+        return instance
 
 
 class GemFullName(GemName):
     def __new__(cls, name):
         assert not name.startswith(".")
-        return GemName.__new__(cls, name)
+        instance = super().__new__(cls, name)
+        assert isinstance(instance, GemFullName)
+        return instance
 
 
 class ClusterName(GemName):
     def __new__(cls, name):
         assert "." not in name
-        return GemName.__new__(cls, name)
+        instance = GemName.__new__(cls, name)
+        assert isinstance(instance, ClusterName)
+        return instance
 
 
 def gem_full_name_to_cluster_name(name: GemFullName) -> Optional[ClusterName]:
@@ -53,8 +61,10 @@ def gem_full_name_to_gem_name(name: GemFullName) -> Optional[GemName]:
         return None
     i = findin(name, ".")
     if i is None:
-        return GemName(name)
-    return GemName(name[i:])
+        gemname = GemName(name)
+    else:
+        gemname = GemName(name[i:])
+    return gemname
 
 
 def expand_gem_name(name: GemName, context: GemFullName) -> Optional[GemFullName]:
@@ -64,8 +74,7 @@ def expand_gem_name(name: GemName, context: GemFullName) -> Optional[GemFullName
     if i == 0 :
         cluster_name = gem_full_name_to_cluster_name(context)
         return GemFullName(cluster_name + name)
-    assert isinstance(name, GemFullName)
-    return name
+    return GemFullName(name)
 
 
 
