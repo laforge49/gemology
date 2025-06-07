@@ -17,6 +17,7 @@ class Selected:
         self.gem_full_name: base.GemFullName = base.GemFullName("Aggregate")
         self.gems_frame: base.GemName = base.GemName(".FrameGemsList")
         self.content_frame: base.GemName = base.GemName(".FramePdml")
+        self.facet_name: str | None = None
 
 selected = Selected()
 
@@ -24,7 +25,6 @@ selected_listbox_cluster_index: int | None = 0
 selected_listbox_gem_index: int | None = 0
 selected_gem_names: list = []
 selected_facet_names: list = []
-selected_facet_name: str | None = None
 selected_listbox_facet_index: int | None = None
 
 
@@ -190,14 +190,14 @@ def listbox_gem_selection(listbox_gem_gem: base.Gem, event: any) -> None:
 
 def listbox_facet_selection(listbox_facet_gem: base.Gem, event: any) -> None:
     global selected_facet_names
-    global selected_facet_name
+    global selected
     global selected_listbox_facet_index
     listbox_facet_object = tkattrs.get_tkobject(listbox_facet_gem)
     facet_indexes = listbox_facet_object.curselection()
     facet_index = facet_indexes[0]
     facet_name = selected_facet_names[facet_index]
     selected_listbox_facet_index = facet_index
-    selected_facet_name = facet_name
+    selected.facet_name = facet_name
     facet_state_gem = global_ids_query.get_gem(base.GemName(".FacetState"), listbox_facet_gem)
     facet_state_object = tkattrs.get_tkobject(facet_state_gem)
     facet_state_object.config(text="")
@@ -294,7 +294,7 @@ def init_pdml_text(text_gem: base.Gem) -> None:
 def init_listbox_facet(listbox_facet_gem: base.Gem) -> None:
     global selected
     global selected_facet_names
-    global selected_facet_name
+    global selected
     global selected_listbox_facet_index
 
     facet_state_gem = global_ids_query.get_gem(base.GemName(".FacetState"), listbox_facet_gem)
@@ -312,13 +312,13 @@ def init_listbox_facet(listbox_facet_gem: base.Gem) -> None:
         for facet_name in sorted(gem_gem):
             selected_facet_names.append(facet_name)
             listbox_facet_gem_object.insert("end", facet_name)
-    if selected_facet_name is None:
+    if selected.facet_name is None:
         facet_state_object.config(text="No Facet Selected")
         facet_index = None
     else:
-        facet_index = base.findin(selected_facet_names, selected_facet_name)
+        facet_index = base.findin(selected_facet_names, selected.facet_name)
         if facet_index is None:
-            facet_state_object.config(text="No matching Facet: " + selected_facet_name)
+            facet_state_object.config(text="No matching Facet: " + selected.facet_name)
         else:
             facet_state_object.config(text="")
     selected_listbox_facet_index = facet_index
@@ -418,18 +418,17 @@ def local_id_index_facet(liif: base.LocalIdIndexFacet, text_object) -> None:
 
 def init_facet_text(facet_text_gem: base.Gem) -> None:
     global selected
-    global selected_facet_name
     gem = global_ids_query.get_gem(selected.gem_full_name, facet_text_gem)
     if gem is None:
         return
     text_object = tkattrs.get_tkobject(facet_text_gem)
     reset_text_object(text_object)
-    if selected_facet_name is None:
+    if selected.facet_name is None:
         return
-    facet = gem.get(selected_facet_name)
+    facet = gem.get(selected.facet_name)
     if facet is None:
         return
-    match selected_facet_name:
+    match selected.facet_name:
         case "#LocalIdIndexFacet":
             assert isinstance(facet, base.LocalIdIndexFacet)
             local_id_index_facet(facet, text_object)
