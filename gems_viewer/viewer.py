@@ -16,13 +16,13 @@ class Selected:
     def __init__(self):
         self.gem_full_name: base.GemFullName = base.GemFullName("Aggregate")
         self.gems_frame: base.GemName = base.GemName(".FrameGemsList")
+        self.content_frame: base.GemName = base.GemName(".FramePdml")
 
 selected = Selected()
 
 selected_listbox_cluster_index: int | None = 0
 selected_listbox_gem_index: int | None = 0
 selected_gem_names: list = []
-selected_content_frame = base.GemName(".FramePdml")
 selected_facet_names: list = []
 selected_facet_name: str | None = None
 selected_listbox_facet_index: int | None = None
@@ -71,8 +71,8 @@ def listbox_cluster_selection(listbox_cluster_gem: base.Gem, event: any) -> None
 
 
 def init_content_view(tk_gem: base.Gem) -> None:
-    global selected_content_frame
-    frame_gem = global_ids_query.get_gem(selected_content_frame, tk_gem)
+    global selected
+    frame_gem = global_ids_query.get_gem(selected.content_frame, tk_gem)
     if frame_gem is None:
         return
     view_gem = tkattrs.get_view_gem(frame_gem)
@@ -101,14 +101,14 @@ def gems_radiobutton_clicked(gems_radiobutton_gem: base.Gem) -> None:
 
 
 def content_radiobutton_clicked(content_radiobutton_gem: base.Gem) -> None:
-    global selected_content_frame
+    global selected
     value = tkattrs.get_options(content_radiobutton_gem)["value"]
-    if value == selected_content_frame:
+    if value == selected.content_frame:
         return
-    frame_gem = global_ids_query.get_gem(selected_content_frame, content_radiobutton_gem)
+    frame_gem = global_ids_query.get_gem(selected.content_frame, content_radiobutton_gem)
     tkcore.tk_destroy(frame_gem)
-    selected_content_frame = value
-    frame_gem = global_ids_query.get_gem(selected_content_frame, content_radiobutton_gem)
+    selected.content_frame = value
+    frame_gem = global_ids_query.get_gem(selected.content_frame, content_radiobutton_gem)
     tkcore.tkeval(frame_gem)
 
 
