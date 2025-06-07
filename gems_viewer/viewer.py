@@ -334,7 +334,7 @@ def reset_text_object(text_object) -> None:
     text_object.mark_set("insert", "1.0")
 
 
-def default_facet_display(facet, text_object) -> None:
+def default_facet_display(facet: dict | list, text_object) -> None:
     s = saver.data_to_string(0, facet, False)
     text_object.insert("1.0", s)
     text_object.see("1.0")
@@ -424,8 +424,10 @@ def init_facet_text(facet_text_gem: base.Gem) -> None:
         return
     match selected_facet_name:
         case "#LocalIdIndexFacet":
+            assert isinstance(facet, base.LocalIdIndexFacet)
             local_id_index_facet(facet, text_object)
         case "GemsFacet":
+            assert isinstance(facet, base.GemsFacet)
             gems_facet_display(facet, text_object)
         case _:
             default_facet_display(facet, text_object)
