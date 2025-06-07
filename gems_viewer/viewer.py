@@ -11,10 +11,16 @@ from tkgems.tkfacets import tkattrs, tkglobal_tags
 
 
 window_gem: base.Gem
+
+class Selected:
+    def __init__(self):
+        self.gem_full_name: base.GemFullName = base.GemFullName("Aggregate")
+
+selected = Selected()
+
 selected_listbox_cluster_index: int | None = 0
 selected_listbox_gem_index: int | None = 0
 selected_gem_names: list = []
-selected_gem_full_name = base.GemFullName("Aggregate")
 selected_gems_frame = base.GemName(".FrameGemsList")
 selected_content_frame = base.GemName(".FramePdml")
 selected_facet_names: list = []
@@ -23,31 +29,31 @@ selected_listbox_facet_index: int | None = None
 
 
 def cluster_name_from_selected_gem_full_name() -> Optional[base.ClusterName]:
-    global selected_gem_full_name
-    return base.gem_full_name_to_cluster_name(selected_gem_full_name)
+    global selected
+    return base.gem_full_name_to_cluster_name(selected.gem_full_name)
 
 
 def gem_name_from_selected_gem_full_name() -> Optional[base.GemName]:
-    global selected_gem_full_name
-    return base.gem_full_name_to_gem_name(selected_gem_full_name)
+    global selected
+    return base.gem_full_name_to_gem_name(selected.gem_full_name)
 
 
 def init_listbox_cluster(listbox_cluster_gem: base.Gem) -> None:
     global selected_listbox_cluster_index
-    global selected_gem_full_name
+    global selected
     listbox_cluster_object = tkattrs.get_tkobject(listbox_cluster_gem)
     listbox_cluster_object.insert("end", "Aggregate")
     for cluster_name in sorted(global_ids_query.aggregate_get_cluster_names()):
         listbox_cluster_object.insert("end", cluster_name)
     listbox_cluster_object.select_set(0)
     selected_listbox_cluster_index = 0
-    selected_gem_full_name = base.GemFullName("Aggregate")
+    selected.gem_full_name = base.GemFullName("Aggregate")
     listbox_cluster_object.see(0)
 
 
 def listbox_cluster_selection(listbox_cluster_gem: base.Gem, event: any) -> None:
     global selected_listbox_cluster_index
-    global selected_gem_full_name
+    global selected
     label_error_gem = global_ids_query.get_gem(base.GemName(".LabelError"), listbox_cluster_gem)
     label_error_object = tkattrs.get_tkobject(label_error_gem)
     label_error_object["text"] = ""
@@ -59,7 +65,7 @@ def listbox_cluster_selection(listbox_cluster_gem: base.Gem, event: any) -> None
     sv_name_object = tkattrs.get_tkobject(sv_name_gem)
     sv_name_object.set(cluster_name)
     selected_listbox_cluster_index = cluster_index
-    selected_gem_full_name = cluster_name
+    selected.gem_full_name = cluster_name
     init_gems_view(listbox_cluster_gem)
     init_content_view(listbox_cluster_gem)
 
@@ -161,7 +167,7 @@ def init_listbox_gem_tree(listbox_gem_gem: base.Gem):
 
 def listbox_gem_selection(listbox_gem_gem: base.Gem, event: any) -> None:
     global selected_listbox_gem_index
-    global selected_gem_full_name
+    global selected
     global selected_gem_names
     label_error_gem = global_ids_query.get_gem(base.GemName(".LabelError"), listbox_gem_gem)
     label_error_object = tkattrs.get_tkobject(label_error_gem)
@@ -173,11 +179,11 @@ def listbox_gem_selection(listbox_gem_gem: base.Gem, event: any) -> None:
     sv_name_gem = global_ids_query.get_gem(base.GemName(".StringVarName"), listbox_gem_gem)
     sv_name_object = tkattrs.get_tkobject(sv_name_gem)
     if cluster_name_from_selected_gem_full_name() == gem_name:
-        selected_gem_full_name = base.GemFullName(cluster_name_from_selected_gem_full_name())
-        sv_name_object.set(selected_gem_full_name)
+        selected.gem_full_name = base.GemFullName(cluster_name_from_selected_gem_full_name())
+        sv_name_object.set(selected.gem_full_name)
     else:
-        selected_gem_full_name = cluster_name_from_selected_gem_full_name() + gem_name
-        sv_name_object.set(selected_gem_full_name)
+        selected.gem_full_name = cluster_name_from_selected_gem_full_name() + gem_name
+        sv_name_object.set(selected.gem_full_name)
     selected_listbox_gem_index = gem_index
     init_content_view(listbox_gem_gem)
 
@@ -214,7 +220,7 @@ def select_gem(gem_full_name: base.GemFullName, event: Optional[any] = None) -> 
     global selected_listbox_cluster_index
     global selected_gem_names
     global selected_listbox_gem_index
-    global selected_gem_full_name
+    global selected
     label_error_gem = global_ids_query.get_gem(base.GemName(".LabelError"), window_gem)
     label_error_object = tkattrs.get_tkobject(label_error_gem)
     if gem_full_name.endswith("."):
@@ -238,12 +244,12 @@ def select_gem(gem_full_name: base.GemFullName, event: Optional[any] = None) -> 
     listbox_cluster_object.selection_clear(0, "end")
     listbox_cluster_object.selection_set(cluster_index)
     if cluster_name_from_selected_gem_full_name() != cluster_name:
-        selected_gem_full_name = gem_full_name
+        selected.gem_full_name = gem_full_name
         selected_listbox_cluster_index = cluster_index
         init_gems_view(window_gem)
         selected_listbox_gem_index = 0
     else:
-        selected_gem_full_name = gem_full_name
+        selected.gem_full_name = gem_full_name
     gem_index = base.findin(selected_gem_names, gem_name)
     if gem_index is None:
         label_error_object["text"] = "Unknown gem name."
@@ -266,7 +272,7 @@ def get_listbox_view_gem(tk_gem: base.Gem) -> Optional[base.Gem]:
 
 
 def init_pdml_text(text_gem: base.Gem) -> None:
-    global selected_gem_full_name
+    global selected
     cluster = attrs_query.get_cluster(text_gem)
     if cluster is None:
         return
@@ -274,7 +280,7 @@ def init_pdml_text(text_gem: base.Gem) -> None:
     tkcore.tk_destroy(facet_state_gem)
     parent_gem = attrs_query.get_gem_parent(text_gem)
     tkattrs.set_view_gem(parent_gem, text_gem)
-    gem = global_ids_query.get_gem(selected_gem_full_name)
+    gem = global_ids_query.get_gem(selected.gem_full_name)
     if gem is None:
         return
     text_object = tkattrs.get_tkobject(text_gem)
@@ -285,7 +291,7 @@ def init_pdml_text(text_gem: base.Gem) -> None:
 
 
 def init_listbox_facet(listbox_facet_gem: base.Gem) -> None:
-    global selected_gem_full_name
+    global selected
     global selected_facet_names
     global selected_facet_name
     global selected_listbox_facet_index
@@ -299,7 +305,7 @@ def init_listbox_facet(listbox_facet_gem: base.Gem) -> None:
     tkattrs.set_view_gem(master_frame_gem, listbox_facet_gem)
     listbox_facet_gem_object = tkattrs.get_tkobject(listbox_facet_gem)
     listbox_facet_gem_object.delete(0, "end")
-    gem_gem = global_ids_query.get_gem(selected_gem_full_name)
+    gem_gem = global_ids_query.get_gem(selected.gem_full_name)
     selected_facet_names = []
     if gem_gem is not None:
         for facet_name in sorted(gem_gem):
@@ -410,9 +416,9 @@ def local_id_index_facet(liif: base.LocalIdIndexFacet, text_object) -> None:
 
 
 def init_facet_text(facet_text_gem: base.Gem) -> None:
-    global selected_gem_full_name
+    global selected
     global selected_facet_name
-    gem = global_ids_query.get_gem(selected_gem_full_name, facet_text_gem)
+    gem = global_ids_query.get_gem(selected.gem_full_name, facet_text_gem)
     if gem is None:
         return
     text_object = tkattrs.get_tkobject(facet_text_gem)
