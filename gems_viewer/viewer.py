@@ -15,13 +15,13 @@ window_gem: base.Gem
 class Selected:
     def __init__(self):
         self.gem_full_name: base.GemFullName = base.GemFullName("Aggregate")
+        self.gems_frame: base.GemName = base.GemName(".FrameGemsList")
 
 selected = Selected()
 
 selected_listbox_cluster_index: int | None = 0
 selected_listbox_gem_index: int | None = 0
 selected_gem_names: list = []
-selected_gems_frame = base.GemName(".FrameGemsList")
 selected_content_frame = base.GemName(".FramePdml")
 selected_facet_names: list = []
 selected_facet_name: str | None = None
@@ -80,8 +80,8 @@ def init_content_view(tk_gem: base.Gem) -> None:
 
 
 def init_gems_view(tk_gem: base.Gem) -> None:
-    global selected_gems_frame
-    frame_gem = global_ids_query.get_gem(selected_gems_frame, tk_gem)
+    global selected
+    frame_gem = global_ids_query.get_gem(selected.gems_frame, tk_gem)
     if frame_gem is None:
         return
     view_gem = tkattrs.get_view_gem(frame_gem)
@@ -89,14 +89,14 @@ def init_gems_view(tk_gem: base.Gem) -> None:
 
 
 def gems_radiobutton_clicked(gems_radiobutton_gem: base.Gem) -> None:
-    global selected_gems_frame
+    global selected
     value = tkattrs.get_options(gems_radiobutton_gem)["value"]
-    if value == selected_gems_frame:
+    if value == selected.gems_frame:
         return
-    frame_gem = global_ids_query.get_gem(selected_gems_frame, gems_radiobutton_gem)
+    frame_gem = global_ids_query.get_gem(selected.gems_frame, gems_radiobutton_gem)
     tkcore.tk_destroy(frame_gem)
-    selected_gems_frame = value
-    frame_gem = global_ids_query.get_gem(selected_gems_frame, gems_radiobutton_gem)
+    selected.gems_frame = value
+    frame_gem = global_ids_query.get_gem(selected.gems_frame, gems_radiobutton_gem)
     tkcore.tkeval(frame_gem)
 
 
@@ -264,7 +264,8 @@ def select_gem(gem_full_name: base.GemFullName, event: Optional[any] = None) -> 
 
 
 def get_listbox_view_gem(tk_gem: base.Gem) -> Optional[base.Gem]:
-    frame_gem = global_ids_query.get_gem(selected_gems_frame, tk_gem)
+    global selected
+    frame_gem = global_ids_query.get_gem(selected.gems_frame, tk_gem)
     if frame_gem is None:
         return None
     view_gem = tkattrs.get_view_gem(frame_gem)
