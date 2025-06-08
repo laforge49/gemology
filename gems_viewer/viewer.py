@@ -19,6 +19,7 @@ class Selected:
         self.content_frame: base.GemName = base.GemName(".FramePdml")
         self.facet_name: str | None = None
         self.gem_names: list = []
+        self.facet_names: list = []
 
 selected = Selected()
 
@@ -188,13 +189,12 @@ def listbox_gem_selection(listbox_gem_gem: base.Gem, event: any) -> None:
 
 
 def listbox_facet_selection(listbox_facet_gem: base.Gem, event: any) -> None:
-    global selected_facet_names
     global selected
     global selected_listbox_facet_index
     listbox_facet_object = tkattrs.get_tkobject(listbox_facet_gem)
     facet_indexes = listbox_facet_object.curselection()
     facet_index = facet_indexes[0]
-    facet_name = selected_facet_names[facet_index]
+    facet_name = selected.facet_names[facet_index]
     selected_listbox_facet_index = facet_index
     selected.facet_name = facet_name
     facet_state_gem = global_ids_query.get_gem(base.GemName(".FacetState"), listbox_facet_gem)
@@ -291,8 +291,6 @@ def init_pdml_text(text_gem: base.Gem) -> None:
 
 def init_listbox_facet(listbox_facet_gem: base.Gem) -> None:
     global selected
-    global selected_facet_names
-    global selected
     global selected_listbox_facet_index
 
     facet_state_gem = global_ids_query.get_gem(base.GemName(".FacetState"), listbox_facet_gem)
@@ -305,16 +303,16 @@ def init_listbox_facet(listbox_facet_gem: base.Gem) -> None:
     listbox_facet_gem_object = tkattrs.get_tkobject(listbox_facet_gem)
     listbox_facet_gem_object.delete(0, "end")
     gem_gem = global_ids_query.get_gem(selected.gem_full_name)
-    selected_facet_names = []
+    selected.facet_names = []
     if gem_gem is not None:
         for facet_name in sorted(gem_gem):
-            selected_facet_names.append(facet_name)
+            selected.facet_names.append(facet_name)
             listbox_facet_gem_object.insert("end", facet_name)
     if selected.facet_name is None:
         facet_state_object.config(text="No Facet Selected")
         facet_index = None
     else:
-        facet_index = base.findin(selected_facet_names, selected.facet_name)
+        facet_index = base.findin(selected.facet_names, selected.facet_name)
         if facet_index is None:
             facet_state_object.config(text="No matching Facet: " + selected.facet_name)
         else:
