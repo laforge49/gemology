@@ -20,10 +20,10 @@ class Selected:
         self.facet_name: str | None = None
         self.gem_names: list = []
         self.facet_names: list = []
+        self.listbox_cluster_index: int | None = 0
 
 selected = Selected()
 
-selected_listbox_cluster_index: int | None = 0
 selected_listbox_gem_index: int | None = 0
 selected_listbox_facet_index: int | None = None
 
@@ -39,20 +39,18 @@ def gem_name_from_selected_gem_full_name() -> Optional[base.GemName]:
 
 
 def init_listbox_cluster(listbox_cluster_gem: base.Gem) -> None:
-    global selected_listbox_cluster_index
     global selected
     listbox_cluster_object = tkattrs.get_tkobject(listbox_cluster_gem)
     listbox_cluster_object.insert("end", "Aggregate")
     for cluster_name in sorted(global_ids_query.aggregate_get_cluster_names()):
         listbox_cluster_object.insert("end", cluster_name)
     listbox_cluster_object.select_set(0)
-    selected_listbox_cluster_index = 0
+    selected.listbox_cluster_index = 0
     selected.gem_full_name = base.GemFullName("Aggregate")
     listbox_cluster_object.see(0)
 
 
 def listbox_cluster_selection(listbox_cluster_gem: base.Gem, event: any) -> None:
-    global selected_listbox_cluster_index
     global selected
     label_error_gem = global_ids_query.get_gem(base.GemName(".LabelError"), listbox_cluster_gem)
     label_error_object = tkattrs.get_tkobject(label_error_gem)
@@ -64,7 +62,7 @@ def listbox_cluster_selection(listbox_cluster_gem: base.Gem, event: any) -> None
     sv_name_gem = global_ids_query.get_gem(base.GemName(".StringVarName"), listbox_cluster_gem)
     sv_name_object = tkattrs.get_tkobject(sv_name_gem)
     sv_name_object.set(cluster_name)
-    selected_listbox_cluster_index = cluster_index
+    selected.listbox_cluster_index = cluster_index
     selected.gem_full_name = cluster_name
     init_gems_view(listbox_cluster_gem)
     init_content_view(listbox_cluster_gem)
@@ -215,7 +213,6 @@ def button_name_function(entry_name_gem: base.Gem) -> None:
 
 
 def select_gem(gem_full_name: base.GemFullName, event: Optional[any] = None) -> None:
-    global selected_listbox_cluster_index
     global selected_listbox_gem_index
     global selected
     label_error_gem = global_ids_query.get_gem(base.GemName(".LabelError"), window_gem)
@@ -242,7 +239,7 @@ def select_gem(gem_full_name: base.GemFullName, event: Optional[any] = None) -> 
     listbox_cluster_object.selection_set(cluster_index)
     if cluster_name_from_selected_gem_full_name() != cluster_name:
         selected.gem_full_name = gem_full_name
-        selected_listbox_cluster_index = cluster_index
+        selected.listbox_cluster_index = cluster_index
         init_gems_view(window_gem)
         selected_listbox_gem_index = 0
     else:
