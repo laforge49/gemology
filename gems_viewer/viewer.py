@@ -25,7 +25,6 @@ selected = Selected()
 
 selected_listbox_cluster_index: int | None = 0
 selected_listbox_gem_index: int | None = 0
-selected_facet_names: list = []
 selected_listbox_facet_index: int | None = None
 
 
