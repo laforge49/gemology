@@ -26,12 +26,12 @@ class Selected:
 
 selected = Selected()
 
+
 def cluster_name_from_selected_gem_full_name(selected: Selected) -> Optional[base.ClusterName]:
     return base.gem_full_name_to_cluster_name(selected.gem_full_name)
 
 
-def gem_name_from_selected_gem_full_name() -> Optional[base.GemName]:
-    global selected
+def gem_name_from_selected_gem_full_name(selected: Selected) -> Optional[base.GemName]:
     return base.gem_full_name_to_gem_name(selected.gem_full_name)
 
 
@@ -62,11 +62,10 @@ def listbox_cluster_selection(listbox_cluster_gem: base.Gem, event: any) -> None
     selected.listbox_cluster_index = cluster_index
     selected.gem_full_name = cluster_name
     init_gems_view(listbox_cluster_gem)
-    init_content_view(listbox_cluster_gem)
+    init_content_view(selected, listbox_cluster_gem)
 
 
-def init_content_view(tk_gem: base.Gem) -> None:
-    global selected
+def init_content_view(selected: Selected, tk_gem: base.Gem) -> None:
     frame_gem = global_ids_query.get_gem(selected.content_frame, tk_gem)
     if frame_gem is None:
         return
@@ -121,7 +120,7 @@ def init_listbox_gem(listbox_gem_gem: base.Gem):
             selected.gem_names.append("." + gem_name)
     for gem_name in selected.gem_names:
         listbox_gem_object.insert("end", gem_name)
-    gem_index = base.findin(selected.gem_names, gem_name_from_selected_gem_full_name())
+    gem_index = base.findin(selected.gem_names, gem_name_from_selected_gem_full_name(selected))
     if gem_index is None:
         gem_index = 0
     selected.listbox_gem_index = gem_index
@@ -150,7 +149,7 @@ def init_listbox_gem_tree(listbox_gem_gem: base.Gem):
     selected.gem_names = []
     cluster_gem = global_ids_query.get_cluster_by_cluster_name(cluster_name_from_selected_gem_full_name(selected))
     load_gems(cluster_gem, listbox_gem_object, "")
-    gem_index = base.findin(selected.gem_names, gem_name_from_selected_gem_full_name())
+    gem_index = base.findin(selected.gem_names, gem_name_from_selected_gem_full_name(selected))
     if gem_index is None:
         gem_index = 0
     selected.listbox_gem_index = gem_index
@@ -176,7 +175,7 @@ def listbox_gem_selection(listbox_gem_gem: base.Gem, event: any) -> None:
         selected.gem_full_name = cluster_name_from_selected_gem_full_name(selected) + gem_name
         sv_name_object.set(selected.gem_full_name)
     selected.listbox_gem_index = gem_index
-    init_content_view(listbox_gem_gem)
+    init_content_view(selected, listbox_gem_gem)
 
 
 def listbox_facet_selection(listbox_facet_gem: base.Gem, event: any) -> None:
@@ -246,7 +245,7 @@ def select_gem(gem_full_name: base.GemFullName, event: Optional[any] = None) -> 
     listbox_view_object.selection_clear(0, "end")
     listbox_view_object.select_set(selected.listbox_gem_index)
     listbox_view_object.see(selected.listbox_gem_index)
-    init_content_view(window_gem)
+    init_content_view(selected, window_gem)
 
 
 def get_listbox_view_gem(tk_gem: base.Gem) -> Optional[base.Gem]:
