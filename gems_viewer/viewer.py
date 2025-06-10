@@ -127,8 +127,7 @@ def init_listbox_gem(listbox_gem_gem: base.Gem):
     listbox_gem_object.see(selected.listbox_gem_index)
 
 
-def load_gems(tk_gem: base.Gem, listbox_gem_object: any, prefix: str = "") -> None:
-    global selected
+def load_gems(selected: Selected, tk_gem: base.Gem, listbox_gem_object: any, prefix: str = "") -> None:
     gem_name = core.get_gem_name(tk_gem)
     selected.gem_names.append(gem_name)
     listbox_gem_object.insert("end", prefix + gem_name)
@@ -136,7 +135,7 @@ def load_gems(tk_gem: base.Gem, listbox_gem_object: any, prefix: str = "") -> No
     if gemsfacet is None:
         return
     for gem in gemsfacet:
-        load_gems(gem, listbox_gem_object, prefix + "+")
+        load_gems(selected, gem, listbox_gem_object, prefix + "+")
 
 
 def init_listbox_gem_tree(listbox_gem_gem: base.Gem):
@@ -147,7 +146,7 @@ def init_listbox_gem_tree(listbox_gem_gem: base.Gem):
     listbox_gem_object.delete(0, "end")
     selected.gem_names = []
     cluster_gem = global_ids_query.get_cluster_by_cluster_name(cluster_name_from_selected_gem_full_name(selected))
-    load_gems(cluster_gem, listbox_gem_object, "")
+    load_gems(selected, cluster_gem, listbox_gem_object, "")
     gem_index = base.findin(selected.gem_names, gem_name_from_selected_gem_full_name(selected))
     if gem_index is None:
         gem_index = 0
