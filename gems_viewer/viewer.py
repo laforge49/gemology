@@ -223,6 +223,10 @@ def select_gem(gem_full_name: base.GemFullName, event: Optional[any] = None) -> 
     if cluster_index is None:
         label_error_object["text"] = "Unknown cluster."
         return
+    gem_index = base.findin(selected.gem_names, gem_name)
+    if gem_index is None:
+        label_error_object["text"] = "Unknown gem name."
+        return
     label_error_object["text"] = ""
     listbox_cluster_object.selection_clear(0, "end")
     listbox_cluster_object.selection_set(cluster_index)
@@ -233,10 +237,6 @@ def select_gem(gem_full_name: base.GemFullName, event: Optional[any] = None) -> 
         selected.listbox_gem_index = 0
     else:
         selected.gem_full_name = gem_full_name
-    gem_index = base.findin(selected.gem_names, gem_name)
-    if gem_index is None:
-        label_error_object["text"] = "Unknown gem name."
-        return
     selected.listbox_gem_index = gem_index
     listbox_view_gem = get_listbox_view_gem(selected, window_gem)
     listbox_view_object = tkattrs.get_tkobject(listbox_view_gem)
