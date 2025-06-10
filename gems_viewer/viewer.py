@@ -238,7 +238,7 @@ def select_gem(gem_full_name: base.GemFullName, event: Optional[any] = None) -> 
         label_error_object["text"] = "Unknown gem name."
         return
     selected.listbox_gem_index = gem_index
-    listbox_view_gem = get_listbox_view_gem(window_gem)
+    listbox_view_gem = get_listbox_view_gem(selected, window_gem)
     listbox_view_object = tkattrs.get_tkobject(listbox_view_gem)
     listbox_view_object.selection_clear(0, "end")
     listbox_view_object.select_set(selected.listbox_gem_index)
@@ -246,8 +246,7 @@ def select_gem(gem_full_name: base.GemFullName, event: Optional[any] = None) -> 
     init_content_view(selected, window_gem)
 
 
-def get_listbox_view_gem(tk_gem: base.Gem) -> Optional[base.Gem]:
-    global selected
+def get_listbox_view_gem(selected: Selected, tk_gem: base.Gem) -> Optional[base.Gem]:
     frame_gem = global_ids_query.get_gem(selected.gems_frame, tk_gem)
     if frame_gem is None:
         return None
