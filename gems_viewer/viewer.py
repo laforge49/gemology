@@ -61,7 +61,7 @@ def listbox_cluster_selection(listbox_cluster_gem: base.Gem, event: any) -> None
     sv_name_object.set(cluster_name)
     selected.listbox_cluster_index = cluster_index
     selected.gem_full_name = cluster_name
-    init_gems_view2(selected, listbox_cluster_gem)
+    init_gems_view(selected, listbox_cluster_gem)
     init_content_view(selected, listbox_cluster_gem)
 
 
@@ -73,7 +73,7 @@ def init_content_view(selected: Selected, tk_gem: base.Gem) -> None:
     tkcore.tkinit_func(view_gem)
 
 
-def init_gems_view2(selected: Selected, tk_gem: base.Gem) -> None:
+def init_gems_view(selected: Selected, tk_gem: base.Gem) -> None:
     frame_gem = global_ids_query.get_gem(selected.gems_frame, tk_gem)
     if frame_gem is None:
         return
@@ -230,7 +230,7 @@ def select_gem(gem_full_name: base.GemFullName, event: Optional[any] = None) -> 
     if cluster_name_from_selected_gem_full_name(selected) != cluster_name:
         selected.gem_full_name = gem_full_name
         selected.listbox_cluster_index = cluster_index
-        init_gems_view2(selected, window_gem)
+        init_gems_view(selected, window_gem)
         selected.listbox_gem_index = 0
     else:
         selected.gem_full_name = gem_full_name
