@@ -408,13 +408,38 @@ def init_facet_text(facet_text_gem: base.Gem) -> None:
     if facet is None:
         return
     match selected.facet_name:
-        case "#LocalIdIndexFacet":
-            assert isinstance(facet, base.LocalIdIndexFacet)
-            local_id_index_facet(facet, text_object)
+        case "AttrsFacet":
+            assert isinstance(facet, base.AttrsFacet)
+            default_facet_display(facet, text_object)
         case "GemsFacet":
             assert isinstance(facet, base.GemsFacet)
             gems_facet_display(facet, text_object)
+        case "LocalIdsFacet":
+            assert isinstance(facet, base.LocalIdsFacet)
+            default_facet_display(facet, text_object)
+        case "#LocalIdIndexFacet":
+            assert isinstance(facet, base.LocalIdIndexFacet)
+            local_id_index_facet(facet, text_object)
+        case "LocalTagsFacet":
+            assert isinstance(facet, base.LocalTagsFacet)
+            default_facet_display(facet, text_object)
+        case "#LocalTagIndexFacet":
+            assert isinstance(facet, base.LocalTagIndexFacet)
+            default_facet_display(facet, text_object)
+        case "GlobalIdsFacet":
+            assert isinstance(facet, base.GlobalIdsFacet)
+            default_facet_display(facet, text_object)
+        case "#GlobalIdIndexFacet":
+            assert isinstance(facet, base.GlobalIdIndexFacet)
+            default_facet_display(facet, text_object)
+        case "GlobalTagsFacet":
+            assert isinstance(facet, base.GlobalTagsFacet)
+            default_facet_display(facet, text_object)
+        case "#GlobalTagIndexFacet":
+            assert isinstance(facet, base.GlobalTagIndexFacet)
+            default_facet_display(facet, text_object)
         case _:
+            print("Unknown facit name:", selected.facet_name)
             default_facet_display(facet, text_object)
 
 
