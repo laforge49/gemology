@@ -348,11 +348,11 @@ def gems_facet_display(gems: base.GemsFacet, text_object) -> None:
         gem_name = base.GemName("." + gem_base_name)
         gem_full_name = global_ids_query.expand_gem_name(gem, gem_name)
         sels.append(gem_full_name)
-        text_object.tag_config(gem_base_name, foreground="blue", underline=True)
-        text_object.insert("end", gem_full_name, gem_base_name)
+        text_object.tag_config(gem_full_name, foreground="blue", underline=True)
+        text_object.insert("end", gem_full_name, (gem_full_name,))
+        text_object.tag_bind(gem_full_name, "<Button-1>",
+                             lambda event, t=gem_full_name: select_gem(t, event))
         text_object.insert("end", " \n")
-        text_object.tag_bind(gem_base_name, "<Button-1>",
-                             lambda event: select_gem(gem_full_name, event))
 
 
 def local_id_index_facet_change_cursor(sels: dict, event) -> None:
@@ -392,7 +392,7 @@ def local_id_index_facet(liif: base.LocalIdIndexFacet, text_object) -> None:
             text_object.insert("end", " \n")
             line += 1
             text_object.tag_bind(gem_base_name, "<Button-1>",
-                                 lambda event: select_gem(gem_full_name, event))
+                                 lambda event, t=gem_full_name: select_gem(t, event))
 
 
 def init_facet_text(facet_text_gem: base.Gem) -> None:
