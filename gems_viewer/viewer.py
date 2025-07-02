@@ -330,7 +330,6 @@ def default_facet_display(facet: dict | list, text_object) -> None:
 
 
 def attrs_facet_display(gems: base.AttrsFacet, text_object) -> None:
-    print(123)
     for (nam, val) in gems.items():
         t = nam + ": " + type(val).__name__
         if (not nam.startswith("#")) or base.isscalar(val):
