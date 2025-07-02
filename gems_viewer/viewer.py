@@ -383,15 +383,13 @@ def local_id_index_facet(liif: base.LocalIdIndexFacet, text_object) -> None:
         text_object.insert("end", "id type = " + id_type + "\n")
         line += 1
         for (id, gem) in type_dict.items():
-            text_object.insert("end", "    id = " + id + "\n")
-            line += 1
             gem_base_name = local_ids_query.get_gem_base_name(gem)
             gem_name = base.GemName("." + gem_base_name)
             gem_full_name = global_ids_query.expand_gem_name(gem, gem_name)
             sels[line] = gem_full_name
             text_object.tag_config(gem_base_name, foreground="blue", underline=True)
-            text_object.insert("end", "        ")
-            text_object.insert("end", gem_full_name, gem_base_name)
+            text_object.insert("end", "    id = ")
+            text_object.insert("end", gem_base_name, gem_base_name)
             text_object.insert("end", " \n")
             line += 1
             text_object.tag_bind(gem_base_name, "<Button-1>",
