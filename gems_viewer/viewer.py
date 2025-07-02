@@ -24,6 +24,7 @@ class Selected:
         self.listbox_gem_index: int | None = 0
         self.listbox_facet_index: int | None = None
 
+
 selected = Selected()
 
 
