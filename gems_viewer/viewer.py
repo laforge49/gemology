@@ -329,6 +329,15 @@ def default_facet_display(facet: dict | list, text_object) -> None:
     text_object.see("1.0")
 
 
+def attrs_facet_display(gems: base.AttrsFacet, text_object) -> None:
+    print(123)
+    for (nam, val) in gems.items():
+        t = nam + ": " + type(val).__name__
+        if (not nam.startswith("#")) or base.isscalar(val):
+            t += " = " + str(val)
+        text_object.insert("end", t + "\n")
+
+
 def gems_facet_change_cursor(sels: list, event) -> None:
     index = event.widget.index(tkinter.CURRENT)
     line, column = map(int, index.split('.'))
@@ -411,7 +420,7 @@ def init_facet_text(facet_text_gem: base.Gem) -> None:
     match selected.facet_name:
         case "AttrsFacet":
             assert isinstance(facet, base.AttrsFacet)
-            default_facet_display(facet, text_object)
+            attrs_facet_display(facet, text_object)
         case "GemsFacet":
             assert isinstance(facet, base.GemsFacet)
             gems_facet_display(facet, text_object)
