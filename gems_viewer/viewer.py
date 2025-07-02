@@ -48,6 +48,12 @@ def init_listbox_cluster(listbox_cluster_gem: base.Gem) -> None:
     listbox_cluster_object.see(0)
 
 
+def set_sv_name(gem_full_name: base.GemFullName, context_gem: Optional[base.Gem] = None) -> None:
+    sv_name_gem = global_ids_query.get_gem(base.GemName(".StringVarName"), context_gem)
+    sv_name_object = tkattrs.get_tkobject(sv_name_gem)
+    sv_name_object.set(gem_full_name)
+
+
 def listbox_cluster_selection(listbox_cluster_gem: base.Gem, event: any) -> None:
     global selected
     label_error_gem = global_ids_query.get_gem(base.GemName(".LabelError"), listbox_cluster_gem)
@@ -57,9 +63,7 @@ def listbox_cluster_selection(listbox_cluster_gem: base.Gem, event: any) -> None
     cluster_indexes = listbox_cluster_object.curselection()
     cluster_index = cluster_indexes[0]
     cluster_name = listbox_cluster_object.get(cluster_index)
-    sv_name_gem = global_ids_query.get_gem(base.GemName(".StringVarName"), listbox_cluster_gem)
-    sv_name_object = tkattrs.get_tkobject(sv_name_gem)
-    sv_name_object.set(cluster_name)
+    set_sv_name(cluster_name, listbox_cluster_gem)
     selected.listbox_cluster_index = cluster_index
     selected.gem_full_name = cluster_name
     init_gems_view(selected, listbox_cluster_gem)
@@ -165,14 +169,11 @@ def listbox_gem_selection(listbox_gem_gem: base.Gem, event: any) -> None:
     gem_indexes = listbox_gem_object.curselection()
     gem_index = gem_indexes[0]
     gem_name = base.GemName(selected.gem_names[gem_index])
-    sv_name_gem = global_ids_query.get_gem(base.GemName(".StringVarName"), listbox_gem_gem)
-    sv_name_object = tkattrs.get_tkobject(sv_name_gem)
     if cluster_name_from_selected_gem_full_name(selected) == gem_name:
         selected.gem_full_name = base.GemFullName(cluster_name_from_selected_gem_full_name(selected))
-        sv_name_object.set(selected.gem_full_name)
     else:
         selected.gem_full_name = cluster_name_from_selected_gem_full_name(selected) + gem_name
-        sv_name_object.set(selected.gem_full_name)
+    set_sv_name(selected.gem_full_name, listbox_gem_gem)
     selected.listbox_gem_index = gem_index
     init_content_view(selected, listbox_gem_gem)
 
@@ -245,6 +246,7 @@ def select_gem(gem_full_name: base.GemFullName, event: Optional[any] = None) -> 
     listbox_view_object.select_set(selected.listbox_gem_index)
     listbox_view_object.see(selected.listbox_gem_index)
     init_content_view(selected, window_gem)
+    set_sv_name(gem_full_name, window_gem)
 
 
 def get_listbox_view_gem(selected: Selected, tk_gem: base.Gem) -> Optional[base.Gem]:
