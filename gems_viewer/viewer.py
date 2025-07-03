@@ -1,4 +1,5 @@
 from typing import *
+import types
 import pathlib
 import tkinter
 
@@ -334,6 +335,8 @@ def attrs_facet_display(gems: base.AttrsFacet, text_object) -> None:
         t = nam + ": " + type(val).__name__
         if (not nam.startswith("#")) or base.isscalar(val):
             t += " = " + str(val)
+        elif isinstance(val, type) or isinstance(val, types.FunctionType):
+            t += " = " + val.__name__
         text_object.insert("end", t + "\n")
 
 
