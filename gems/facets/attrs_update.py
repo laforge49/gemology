@@ -1,4 +1,5 @@
 from typing import *
+import types
 
 from gems import base
 from gems.facets import attrs_query
@@ -61,6 +62,10 @@ def del_parent_attr(gem: Optional[base.Gem]) -> Optional[base.Gem]:
 
 def set_function(gem: Optional[base.Gem], function: Callable) -> bool:
     return set_attr_value(gem, "#function", function)
+
+
+def set_type(gem: Optional[base.Gem], ty: type) -> bool:
+    return set_attr_value(gem, "#type", ty)
 
 
 def set_class_name(gem: Optional[base.Gem], function: str) -> bool:

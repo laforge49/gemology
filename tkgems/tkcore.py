@@ -9,9 +9,9 @@ from gems.facets import attrs_query, global_ids_query, gems_query
 from tkgems.tkfacets import tkattrs, tkglobal_tags
 
 
-def make_tkdescriptor_gem(descriptor_name: str, tkcomposer: Callable, is_widget: bool, packable: bool)\
+def make_tkdescriptor_gem(descriptor_name: str, tkcomposer: type, is_widget: bool, packable: bool)\
         -> dict:
-    resource_gem = core.make_resource_function_gem(descriptor_name, tkcomposer)
+    resource_gem = core.make_resource_type_gem(descriptor_name, tkcomposer)
     assert isinstance(resource_gem, base.Resource)
     tkattrs.set_is_widget(resource_gem, is_widget)
     tkattrs.set_packable(resource_gem, packable)
@@ -191,7 +191,7 @@ def tkeval(tkgem: base.Gem) -> any:
     tkdescriptor_gem = get_tkdescriptor_gem(tkgem)
     if tkdescriptor_gem is None:
        return None
-    tkcomposer = attrs_query.get_function(tkdescriptor_gem)
+    tkcomposer = attrs_query.get_type(tkdescriptor_gem)
     tkoptions = do_tkoptions(tkgem)
     tkobject = tkcomposer(parent_tkobject, **tkoptions)
     tkattrs.set_tkobject(tkgem, tkobject)

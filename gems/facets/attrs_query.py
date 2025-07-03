@@ -1,4 +1,5 @@
 from typing import *
+import types
 
 from gems import base
 
@@ -45,10 +46,16 @@ def get_gem_parent(gem: Optional[base.Gem]) -> Optional[base.Gem]:
     return parent
 
 
-def get_function(gem: Optional[base.Gem]) -> Optional[Callable]:
+def get_function(gem: Optional[base.Gem]) -> Optional[types.FunctionType]:
     func = get_attr_value(gem, "#function")
-    assert isinstance(func, Callable) or func is None
+    assert isinstance(func, types.FunctionType) or (func is None)
     return func
+
+
+def get_type(gem: Optional[base.Gem]) -> Optional[type]:
+    ty = get_attr_value(gem, "#type")
+    assert isinstance(ty, type) or ty is None
+    return ty
 
 
 def get_class_name(gem: Optional[base.Gem]) -> Optional[str]:

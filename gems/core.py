@@ -1,5 +1,6 @@
 import pathlib
 from typing import *
+import types
 
 from gems import base
 from gems.facets import gems_query, local_ids_update, local_tags_update, attrs_update, global_ids_update, \
@@ -95,10 +96,17 @@ def make_resource_gem(resource_name: str) -> base.Resource:
     return resource_gem
 
 
-def make_resource_function_gem(resource_name: str, function: Callable) -> base.Resource:
+def make_resource_function_gem(resource_name: str, function: types.FunctionType) -> base.Resource:
     resource_gem = make_resource_gem(resource_name)
     assert isinstance(resource_gem, base.Resource)
     attrs_update.set_function(resource_gem, function)
+    return resource_gem
+
+
+def make_resource_type_gem(resource_name: str, ty: type) -> base.Resource:
+    resource_gem = make_resource_gem(resource_name)
+    assert isinstance(resource_gem, base.Resource)
+    attrs_update.set_type(resource_gem, ty)
     return resource_gem
 
 
