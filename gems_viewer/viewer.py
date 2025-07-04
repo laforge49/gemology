@@ -341,7 +341,14 @@ def attrs_facet_display(gems: base.AttrsFacet, text_object) -> None:
         elif isinstance(val, base.Gem):
             gem_name = base.GemName(core.get_gem_name(val))
             gem_full_name = global_ids_query.expand_gem_name(val, gem_name)
-            t += " = " + gem_full_name
+            t += " = "
+            text_object.insert("end", t)
+            text_object.tag_config(gem_full_name, foreground="blue", underline=True)
+            t = gem_name
+            text_object.insert("end", t, (gem_full_name,))
+            text_object.tag_bind(gem_full_name, "<Button-1>",
+                                 lambda event, t=gem_full_name: select_gem(t, event))
+            t = ""
         text_object.insert("end", t + "\n")
         line += 1
 
