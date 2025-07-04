@@ -97,8 +97,7 @@ def expand_gem_name(source_gem: base.Gem, gemname: base.GemName) -> Optional[bas
                 return None
         return base.GemFullName(cluster_name + gemname)
     else:
-        assert isinstance(gemname, base.GemFullName)
-        return gemname
+        return base.GemFullName(gemname)
 
 
 def get_gem(gem_name: base.GemName, context_gem: Optional[base.Gem] = None) -> Optional[base.Gem]:
@@ -111,7 +110,7 @@ def get_gem(gem_name: base.GemName, context_gem: Optional[base.Gem] = None) -> O
             cluster = context_gem
         else:
             cluster = attrs_query.get_cluster(context_gem)
-        return local_ids_query.cluster_get_gem_by_gem_base_name(cluster, gem_name[1:])
+        return local_ids_query.cluster_get_gem_by_gem_base_name(cluster, base.GemBaseName(gem_name[1:]))
     ndx = base.findin(gem_name, ".")
     if ndx is None:
         return get_cluster_by_cluster_name(base.ClusterName(gem_name))

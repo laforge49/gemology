@@ -331,13 +331,19 @@ def default_facet_display(facet: dict | list, text_object) -> None:
 
 
 def attrs_facet_display(gems: base.AttrsFacet, text_object) -> None:
+    line = 0
     for (nam, val) in gems.items():
         t = nam + ": " + type(val).__name__
         if (not nam.startswith("#")) or base.isscalar(val):
             t += " = " + str(val)
         elif isinstance(val, type) or isinstance(val, types.FunctionType):
             t += " = " + val.__name__
+        elif isinstance(val, base.Gem):
+            gem_name = base.GemName(core.get_gem_name(val))
+            gem_full_name = global_ids_query.expand_gem_name(val, gem_name)
+            t += " = " + gem_full_name
         text_object.insert("end", t + "\n")
+        line += 1
 
 
 def gems_facet_change_cursor(sels: list, event) -> None:
