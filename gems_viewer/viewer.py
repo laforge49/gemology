@@ -367,9 +367,9 @@ def gems_facet_display(gems: base.GemsFacet, text_object) -> None:
         gem_base_name = local_ids_query.get_gem_base_name(gem)
         gem_name = base.GemName("." + gem_base_name)
         gem_full_name = global_ids_query.expand_gem_name(gem, gem_name)
-        sels.append(gem_full_name)
+        sels.append(gem_base_name)
         text_object.tag_config(gem_full_name, foreground="blue", underline=True)
-        text_object.insert("end", gem_full_name, (gem_full_name,))
+        text_object.insert("end", gem_base_name, (gem_full_name,))
         text_object.tag_bind(gem_full_name, "<Button-1>",
                              lambda event, t=gem_full_name: select_gem(t, event))
         text_object.insert("end", " \n")
@@ -379,14 +379,14 @@ def local_id_index_facet_change_cursor(sels: dict, event) -> None:
     index = event.widget.index(tkinter.CURRENT)
     line, column = map(int, index.split('.'))
     line -= 1
-    gem_full_name = sels.get(line)
-    if gem_full_name is None:
+    gem_base_name = sels.get(line)
+    if gem_base_name is None:
         event.widget.config(cursor="arrow")
     else:
-        w = 8 + len(gem_full_name)
-        if column >= w:
+        w = 8 + len(gem_base_name)
+        if column > w:
             event.widget.config(cursor="arrow")
-        elif column < 8:
+        elif column <= 8:
             event.widget.config(cursor="arrow")
         else:
             event.widget.config(cursor="hand2")
@@ -403,7 +403,7 @@ def local_id_index_facet(liif: base.LocalIdIndexFacet, text_object) -> None:
             gem_base_name = local_ids_query.get_gem_base_name(gem)
             gem_name = base.GemName("." + gem_base_name)
             gem_full_name = global_ids_query.expand_gem_name(gem, gem_name)
-            sels[line] = gem_full_name
+            sels[line] = gem_base_name
             text_object.tag_config(gem_base_name, foreground="blue", underline=True)
             text_object.insert("end", "    id = ")
             text_object.insert("end", gem_base_name, gem_base_name)
