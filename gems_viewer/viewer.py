@@ -330,8 +330,29 @@ def default_facet_display(facet: dict | list, text_object) -> None:
     text_object.see("1.0")
 
 
+def change_cursor(sels: Dict[int, Tuple[int, int]], event) -> None:
+    index = event.widget.index(tkinter.CURRENT)
+    line, column = map(int, index.split('.'))
+    line -= 1
+    column += 1
+    poslen = sels.get(line)
+    if poslen is None:
+        event.widget.config(cursor="arrow")
+    else:
+        pos, len = poslen
+        en = pos + len
+        if column > en:
+            event.widget.config(cursor="arrow")
+        elif column <= pos:
+            event.widget.config(cursor="arrow")
+        else:
+            event.widget.config(cursor="hand2")
+
+
 def attrs_facet_display(gems: base.AttrsFacet, text_object) -> None:
     line = 0
+    sels = {}
+    text_object.bind("<Motion>", lambda event: change_cursor(sels, event))
     for (nam, val) in gems.items():
         t = nam + ": " + type(val).__name__
         if (not nam.startswith("#")) or base.isscalar(val):
@@ -343,17 +364,17 @@ def attrs_facet_display(gems: base.AttrsFacet, text_object) -> None:
             gem_full_name = global_ids_query.expand_gem_name(val, gem_name)
             t += " = "
             text_object.insert("end", t)
+            sels[line] = (len(t), len(gem_name))
             text_object.tag_config(gem_full_name, foreground="blue", underline=True)
-            t = gem_name
-            text_object.insert("end", t, (gem_full_name,))
+            text_object.insert("end", gem_name, (gem_full_name,))
             text_object.tag_bind(gem_full_name, "<Button-1>",
                                  lambda event, t=gem_full_name: select_gem(t, event))
-            t = ""
+            t = " "
         text_object.insert("end", t + "\n")
         line += 1
 
 
-def gems_facet_change_cursor(sels: list, event) -> None:
+def gems_facet_change_cursor(sels: List[str], event) -> None:
     index = event.widget.index(tkinter.CURRENT)
     line, column = map(int, index.split('.'))
     line -= 1
@@ -382,7 +403,7 @@ def gems_facet_display(gems: base.GemsFacet, text_object) -> None:
         text_object.insert("end", " \n")
 
 
-def local_id_index_facet_change_cursor(sels: dict, event) -> None:
+def local_id_index_facet_change_cursor(sels: Dict[int, str], event) -> None:
     index = event.widget.index(tkinter.CURRENT)
     line, column = map(int, index.split('.'))
     line -= 1
