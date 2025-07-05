@@ -357,6 +357,8 @@ def attrs_facet_display(gems: base.AttrsFacet, text_object) -> None:
         t = nam + ": " + type(val).__name__
         if base.isscalar(val):
             t += " = " + str(val)
+            text_object.insert("end", t + "\n")
+            line += 1
         elif nam.startswith("#"):
             if isinstance(val, type) or isinstance(val, types.FunctionType):
                 t += " = " + val.__name__
@@ -371,10 +373,24 @@ def attrs_facet_display(gems: base.AttrsFacet, text_object) -> None:
                 text_object.tag_bind(gem_full_name, "<Button-1>",
                                      lambda event, t=gem_full_name: select_gem(t, event))
                 t = " "
-        else:
+            text_object.insert("end", t + "\n")
+            line += 1
+        elif not (isinstance(val, dict) or isinstance(val, list)):
             t += " = " + str(val)
-        text_object.insert("end", t + "\n")
-        line += 1
+            text_object.insert("end", t + "\n")
+            line += 1
+        else:
+
+            def container_display(text_object, container, ind):
+                nonlocal line, sels, t
+                t += " = \n"
+                text_object.insert("end", t)
+                line += 1
+                t = (" " * ind) + str(container)
+                text_object.insert("end", t + "\n")
+                line += 1
+
+            container_display(text_object, val, 4)
 
 
 def gems_facet_change_cursor(sels: List[str], event) -> None:
