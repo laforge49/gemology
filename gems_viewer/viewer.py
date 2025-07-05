@@ -390,14 +390,20 @@ def attrs_facet_display(gems: base.AttrsFacet, text_object) -> None:
                 if isinstance(container, dict):
                     for nam, val in container.items():
                         t = (" " * ind) + nam + ": " + type(val).__name__
-                        text_object.insert("end", t + " = " + str(val) + "\n")
-                        line += 1
+                        if not (isinstance(val, dict) or isinstance(val, list)):
+                            text_object.insert("end", t + " = " + str(val) + "\n")
+                            line += 1
+                        else:
+                            container_display(text_object, val, ind + 4)
                 else:
                     assert isinstance(container, list)
                     for val in container:
                         t = (" " * ind) + ": " + type(val).__name__
-                        text_object.insert("end", t + " = " + str(val) + "\n")
-                        line += 1
+                        if not (isinstance(val, dict) or isinstance(val, list)):
+                            text_object.insert("end", t + " = " + str(val) + "\n")
+                            line += 1
+                        else:
+                            container_display(text_object, val, ind + 4)
 
             container_display(text_object, val, 4)
 
