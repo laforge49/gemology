@@ -96,10 +96,10 @@ def make_resource_gem(resource_name: str) -> base.Resource:
     return resource_gem
 
 
-def make_resource_function_gem(resource_name: str, function: types.FunctionType) -> base.Resource:
+def make_resource_function_gem(resource_name: str, fun: Callable) -> base.Resource:
     resource_gem = make_resource_gem(resource_name)
     assert isinstance(resource_gem, base.Resource)
-    attrs_update.set_function(resource_gem, function)
+    attrs_update.set_function(resource_gem, fun)
     return resource_gem
 
 
