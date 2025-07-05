@@ -355,21 +355,24 @@ def attrs_facet_display(gems: base.AttrsFacet, text_object) -> None:
     text_object.bind("<Motion>", lambda event: change_cursor(sels, event))
     for (nam, val) in gems.items():
         t = nam + ": " + type(val).__name__
-        if (not nam.startswith("#")) or base.isscalar(val):
+        if base.isscalar(val):
             t += " = " + str(val)
-        elif isinstance(val, type) or isinstance(val, types.FunctionType):
-            t += " = " + val.__name__
-        elif isinstance(val, base.Gem):
-            gem_name = base.GemName(core.get_gem_name(val))
-            gem_full_name = global_ids_query.expand_gem_name(val, gem_name)
-            t += " = "
-            text_object.insert("end", t)
-            sels[line] = (len(t), len(gem_name))
-            text_object.tag_config(gem_full_name, foreground="blue", underline=True)
-            text_object.insert("end", gem_name, (gem_full_name,))
-            text_object.tag_bind(gem_full_name, "<Button-1>",
-                                 lambda event, t=gem_full_name: select_gem(t, event))
-            t = " "
+        elif nam.startswith("#"):
+            if isinstance(val, type) or isinstance(val, types.FunctionType):
+                t += " = " + val.__name__
+            elif isinstance(val, base.Gem):
+                gem_name = base.GemName(core.get_gem_name(val))
+                gem_full_name = global_ids_query.expand_gem_name(val, gem_name)
+                t += " = "
+                text_object.insert("end", t)
+                sels[line] = (len(t), len(gem_name))
+                text_object.tag_config(gem_full_name, foreground="blue", underline=True)
+                text_object.insert("end", gem_name, (gem_full_name,))
+                text_object.tag_bind(gem_full_name, "<Button-1>",
+                                     lambda event, t=gem_full_name: select_gem(t, event))
+                t = " "
+        else:
+            t += " = " + str(val)
         text_object.insert("end", t + "\n")
         line += 1
 
